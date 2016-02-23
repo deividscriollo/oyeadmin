@@ -22,9 +22,6 @@
 		<link rel="stylesheet" href="dist/css/datepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
 
-		<link rel="stylesheet" href="dist/angular-1.5.0/xeditable.css" />
-		
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
 
@@ -39,8 +36,6 @@
 		<script src="dist/angular-1.5.0/angular-route.js"></script>
 		<script src="dist/angular-1.5.0/angular-animate.js"></script>
 		<script src="dist/angular-1.5.0/ui-bootstrap-tpls-1.1.2.min.js"></script>
-		<script src="dist/angular-1.5.0/xeditable.min.js"></script>
-		
 
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
@@ -525,7 +520,7 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script src="dist/js/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -548,14 +543,13 @@
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
 		  <script src="dist/js/excanvas.min.js"></script>
 		<![endif]-->
-		<script src="dist/js/bootstrap.min.js"></script>
 		<script src="dist/js/jquery-ui.custom.min.js"></script>
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>

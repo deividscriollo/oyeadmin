@@ -1,5 +1,5 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('procesosController', ["xeditable", "ui.bootstrap"],function ($scope) {
+angular.module('scotchApp').controller('procesosController', function ($scope) {
 	
 	// configuracion tabs
 	$scope.tab = 1;
@@ -190,16 +190,5 @@ angular.module('scotchApp').controller('procesosController', ["xeditable", "ui.b
 			name: 'nom_asis2'
 	    });
 	//Fin de Editable de Temas a Tratar 
-		$('#horauno').editable({
-			format: 'yyyy-mm-dd hh:ii',    
-	        viewformat: 'dd/mm/yyyy hh:ii',    
-	        datetimepicker: {
-                weekStart: 1
-           }
-	        
-		});
 
-		
-
-		
 });
