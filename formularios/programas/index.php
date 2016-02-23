@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Menu Admin</title>
+		<title>Menu Programas</title>
         <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <!-- bootstrap & fontawesome -->
@@ -106,7 +106,7 @@
         <!-- ace scripts -->
         <script src="../../ice/dist/js/ace-elements.min.js"></script>
         <script src="../../ice/dist/js/ace.min.js"></script>
-        <script src="invitados.js"></script>
+        <script src="programas.js"></script>
 
 	</body>
 </html>

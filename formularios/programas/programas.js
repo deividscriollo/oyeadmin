@@ -31,26 +31,18 @@
 	        subGridRowExpanded: function (subgridDivId, rowId) {	          
 	        },
 
-	        url: 'invitados_xml.php',
+	        url: 'programas_xml.php',
 	        datatype: "xml",
 	        height: 250,
-	        colNames:['ID','Nombre Invitado','Contacto','Institución','Hora','Identificación','Teléfono 1','Teléfono 2','Teléfono 3','Dirección','Email'],
+	        colNames:['ID','Identificación','Nombre','Fecha'],
 	        colModel:[
 	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
-	            {name:'nom_invitado',index:'nom_invitado',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'contacto',index:'contacto',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'inst_empresa',index:'inst_empresa',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'hora_invitacion',index:'hora_invitacion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-                {name:'identificacion',index:'identificacion',width:150, editable:true, editoptions:{maxlength: "10", size:"20",dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}, editrules: {required: true}},
-                {name:'telefono1',index:'telefono1',width:150, editable:true, editoptions:{maxlength: "10", size:"20",dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}, editrules: {required: true}},
-                {name:'telefono2',index:'telefono2',width:150, editable:true, editoptions:{maxlength: "10", size:"20",dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}, editrules: {required: true}},
-                {name:'telefono3',index:'telefono3',width:150, editable:true, editoptions:{maxlength: "10", size:"20",dataInit: function(elem){$(elem).bind("keypress", function(e) {return numeros(e)})}}, editrules: {required: true}},
-                {name:'direccion',index:'direccion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-                {name:'email',index:'email',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true, email:true}},
-                       
+	            {name:'id_programa',index:'id_programa',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
+	            {name:'nombre',index:'nombre',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
+	            {name:'fecha_creacion',index:'fecha_creacion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},          
 	        ], 
-	        rowNum:10,
-	        rowList:[10,20,30],
+	        rowNum:5,
+	        rowList:[5,10,15],
 	        pager : pager_selector,
 	        sortname: 'id',
 	        sortorder: 'asc',
@@ -68,8 +60,8 @@
 	            }, 0);
 	        },
 
-	        editurl: "invitados.php",
-	        caption: "LISTA DE INVITADOS"
+	        editurl: "programas.php",
+	        caption: "LISTA DE PROGRAMAS"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 

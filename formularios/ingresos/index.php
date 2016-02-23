@@ -1,5 +1,4 @@
 <?php include '../menu/app.php';?>
-
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -24,9 +23,7 @@
 
 	<body class="no-skin">
 		<?php menu_arriba(); ?>
-	
-
-		<div class="main-container" id="main-container">
+			<div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
