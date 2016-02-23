@@ -39,7 +39,7 @@
 
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
-  		<script src="data/home/app.js"></script>\
+  		<script src="data/home/app.js"></script>
   		<script src="data/procesos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
 
@@ -415,31 +415,13 @@
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Home </span>
 						</a>
-
 						<b class="arrow"></b>
 					</li>
-					<li class="">
-						<a href="#/procesos">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Procesos </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="#/reportes">
-							<i class="menu-icon fa fa-file-archive-o"></i>
-							<span class="menu-text"> Reportes </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">
-								UI &amp; Elements
+								Agenda Invitados
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -449,89 +431,55 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-
-									Layouts
-									<b class="arrow fa fa-angle-down"></b>
+								<a href="#/procesos">
+									<i class="menu-icon fa fa-calendar"></i>
+									Agenda
+									<i class="menu-icon fa fa-calendar"></i>
 								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="top-menu.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Top Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 1
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="two-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Default Mobile Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-3.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 3
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
 							</li>
 
 							<li class="">
-								<a href="typography.html">
+								<a href="#/reportes">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Typography
+									Reportes
+									<i class="menu-icon fa fa-file-archive-o right"></i>
 								</a>
 
 								<b class="arrow"></b>
+							</li>
+
+						</ul>
+					</li>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-archive"></i>
+							<span class="menu-text">
+								Rol de Pagos
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="#/procesos">
+									<i class="menu-icon fa fa-calendar"></i>
+									proceso1
+									<i class="menu-icon fa fa-calendar"></i>
+								</a>
 							</li>
 
 							<li class="">
-								<a href="nestable-list.html">
+								<a href="#/reportes">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Nestable Lists
+									proces2
+									<i class="menu-icon fa fa-file-archive-o right"></i>
 								</a>
 
 								<b class="arrow"></b>
 							</li>
+
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
