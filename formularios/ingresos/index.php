@@ -18,6 +18,7 @@
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../ice/dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="../../ice/dist/css/bootstrap-editable.min.css" />
 		<script src="../../ice/dist/js/ace-extra.min.js"></script>
 	</head>
 
@@ -50,23 +51,107 @@
 
 					</div>
 
-					<div class="page-content">
-						
-
-
-
+					<div class="page-content">	
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="widget-box">
 									<div class="widget-header widget-header-blue widget-header-flat">
-										<h4 class="widget-title lighter">New Item Wizard</h4>
-
+										<h4 class="widget-title lighter">Ficha de Invitados</h4>
 									</div>
-
 									<div class="widget-body">
 										<div class="widget-main">
 											
-										<p>aki va el codigo</p>
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="tabbable">
+													<ul class="nav nav-tabs" id="myTab">
+														<li class="active">
+															<a data-toggle="tab" href="#preentre">
+																<i class="green ace-icon fa fa-pencil-square-o"></i>
+																Pre Entrevista
+															</a>
+														</li>
+
+														<li>
+															<a data-toggle="tab" href="#entrevista">
+																Entrevista
+																<i class="blue ace-icon fa fa-inbox"></i>
+															</a>
+														</li>
+
+														<li>
+															<a data-toggle="tab" href="#postentre">
+																Post Entrevista
+																<i class="pink ace-icon fa fa-thumbs-o-up"></i>
+															</a>
+														</li>
+													</ul>
+
+													<div class="tab-content">
+														<div id="preentre" class="tab-pane fade in active">
+															<div class="profile-user-info profile-user-info-striped">
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Username </div>
+
+																	<div class="profile-info-value">
+																		<span class="editable" id="username">alexdoe</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Location </div>
+
+																	<div class="profile-info-value">
+																		<i class="fa fa-map-marker light-orange bigger-110"></i>
+																		<span class="editable" id="country">Netherlands</span>
+																		<span class="editable" id="city">Amsterdam</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Age </div>
+
+																	<div class="profile-info-value">
+																		<span class="editable" id="age">38</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Joined </div>
+
+																	<div class="profile-info-value">
+																		<span class="editable" id="signup">2010/06/20</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Last Online </div>
+
+																	<div class="profile-info-value">
+																		<span class="editable" id="login">3 hours ago</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> About Me </div>
+
+																	<div class="profile-info-value">
+																		<span class="editable" id="about">Editable as WYSIWYG</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div id="entrevista" class="tab-pane fade">
+															<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+														</div>
+
+														<div id="postentre" class="tab-pane fade">
+															<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
+														</div>
+													</div>
+												</div>
+											</div><!-- /.Fin de los Items  -->
 										</div><!-- /.widget-main -->
 									</div><!-- /.widget-body -->
 								</div>
@@ -125,7 +210,8 @@
 		<!-- ace scripts -->
 		<script src="../../ice/dist/js/ace-elements.min.js"></script>
 		<script src="../../ice/dist/js/ace.min.js"></script>
-
+		<script src="../../ice/dist/js/x-editable/bootstrap-editable.min.js"></script>
+		<script src="../../ice/dist/js/x-editable/ace-editable.min.js"></script>
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {

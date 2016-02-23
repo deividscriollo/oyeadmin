@@ -6,7 +6,7 @@
 	$class=new constante();
 
 	if (isset($_POST['llenar_categoria'])) {
-		$resultado = $class->consulta("");
+		$resultado = $class->consulta("select");
 		$acu='';
 		while ($row=$class->fetch_array($resultado)) {
 			$acu[] = array('id' => $row['id'],'categoria' => $row['categoria']);

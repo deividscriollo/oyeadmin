@@ -9,10 +9,15 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/home/app.html',
             controller  : 'mainController',
         })
+        // proceso reportes
+        .when('/reportes', {
+            templateUrl : 'data/reportes/app.html',
+            controller  : 'reportesController',
+        })
         // route for the contact page
-        .when('/contactos', {
-            templateUrl : 'vista/contactos.html',
-            controller  : 'contactosController'
+        .when('/procesos', {
+            templateUrl : 'data/procesos/app.html',
+            controller  : 'procesosController'
         });
 });
 
