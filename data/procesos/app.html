@@ -1,483 +1,519 @@
 <div class="page-header">
 	<div class="row">
-		<div class="col-sm-12">
-			<div class="tabbable">
-				<ul class="nav nav-tabs " id="myTab">
-					<li ng-class="{ active: isSet(1) }">
-						<a href ng-click="setTab(1)">
-							<i class="green ace-icon fa fa-pencil-square-o"></i>
-							Pre Entrevista
-						</a>
-					</li>
+		<div class="col-sm-12` widget-container-col">
+			<div class="widget-box transparent">
+				<div class="widget-header widget-header-small center">
+					<h5 class="widget-title smaller">
+						<span class="pull-left">Titulo del proceso</span>
+						<select id="state" name="state" class="select2" data-placeholder="Click para cambiar...">
+								<option value="">&nbsp;</option>
+								<option value="AL">ED16F0001</option>
+								<option value="AK">ED16F0002</option>
+						</select>
+					</h5>
 
-					<li ng-class="{ active: isSet(2) }">
-						<a href ng-click="setTab(2)">
-							Entrevista
-							<i class="blue ace-icon fa fa-inbox"></i>
-						</a>
-					</li>
+					<div class="widget-toolbar no-border">
+						<ul class="nav nav-tabs" id="myTab">
+							<li ng-class="{ active: isSet(1) }">
+								<a href ng-click="setTab(1)">
+									<i class="orange ace-icon fa fa-pencil-square-o"></i>
+									Pre Entrevista
+								</a>
+							</li>
 
-					<li ng-class="{ active: isSet(3) }">
-						<a href ng-click="setTab(3)">
-							Post Entrevista
-							<i class="pink ace-icon fa fa-thumbs-o-up"></i>
-						</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div ng-show="isSet(1)">
-						<!--Empezando con los datos de los invitados/Row primero-->
-						<div class="row">
-							<div class="col-sm-4">
-							<h3 class="bigger-175 green">Estado de Entrevista: Aceptado</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Contactado por: </div>
+							<li ng-class="{ active: isSet(2) }">
+								<a href ng-click="setTab(2)">
+									Entrevista
+									<i class="blue ace-icon fa fa-inbox"></i>
+								</a>
+							</li>
 
-										<div class="profile-info-value">
-											<span class="editable" id="contactado_por">Nombre</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Fecha: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="fecha">2010/06/20</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Hora: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="hora">12:00</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Forma: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="forma">Forma</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Contactado con: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="contactado_con">Nombre</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-							<h3 class="bigger-175 green">Preconfirmado:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Preconfirmado por: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="preconfirmado_por">Nombre</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Fecha: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="fecha2">2010/06/20</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Hora: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="hora2">12:00</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Forma: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="forma2">Forma</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Preconfirmado con: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="preconfirmado_con">Nombre</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-							<h3 class="bigger-175 green">Confirmado:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Confirmado por: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="confirmado_por">Nombre</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Fecha: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="fecha3">2010/06/20</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Hora: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="hora3">12:00</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Forma: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="forma3">Forma</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Confirmado con: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="confirmado_con">Nombre</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-						<h3 class="bigger-175 green">&nbsp; Seguimiento</h3>
-							<div class="col-sm-4">
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Firma del Responsable: </div>
-											<div class="profile-info-value">
-												<span class="editable" id="confirmado_con">Nombre</span>
-											</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Firma del Responsable: </div>
-											<div class="profile-info-value">
-												<span class="editable" id="confirmado_con">Nombre</span>
-											</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Firma del Responsable: </div>
-											<div class="profile-info-value">
-												<span class="editable" id="confirmado_con">Nombre</span>
-											</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-						<h3 class="bigger-175 green">&nbsp; Datos del Invitado:</h3>
-							<div class="col-sm-6">
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Invitado: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nombre_invitado">Nombre Invitado</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Contacto: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nom_contacto">Nombre Contacto</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Inst/Empresa: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="inst_empresa">Nombre Empresa</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Teléfono 1: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="telefono1">+593-0968265276</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Teléfono 2: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="telefono2">+593-0968265276</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Teléfono 3: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="telefono3">+593-0968265276</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6">
-							<h3 class="bigger-175 green">&nbsp; Hora de Invitación:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> 6:10 </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nombre_invitado">...</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> 6:40 </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nom_contacto">...</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> 7:00 </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="inst_empresa">...</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> 7:30 </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="telefono1">...</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<h3 class="bigger-175 green">Temas a Tratar:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Principal: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="tema_prin">Tema Principal</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Secundario: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="tema_secu">Tema Secundario</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6">
-								<h3 class="bigger-175 green">Asistentes Adicionales:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Nombre1: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nom_asis1">Nombre</span>
-										</div>
-									</div>
-
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Nombre2: </div>
-
-										<div class="profile-info-value">
-											<span class="editable" id="nom_asis2">Nombre</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+							<li ng-class="{ active: isSet(3) }">
+								<a href ng-click="setTab(3)">
+									Post Entrevista
+									<i class="pink ace-icon fa fa-thumbs-o-up"></i>
+								</a>
+							</li>
+							<li >
+								
+							</li>
+						</ul>
 					</div>
-					<div ng-show="isSet(2)">
-						<div class="row">
-							<div class="col-sm-6">
-								<h3 class="bigger-175 green">Preguntas Tema 1:</h3>
-									<div class="profile-user-info profile-user-info-striped">
-										<div class="profile-info-row">
+				</div>
 
-											<div class="profile-info-value">
-												<span class="editable" id="contactado_por">...</span>
+				<div class="widget-body">
+					<div class="widget-main no-border">
+						<div class="tab-content">
+							<div ng-show="isSet(1)">
+								<!--Empezando con los datos de los invitados/Row primero-->
+								<div class="row ">
+									<div class="col-sm-4">
+										<label class="middle">
+											<input class="ace" type="checkbox" id="id-disable-check" />
+											<span class="lbl bigger-130 green"> Aceptado</span>
+										</label>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Contactado_por: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="contactado_por">Nombre</span>
+												</div>
 											</div>
-										</div>
 
-										<div class="profile-info-row">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Fecha: </div>
 
-											<div class="profile-info-value">
-												<span class="editable" id="hora">...</span>
+												<div class="profile-info-value">
+													<span class="editable" id="fecha">2010/06/20</span>
+												</div>
 											</div>
-										</div>
 
-										<div class="profile-info-row">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Hora: </div>
 
-											<div class="profile-info-value">
-												<span class="editable" id="forma">...</span>
+												<div class="profile-info-value">
+													<span class="editable" id="hora">12:00</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Forma: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="forma">Forma</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Contactado_con: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="contactado_con">Nombre</span>
+												</div>
 											</div>
 										</div>
 									</div>
-							</div>
-							<div class="col-sm-6">
-							<h3 class="bigger-175 green">Preguntas Tema 2:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
+									<div class="col-sm-4">
+										<label class="middle">
+											<input class="ace" type="checkbox" id="id-disable-check" />
+											<span class="lbl bigger-130 green"> Preconfirmado</span>
+										</label>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Preconfirmado_por: </div>
 
-										<div class="profile-info-value">
-											<span class="editable" id="preconfirmado_por">...</span>
+												<div class="profile-info-value">
+													<span class="editable" id="preconfirmado_por">Nombre</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Fecha: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="fecha2">2010/06/20</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Hora: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="hora2">12:00</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Forma: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="forma2">Forma</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Preconfirmado_con: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="preconfirmado_con">Nombre</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<label class="middle">
+											<input class="ace" type="checkbox" id="id-disable-check" />
+											<span class="lbl bigger-130 green"> Confirmado</span>
+										</label>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Confirmado_por: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="confirmado_por">Nombre</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Fecha: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="fecha3">2010/06/20</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Hora: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="hora3">12:00</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Forma: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="forma3">Forma</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Confirmado_con: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="confirmado_con">Nombre</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<h3 class="header smaller blue">&nbsp; Seguimiento:</h3>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Firma del Responsable: </div>
+													<div class="profile-info-value">
+														<span class="editable" id="confirmado_con">Nombre</span>
+													</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Firma del Responsable: </div>
+													<div class="profile-info-value">
+														<span class="editable" id="confirmado_con">Nombre</span>
+													</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Firma del Responsable: </div>
+													<div class="profile-info-value">
+														<span class="editable" id="confirmado_con">Nombre</span>
+													</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<h3 class="header smaller blue">&nbsp; Datos del Invitado:</h3>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Invitado: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="nombre_invitado">Nombre Invitado</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Contacto: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="nom_contacto">Nombre Contacto</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Inst/Empresa: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="inst_empresa">Nombre Empresa</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Teléfono 1: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="telefono1">0968265276</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Teléfono 2: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="telefono2">0968265276</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Teléfono 3: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="telefono3">0968265276</span>
+												</div>
+											</div>
 										</div>
 									</div>
 
-									<div class="profile-info-row">
+									<div class="col-sm-6">
+										<h3 class="header smaller blue">&nbsp; Hora de Invitación:</h3>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> 6:10 </div>
 
-										<div class="profile-info-value">
-											<span class="editable" id="hora2">...</span>
+												<div class="profile-info-value">
+													<span class="editable" id="nombre_invitado">...</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> 6:40 </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="nom_contacto">...</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> 7:00 </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="inst_empresa">...</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> 7:30 </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="telefono1">...</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div class="row">
+									<div class="col-sm-6">
+										<h3 class="bigger-130 green">&nbsp; Temas a Tratar:</h3>
+
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Principal: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="tema_prin">Tema Principal</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Secundario: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="tema_secu">Tema Secundario</span>
+												</div>
+											</div>
 										</div>
 									</div>
 
-									<div class="profile-info-row">
+									<div class="col-sm-6">
+										<h3 class="bigger-130 green">&nbsp; Asistentes Adicionales:</h3>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Nombre1: </div>
 
-										<div class="profile-info-value">
-											<span class="editable" id="forma2">...</span>
+												<div class="profile-info-value">
+													<span class="editable" id="nom_asis1">Nombre</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Nombre2: </div>
+
+												<div class="profile-info-value">
+													<span class="editable" id="nom_asis2">Nombre</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-							<h3 class="bigger-175 green">Hora LLegada:</h3>
-									<div class="profile-user-info profile-user-info-striped">
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Hora de Llegada: </div>
-												<div class="profile-info-value">
-													<span class="editable" id="contactado_por">12:00</span>
+							<div ng-show="isSet(2)">
+								<div class="row">
+									<div class="col-sm-6">
+										<h3 class="header smaller blue">&nbsp; Preguntas Tema 1:</h3>
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+
+													<div class="profile-info-value">
+														<span class="editable" id="pregunta1">Pregunta</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+
+													<div class="profile-info-value">
+														<span class="editable" id="pregunta2">Pregunta</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+
+													<div class="profile-info-value">
+														<span class="editable" id="pregunta3">Pregunta</span>
+													</div>
 												</div>
 											</div>
 									</div>
-							</div>
-							<div class="col-sm-6">
-							<h3 class="bigger-175 green">Tiempo Entrevista:</h3>
-								<div class="profile-user-info profile-user-info-striped">
-									<div class="profile-info-row">
-										<div class="profile-info-name"> Tiempo de Entrevista: </div>
-											<div class="profile-info-value">
-												<span class="editable" id="hora">De ... a ...</span>
+									<div class="col-sm-6">
+									<h3 class="header smaller blue">&nbsp; Preguntas Tema 2:</h3>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+
+												<div class="profile-info-value">
+													<span class="editable" id="pregunta4">Pregunta</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+
+												<div class="profile-info-value">
+													<span class="editable" id="pregunta5">Pregunta</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+
+												<div class="profile-info-value">
+													<span class="editable" id="pregunta6">Pregunta</span>
+												</div>
 											</div>
 										</div>
 									</div>
-							</div>
-						</div>
-							<div class="row">
-								<div class="col-sm-6">
-								<h3 class="bigger-175 green">Director del Programa:</h3>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+									<h3 class="header smaller blue">&nbsp; Hora Llegada:</h3>
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Hora de Llegada: </div>
+														<div class="profile-info-value">
+															<span class="editable" id="hora_llegada">12:00</span>
+														</div>
+													</div>
+											</div>
+									</div>
+									<div class="col-sm-6">
+									<h3 class="header smaller blue">&nbsp; Tiempo de Entrevista:</h3>
 										<div class="profile-user-info profile-user-info-striped">
 											<div class="profile-info-row">
-												<div class="profile-info-name"> Director: </div>
+												<div class="profile-info-name"> Tiempo de Entrevista: </div>
 													<div class="profile-info-value">
-														<span class="editable" id="contactado_por">Nombre</span>
+														<span class="editable" id="tiempo_entre">De ... a ...</span>
+													</div>
+												</div>
+											</div>
+									</div>
+								</div>
+									<div class="row">
+										<div class="col-sm-6">
+										<h3 class="header smaller blue">&nbsp; Director del Programa:</h3>
+												<div class="profile-user-info profile-user-info-striped">
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Director: </div>
+															<div class="profile-info-value">
+																<span class="editable" id="director">Nombre</span>
+															</div>
+														</div>
+												</div>
+										</div>
+										<div class="col-sm-6">
+										<h3 class="header smaller blue">&nbsp; Conducción de Entrevista:</h3>
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Conducción: </div>
+														<div class="profile-info-value">
+															<span class="editable" id="condu_entre">Nombre</span>
+														</div>
 													</div>
 												</div>
 										</div>
 								</div>
-								<div class="col-sm-6">
-								<h3 class="bigger-175 green">Conducción de Entrevista:</h3>
-									<div class="profile-user-info profile-user-info-striped">
-										<div class="profile-info-row">
-											<div class="profile-info-name"> Conducción: </div>
-												<div class="profile-info-value">
-													<span class="editable" id="hora">Nombre</span>
-												</div>
-											</div>
+									<div class="row">
+									<h3 class="header smaller blue">&nbsp; Ayúdenos a Mejorar: ¿Qué le pareció la Entrevista?</h3>
+										<div class="col-sm-3">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<label class="middle">
+													<input class="ace" type="checkbox" id="id-disable-check" />
+													<span class="lbl"> Mala</span>
+												</label>
+											</span>
 										</div>
-								</div>
-						</div>
-							<div class="row">
-							<h3 class="bigger-175 green">&nbsp; Ayúdenos a Mejorar: ¿Qué le pareció la Entrevista?</h3>
-								<div class="col-sm-3">
-									<span class="help-inline col-xs-12 col-sm-7">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl"> Mala</span>
-										</label>
-									</span>
-								</div>
-								<div class="col-sm-3">
-									<span class="help-inline col-xs-12 col-sm-7">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl"> Regular</span>
-										</label>
-									</span>
-								</div>
-								<div class="col-sm-3">
-									<span class="help-inline col-xs-12 col-sm-7">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl"> Buena</span>
-										</label>
-									</span>
-								</div>
-								<div class="col-sm-3">
-									<span class="help-inline col-xs-12 col-sm-7">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl"> Muy Buena</span>
-										</label>
-									</span>
-								</div>
+										<div class="col-sm-3">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<label class="middle">
+													<input class="ace" type="checkbox" id="id-disable-check" />
+													<span class="lbl"> Regular</span>
+												</label>
+											</span>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<label class="middle">
+													<input class="ace" type="checkbox" id="id-disable-check" />
+													<span class="lbl"> Buena</span>
+												</label>
+											</span>
+										</div>
+										<div class="col-sm-3">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<label class="middle">
+													<input class="ace" type="checkbox" id="id-disable-check" />
+													<span class="lbl"> Muy Buena</span>
+												</label>
+											</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+										<h3 class="header smaller blue">&nbsp; Sugerencias del Invitado</h3>
+											<textarea class="form-control" id="form-field-8" placeholder="Sugerencias del Invitado"></textarea>
+										</div>
+									</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-12">
-								<h3 class="bigger-175 green">Sugerencias del Invitado</h3>
-									<textarea class="form-control" id="form-field-8" placeholder="Sugerencias del Invitado"></textarea>
-								</div>
-							</div>
-					</div>
 
-					<div  ng-show="isSet(3)">
-						<p>postentrevistas</p>
+							<div  ng-show="isSet(3)">
+								<div class="row">
+									<div class="col-sm-12">
+									<h3 class="header smaller blue">&nbsp; Observaciones</h3>
+										<textarea class="form-control" id="form-field-8" placeholder="Observaciones"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div><!-- /.Fin de los Items  -->
+		</div>
 	</div><!-- /.widget-main -->
 </div><!-- /.page-header -->

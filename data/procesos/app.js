@@ -20,7 +20,12 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 	    $('#contactado_por')
 		.editable({
 			type: 'text',
-			name: 'contactado_por'
+			name: 'contactado_por',
+			pk:'asdf',
+			url:'data/procesos/app.php',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre';
+		    }  
 	    });
 		//custom date editable /para las fechas
 		$('#fecha').editable({
@@ -42,13 +47,19 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#forma').editable({
 			type: 'text',
-			name: 'forma'
+			name: 'forma',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Forma';
+		    } 
 	    });
 		//editables para El Contactado con    
 		//text editable
 	    $('#contactado_con').editable({
 			type: 'text',
-			name: 'contactado_con'
+			name: 'contactado_con',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre Contactado';
+		    } 
 	    });
 	//Fin del Primer Editable de Aceptado
 
@@ -57,7 +68,10 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#preconfirmado_por').editable({
 			type: 'text',
-			name: 'preconfirmado_por'
+			name: 'preconfirmado_por',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre';
+		    } 
 	    });
 	//custom date editable /para las fechas
 		$('#fecha2').editable({
@@ -79,13 +93,19 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#forma2').editable({
 			type: 'text',
-			name: 'forma2'
+			name: 'forma2',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Forma';
+		    } 
 	    });
 		//editables para El Preconfirmado con    
 		//text editable
 	    $('#preconfirmado_con').editable({
 			type: 'text',
-			name: 'preconfirmado_con'
+			name: 'preconfirmado_con',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre Preconfirmado';
+		    } 
 	    });
 	//Fin del Segundo Editable de Preconfirmado
 
@@ -94,7 +114,10 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#confirmado_por').editable({
 			type: 'text',
-			name: 'confirmado_por'
+			name: 'confirmado_por',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre';
+		    } 
 	    });
 	//custom date editable /para las fechas
 		$('#fecha3').editable({
@@ -116,14 +139,20 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#forma3').editable({
 			type: 'text',
-			name: 'forma3'
+			name: 'forma3',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Forma';
+		    } 
 	    });
 		//editables para El Confirmado con    
 		//text editable
 	    $('#confirmado_con')
 		.editable({
 			type: 'text',
-			name: 'confirmado_con'
+			name: 'confirmado_con',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre Confirmado';
+		    } 
 	    });
 	//Fin del Tercer Editable de Confirmado
 
@@ -132,37 +161,61 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		//text editable
 	    $('#nombre_invitado').editable({
 			type: 'text',
-			name: 'nombre_invitado'
+			name: 'nombre_invitado',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre';
+		    } 
 	    });
 		//editables para el nombre del contacto    
 		//text editable
 	    $('#nom_contacto').editable({
 			type: 'text',
-			name: 'nom_contacto'
+			name: 'nom_contacto',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre del Contacto';
+		    } 
 	    });
 		//editables para la Institución o empresa    
 		//text editable
 	    $('#inst_empresa').editable({
 			type: 'text',
-			name: 'inst_empresa'
+			name: 'inst_empresa',
+			validate:function(value){		                
+		       if(value=='') return 'Campo Requerido Ingrese Nombre de la Empresa';
+		    } 
 	    });
 		//editables para Primer Teléfono    
 		//text editable
 	    $('#telefono1').editable({
 			type: 'text',
-			name: 'telefono1'
+			name: 'telefono1',
+			validate: function(value) {
+		       var regex = /^[0-9]+$/;
+		        if(! regex.test(value)) {
+		            return 'Solo Números';
+        	}}
 	    });
 	    	//editables para Segundo Teléfono    
 		//text editable
 	    $('#telefono2').editable({
 			type: 'text',
-			name: 'telefono2'
+			name: 'telefono2',
+			validate: function(value) {
+		       var regex = /^[0-9]+$/;
+		        if(! regex.test(value)) {
+		            return 'Solo Números';
+        	}}
 	    });
 	    	//editables para Tercer Teléfono    
 		//text editable
 	    $('#telefono3').editable({
 			type: 'text',
-			name: 'telefono3'
+			name: 'telefono3',
+			validate: function(value) {
+		       var regex = /^[0-9]+$/;
+		        if(! regex.test(value)) {
+		            return 'Solo Números';
+        	}}
 	    });
 		//Inicio de Temas a tratar 
 		//editables on first profile page    
@@ -190,5 +243,65 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 			name: 'nom_asis2'
 	    });
 	//Fin de Editable de Temas a Tratar 
+	
+	//Panel de Entrevistas
+		//Preguntas Tema 1
+	    $('#pregunta1').editable({
+			type: 'text',
+			name: 'pregunta1'
+	    });	
+	    //Preguntas Tema 2
+	    $('#pregunta2').editable({
+			type: 'text',
+			name: 'pregunta2'
+	    });	
+	     //Preguntas Tema 3
+	    $('#pregunta3').editable({
+			type: 'text',
+			name: 'pregunta3'
+	    });	    
+	    //Preguntas Tema 4
+	    $('#pregunta4').editable({
+			type: 'text',
+			name: 'pregunta4'
+	    });	
+	    //Preguntas Tema 5
+	    $('#pregunta5').editable({
+			type: 'text',
+			name: 'pregunta5'
+	    });	
+	     //Preguntas Tema 6
+	    $('#pregunta6').editable({
+			type: 'text',
+			name: 'pregunta6'
+	    });	
+	      //Hora de llegada
+	    $('#hora_llegada').editable({
+			type: 'text',
+			name: 'hora_llegada'
+	    });	 
+	      //Tiempo de la entrevista
+	    $('#tiempo_entre').editable({
+			type: 'text',
+			name: 'tiempo_entre'
+	    }); 
+	     //Director del Programa 
+	    $('#director').editable({
+			type: 'text',
+			name: 'director'
+	    }); 
+	     //Conducción de Entrevista
+	    $('#condu_entre').editable({
+			type: 'text',
+			name: 'condu_entre'
+	    }); 
+	    //para el selector de código
+	    $(".select2").css({
+	    	'width':'300px',
+	    	'text-align':'left',
+	    }).select2({allowClear:true})
+				.on('change', function(){
+					$(this).closest('form').validate().element($(this));
+		});      
 
 });
