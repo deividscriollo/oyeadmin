@@ -1,5 +1,6 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('procesosController', function ($scope) {
+angular.module('scotchApp').controller('procesosController',["xeditable", "ui.bootstrap"],
+function ($scope) {
 	
 	// configuracion tabs
 	$scope.tab = 1;
@@ -189,6 +190,5 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 			type: 'text',
 			name: 'nom_asis2'
 	    });
-	//Fin de Editable de Temas a Tratar 
-
-});
+	//Fin de Editable de Temas a Tratar
+}]);
