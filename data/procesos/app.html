@@ -1,14 +1,11 @@
 <div class="page-header">
 	<div class="row">
-		<div class="col-sm-12` widget-container-col">
+		<div class="col-sm-12 widget-container-col">
 			<div class="widget-box transparent">
 				<div class="widget-header widget-header-small center">
 					<h5 class="widget-title smaller">
-						<span class="pull-left">Titulo del proceso</span>
-						<select id="state" name="state" class="select2" data-placeholder="Click para cambiar...">
-								<option value="">&nbsp;</option>
-								<option value="AL">ED16F0001</option>
-								<option value="AK">ED16F0002</option>
+						<span class="pull-left">FICHA DE INGRESO DE INVITADOS</span>
+						<select id="select_ficha" name="select_ficha" class="select2" data-placeholder="Click para cambiar...">
 						</select>
 					</h5>
 
@@ -40,184 +37,200 @@
 						</ul>
 					</div>
 				</div>
-
+				<!-- COSAS INTERNAS -->
 				<div class="widget-body">
 					<div class="widget-main no-border">
 						<div class="tab-content">
 							<div ng-show="isSet(1)">
 								<!--Empezando con los datos de los invitados/Row primero-->
-								<div class="row ">
-									<div class="col-sm-4">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl bigger-130 green"> Aceptado</span>
-										</label>
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Contactado_por: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="contactado_por">Nombre</span>
+								<form class="form-horizontal" id="form_proceso">
+								<h3 class="header smaller blue">&nbsp; Estado de la entrevista:</h3>
+									<div class="row ">
+									<!-- inicio de los de aceptado -->
+										<div class="col-sm-4">
+											<label class="middle">
+												<input class="ace" type="checkbox" id="id-disable-check" />
+												<span class="lbl bigger-130 green">Aceptado</span>
+											</label>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado por:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_contactado_por" id="txt_contactado_por" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="ace-icon fa fa-calendar"></i>
+														</span>	
 
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Fecha: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="fecha">2010/06/20</span>
+														<div class="clearfix">
+															<input type="text" name="txt_fecha" id="txt_fecha" class="col-xs-7 input-sm" />
+														</div>
+														
+													</div>
+													
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Hora: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="hora">12:00</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_hora" id="txt_hora" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Forma: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="forma">Forma</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_forma" id="txt_forma" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Contactado_con: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="contactado_con">Nombre</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl bigger-130 green"> Preconfirmado</span>
-										</label>
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Preconfirmado_por: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="preconfirmado_por">Nombre</span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Fecha: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="fecha2">2010/06/20</span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Hora: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="hora2">12:00</span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Forma: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="forma2">Forma</span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Preconfirmado_con: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="preconfirmado_con">Nombre</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado con:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_contactado_con" id="txt_contactado_con" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col-sm-4">
-										<label class="middle">
-											<input class="ace" type="checkbox" id="id-disable-check" />
-											<span class="lbl bigger-130 green"> Confirmado</span>
-										</label>
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Confirmado_por: </div>
+										<!-- fin de los de aceptado -->
 
-												<div class="profile-info-value">
-													<span class="editable" id="confirmado_por">Nombre</span>
+										<!-- inicio de los de Preconfirmado -->
+										<div class="col-sm-4">
+											<label class="middle">
+												<input class="ace" type="checkbox" id="id-disable-check" />
+												<span class="lbl bigger-130 green">Preconfirmado</span>
+											</label>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado por:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_preconfirmado_por" id="txt_preconfirmado_por" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Fecha: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="fecha3">2010/06/20</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_fecha2" id="txt_fecha2" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Hora: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="hora3">12:00</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_hora2" id="txt_hora2" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Forma: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="forma3">Forma</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_forma2" id="txt_forma2" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Confirmado_con: </div>
-
-												<div class="profile-info-value">
-													<span class="editable" id="confirmado_con">Nombre</span>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado con:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_preconfirmado_con" id="txt_preconfirmado_con" class="col-xs-7 input-sm"/>
+													</div>
 												</div>
 											</div>
 										</div>
+										<!-- fin de los de Preconfirmado -->
+
+										<!-- inicio de los de Confirmado -->
+										<div class="col-sm-4">
+											<label class="middle">
+												<input class="ace" type="checkbox" id="id-disable-check" />
+												<span class="lbl bigger-130 green">Confirmado</span>
+											</label>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado por:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_confirmado_por" id="txt_confirmado_por" class="col-xs-7 input-sm"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_fecha3" id="txt_fecha3" class="col-xs-7 input-sm"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_hora3" id="txt_hora3" class="col-xs-7 input-sm"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_forma3" id="txt_forma3" class="col-xs-7 input-sm"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado con:</label>
+												<div class="col-xs-12 col-sm-8">
+													<div class="clearfix">
+														<input type="text" name="txt_confirmado_con" id="txt_confirmado_con" class="col-xs-7 input-sm"/>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- fin de los de Confirmado -->
 									</div>
-								</div>
+								
 								<h3 class="header smaller blue">&nbsp; Seguimiento:</h3>
 								<div class="row">
 									<div class="col-sm-4">
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Firma del Responsable: </div>
-													<div class="profile-info-value">
-														<span class="editable" id="confirmado_con">Nombre</span>
-													</div>
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+											<div class="col-xs-12 col-sm-8">
+												<div class="clearfix">
+													<textarea name="txt_responsable" id="txt_responsable" class="col-xs-7 input-sm"></textarea> 
+												</div>
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-4">
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Firma del Responsable: </div>
-													<div class="profile-info-value">
-														<span class="editable" id="confirmado_con">Nombre</span>
-													</div>
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+											<div class="col-xs-12 col-sm-8">
+												<div class="clearfix">
+													<textarea name="txt_responsable2" id="txt_responsable2" class="col-xs-7 input-sm"></textarea> 
+												</div>
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-4">
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Firma del Responsable: </div>
-													<div class="profile-info-value">
-														<span class="editable" id="confirmado_con">Nombre</span>
-													</div>
+										<div class="form-group">
+											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+											<div class="col-xs-12 col-sm-8">
+												<div class="clearfix">
+													<textarea name="txt_responsable3" id="txt_responsable3" class="col-xs-7 input-sm"></textarea> 
+												</div>
 											</div>
 										</div>
 									</div>
@@ -517,3 +530,4 @@
 		</div>
 	</div><!-- /.widget-main -->
 </div><!-- /.page-header -->
+</form>

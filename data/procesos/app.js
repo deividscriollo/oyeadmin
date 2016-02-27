@@ -1,6 +1,6 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('procesosController', function ($scope) {
-	
+angular.module('scotchApp').controller('procesosController',
+function ($scope) {
 	// configuracion tabs
 	$scope.tab = 1;
     $scope.setTab = function(newTab){
@@ -21,20 +21,39 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		.editable({
 			type: 'text',
 			name: 'contactado_por',
-			pk:'asdf',
+			pk: function(){
+				return $('#select_ficha').val();
+			},
 			url:'data/procesos/app.php',
 			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre';
-		    }  
+		    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+		    },
+		    success:function(data){
+		    	var json = jQuery.parseJSON(data);
+		    	if (json['valid']!='true') {
+		    		$.gritter.add({
+						title: 'Proceso No Guardado',
+						text: 'Porvafor Verifique que sus Datos esten llenos',
+						class_name: 'gritter-error'
+					});
+		    	}
+		    	if (json['valid']=='true') {
+		    		$.gritter.add({
+						title: 'Proceso Guardado Correctamente',
+						text: 'Sus Datos han sido guardados de forma Correcta',
+						class_name: 'gritter-success'
+					});	
+		    	}
+		    }
 	    });
 		//custom date editable /para las fechas
 		$('#fecha').editable({
 			type: 'adate',
 			date: {
-				//datepicker plugin options
-				    format: 'yyyy/mm/dd',
-				viewformat: 'yyyy/mm/dd',
-				 weekStart: 1
+			//datepicker plugin options
+			format: 'yyyy/mm/dd',
+			viewformat: 'yyyy/mm/dd',
+			weekStart: 1
 			}
 		})
 		//editables para la Hora    
@@ -77,10 +96,10 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 		$('#fecha2').editable({
 			type: 'adate',
 			date: {
-				//datepicker plugin options
-				    format: 'yyyy/mm/dd',
-				viewformat: 'yyyy/mm/dd',
-				 weekStart: 1
+			//datepicker plugin options
+			format: 'yyyy/mm/dd',
+			viewformat: 'yyyy/mm/dd',
+			weekStart: 1
 			}
 		})
 		//editables para la Hora    
@@ -242,6 +261,7 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 			type: 'text',
 			name: 'nom_asis2'
 	    });
+
 	//Fin de Editable de Temas a Tratar 
 	
 	//Panel de Entrevistas
@@ -295,13 +315,21 @@ angular.module('scotchApp').controller('procesosController', function ($scope) {
 			type: 'text',
 			name: 'condu_entre'
 	    }); 
-	    //para el selector de código
+		    //para el selector de código de Fichas
 	    $(".select2").css({
-	    	'width':'300px',
+	    	'width':'345px',
 	    	'text-align':'left',
 	    }).select2({allowClear:true})
-				.on('change', function(){
-					$(this).closest('form').validate().element($(this));
-		});      
-
+			.on('change', function(){
+			//$(this).closest('form').validate().element($(this));
+		}); 
+		//para seleccionar el codigo de Fichas	
+		$.ajax({
+			url: 'data/procesos/app.php',
+			type: 'post',
+			data: {llenar_ficha:'asjkef'},
+			success: function (data) {
+				$('#select_ficha').html(data);
+			}
+		});
 });

@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="dist/css/font-awesome.min.css" />
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="dist/css/select2.min.css" />
 		<link rel="stylesheet" href="dist/css/datepicker.min.css" />
@@ -42,6 +43,7 @@
   		<script src="data/home/app.js"></script>
   		<script src="data/procesos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
+  		<script src="data/programas/app.js"></script>
 
 	</head>
 
@@ -431,6 +433,17 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
+
+							<li class="">
+								<a href="#/programas">
+									<i class="menu-icon fa fa-music"></i>
+									Programas
+									<i class="menu-icon fa fa-music"></i>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							
 							<li class="">
 								<a href="#/procesos">
 									<i class="menu-icon fa fa-calendar"></i>
@@ -448,7 +461,6 @@
 
 								<b class="arrow"></b>
 							</li>
-
 						</ul>
 					</li>
 					<li class="">
@@ -552,11 +564,13 @@
 		  <script src="dist/js/excanvas.min.js"></script>
 		<![endif]-->
 		<script src="dist/js/jquery-ui.custom.min.js"></script>
+		<script src="dist/js/jquery.validate.min.js"></script>
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
 		<script src="dist/js/jquery.easypiechart.min.js"></script>
-		<script src="dist/js/bootstrap-datepicker.min.js"></script>
+		<script src="dist/js/chosen.jquery.min.js"></script>
+		<!-- <script src="dist/js/bootstrap-datepicker.min.js"></script> -->
 		<script src="dist/js/jquery.hotkeys.min.js"></script>
 		<script src="dist/js/bootstrap-wysiwyg.min.js"></script>
 		<script src="dist/js/select2.min.js"></script>
@@ -564,6 +578,8 @@
 		<script src="dist/js/x-editable/bootstrap-editable.min.js"></script>
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
+		<script src="dist/js/bootbox.min.js"></script>
+		
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
