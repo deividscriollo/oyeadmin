@@ -563,14 +563,22 @@
 		<!--[if lte IE 8]>
 		  <script src="dist/js/excanvas.min.js"></script>
 		<![endif]-->
+		<script src="dist/js/chosen.jquery.min.js"></script>
 		<script src="dist/js/jquery-ui.custom.min.js"></script>
 		<script src="dist/js/jquery.validate.min.js"></script>
+
+		<script src="dist/js/date-time/moment.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-timepicker.min.js"></script>
+		<script src="dist/js/date-time/daterangepicker.min.js"></script>
+		
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
 		<script src="dist/js/jquery.easypiechart.min.js"></script>
-		<script src="dist/js/chosen.jquery.min.js"></script>
-		<!-- <script src="dist/js/bootstrap-datepicker.min.js"></script> -->
+		
+		
 		<script src="dist/js/jquery.hotkeys.min.js"></script>
 		<script src="dist/js/bootstrap-wysiwyg.min.js"></script>
 		<script src="dist/js/select2.min.js"></script>
@@ -579,6 +587,7 @@
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
+
 		
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>

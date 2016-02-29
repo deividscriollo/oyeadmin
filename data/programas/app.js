@@ -3,7 +3,7 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 	
 
 	// formulario registro
-	$('#form_proceso').validate({
+	$('#form_programas').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
 		focusInvalid: false,
@@ -33,8 +33,13 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 				required: "Por favor, Digíte un nombre de Programa"
 			}, 	
 		},
+		//para prender y apagar los errores
 		highlight: function (e) {
 			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
 		},
 		submitHandler: function (form) {
 			$.ajax({
@@ -66,7 +71,7 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 	});    
 
 	// Validaciones del formulario 2 de las fichas
-	$('#form_proceso2').validate({
+	$('#form_programas2').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
 		focusInvalid: false,
@@ -228,39 +233,37 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 				    }
 			    });
 
-			    //para actualizar los datos de codigo ver
-		    	$('#edit_codigo').editable({
-					type: 'text',
-					name: 'actualizar_codigo_programas',
-					value: data['codigo'],
-					pk:id,
-					url:'data/programas/app.php',
-					validate:function(value){		                
-				    	if(value=='') return 'Campo Requerido Ingrese Nombre';
-				    },
-				    success:function(data){
-				    	llenar_tabla_programas()
-				    	var json = jQuery.parseJSON(data);
-				    	if (json['valid']!='true') {
-				    		$.gritter.add({
-								title: 'Proceso No Modificado',
-								text: 'Porvafor Verifique que sus Datos esten llenos',
-								class_name: 'gritter-error',
-								time:2000
-							});
-				    	}
-				    	if (json['valid']=='true') {
-				    		$.gritter.add({
-								title: 'Proceso Modificado Correctamente',
-								text: 'Sus Datos han sido Modificados de forma Correcta',
-								class_name: 'gritter-success',
-								time:2000
-							});	
-				    	}
-				    }
-			    });
-			}
-		});
-		
-
-	}
+		    //para actualizar los datos de codigo ver
+	    	$('#edit_codigo').editable({
+				type: 'text',
+				name: 'actualizar_codigo_programas',
+				value: data['codigo'],
+				pk:id,
+				url:'data/programas/app.php',
+				validate:function(value){		                
+			    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+			    },
+			    success:function(data){
+			    	llenar_tabla_programas()
+			    	var json = jQuery.parseJSON(data);
+			    	if (json['valid']!='true') {
+			    		$.gritter.add({
+							title: 'Proceso No Modificado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+			    	}
+			    	if (json['valid']=='true') {
+			    		$.gritter.add({
+							title: 'Proceso Modificado Correctamente',
+							text: 'Sus Datos han sido Modificados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+			    	}
+			    }
+		    });
+		}
+	});
+}

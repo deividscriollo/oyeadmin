@@ -16,312 +16,226 @@ function ($scope) {
 		$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-green'></i></div>";
 	    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
 	                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
-		//text editable
-	    $('#contactado_por')
-		.editable({
-			type: 'text',
-			name: 'contactado_por',
-			pk: function(){
-				return $('#select_ficha').val();
+		
+	    // formulario registro de la primera: PreEntrevista
+	$('#form_proceso1').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_contactado_por: {
+				required: true				
 			},
-			url:'data/procesos/app.php',
-			validate:function(value){		                
-		    	if(value=='') return 'Campo Requerido Ingrese Nombre';
-		    },
-		    success:function(data){
-		    	var json = jQuery.parseJSON(data);
-		    	if (json['valid']!='true') {
-		    		$.gritter.add({
-						title: 'Proceso No Guardado',
-						text: 'Porvafor Verifique que sus Datos esten llenos',
-						class_name: 'gritter-error'
-					});
-		    	}
-		    	if (json['valid']=='true') {
-		    		$.gritter.add({
-						title: 'Proceso Guardado Correctamente',
-						text: 'Sus Datos han sido guardados de forma Correcta',
-						class_name: 'gritter-success'
-					});	
-		    	}
-		    }
-	    });
-		//custom date editable /para las fechas
-		$('#fecha').editable({
-			type: 'adate',
-			date: {
-			//datepicker plugin options
-			format: 'yyyy/mm/dd',
-			viewformat: 'yyyy/mm/dd',
-			weekStart: 1
-			}
-		})
-		//editables para la Hora    
-		//text editable
-	    $('#hora').editable({
-			type: 'text',
-			name: 'hora'
-	    });
-		//editables para la Forma    
-		//text editable
-	    $('#forma').editable({
-			type: 'text',
-			name: 'forma',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Forma';
-		    } 
-	    });
-		//editables para El Contactado con    
-		//text editable
-	    $('#contactado_con').editable({
-			type: 'text',
-			name: 'contactado_con',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre Contactado';
-		    } 
-	    });
-	//Fin del Primer Editable de Aceptado
+			txt_forma: {
+				required: true				
+			},
+			txt_contactado_con: {
+				required: true				
+			},
+			txt_preconfirmado_por: {
+				required: true				
+			},
+			txt_forma2: {
+				required: true				
+			},
+			txt_preconfirmado_con: {
+				required: true				
+			},
+			txt_confirmado_por: {
+				required: true				
+			},
+			txt_forma3: {
+				required: true				
+			},
+			txt_confirmado_con: {
+				required: true				
+			},
+			txt_responsable: {
+				required: true				
+			},
+			txt_responsable2: {
+				required: true				
+			},
+			txt_responsable3: {
+				required: true				
+			},
+			txt_invitado: {
+				required: true				
+			},
+			txt_contacto: {
+				required: true				
+			},
+			txt_empresa: {
+				required: true				
+			},
+			txt_principal: {
+				required: true				
+			},
+			txt_secundario: {
+				required: true				
+			},
+		},
+		messages: {
+			txt_contactado_por: {
+				required: "Por favor, Digíte un Nombre",
+			},
+			txt_forma: {
+				required: "Por favor, Digíte una Forma",
+			},
+			txt_contactado_con: { 	
+				required: "Por favor, Digíte un Nombre"			
+			},
+			txt_preconfirmado_por: { 	
+				required: "Por favor, Digíte un Nombre"			
+			},
+			txt_forma2: {
+				required: "Por favor, Digíte una Forma",
+			},
+			txt_preconfirmado_con: {
+				required: "Por favor, Digíte un Nombre",
+			},
+			txt_confirmado_por: {
+				required: "Por favor, Digíte un Nombre",
+			},
+			txt_forma3: {
+				required: "Por favor, Digíte una Forma",
+			},
+			txt_confirmado_con: {
+				required: "Por favor, Digíte un Nombre",
+			},
+			txt_responsable: {
+				required: "Por favor, Necesita un Responsable",
+			},
+			txt_responsable2: {
+				required: "Por favor, Necesita un Responsable",
+			},
+			txt_responsable3: {
+				required: "Por favor, Necesita un Responsable",
+			},
+			txt_invitado: {
+				required: "Por favor, Necesita un Nombre de Invitado",
+			},
+			txt_contacto: {
+				required: "Por favor, Necesita un Contacto",
+			},
+			txt_empresa: {
+				required: "Por favor, Necesita un Nombre de Empresa",
+			},
+			txt_principal: {
+				required: "Por favor, Necesita un Tema Principal",
+			},
+			txt_secundario: {
+				required: "Por favor, Necesita un Tema Secundario",
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			$.ajax({
+				url: 'data/procesos/app.php',
+				type: 'post',
+				data: $(form).serialize(),
+				dataType:"json",
+				success: function (data) {
+					console.log(data);
+						if (data['valid']=="true") {
+							$.gritter.add({
+								title: 'Proceso Guardado Correctamente',
+								text: 'Sus Datos han sido guardados de forma Correcta',
+								class_name: 'gritter-success',
+								time:2000
+							});	
+						}else{
+							$.gritter.add({
+								title: 'Proceso No Guardado',
+								text: 'Porvafor Verifique que sus Datos esten llenos',
+								class_name: 'gritter-error',
+								time:2000
+							});
+						}
 
-	//Segundo Editable de Preconfirmado
-		//editables on first profile page    
-		//text editable
-	    $('#preconfirmado_por').editable({
-			type: 'text',
-			name: 'preconfirmado_por',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre';
-		    } 
-	    });
-	//custom date editable /para las fechas
-		$('#fecha2').editable({
-			type: 'adate',
-			date: {
-			//datepicker plugin options
-			format: 'yyyy/mm/dd',
-			viewformat: 'yyyy/mm/dd',
-			weekStart: 1
-			}
-		})
-		//editables para la Hora    
-		//text editable
-	    $('#hora2').editable({
-			type: 'text',
-			name: 'hora2'
-	    });
-		//editables para la Forma    
-		//text editable
-	    $('#forma2').editable({
-			type: 'text',
-			name: 'forma2',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Forma';
-		    } 
-	    });
-		//editables para El Preconfirmado con    
-		//text editable
-	    $('#preconfirmado_con').editable({
-			type: 'text',
-			name: 'preconfirmado_con',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre Preconfirmado';
-		    } 
-	    });
-	//Fin del Segundo Editable de Preconfirmado
+				}
+			});
+		}
+	}); 
+	// formulario registro de la segunda: Entrevista
+	$('#form_proceso2').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_pregunta1: {
+				required: true				
+			},
+			txt_director: {
+				required: true				
+			},
+			txt_conduccion: {
+				required: true				
+			},
+		},
+		messages: {
+			txt_pregunta1: {
+				required: "Por favor, Almenos debe tener una pregunta",
+			},
+			txt_director: { 	
+				required: "Por favor, Digíte un Nombre"			
+			},
+			txt_conduccion: { 	
+				required: "Por favor, Digíte un Nombre"			
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			$.ajax({
+				url: 'data/procesos/app.php',
+				type: 'post',
+				data: $(form).serialize(),
+				dataType:"json",
+				success: function (data) {
+					console.log(data);
+						if (data['valid']=="true") {
+							$.gritter.add({
+								title: 'Proceso Guardado Correctamente',
+								text: 'Sus Datos han sido guardados de forma Correcta',
+								class_name: 'gritter-success',
+								time:2000
+							});	
+						}else{
+							$.gritter.add({
+								title: 'Proceso No Guardado',
+								text: 'Porvafor Verifique que sus Datos esten llenos',
+								class_name: 'gritter-error',
+								time:2000
+							});
+						}
+				}
+			});
+		}
+	});
 
-	//Tercer Editable de Confirmado
-		//editables on first profile page    
-		//text editable
-	    $('#confirmado_por').editable({
-			type: 'text',
-			name: 'confirmado_por',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre';
-		    } 
-	    });
-	//custom date editable /para las fechas
-		$('#fecha3').editable({
-			type: 'adate',
-			date: {
-				//datepicker plugin options
-				    format: 'yyyy/mm/dd',
-				viewformat: 'yyyy/mm/dd',
-				 weekStart: 1
-			}
-		})
-		//editables para la Hora    
-		//text editable
-	    $('#hora3').editable({
-			type: 'text',
-			name: 'hora3'
-	    });
-		//editables para la Forma    
-		//text editable
-	    $('#forma3').editable({
-			type: 'text',
-			name: 'forma3',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Forma';
-		    } 
-	    });
-		//editables para El Confirmado con    
-		//text editable
-	    $('#confirmado_con')
-		.editable({
-			type: 'text',
-			name: 'confirmado_con',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre Confirmado';
-		    } 
-	    });
-	//Fin del Tercer Editable de Confirmado
-
-	//Cuarto Editable de Datos del Invitado 
-		//editables on first profile page    
-		//text editable
-	    $('#nombre_invitado').editable({
-			type: 'text',
-			name: 'nombre_invitado',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre';
-		    } 
-	    });
-		//editables para el nombre del contacto    
-		//text editable
-	    $('#nom_contacto').editable({
-			type: 'text',
-			name: 'nom_contacto',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre del Contacto';
-		    } 
-	    });
-		//editables para la Institución o empresa    
-		//text editable
-	    $('#inst_empresa').editable({
-			type: 'text',
-			name: 'inst_empresa',
-			validate:function(value){		                
-		       if(value=='') return 'Campo Requerido Ingrese Nombre de la Empresa';
-		    } 
-	    });
-		//editables para Primer Teléfono    
-		//text editable
-	    $('#telefono1').editable({
-			type: 'text',
-			name: 'telefono1',
-			validate: function(value) {
-		       var regex = /^[0-9]+$/;
-		        if(! regex.test(value)) {
-		            return 'Solo Números';
-        	}}
-	    });
-	    	//editables para Segundo Teléfono    
-		//text editable
-	    $('#telefono2').editable({
-			type: 'text',
-			name: 'telefono2',
-			validate: function(value) {
-		       var regex = /^[0-9]+$/;
-		        if(! regex.test(value)) {
-		            return 'Solo Números';
-        	}}
-	    });
-	    	//editables para Tercer Teléfono    
-		//text editable
-	    $('#telefono3').editable({
-			type: 'text',
-			name: 'telefono3',
-			validate: function(value) {
-		       var regex = /^[0-9]+$/;
-		        if(! regex.test(value)) {
-		            return 'Solo Números';
-        	}}
-	    });
-		//Inicio de Temas a tratar 
-		//editables on first profile page    
-		//text editable
-	    $('#tema_prin').editable({
-			type: 'text',
-			name: 'tema_prin'
-	    });
-		//editables para el nombre del contacto    
-		//text editable
-	    $('#tema_secu').editable({
-			type: 'text',
-			name: 'tema_secu'
-	    });
-		//editables para la Institución o empresa    
-		//text editable
-	    $('#nom_asis1').editable({
-			type: 'text',
-			name: 'nom_asis1'
-	    });
-		//editables para Primer Teléfono    
-		//text editable
-	    $('#nom_asis2').editable({
-			type: 'text',
-			name: 'nom_asis2'
-	    });
-
-	//Fin de Editable de Temas a Tratar 
-	
-	//Panel de Entrevistas
-		//Preguntas Tema 1
-	    $('#pregunta1').editable({
-			type: 'text',
-			name: 'pregunta1'
-	    });	
-	    //Preguntas Tema 2
-	    $('#pregunta2').editable({
-			type: 'text',
-			name: 'pregunta2'
-	    });	
-	     //Preguntas Tema 3
-	    $('#pregunta3').editable({
-			type: 'text',
-			name: 'pregunta3'
-	    });	    
-	    //Preguntas Tema 4
-	    $('#pregunta4').editable({
-			type: 'text',
-			name: 'pregunta4'
-	    });	
-	    //Preguntas Tema 5
-	    $('#pregunta5').editable({
-			type: 'text',
-			name: 'pregunta5'
-	    });	
-	     //Preguntas Tema 6
-	    $('#pregunta6').editable({
-			type: 'text',
-			name: 'pregunta6'
-	    });	
-	      //Hora de llegada
-	    $('#hora_llegada').editable({
-			type: 'text',
-			name: 'hora_llegada'
-	    });	 
-	      //Tiempo de la entrevista
-	    $('#tiempo_entre').editable({
-			type: 'text',
-			name: 'tiempo_entre'
-	    }); 
-	     //Director del Programa 
-	    $('#director').editable({
-			type: 'text',
-			name: 'director'
-	    }); 
-	     //Conducción de Entrevista
-	    $('#condu_entre').editable({
-			type: 'text',
-			name: 'condu_entre'
-	    }); 
-		    //para el selector de código de Fichas
+		//para el selector de código de Fichas
 	    $(".select2").css({
 	    	'width':'345px',
 	    	'text-align':'left',
 	    }).select2({allowClear:true})
 			.on('change', function(){
-			//$(this).closest('form').validate().element($(this));
+			$(this).closest('form').validate().element($(this));
 		}); 
 		//para seleccionar el codigo de Fichas	
 		$.ajax({
@@ -329,7 +243,35 @@ function ($scope) {
 			type: 'post',
 			data: {llenar_ficha:'asjkef'},
 			success: function (data) {
-				$('#select_ficha').html(data);
-			}
+			$('#select_ficha').html(data);
+		}
 		});
+		//para la fecha del calendario
+		$( ".datepicker" ).datepicker({
+			format: "yyyy-mm-dd",
+            pickTime: false,
+            autoclose: true,
+            todayBtn: true,
+            //language: 'tr',
+            pickerPosition: "bottom-right"          
+		}).datepicker("setDate","today");
+
+		//para la hora prevista
+		$(".timepicker").datetimepicker({
+	 
+	       pickDate: false
+	    });
+	    //para los números de teléfono
+	    $.mask.definitions['~']='[+-]';
+		$('#txt_telf').mask('(999) 999-9999');
+		//telf2
+	 	$.mask.definitions['~']='[+-]';
+		$('#txt_telf2').mask('(999) 999-9999');
+		//telf3
+		 $.mask.definitions['~']='[+-]';
+		$('#txt_telf3').mask('(999) 999-9999');
+		jQuery.validator.addMethod("phone", function (value, element) {
+			return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
+		}, "Ingrese un Número de teléfono Valido");
 });
+		

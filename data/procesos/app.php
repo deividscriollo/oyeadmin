@@ -4,17 +4,31 @@
     }
 	include_once('../../admin/class.php');
 	$class=new constante();
+	// solo ejemplo
+	// if (isset($_POST['name'])=='contactado_por') {
+	// 	$id = $class->idz();
+	// 	$fecha = $class->fecha_hora();
+	// 	$resp = $class->consulta("INSERT INTO agenda_invitados.aceptado VALUES ('$id','$_POST[pk]','$_POST[value]', '$fecha', '$fecha', '', '', '', '1', '$fecha');");
+	// 	if ($resp) {
+	// 		print_r(json_encode(array('valid' => 'true')));	
+	// 	}else {
+	// 		print_r(json_encode(array('valid' => 'false')));	
+	// 	}
+			
+	// }
 
-	if (isset($_POST['name'])=='contactado_por') {
+
+	if (isset($_POST['form-procesos'])) {
 		$id = $class->idz();
 		$fecha = $class->fecha_hora();
-		$resp = $class->consulta("INSERT INTO agenda_invitados.aceptado VALUES ('$id','$_POST[pk]','$_POST[value]', '$fecha', '$fecha', '', '', '', '1', '$fecha');");
+		$resp = $class->consulta("INSERT INTO agenda_invitados.aceptado VALUES ('$id','$_POST[select_ficha]','$_POST[txt_contactado_por]', '$_POST[txt_fecha]', '$_POST[txt_hora]', '$_POST[txt_forma]', '$_POST[txt_contactado_con]', '$_POST[txt_responsable]', '1', '$fecha');");
 		if ($resp) {
+			//respuesta correcta
 			print_r(json_encode(array('valid' => 'true')));	
-		}else {
-			print_r(json_encode(array('valid' => 'false')));	
+		}else{
+			//respuesta false
+			print_r(json_encode(array('valid' => 'false')));
 		}
-			
 	}
 	//llenada del combo con las fichas de los programas
 	if (isset($_POST['llenar_ficha'])) {
@@ -33,11 +47,4 @@
 			print_r(json_encode(array('valid' => 'false')));
 		}
 	}
-
-	// $resultado = $class->consulta("select");
-			// $acu='';
-			// while ($row=$class->fetch_array($resultado)) {
-			// 	$acu[] = array('id' => $row['id'],'categoria' => $row['categoria']);
-			// }
-			// print json_encode($acu);
 ?>
