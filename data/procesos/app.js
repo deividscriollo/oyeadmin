@@ -1,6 +1,6 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('procesosController',
-function ($scope) {
+angular.module('scotchApp').controller('procesosController',function ($scope) {
+	console.log('test');
 	// configuracion tabs
 	$scope.tab = 1;
     $scope.setTab = function(newTab){
@@ -10,14 +10,14 @@ function ($scope) {
       return $scope.tab === tabNum;
     };
 
-	//Primer Editable de Aceptado
-	//editables on first profile page
-		$.fn.editable.defaults.mode = 'inline';
-		$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-green'></i></div>";
-	    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
+	// //Primer Editable de Aceptado
+	// //editables on first profile page
+	$.fn.editable.defaults.mode = 'inline';
+	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-green'></i></div>";
+    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
 	                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
 		
-	    // formulario registro de la primera: PreEntrevista
+	// formulario registro de la primera: PreEntrevista
 	$('#form_proceso1').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -128,6 +128,10 @@ function ($scope) {
 			txt_secundario: {
 				required: "Por favor, Necesita un Tema Secundario",
 			},
+			txt_email: {
+				required: "Por favor, Ingrese un E-mail Valido",
+				txt_email: "Por favor, Ingrese un E-mail Valido"
+			},
 		},
 		//para prender y apagar los errores
 		highlight: function (e) {
@@ -229,7 +233,9 @@ function ($scope) {
 		}
 	});
 
-		//para el selector de código de Fichas
+
+	/////////////////////////////////////////// definir formatos////////////////////////////////////
+		// //para el selector de código de Fichas
 	    $(".select2").css({
 	    	'width':'345px',
 	    	'text-align':'left',
@@ -237,41 +243,54 @@ function ($scope) {
 			.on('change', function(){
 			$(this).closest('form').validate().element($(this));
 		}); 
-		//para seleccionar el codigo de Fichas	
+
+		// //para la fecha del calendario
+		$( ".datepicker" ).datepicker({
+			format: "yyyy-mm-dd",
+	        pickTime: false,
+	        autoclose: true,
+	        todayBtn: true,
+	        language: 'es',
+	        pickerPosition: "bottom-right"          
+		}).datepicker("setDate","today");
+
+		// //para la hora prevista
+		$(".timepicker").datetimepicker({ 
+	       pickDate: false
+	    });
+	    // definir formato campos números de teléfono
+		$('#txt_telf, #txt_telf2, #txt_telf3').mask('(999) 999-9999');
+		
+		$('#btn_nuevo_ficha').click(function(){
+			$('#modal-nuevo-fichas').modal('show');
+		});
+		
+	/////////////////////////////////para seleccionar el codigo de Fichas//////////////////////////////
+
+	// ///////////////////////INICIO llamado funciones de procesos de unicio/////////////////////////////////
+
+	// llenar select ficah
+	llenar_select_ficha();
+
+	// ///////////////////////FIN llamado funciones de procesos de unicio/////////////////////////////////
+
+
+
+	function llenar_select_ficha(){
 		$.ajax({
 			url: 'data/procesos/app.php',
 			type: 'post',
 			data: {llenar_ficha:'asjkef'},
 			success: function (data) {
-			$('#select_ficha').html(data);
-		}
+				// llenar fiichas
+				$('#select_ficha').html(data);
+			}
 		});
-		//para la fecha del calendario
-		$( ".datepicker" ).datepicker({
-			format: "yyyy-mm-dd",
-            pickTime: false,
-            autoclose: true,
-            todayBtn: true,
-            //language: 'tr',
-            pickerPosition: "bottom-right"          
-		}).datepicker("setDate","today");
+	}
+	
+	
+	
 
-		//para la hora prevista
-		$(".timepicker").datetimepicker({
-	 
-	       pickDate: false
-	    });
-	    //para los números de teléfono
-	    $.mask.definitions['~']='[+-]';
-		$('#txt_telf').mask('(999) 999-9999');
-		//telf2
-	 	$.mask.definitions['~']='[+-]';
-		$('#txt_telf2').mask('(999) 999-9999');
-		//telf3
-		 $.mask.definitions['~']='[+-]';
-		$('#txt_telf3').mask('(999) 999-9999');
-		jQuery.validator.addMethod("phone", function (value, element) {
-			return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
-		}, "Ingrese un Número de teléfono Valido");
+   
 });
 		

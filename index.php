@@ -52,7 +52,6 @@
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
-
 			<div class="navbar-container" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 					<span class="sr-only">Toggle sidebar</span>
@@ -426,7 +425,6 @@
 							<span class="menu-text">
 								Agenda Invitados
 							</span>
-
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
@@ -442,8 +440,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>
-							
+							</li>							
 							<li class="">
 								<a href="#/procesos">
 									<i class="menu-icon fa fa-calendar"></i>
