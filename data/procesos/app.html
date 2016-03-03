@@ -36,11 +36,12 @@
 					<div class="tab-content">						
 						<!-- inicio del set 1 -->
 						<div ng-show="isSet(1)">
-							<form class="form-horizontal" id="form_proceso1">
+							<form class="form-horizontal disabled" id="form_proceso1">
 								<!--Empezando con los datos de los invitados/Row primero-->
 								<h3 class="header smaller blue">
 									&nbsp; Estado de la entrevista: 
-									<div id="btn_nuevo_ficha" class="btn btn-success">Nuevo</div>
+									<div id="btn_nuevo_ficha" class="btn btn-success btn-sm">Nueva Ficha de Ingreso</div>
+									<div id="btn_buscar_ficha" class="btn btn-success btn-sm">Buscar Ficha</div>
 								</h3>
 								<div class="row ">
 									<!-- inicio de los de aceptado -->
@@ -54,7 +55,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado por:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_contactado_por" id="txt_contactado_por" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_contactado_por" id="txt_contactado_por" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -84,7 +85,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_forma" id="txt_forma" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_forma" id="txt_forma" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -92,7 +93,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado con:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_contactado_con" id="txt_contactado_con" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_contactado_con" id="txt_contactado_con" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -109,7 +110,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado por:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_preconfirmado_por" id="txt_preconfirmado_por" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_preconfirmado_por" id="txt_preconfirmado_por" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -139,7 +140,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_forma2" id="txt_forma2" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_forma2" id="txt_forma2" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -147,7 +148,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado con:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_preconfirmado_con" id="txt_preconfirmado_con" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_preconfirmado_con" id="txt_preconfirmado_con" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -165,7 +166,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado por:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_confirmado_por" id="txt_confirmado_por" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_confirmado_por" id="txt_confirmado_por" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -173,7 +174,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
 											<div class="col-xs-12 col-sm-5">
 												<div class="input-group input-group-sm">
-													<input type="text" id="txt_fecha3" name="txt_fecha3" class="form-control datepicker" />
+													<input type="text" id="txt_fecha3" name="txt_fecha3" class="form-control" />
 													<span class="input-group-addon">
 														<i class="ace-icon fa fa-calendar"></i>
 													</span>
@@ -195,7 +196,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_forma3" id="txt_forma3" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_forma3" id="txt_forma3" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -203,7 +204,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado con:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_confirmado_con" id="txt_confirmado_con" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_confirmado_con" id="txt_confirmado_con" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -218,7 +219,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<textarea name="txt_responsable" id="txt_responsable" class="col-xs-7 input-sm"></textarea> 
+													<select id="select_usuarios" name="select_usuarios" class="select2" data-placeholder="Responsable..."></select>
 												</div>
 											</div>
 										</div>
@@ -228,7 +229,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<textarea name="txt_responsable2" id="txt_responsable2" class="col-xs-7 input-sm"></textarea> 
+													<select id="select_usuarios2" name="select_usuarios2" class="select2" data-placeholder="Responsable..."></select> 
 												</div>
 											</div>
 										</div>
@@ -238,7 +239,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<textarea name="txt_responsable3" id="txt_responsable3" class="col-xs-7 input-sm"></textarea> 
+													<select id="select_usuarios3" name="select_usuarios3" class="select2" data-placeholder="Responsable..."></select> 
 												</div>
 											</div>
 										</div>
@@ -253,7 +254,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Invitado:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_invitado" id="txt_invitado" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_invitado" id="txt_invitado" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -261,7 +262,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contacto:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_contacto" id="txt_contacto" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_contacto" id="txt_contacto" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -269,7 +270,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Inst/Empresa:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_empresa" id="txt_empresa" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_empresa" id="txt_empresa" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -315,7 +316,7 @@
 												<label class="control-label col-xs-12 col-sm-1 no-padding-right" >De: </label>
 												<div class="col-xs-12 col-sm-4">
 													<div class="input-group input-group-sm">
-														<input type="text" id="txt_hora_invitado1" name="txt_hora_invitado1" class="form-control timepicker" />
+														<input type="text" id="txt_hora_invitado1" name="txt_hora_invitado1" class="form-control" />
 														<span class="input-group-addon">
 															<i class="icon-time fa fa-clock-o"></i>
 														</span>
@@ -324,7 +325,7 @@
 												<label class="control-label col-xs-12 col-sm-1 no-padding-right" >A: </label>
 												<div class="col-xs-12 col-sm-4">
 													<div class="input-group input-group-sm">
-														<input type="text" id="txt_hora_invitado2" name="txt_hora_invitado2" class="form-control timepicker" />
+														<input type="text" id="txt_hora_invitado2" name="txt_hora_invitado2" class="form-control" />
 														<span class="input-group-addon">
 															<i class="icon-time fa fa-clock-o"></i>
 														</span>
@@ -336,7 +337,7 @@
 												<label class="control-label col-xs-12 col-sm-1 no-padding-right" >De: </label>
 												<div class="col-xs-12 col-sm-4">
 													<div class="input-group input-group-sm">
-														<input type="text" id="txt_hora_invitado3" name="txt_hora_invitado3" class="form-control timepicker" />
+														<input type="text" id="txt_hora_invitado3" name="txt_hora_invitado3" class="form-control" />
 														<span class="input-group-addon">
 															<i class="icon-time fa fa-clock-o"></i>
 														</span>
@@ -377,7 +378,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Dirección:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_direccion" id="txt_direccion" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_direccion" id="txt_direccion" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -399,7 +400,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tema Principal</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_principal" id="txt_principal" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_principal" id="txt_principal" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -407,7 +408,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tema Secundario</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_secundario" id="txt_secundario" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_secundario" id="txt_secundario" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -418,7 +419,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre 1:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_nombre1" id="txt_nombre1" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_nombre1" id="txt_nombre1" class="col-xs-12 input-sm"/>
 													</div>
 											</div>
 												</div>
@@ -426,7 +427,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre 2:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_nombre2" id="txt_nombre2" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_nombre2" id="txt_nombre2" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -451,7 +452,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunta1" id="txt_pregunta1" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunta1" id="txt_pregunta1" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -459,7 +460,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunta2" id="txt_pregunta2" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunta2" id="txt_pregunta2" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -467,7 +468,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunta3" id="txt_pregunta3" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunta3" id="txt_pregunta3" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -478,7 +479,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunt4" id="txt_pregunta4" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunt4" id="txt_pregunta4" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -486,7 +487,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunta5" id="txt_pregunta5" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunta5" id="txt_pregunta5" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -494,7 +495,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_pregunta6" id="txt_pregunta6" class="col-xs-7 input-sm"/>
+														<input type="text" name="txt_pregunta6" id="txt_pregunta6" class="col-xs-12 input-sm"/>
 													</div>
 												</div>
 											</div>
@@ -521,7 +522,7 @@
 											<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tiempo de Entrevista:</label>
 											<div class="col-xs-12 col-sm-8">
 												<div class="clearfix">
-													<input type="text" name="txt_tiempo" id="txt_tiempo" class="col-xs-7 input-sm"/>
+													<input type="text" name="txt_tiempo" id="txt_tiempo" class="col-xs-12 input-sm"/>
 												</div>
 											</div>
 										</div>
@@ -534,7 +535,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Director:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_director" id="txt_director" class="col-xs-7 input-sm"/>
+														<select id="select_usuarios4" name="select_usuarios4" class="select2" data-placeholder="Responsable..."></select> 
 													</div>
 												</div>
 											</div>
@@ -545,7 +546,7 @@
 												<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Conducción:</label>
 												<div class="col-xs-12 col-sm-8">
 													<div class="clearfix">
-														<input type="text" name="txt_conduccion" id="txt_conduccion" class="col-xs-7 input-sm"/>
+														<select id="select_usuarios5" name="select_usuarios5" class="select2" data-placeholder="Responsable..."></select> 
 													</div>
 												</div>
 											</div>
@@ -617,21 +618,28 @@
 		</div>
 	</div>
 </div><!-- /.widget-main -->
-
+<!-- inicio de un modal de Fichas -->
 <div id="modal-nuevo-fichas" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Seleccione Programa</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+      	<form class="form-horizontal" id="">
+      		<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Seleccione Programa:</label>
+				<div class="col-xs-12 col-sm-8">
+					<div class="clearfix">
+						<select id="select_programas" name="select_programas" class="select2" data-placeholder="Cod_Programa..."></select>
+					</div>
+				</div>
+			</div>
+		</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" name="btn_fichas" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
 

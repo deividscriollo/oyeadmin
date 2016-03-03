@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngRoute', 'ngAnimate']);
+var scotchApp = angular.module('scotchApp', ['ngRoute']);
 // configure our routes
 scotchApp.config(function($routeProvider) {
     $routeProvider
@@ -19,6 +19,11 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/reportes/app.html',
             controller  : 'reportesController',
         })
+        // proceso prueba
+        .when('/prueba_form', {
+            templateUrl : 'data/prueba_form/app.html',
+            controller  : 'prueba_formController',
+        })
         // route for the contact page
         .when('/procesos', {
             templateUrl : 'data/procesos/app.html',
@@ -28,9 +33,7 @@ scotchApp.config(function($routeProvider) {
 });
 
 scotchApp.controller('mainController', function($scope, $rootScope){
-  $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
-    $rootScope.animation = currRoute.animation;
-  });
+  
 
   });
 // scotchApp.controller('mainController', function($scope) {

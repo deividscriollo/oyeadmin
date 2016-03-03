@@ -107,6 +107,20 @@
 		}
 	}
 
+//Actualiza el codigo de las Fichas
+	if (isset($_POST['name'])) {
+		$entrada = $_POST['name'];
+		if ($entrada=='actualizar_nombre_fichas') {
+			$resp = $class->consulta("UPDATE agenda_invitados.fichas set cod_ficha = '$_POST[value]' where id = '$_POST[pk]'");
+			if ($resp) {
+				//respuesta correcta
+				print_r(json_encode(array('valid' => 'true')));	
+			}else{
+				//respuesta false
+				print_r(json_encode(array('valid' => 'false')));
+			}
+		}
+	}
 	//LLena los programas del Combo
 	if (isset($_POST['llenar_programas'])) {
 		$id = $class->idz();
@@ -151,9 +165,52 @@
 		}
 		print_r(json_encode($data));
 	}
+		//para la consulta de los datos de las Fichas
+	if(isset($_POST['consultar_datos_fichas'])){
+		$resultado = $class->consulta("SELECT id, id_programa, cod_ficha, estado, fecha FROM agenda_invitados.fichas where id='$_POST[id]';");
+		while ($row=$class->fetch_array($resultado)) {
+			$data = array('id' => $row['id'], 'id_programa'=>$row['id_programa'], 'cod_ficha'=>$row['cod_ficha']);
+		}
+		print_r(json_encode($data));
+	}
 
+	//Llena las tablas de Fichas
+	if (isset($_POST['llenar_tabla_fichas'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("select F.id, P.nombre, F.cod_ficha from agenda_invitados.programas P, agenda_invitados.fichas F where P.id=F.id_programa and F.estado='1'");
+		$sum=0;
+		while ($row=$class->fetch_array($resultado)) {
+			print '	<tr>
+						<td>'.$sum++.'</td>					
+						<td>'.$row[1].'</td>
+						<td>'.$row[2].'</td>
+						<td>
+							<div class="hidden-sm hidden-xs btn-group">
+								<button class="btn btn-xs btn-info" onclick=modificar_fichas("'.$row[0].'")>
+									<i class="ace-icon fa fa-pencil bigger-120"></i>
+								</button>
 
-	
+								<button class="btn btn-xs btn-danger" onclick=eliminar_fichas("'.$row[0].'")>
+									<i class="ace-icon fa fa-trash-o bigger-120"></i>
+								</button>
+							</div> 
+						</td>
+					</tr>';
+		}
+	}
+//Eliminar Fichas
+	if (isset($_POST['eliminar_fichas'])) {
+		$id = $class->idz();
+		$fecha = $class->fecha_hora();
+		$resp = $class->consulta("UPDATE agenda_invitados.fichas set estado = '0' where id = '$_POST[id]'");
+		if ($resp) {
+			//respuesta correcta
+			print_r(json_encode(array('valid' => 'true')));	
+		}else{
+			//respuesta false
+			print_r(json_encode(array('valid' => 'false')));
+		}
+	}
 
 	
 ?>

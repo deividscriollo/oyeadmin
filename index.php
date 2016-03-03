@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
+		<link rel="stylesheet" href="dist/css/formValidation.min.css" />
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
@@ -44,6 +45,7 @@
   		<script src="data/procesos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
   		<script src="data/programas/app.js"></script>
+  		<script src="data/prueba_form/app.js"></script>
 
 	</head>
 
@@ -574,8 +576,10 @@
 		<script src="dist/js/jquery.gritter.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
 		<script src="dist/js/jquery.easypiechart.min.js"></script>
-		
-		
+		<script src="dist/js/fuelux/fuelux.wizard.min.js"></script>
+		<!-- <script src="dist/js/jquery.validate.min.js"></script> -->
+		<script src="dist/js/additional-methods.min.js"></script>
+
 		<script src="dist/js/jquery.hotkeys.min.js"></script>
 		<script src="dist/js/bootstrap-wysiwyg.min.js"></script>
 		<script src="dist/js/select2.min.js"></script>

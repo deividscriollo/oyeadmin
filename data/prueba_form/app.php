@@ -4,18 +4,6 @@
     }
 	include_once('../../admin/class.php');
 	$class=new constante();
-	// solo ejemplo
-	// if (isset($_POST['name'])=='contactado_por') {
-	// 	$id = $class->idz();
-	// 	$fecha = $class->fecha_hora();
-	// 	$resp = $class->consulta("INSERT INTO agenda_invitados.aceptado VALUES ('$id','$_POST[pk]','$_POST[value]', '$fecha', '$fecha', '', '', '', '1', '$fecha');");
-	// 	if ($resp) {
-	// 		print_r(json_encode(array('valid' => 'true')));	
-	// 	}else {
-	// 		print_r(json_encode(array('valid' => 'false')));	
-	// 	}
-			
-	// }
 
 	// LLenar el formulario del proceso 1 que es Pre-entrevista
 	if (isset($_POST['form-procesos'])) {
@@ -34,36 +22,7 @@
 			print_r(json_encode(array('valid' => 'false')));
 		}
 	}
-	// Llenar el formulario del proceso2 que es la Entrevista
-	if (isset($_POST['form-procesos2'])) {
-		$id = $class->idz();
-		$fecha = $class->fecha_hora();
-		$resp = $class->consulta("INSERT INTO agenda_invitados.entrevista VALUES ('$id','$_POST[select_ficha]','$_POST[txt_pregunta1]', '$_POST[txt_pregunta2]', '$_POST[txt_pregunta3]', '$_POST[txt_pregunt4]', '$_POST[txt_pregunta5]', '$_POST[txt_pregunta6]', '1', '$fecha');");
-		if ($resp) {
-			//respuesta correcta
-			print_r(json_encode(array('valid' => 'true')));	
-		}else{
-			//respuesta false
-			print_r(json_encode(array('valid' => 'false')));
-		}
-	}
-	//llenada del combo con las fichas 
-	if (isset($_POST['llenar_ficha'])) {
-		$id = $class->idz();
-		$fecha = $class->fecha_hora();
-		$resultado = $class->consulta("SELECT id, cod_ficha FROM agenda_invitados.fichas where estado='1';");
-		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['cod_ficha'].'</option>';
-		}
-		if ($resultado) {
-			//respuesta correcta
-			print_r(json_encode(array('valid' => 'true')));	
-		}else{
-			//respuesta false
-			print_r(json_encode(array('valid' => 'false')));
-		}
-	}
+
 	//LLena los programas del Combo
 	if (isset($_POST['llenar_programas'])) {
 		$id = $class->idz();
@@ -83,5 +42,15 @@
 			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 		
+	}
+	//consulta de nombres de programas
+	//Llena el código del programa
+	if (isset($_POST['llenar_cod_programa'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("select F.id, P.nombre, F.cod_ficha from agenda_invitados.programas P, agenda_invitados.fichas F where P.id=F.id_programa and F.estado='1'");
+		$sum=0;
+		while ($row=$class->fetch_array($resultado)) {
+			print '<option value="'.$row['F.id'].'">'.$row['P.nombre'].'</option>';
+		}
 	}
 ?>

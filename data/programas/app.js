@@ -1,5 +1,5 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('programasController',function ($scope) {
+var app = angular.module('scotchApp').controller('programasController',function ($scope) {
 	// formulario registro
 	$('#form_programas').validate({
 		errorElement: 'div',
@@ -133,7 +133,7 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 		}		
 	}); 
 	//para el selector de código de Programas
-    $(".select2").css({
+    $("#select_codigo").css({
     	'width':'345px',
     	'text-align':'left',
     }).select2({allowClear:true})
@@ -149,7 +149,9 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 			$('#select_codigo').html(data);
 		}
 	});
+	llenar_tabla_fichas()
 	llenar_tabla_programas()
+	
 });
 //para llenar la tabla con los datos de programas
 	function llenar_tabla_programas(){
@@ -229,7 +231,7 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 				    	}
 				    }
 			    });
-			    //para actualizar los datos de codigo ver
+			    //para actualizar los datos de codigo de Programas
 		    	$('#edit_codigo').editable({
 					type: 'text',
 					name: 'actualizar_codigo_programas',
@@ -241,6 +243,86 @@ angular.module('scotchApp').controller('programasController',function ($scope) {
 				    },
 				    success:function(data){
 				    	llenar_tabla_programas()
+				    	var json = jQuery.parseJSON(data);
+				    	if (json['valid']!='true') {
+				    		$.gritter.add({
+								title: 'Proceso No Modificado',
+								text: 'Porvafor Verifique que sus Datos esten llenos',
+								class_name: 'gritter-error',
+								time:2000
+							});
+				    	}
+				    	if (json['valid']=='true') {
+				    		$.gritter.add({
+								title: 'Proceso Modificado Correctamente',
+								text: 'Sus Datos han sido Modificados de forma Correcta',
+								class_name: 'gritter-success',
+								time:2000
+							});	
+				    	}
+				    }
+			    });
+			}
+		});
+	}
+
+//para llenar la tabla con los datos de las Fichas
+	function llenar_tabla_fichas(){
+		$.ajax({
+			url: 'data/programas/app.php',
+			type: 'post',
+			data: {llenar_tabla_fichas:'asjkef'},
+			success: function (data) {
+				$('#tbt_fichas tbody').html(data);
+			}
+		});
+	}
+//para eliminar las fichas con el cuadro de dialogo
+	function eliminar_fichas(id) {
+		bootbox.confirm("ESTA SEGURO DE ELIMINAR LA FICHA?", function(result) {
+			if(result) {
+				$.ajax({
+					url: 'data/programas/app.php',
+					type: 'post',
+					dataType:'json',
+					data: {eliminar_fichas:'asjkef', id: id},
+					success: function (data) {
+						$.gritter.add({
+							title: 'Registro Eliminado',
+							class_name: 'gritter-success',
+							time:2000
+						});
+						llenar_tabla_fichas()
+					}
+				});
+			}
+		});
+	}
+
+//para modificar las Fihas
+	function modificar_fichas(id) {
+		$('#obj_cod_ficha').html('');
+		$('#obj_cod_ficha').html('<span class="editable" name="x" id="edit_cod_ficha"></span>');
+		$.ajax({
+			url: 'data/programas/app.php',
+			type: 'post',
+			dataType:'json',
+			data: {consultar_datos_fichas:'asjkef', id: id},
+			success: function (data) {
+				$("#edit_cod_ficha").text(data['cod_ficha'])			
+				console.log(data);
+				$('#modal-actualizar-fichas').modal('show');
+				$('#edit_cod_ficha').editable({
+					type: 'text',
+					name: 'actualizar_nombre_fichas',
+					value: data['cod_ficha'],
+					pk:id,
+					url:'data/programas/app.php',
+					validate:function(value){		                
+				    	if(value=='') return 'Campo Requerido Ingrese el Código';
+				    },
+				    success:function(data){
+				    	llenar_tabla_fichas()
 				    	var json = jQuery.parseJSON(data);
 				    	if (json['valid']!='true') {
 				    		$.gritter.add({
