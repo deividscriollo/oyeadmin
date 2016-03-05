@@ -258,20 +258,16 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			$('#modal-nuevo-fichas').modal('show');
 		});
 		$("#select_programas").select2().on("change", function(e) {
-          // mostly used event, fired to the original element when the value changes
           console.log("change val=" + e.val);
           $('#modal-nuevo-fichas').modal('hide');
         })
 	/////////////////////////////////para seleccionar el codigo de Fichas//////////////////////////////
-
 	// ///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
-
 	// llenar select ficchas
 	llenar_select_programas();
 	llenar_select_usuarios();
-	llenar_select_ficha();
 	init();
-
+	//llenar_text();
 	// ///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 		function init(){
 			$("#select_usuarios, #select_usuarios2, #select_usuarios3, #select_programas").css({
@@ -281,31 +277,19 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 				.on('change', function(){
 				$(this).closest('form').validate().element($(this));
 			});
-			
 			// // //para la fecha del calendario
-			$("#txt_fecha, #txt_fecha2, #txt_fecha3").datepicker({
+			$("#txt_fecha, #txt_fecha2, #txt_fecha3").datepicker({ 
 				format: "yyyy-mm-dd",
 		        autoclose: true,
-		        todayBtn: true,
-		        pickerPosition: "bottom-right"          
+		        startDate: new Date()
 			}).datepicker("setDate","today");
 
 			// //para la hora prevista
-			$("#txt_hora_invitado1, #txt_hora_invitado2, #txt_hora_invitado3, #txt_hora_invitado4, #txt_hora_invitado5, #txt_hora_invitado6, #txt_hora, #txt_hora2, #txt_hora3 ").datetimepicker({ 
+			$("#txt_hora_invitado1, #txt_hora_invitado2, #txt_hora_invitado3, #txt_hora_invitado4, #txt_hora_invitado5, #txt_hora_invitado6, #txt_hora, #txt_hora2, #txt_hora3,#txt_hora_llegada ").datetimepicker({ 
 		       pickDate: false
 		    });
 		}
-		function llenar_select_ficha(){
-			$.ajax({
-				url: 'data/prueba_form/app.php',
-				type: 'post',
-				data: {llenar_ficha:'asjkef'},
-				success: function (data) {
-					// llenar fiichas
-					$('#select_ficha').html(data);
-				}
-			});
-		}
+
 		function llenar_select_programas(){
 			$.ajax({
 				url: 'data/prueba_form/app.php',
@@ -316,6 +300,17 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			}
 		});
 		}
+		//no sale
+		// function llenar_text(){
+		// 	$.ajax({
+		// 		url: 'data/prueba_form/app.php',
+		// 		type: 'post',
+		// 		data: {consultar_datos_programas:'asjkef'},
+		// 		success: function (data) {
+		// 			$('#txt_generar_ficha').html(data);
+		// 	}
+		// });
+		// }
 		function llenar_select_usuarios(){
 			$.ajax({
 				url: 'data/prueba_form/app.php',
@@ -326,17 +321,17 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			}
 		});
 		}
-		function llenar_programa(){
-			$.ajax({
-				url: 'data/prueba_form/app.php',
-				type: 'post',
-				data: {llenar_cod_programa:'asjkef'},
-				success: function (data) {
-					$('#txt_generar_ficha').html(data);
-			}
-		});
-		}
-	
+		// function llenar_programa(){
+		// 	$.ajax({
+		// 		url: 'data/prueba_form/app.php',
+		// 		type: 'post',
+		// 		data: {llenar_cod_programa:'asjkef'},
+		// 		success: function (data) {
+		// 			$('#txt_generar_ficha').html(data);
+		// 	}
+		// });
+		// }
+
 		$('#modal-wizard-container').ace_wizard();
 		$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
 		

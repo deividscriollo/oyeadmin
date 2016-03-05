@@ -23,7 +23,7 @@
 		}
 	}
 
-	//LLena los programas del Combo
+	//LLena los programas en el Combo
 	if (isset($_POST['llenar_programas'])) {
 		$id = $class->idz();
 		$resultado = $class->consulta("SELECT id, upper(codigo) as codigo, nombre FROM agenda_invitados.programas where estado='1';");
@@ -31,7 +31,6 @@
 		while ($row=$class->fetch_array($resultado)) {
 			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
-		
 	}
 	//LLena todos los usuarios
 	if (isset($_POST['llenar_usuarios'])) {
@@ -43,14 +42,22 @@
 		}
 		
 	}
+	//para la consulta de los datos de los programas
+	// if(isset($_POST['consultar_datos_programas'])){
+	// 	$resultado = $class->consulta("SELECT id, codigo, nombre, estado, fecha_creacion FROM agenda_invitados.programas where id='$_POST[id]';");
+	// 	while ($row=$class->fetch_array($resultado)) {
+	// 		$data = array('id' => $row['id'], 'codigo'=>$row['codigo'], 'nombre'=>$row['nombre']);
+	// 	}
+	// 	print_r(json_encode($data));
+	// }
 	//consulta de nombres de programas
 	//Llena el código del programa
-	if (isset($_POST['llenar_cod_programa'])) {
-		$id = $class->idz();
-		$resultado = $class->consulta("select F.id, P.nombre, F.cod_ficha from agenda_invitados.programas P, agenda_invitados.fichas F where P.id=F.id_programa and F.estado='1'");
-		$sum=0;
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['F.id'].'">'.$row['P.nombre'].'</option>';
-		}
-	}
+	// if (isset($_POST['llenar_cod_programa'])) {
+	// 	$id = $class->idz();
+	// 	$resultado = $class->consulta("select F.id, P.codigo, F.cod_ficha from agenda_invitados.programas P, agenda_invitados.fichas F where P.id=F.id_programa and F.estado='1'");
+	// 	$sum=0;
+	// 	while ($row=$class->fetch_array($resultado)) {
+	// 		print '<option value="'.$row['F.id'].'">'.$row['P.codigo'].'</option>';
+	// 	}
+	// }
 ?>
