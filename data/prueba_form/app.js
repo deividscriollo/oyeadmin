@@ -21,15 +21,7 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			}
 		})
 		.on('finished.fu.wizard', function(e) {
-			bootbox.dialog({
-				message: "Gracias! Su Información a sido Guardada!", 
-				buttons: {
-					"success" : {
-						"label" : "OK",
-						"className" : "btn-sm btn-primary"
-					}
-				}
-			});
+			proceso_guardar();
 		}).on('stepclick.fu.wizard', function(e){
 			//e.preventDefault();//this will prevent clicking and selecting steps
 		});
@@ -42,6 +34,9 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 		rules: {
 			txt_contactado_por: {
 				required: true				
+			},
+			select_programas:{
+				required:true
 			},
 			txt_forma: {
 				required: true				
@@ -95,6 +90,9 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 		messages: {
 			txt_contactado_por: {
 				required: "Por favor, Digíte un Nombre",
+			},
+			select_programas: {
+				required: "Por favor, Elija un Programa",
 			},
 			txt_forma: {
 				required: "Por favor, Digíte una Forma",
@@ -200,6 +198,9 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			txt_conduccion: {
 				required: true				
 			},
+			txt_video: {
+		      url: true
+		    }
 		},
 		messages: {
 			txt_pregunta1: {
@@ -210,6 +211,9 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			},
 			txt_conduccion: { 	
 				required: "Por favor, Digíte un Nombre"			
+			},
+			txt_video: { 	
+				required: "Por favor, Ingrese una url correcta"			
 			},
 		},
 		//para prender y apagar los errores
@@ -248,19 +252,86 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 		}
 	});
 	// FIN DEL FORMULARIO DE Entrevista
-	/////////////////////////////////////////// definir formatos////////////////////////////////////
-	// //para el selector de código de Fichas
+	// formulario registro de la tercera: Post-Entrevista
+	$('#form_proceso3').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_video: {
+		      url: true
+		    }
+		},
+		messages: {
+			txt_video: {
+				required: "Por favor, Ingrese una url correcta",
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			$.ajax({
+				url: 'data/prueba_form/app.php',
+				type: 'post',
+				data: $(form).serialize(),
+				dataType:"json",
+				success: function (data) {
+					console.log(data);
+						if (data['valid']=="true") {
+							$.gritter.add({
+								title: 'Proceso Guardado Correctamente',
+								text: 'Sus Datos han sido guardados de forma Correcta',
+								class_name: 'gritter-success',
+								time:2000
+							});	
+						}else{
+							$.gritter.add({
+								title: 'Proceso No Guardado',
+								text: 'Porvafor Verifique que sus Datos esten llenos',
+								class_name: 'gritter-error',
+								time:2000
+							});
+						}
+				}
+			});
+		}
+	});
+	// FIN DEL FORMULARIO DE Entrevista
+	/////////////////////////////////////////// definir formatos///////////////////////////////////
 	    
-	// definir formato campos números de teléfono
+	//definir formato campos números de teléfono
 		$('#txt_telf, #txt_telf2, #txt_telf3').mask('(999) 999-9999');
 	//el boton para seleccionar el programa y poder generar la Ficha Activa
 		$('#btn_nuevo_ficha').click(function(){
 			$('#modal-nuevo-fichas').modal('show');
 		});
-		$("#select_programas").select2().on("change", function(e) {
-          console.log("change val=" + e.val);
-          $('#modal-nuevo-fichas').modal('hide');
+		$("#select_programas").css({
+		    	'width':'100%',
+		    	'text-align':'left',
+		    }).select2().on("change", function(e) {
+			$.ajax({
+				url: 'data/prueba_form/app.php',
+				type: 'post',
+				dataType:'json',
+				data: {consultar_datos_programas:'asjkef', id:e.val},
+				success: function (data) {
+					console.log(data.codigo);
+				}
+			});
         })
+
+		/////////////proceso de guardar//////
+		$( "#btn_guardar" ).click(function() {
+			  proceso_guardar();
+			});
+
 	/////////////////////////////////para seleccionar el codigo de Fichas//////////////////////////////
 	// ///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
 	// llenar select ficchas
@@ -270,14 +341,14 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 	//llenar_text();
 	// ///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 		function init(){
-			$("#select_usuarios, #select_usuarios2, #select_usuarios3, #select_programas").css({
+			$("#select_usuarios, #select_usuarios2, #select_usuarios3, #select_usuarios4, #select_usuarios5").css({
 		    	'width':'60%',
 		    	'text-align':'left',
 		    }).select2({allowClear:true})
 				.on('change', function(){
 				$(this).closest('form').validate().element($(this));
 			});
-			// // //para la fecha del calendario
+			//para la fecha del calendario
 			$("#txt_fecha, #txt_fecha2, #txt_fecha3").datepicker({ 
 				format: "yyyy-mm-dd",
 		        autoclose: true,
@@ -297,20 +368,10 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 				data: {llenar_programas:'asjkef'},
 				success: function (data) {
 					$('#select_programas').html(data);
-			}
-		});
+				}
+			});
 		}
-		//no sale
-		// function llenar_text(){
-		// 	$.ajax({
-		// 		url: 'data/prueba_form/app.php',
-		// 		type: 'post',
-		// 		data: {consultar_datos_programas:'asjkef'},
-		// 		success: function (data) {
-		// 			$('#txt_generar_ficha').html(data);
-		// 	}
-		// });
-		// }
+
 		function llenar_select_usuarios(){
 			$.ajax({
 				url: 'data/prueba_form/app.php',
@@ -318,19 +379,30 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 				data: {llenar_usuarios:'asjkef'},
 				success: function (data) {
 					$('#select_usuarios,#select_usuarios2,#select_usuarios3,#select_usuarios4,#select_usuarios5').html(data);
-			}
-		});
+				}
+			});
 		}
-		// function llenar_programa(){
-		// 	$.ajax({
-		// 		url: 'data/prueba_form/app.php',
-		// 		type: 'post',
-		// 		data: {llenar_cod_programa:'asjkef'},
-		// 		success: function (data) {
-		// 			$('#txt_generar_ficha').html(data);
-		// 	}
-		// });
-		// }
+
+		function proceso_guardar() {
+			var form_uno=$("#form_proceso1").serialize()
+			var form_dos= $("#form_proceso2").serialize()
+			var form_tres= $("#form_proceso3").serialize()
+			var submit = "btn_guardar"
+			var cod_ficha="id_ficha"
+			$.ajax({
+            url: "data/prueba_form/app.php",
+            data: form_uno+"&"+form_dos+"&"+form_tres+"&btn_guardar=" +submit+"&id_ficha="+cod_ficha,
+            type: "POST",
+            success: function (result) {
+            },
+            error: function (xhr, status, errorThrown) {
+              alert("Hubo un problema!");
+              console.log("Error: " + errorThrown);
+              console.log("Status: " + status);
+              console.dir(xhr);
+            }
+        });
+		}
 
 		$('#modal-wizard-container').ace_wizard();
 		$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
