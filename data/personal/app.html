@@ -1,0 +1,679 @@
+ <div class="main-content">
+	<div class="main-content-inner">
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="widget-box">
+						<div class="widget-header widget-header-blue widget-header-flat">
+							<h4 class="widget-title lighter">Ficha de Ingreso de Invitados</h4>
+						</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<div id="fuelux-wizard-container">
+									<div>
+										<ul class="steps">
+											<li data-step="1" class="active">
+												<span class="step">1</span>
+												<span class="title">Pre Entrevista</span>
+											</li>
+
+											<li data-step="2" class="active">
+												<span class="step">2</span>
+												<span class="title">Entrevista</span>
+											</li>
+
+											<li data-step="3" class="active">
+												<span class="step">3</span>
+												<span class="title">Post Entrevista</span>
+											</li>
+
+											<li data-step="4" class="active">
+												<span class="step">4</span>
+												<span class="title">Guardar Datos</span>
+											</li>
+										</ul>
+									</div>
+									<hr/>
+									<div class="step-content pos-rel">
+										<!-- INICIO DEL PRIMER FORMULARIO PRE ENTREVISTA -->
+										<div class="step-pane active" data-step="1">
+											<form class="form-horizontal" id="form_proceso1">													
+												<!-- fin de generar ficha -->
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Seleccionar programa:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<select id="select_programas" 
+																		name="select_programas" 
+																		class="select2" 
+																		data-placeholder="Cod_Programa...">												
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- INICIO PRIMER ROW-->
+												<div class="row ">
+													<!-- inicio de los de aceptado -->
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+																<label>
+																	<input name="agree" id="agree" type="checkbox" class="ace" />
+																	<span class="lbl"> Aceptado</span>
+																</label>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado por:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_contactado_por" id="txt_contactado_por" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_fecha" name="txt_fecha" class="form-control datepicker" />
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-calendar"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_hora" name="txt_hora" class="form-control timepicker" />
+																	<span class="input-group-addon">
+																		<i class="icon-time fa fa-clock-o"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_forma" id="txt_forma" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contactado con:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_contactado_con" id="txt_contactado_con" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- fin de los de aceptado -->
+													<!-- inicio de los de Preconfirmado -->
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+																<label>
+																	<input name="agree" id="agree" type="checkbox" class="ace" />
+																	<span class="lbl"> Preconfirmado</span>
+																</label>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado por:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_preconfirmado_por" id="txt_preconfirmado_por" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_fecha2" name="txt_fecha2" class="form-control datepicker" />
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-calendar"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_hora2" name="txt_hora2" class="form-control timepicker" />
+																	<span class="input-group-addon">
+																		<i class="icon-time fa fa-clock-o"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_forma2" id="txt_forma2" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Preconfirmado con:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_preconfirmado_con" id="txt_preconfirmado_con" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- fin de los de Preconfirmado -->
+													<!-- inicio de los de Confirmado -->
+													<div class="col-sm-4">
+														<div class="form-group">
+															<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+																<label>
+																	<input name="agree" id="agree" type="checkbox" class="ace" />
+																	<span class="lbl"> Confirmado</span>
+																</label>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado por:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_confirmado_por" id="txt_confirmado_por" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_fecha3" name="txt_fecha3" class="form-control" />
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-calendar"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_hora3" name="txt_hora3" class="form-control timepicker" />
+																	<span class="input-group-addon">
+																		<i class="icon-time fa fa-clock-o"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Forma:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_forma3" id="txt_forma3" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Confirmado con:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" style="text-transform:uppercase" name="txt_confirmado_con" id="txt_confirmado_con" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- fin de los de Confirmado -->
+												</div>
+												<!-- FIN PRIMER ROW-->
+												<!-- INICIO SEGUNDO ROW -->
+													<div class="row">
+													<h3 class="header smaller blue">&nbsp; Seguimiento:</h3>
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<select id="select_usuarios" name="select_usuarios" class="select2" data-placeholder="Responsable..."></select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<select id="select_usuarios2" name="select_usuarios2" class="select2" data-placeholder="Responsable..."></select> 
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Firma del Responsable:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<select id="select_usuarios3" name="select_usuarios3" class="select2" data-placeholder="Responsable..."></select> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<!-- FIN SEGUNDO ROW -->
+												<!-- INICIO TERCER ROW -->
+													<div class="row">
+														<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Datos del Invitado:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Invitado:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_invitado" id="txt_invitado" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contacto:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_contacto" id="txt_contacto" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Inst/Empresa:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_empresa" id="txt_empresa" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono 1:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="input-group">
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-phone"></i>
+																		</span>
+																		<input type="tel" id="txt_telf" name="txt_telf" />
+																	</div>
+																</div>	
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono 2:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="input-group">
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-phone"></i>
+																		</span>
+																		<input type="tel" id="txt_telf2" name="txt_telf2" />
+																	</div>
+																</div>	
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono 3:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="input-group">
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-phone"></i>
+																		</span>
+																		<input type="tel" id="txt_telf3" name="txt_telf3" />
+																	</div>
+																</div>	
+															</div>
+														</div>
+														<!-- fin de los datos del Invitado -->
+														<!-- inicio de las horas del invitado -->
+														<div class="col-sm-6">
+															<h3 class="header smaller blue">&nbsp; Hora de Invitación:</h3>
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >De: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado1" name="txt_hora_invitado1" class="form-control" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >A: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado2" name="txt_hora_invitado2" class="form-control" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<h3 class="header smaller blue"></h3>
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >De: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado3" name="txt_hora_invitado3" class="form-control" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >A: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado4" name="txt_hora_invitado4" class="form-control timepicker" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<h3 class="header smaller blue"></h3>
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >De: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado5" name="txt_hora_invitado5" class="form-control timepicker" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<label class="control-label col-xs-12 col-sm-1 no-padding-right" >A: </label>
+																	<div class="col-xs-12 col-sm-4">
+																		<div class="input-group input-group-sm">
+																			<input type="text" id="txt_hora_invitado6" name="txt_hora_invitado6" class="form-control timepicker" />
+																			<span class="input-group-addon">
+																				<i class="icon-time fa fa-clock-o"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Dirección:</label>
+																	<div class="col-xs-12 col-sm-8">
+																		<div class="clearfix">
+																			<input type="text" style="text-transform:uppercase" name="txt_direccion" id="txt_direccion" class="col-xs-12 input-sm"/>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">E-mail:</label>
+																	<div class="col-xs-12 col-sm-8">
+																		<div class="clearfix">
+																			<input type="email" name="txt_email" id="txt_email" class="col-xs-12 input-sm" />
+																		</div>
+																	</div>
+																</div>
+														</div>
+														<!-- fin de las horas del invitado -->
+													</div>
+												<!-- FIN TERCER ROW -->
+												<!-- INICIO DEL CUARTO ROW -->
+												<div class="row">
+													<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Temas a Tratar:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tema Principal</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_principal" id="txt_principal" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tema Secundario</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_secundario" id="txt_secundario" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+													</div>
+													<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Asistentes Adicionales:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre 1:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_nombre1" id="txt_nombre1" class="col-xs-12 input-sm"/>
+																	</div>
+															</div>
+																</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre 2:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" style="text-transform:uppercase" name="txt_nombre2" id="txt_nombre2" class="col-xs-12 input-sm"/>
+																	</div>
+																</div>
+															</div>
+													</div>
+												</div>
+												<!-- FIN DEL CUARTO ROW -->
+											</form>
+										</div>
+									<!-- FIN DEL PRIMER FORMULARIO PRE ENTREVISTA -->
+									<!-- INICIO DEL SEGUNDO FORMULARIO ENTREVISTA -->
+										<div class="step-pane" data-step="2">
+											<h3 class="lighter block green">Entrevista</h3>
+											<form class="form-horizontal" id="form_proceso2">
+												<!-- INICIO DEL PRIMER ROW -->
+												<div class="row">
+													<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Preguntas Tema 1:</h3>
+
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta1" id="txt_pregunta1" placeholder="Pregunta 1"></textarea>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta2" id="txt_pregunta2" placeholder="Pregunta 2"></textarea>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta3" id="txt_pregunta3" placeholder="Pregunta 3"></textarea>
+																	</div>
+																</div>
+															</div>
+													</div>
+													<div class="col-sm-6">
+													<h3 class="header smaller blue">&nbsp; Preguntas Tema 2:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta4" id="txt_pregunta4" placeholder="Pregunta 4"></textarea>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta5" id="txt_pregunta5" placeholder="Pregunta 5"></textarea>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Pregunta:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<textarea class="form-control" style="text-transform:uppercase" name="txt_pregunta6" id="txt_pregunta6" placeholder="Pregunta 6"></textarea>
+																	</div>
+																</div>
+															</div>
+													</div>
+												</div>
+												<!-- FIN DEL PRIMER ROW -->
+												<!-- INICIO DEL SEGUNDO ROW -->
+												<div class="row">
+													<div class="col-sm-6">
+													<h3 class="header smaller blue">&nbsp; Hora Llegada:</h3>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Hora de Llegada:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" name="txt_hora_llegada" id="txt_hora_llegada" class="form-control timepicker" />
+																	<span class="input-group-addon">
+																		<i class="icon-time fa fa-clock-o"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6">
+													<h3 class="header smaller blue">&nbsp; Tiempo de Entrevista:</h3>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tiempo de Entrevista:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_tiempo" id="txt_tiempo" class="col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- FIN DEL SEGUNDO ROW -->
+												<!-- INICIO DEL TERCER ROW -->
+												<div class="row">
+														<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Director del Programa:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Director:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<select id="select_usuarios4" name="select_usuarios4" class="select2" data-placeholder="Director..."></select> 
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-6">
+														<h3 class="header smaller blue">&nbsp; Conducción de Entrevista:</h3>
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Conducción:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<select id="select_usuarios5" name="select_usuarios5" class="select2" data-placeholder="Conducción..."></select> 
+																	</div>
+																</div>
+															</div>
+														</div>
+												</div>
+												<!-- FIN DEL TERCER ROW -->
+												<!-- INICIO DEL CUARTO ROW -->
+												<div class="row">
+													<h3 class="header smaller blue">&nbsp; Ayúdenos a Mejorar: ¿Qué le pareció la Entrevista?</h3>
+													<div class="col-sm-3">
+														<div class="radio">
+															<label>
+																<input name="rb_calificacion" value="1" type="radio" class="ace input-lg" />
+																<span class="lbl bigger-120"> Mala</span>
+															</label>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="radio">
+															<label>
+																<input name="rb_calificacion" value="2" type="radio" class="ace input-lg" />
+																<span class="lbl bigger-120"> Regular</span>
+															</label>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="radio">
+															<label>
+																<input name="rb_calificacion" value="3" type="radio" class="ace input-lg" />
+																<span class="lbl bigger-120"> Buena</span>
+															</label>
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="radio">
+															<label>
+																<input name="rb_calificacion" value="4" type="radio" class="ace input-lg" />
+																<span class="lbl bigger-120"> Muy Buena</span>
+															</label>
+														</div>
+													</div>
+												</div>
+												<!-- FIN DEL CUARTO ROW -->
+												<!-- INICIO DEL QUINTO ROW -->
+												<div class="row">
+													<div class="col-sm-12">
+													<h3 class="header smaller blue">&nbsp; Sugerencias del Invitado</h3>
+														<textarea class="form-control" style="text-transform:uppercase" name="txta_sugerencia" id="form-field-8" placeholder="Sugerencias del Invitado"></textarea>
+													</div>
+												</div>
+												<!-- FIN DEL QUINTO ROW -->
+											</form>
+										</div>
+									<!-- FIN DEL SEGUNDO FORMULARIO ENTREVISTA -->
+									<!-- INICIO DEL TERCER FORMULARIO POST ENTREVISTA -->
+										<div class="step-pane" data-step="3">
+											<h3 class="lighter block green">Post Entrevista</h3>
+											<form class="form-horizontal" id="form_proceso3">
+												<div class="row">
+													<div class="form-group">
+														<div class="col-sm-12">
+														<h3 class="header smaller blue">&nbsp; Video</h3>
+															<textarea class="form-control" style="text-transform:uppercase" name="txt_video" id="txt_video" placeholder="Ingrese la Url del Video"></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-sm-12">
+														<h3 class="header smaller blue">&nbsp; Observaciones</h3>
+															<textarea class="form-control" style="text-transform:uppercase" name="observaciones" id="observaciones" placeholder="Observaciones"></textarea>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									<!-- FIN DEL TERCER FORMULARIO POST ENTREVISTA -->
+										<div class="step-pane" data-step="4">
+											<div class="center">
+												<h3 class="green">Felicidades!</h3>
+												Presione Finalizar para poder Guardar!
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<hr />
+								<div class="wizard-actions">
+									<button class="btn btn-prev">
+										<i class="ace-icon fa fa-arrow-left"></i>
+										Atras
+									</button>
+									<button class="btn btn-success btn-next" data-last="Guardar">
+										Siguiente
+										<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+									</button>
+								</div>
+							</div><!-- /.widget-main -->
+						</div><!-- /.widget-body -->
+					</div>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->

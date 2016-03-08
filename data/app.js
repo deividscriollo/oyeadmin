@@ -24,6 +24,11 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/prueba_form/app.html',
             controller  : 'prueba_formController',
         })
+        // proceso ingresos principales
+        .when('/ingresos_princi', {
+            templateUrl : 'data/ingresos_princi/app.html',
+            controller  : 'ingresos_princiController',
+        })
         // route for the contact page
         .when('/procesos', {
             templateUrl : 'data/procesos/app.html',

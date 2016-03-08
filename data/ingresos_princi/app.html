@@ -1,0 +1,219 @@
+<div class="page-header">
+	<h1>
+		Ingresos Principales
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Areas/Bancos
+		</small>
+	</h1>
+	
+</div><!-- /.page-header -->
+
+<div class="row">
+	<div class="col-sm-6">
+		<!-- formulario -->
+		<div class="widget-box">
+			<div class="widget-header widget-header-large">
+				<h4 class="widget-title">Formulario Areas</h4>
+
+				<div class="widget-toolbar">
+					<a href="#" data-action="settings">
+						<i class="ace-icon fa fa-cog"></i>
+					</a>
+
+					<a href="#" data-action="reload">
+						<i class="ace-icon fa fa-refresh"></i>
+					</a>
+
+					<a href="#" data-action="collapse">
+						<i class="ace-icon fa fa-chevron-up"></i>
+					</a>
+
+					<a href="#" data-action="close">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<form class="form-horizontal" id="form_areas">
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Area:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="clearfix">
+									<input type="text" name="txt_nombre_area" id="txt_nombre_area" class="col-xs-7 "/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<button type="text" name="form-areas" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- tabla de areas-->
+		<table id="tbt_areas" class="table table table-striped">
+			<thead>
+				<tr>
+					<th class="center">Nro</th>
+					<th>Nombre del Area</th>					
+					<th>Proceso</th>	
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div><!-- /.col -->
+	<!-- Fin del formulario de areas -->
+	<!-- Inicio de otro formulario de: bancos -->
+	<div class="col-sm-6">
+		<div class="widget-box">
+				<div class="widget-header widget-header-large">
+				<h4 class="widget-title">Formulario de Bancos</h4>
+
+				<div class="widget-toolbar">
+					<a href="#" data-action="settings">
+						<i class="ace-icon fa fa-cog"></i>
+					</a>
+
+					<a href="#" data-action="reload">
+						<i class="ace-icon fa fa-refresh"></i>
+					</a>
+
+					<a href="#" data-action="collapse">
+						<i class="ace-icon fa fa-chevron-up"></i>
+					</a>
+
+					<a href="#" data-action="close">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+			<!-- inicio del fomulario de Bancos -->
+			<div class="widget-body">
+				<div class="widget-main">
+					<form class="form-horizontal" id="form_bancos">
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Banco:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="clearfix">
+									<input type="text" name="txt_nombre_banco" id="txt_nombre_banco" class="col-xs-7 "/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Dirección:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="clearfix">
+									<input type="text" name="txt_direccion" id="txt_direccion" class="col-xs-7 "/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="ace-icon fa fa-phone"></i>
+									</span>
+									<input type="tel" id="txt_telf" name="txt_telf" />
+								</div>
+							</div>	
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<button type="text" name="form-bancos" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- tabla Bancos-->
+		<table id="tbt_bancos" class="table table table-striped">
+			<thead>
+				<tr>
+					<th class="center">Nro</th>
+					<th>Nombre Banco</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>						
+					<th>Proceso</th>	
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div><!-- /.col -->
+</div>
+<!-- modal para actualizar las Areas -->
+<div id="modal-actualizar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Areas</h4>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Nombre del Area: </div>
+					<div class="profile-info-value" id="obj_nombre">
+					</div>
+			  </div>
+		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- modal para actualizar los Bancos -->
+<div id="modal-actualizar-bancos" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Bancos</h4>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Nombre del Banco: </div>
+					<div class="profile-info-value" id="obj_nom_banco">
+					</div>
+				</div>
+		  </div>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Teléfono: </div>
+					<div class="profile-info-value" id="obj_telefono">
+					</div>
+				</div>
+		  </div>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Dirección: </div>
+					<div class="profile-info-value" id="obj_direccion">
+					</div>
+				</div>
+		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

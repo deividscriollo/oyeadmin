@@ -46,6 +46,7 @@
   		<script src="data/reportes/app.js"></script>
   		<script src="data/programas/app.js"></script>
   		<script src="data/prueba_form/app.js"></script>
+  		<script src="data/ingresos_princi/app.js"></script>
 
 	</head>
 
@@ -421,6 +422,50 @@
 						</a>
 						<b class="arrow"></b>
 					</li>
+					<!-- Inicio de personal Oyefm -->
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text">
+								Corporativo
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="#/ingresos_princi">
+									<i class="menu-icon fa fa-files-o"></i>
+									Ingresos Principales
+									<i class="menu-icon fa fa-files-o"></i>
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+							<li class="">
+								<a href="#/">
+									<i class="menu-icon fa fa-user"></i>
+									Personal
+									<i class="menu-icon fa fa-user"></i>
+								</a>
+							</li>
+
+							<li class="">
+								<a href="#/reportes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Reportes
+									<i class="menu-icon fa fa-file-archive-o right"></i>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<!-- Fin de Personal oyefm -->
+					<!-- inicio de agenda invitados -->
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
@@ -462,6 +507,7 @@
 							</li>
 						</ul>
 					</li>
+					<!-- Fin de agenda Invitados -->
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-archive"></i>
