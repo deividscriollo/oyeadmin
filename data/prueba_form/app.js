@@ -143,8 +143,8 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 				required: "Por favor, Necesita un Tema Secundario",
 			},
 			txt_email: {
-				required: "Por favor, Ingrese un E-mail Valido",
-				txt_email: "Por favor, Ingrese un E-mail Valido"
+				required: "Por favor, Ingrese un E-mail",
+				email: "Por favor, Ingrese un E-mail Valido",
 			},
 		},
 		//para prender y apagar los errores

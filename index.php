@@ -17,13 +17,12 @@
 		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="dist/css/select2.min.css" />
-		<link rel="stylesheet" href="dist/css/datepicker.min.css" />
-		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker.css" />
+		<link rel="stylesheet" href="dist/css/bootstrap-timepicker.min.css" />
+		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
-		<link rel="stylesheet" href="dist/css/formValidation.min.css" />
-
+		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
 
@@ -47,6 +46,7 @@
   		<script src="data/programas/app.js"></script>
   		<script src="data/prueba_form/app.js"></script>
   		<script src="data/ingresos_princi/app.js"></script>
+  		<script src="data/personal/app.js"></script>
 
 	</head>
 
@@ -446,7 +446,7 @@
 								<b class="arrow"></b>
 							</li>							
 							<li class="">
-								<a href="#/">
+								<a href="#/personal">
 									<i class="menu-icon fa fa-user"></i>
 									Personal
 									<i class="menu-icon fa fa-user"></i>
@@ -612,11 +612,7 @@
 		<script src="dist/js/jquery-ui.custom.min.js"></script>
 		<script src="dist/js/jquery.validate.min.js"></script>
 
-		<script src="dist/js/date-time/moment.min.js"></script>
-		<script src="dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-		<script src="dist/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="dist/js/date-time/daterangepicker.min.js"></script>
+		
 		
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>
@@ -634,6 +630,11 @@
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-timepicker.min.js"></script>
+		<script src="dist/js/date-time/moment.min.js"></script>
+		<script src="dist/js/date-time/daterangepicker.min.js"></script>
+		<script src="dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
 
 		
 		<!-- ace scripts -->

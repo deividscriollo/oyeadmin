@@ -95,34 +95,13 @@
 		}
 	}
 
-	//LLena los programas en el Combo
-	if (isset($_POST['llenar_programas'])) {
+	//LLena los bancos en el Combo
+	if (isset($_POST['llenar_bancos'])) {
 		$id = $class->idz();
-		$resultado = $class->consulta("SELECT id, upper(codigo) as codigo, nombre FROM agenda_invitados.programas where estado='1';");
+		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.bancos where estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
 			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
-	}
-	//LLena todos los usuarios
-	if (isset($_POST['llenar_usuarios'])) {
-		$id = $class->idz();
-		$resultado = $class->consulta("SELECT id, id_cargo, nombre FROM agenda_invitados.usuario where estado='1';");
-		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
-		}
-	}
-	//para la consulta de los datos de los programas
-	if(isset($_POST['consultar_datos_programas'])){
-		$resultado = $class->consulta("SELECT id, codigo, nombre, estado, fecha_creacion FROM agenda_invitados.programas where id='$_POST[id]';");
-		while ($row=$class->fetch_array($resultado)) {
-			$data['programa'] = array('id' => $row['id'], 'codigo'=>$row['codigo'], 'nombre'=>$row['nombre']);
-		}
-		// $resultado = $class->consulta("SELECT count(*) FROM agenda_invitados.fichas where id_programa='$_POST[id]';");
-		// while ($row=$class->fetch_array($resultado)) {
-		// 	$data['num_ficha']= array('cantidad_fichas' => $row[0] );
-		//}
-		print_r(json_encode($data));
 	}
 ?>
