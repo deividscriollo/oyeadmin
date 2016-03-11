@@ -48,7 +48,9 @@ var app = angular.module('scotchApp').controller('personalController', function 
 				required: true				
 			},
 			txt_cedula: {
-				required: true				
+				required: true,
+				digits: true, 
+				maxlength: 10				
 			},
 			txt_telf_celular: {
 				required: true				
@@ -92,7 +94,9 @@ var app = angular.module('scotchApp').controller('personalController', function 
 				required: "Por favor, Digíte un teléfono Fijo"			
 			},
 			txt_cedula: { 	
-				required: "Por favor, Digíte el Número de Cédula"			
+				required: "Por favor, Digíte el Número de Cédula",
+				digits: "Sólo son permitido dígitos, Gracias",
+				maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
 			},
 			txt_telf_celular: {
 				required: "Por favor, Digíte un telefono Celular",
@@ -282,28 +286,43 @@ var app = angular.module('scotchApp').controller('personalController', function 
 		})
 			
 		/////////////////////////////////////////////////////
+		$("#txt_fecha_nacimiento").change(function(){
+			var fecha=$(this).val()
+			console.log(fecha);
+			$.ajax({
+				url: 'data/personal/app.php',
+				type: 'post',
+				data: {consulta_edad:'asjkef',fecha:fecha},
+				success: function (data) {
+					$('#txt_edad').val(data);
+				}
+			});
+		})
 		/////////////proceso de guardar//////
 		$( "#btn_guardar" ).click(function() {
 			  proceso_guardar();
 			});
-		$("#select_civil, #select_sangre, #select_banco, #select_cuenta, #select_cargo_trab").css({
+		$(".select2").css({
 		    	'width':'60%',
 		    	'text-align':'left',
 		    }).select2().on("change", function(e) {
 			$(this).closest('form').validate().element($(this));
         })
-	// ///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
-	llenar_select_bancos();
-	init();
-	//llenar_text();
-	// ///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
+		// ///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
+		llenar_select_bancos();
+		llenar_select_areas();
+		llenar_select_pais();
+		init();
+		//llenar_text();
+		// ///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 		function init(){
 			//para la fecha del calendario
-			$("#txt_fecha_aplicacion,#txt_fecha_nacimiento, #txt_ini_trab").datepicker({ 
+			$("#txt_fecha_aplicacion, #txt_fecha_nacimiento, #txt_ini_trab").datepicker({ 
 				format: "yyyy-mm-dd",
 		        autoclose: true
 			}).datepicker("setDate","today");
 		}
+
 		function llenar_select_bancos(){
 			$.ajax({
 				url: 'data/personal/app.php',
@@ -314,6 +333,28 @@ var app = angular.module('scotchApp').controller('personalController', function 
 				}
 			});
 		}
+		function llenar_select_areas(){
+			$.ajax({
+				url: 'data/personal/app.php',
+				type: 'post',
+				data: {llenar_areas:'asjkef'},
+				success: function (data) {
+					$('#select_areas').html(data);
+				}
+			});
+		}
+
+		function llenar_select_pais(){
+			$.ajax({
+				url: 'data/personal/app.php',
+				type: 'post',
+				data: {llenar_pais:'asjkef'},
+				success: function (data) {
+					$('#select_pais').html(data);
+				}
+			});
+		}
+
 		function proceso_guardar() {
 			var form_uno=$("#form_personal").serialize()
 			var form_dos= $("#form_bancarios").serialize()

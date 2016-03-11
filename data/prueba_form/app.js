@@ -327,6 +327,7 @@ var app = angular.module('scotchApp').controller('prueba_formController', functi
 			});
         })
 
+	
 		/////////////proceso de guardar//////
 		$( "#btn_guardar" ).click(function() {
 			  proceso_guardar();

@@ -10,6 +10,11 @@ scotchApp.config(function($routeProvider) {
             controller  : 'mainController',
         })
         // route para los programas
+        .when('/login', {
+            templateUrl : 'data/login/app.html',
+            controller  : 'loginController'
+        })
+        // route para los programas
         .when('/programas', {
             templateUrl : 'data/programas/app.html',
             controller  : 'programasController'
@@ -34,12 +39,6 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/personal/app.html',
             controller  : 'personalController',
         })
-        // route for the contact page
-        .when('/procesos', {
-            templateUrl : 'data/procesos/app.html',
-            controller  : 'procesosController'
-        });
-        
 });
 
 scotchApp.controller('mainController', function($scope, $rootScope){

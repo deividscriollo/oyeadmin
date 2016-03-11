@@ -1,9 +1,4 @@
-
-function redireccionar() {
-setTimeout("location.href='../../index.php'", 3000);	
-}
-
-$(function(){
+$( document ).ready(function() {
 // validacion de formulario
 	$('#form_proceso').validate({
 		errorElement: 'div',
@@ -65,9 +60,9 @@ $(function(){
 									,
 							image: '../../ice/dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
 							sticky: false,
-							time: 3000,												
+							time: 3000,
 						});		
-						redireccionar();		
+						setTimeout("location.href='../../index.php'", 3000);	
 					};
 					if (data == 0) {
 						$.gritter.add({

@@ -4,86 +4,65 @@
     }
 	include_once('../../admin/class.php');
 	$class=new constante();
-
 	// LLenar el formulario del proceso 1 que es Pre-entrevista
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
-		$id_ficha = $class->idz();
-		$id_invitados = $class->idz();
+		$id = $class->idz();
+		$id_personal = $class->idz();
 		$fecha = $class->fecha_hora();
-		$resp = $class->consulta("INSERT INTO agenda_invitados.fichas VALUES (		'$id_ficha',
-																					'$_POST[select_programas]',
-																					'',
+		$resp = $class->consulta("INSERT INTO corporativo.personal VALUES (			'$id_personal',
+																					'$_POST[txt_nombres]',
+																					'$_POST[txt_apellidos]',
+																					'$_POST[txt_cedula]',
+																					'$_POST[txt_fecha_nacimiento]',
+																					'$_POST[txt_edad]',
+																					'$_POST[txt_telf_fijo]',
+																					'$_POST[txt_cedula]',
+																					'$_POST[select_civil]',
+																					'$_POST[txt_cargas]',
+																					'$_POST[txt_email]',
+																					'$_POST[rb_instruccion]',
+																					'$_POST[txt_especialidad]',
+																					'$_POST[rb_vivienda]',
+																					'$_POST[txt_direccion]',
+																					'$_POST[select_sangre]',
+																					'$_POST[txt_alergia]',
+																					'$_POST[txt_enfermedad]',
+																					'$_POST[inp_relacion]',
+																					'1', '$_POST[txt_fecha_aplicacion]');");
+		$resp = $class->consulta("INSERT INTO corporativo.cuentas VALUES (			'$id',
+																					'$_POST[select_banco]',
+																					'$id_personal',
+																					'$_POST[txt_numero_banco]',
+																					'1', '$fecha');");
+		$resp = $class->consulta("INSERT INTO corporativo.anterior_trab VALUES (	'$id',
+																					'$id_personal',
+																					'$_POST[txt_cargo]',
+																					'$_POST[txt_direccion_trab]',
+																					'$_POST[txt_telf_fijo_trab]',
+																					'$_POST[txt_telf_celular_trab]',
+																					'$_POST[txt_jefe]',
+																					'$_POST[tiempo3]',
+																					'1', '$fecha');");
+		$resp = $class->consulta("INSERT INTO corporativo.datos_familiar VALUES (	'$id',
+																					'$id_personal',
+																					'$_POST[txt_nombres_familia]',
+																					'$_POST[txt_parentesco]',
+																					'$_POST[txt_telf_familia]',
+																					'$_POST[txt_dir_fami]',
+																					'1', '$fecha');");
+		$resp = $class->consulta("INSERT INTO corporativo.cargos VALUES (			'$id',
+																					'$_POST[select_areas]',
+																					'$id_personal',
+																					'$_POST[txt_cargo_desempe]',
+																					'1', '$fecha');");
+		$resp = $class->consulta("INSERT INTO corporativo.cursos VALUES (			'$id',
+																					'$id_personal',
+																					'$_POST[txta_curso1],$_POST[txta_curso2]',
+																					'$_POST[txta_establecimiento],$_POST[txta_establecimiento2]',
+																					'$_POST[tiempo1],$_POST[tiempo2]',
 																					'1', '$fecha');");
 
-		$resp = $class->consulta("INSERT INTO agenda_invitados.aceptado VALUES (	'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_contactado_por]',
-																					'$_POST[txt_fecha]',
-																					'$_POST[txt_hora]',
-																					'$_POST[txt_forma]',
-																					'$_POST[txt_contactado_con]',
-																					'$_POST[select_usuarios]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.preconfirmado VALUES ('$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_preconfirmado_por]',
-																					'$_POST[txt_fecha2]',
-																					'$_POST[txt_hora2]', 
-																					'$_POST[txt_forma2]', 
-																					'$_POST[txt_preconfirmado_con]',
-																					'$_POST[select_usuarios]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.confirmado VALUES (	'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_confirmado_por]',
-																					'$_POST[txt_fecha3]',
-																					'$_POST[txt_hora3]',
-																					'$_POST[txt_forma3]',
-																					'$_POST[txt_confirmado_con]',
-																					'$_POST[select_usuarios]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.datos_invitado VALUES ('$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_invitado]',
-																					'$_POST[txt_contacto]', 
-																					'$_POST[txt_empresa]', 
-																					'$_POST[txt_hora_invitado1]',
-																					'$_POST[txt_telf]',
-																					'$_POST[txt_telf2]',
-																					'$_POST[txt_telf3]',
-																					'$_POST[txt_direccion]',
-																					'$_POST[txt_email]',
-																					'$_POST[txt_nombre1]', 
-																					'$_POST[txt_nombre2]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.temas VALUES (		'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_principal]', 
-																					'$_POST[txt_secundario]',
-																					'1', '$fecha');");
-		//fin del primer formulario Pre-Entrevista
-		// LLenar el formulario del proceso 1 que es Entrevista
-		$resp = $class->consulta("INSERT INTO agenda_invitados.entrevista VALUES (	'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_pregunta1]', 
-																					'$_POST[txt_pregunta2]',
-																					'$_POST[txt_pregunta3]',
-																					'$_POST[txt_pregunta4]',
-																					'$_POST[txt_pregunta5]',
-																					'$_POST[txt_pregunta6]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.horarios VALUES (	'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[txt_hora_llegada]', 
-																					'$_POST[txt_tiempo]',
-																					'$_POST[select_usuarios4]',
-																					'$_POST[select_usuarios5]',
-																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO agenda_invitados.mejoras VALUES (		'$id_invitados',
-																					'$id_ficha',
-																					'$_POST[rb_calificacion]',
-																					'$_POST[txta_sugerencia]',
-																					'1', '$fecha');");
+
 		//fin del segundo formulario Entrevista
 
 		if ($resp) {
@@ -103,5 +82,31 @@
 		while ($row=$class->fetch_array($resultado)) {
 			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
+	}
+	//LLena las areas en el Combo
+	if (isset($_POST['llenar_areas'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.areas where estado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+		}
+	}
+	//LLena los paises del Combo
+	if (isset($_POST['llenar_pais'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT id, nom_pais FROM localizacion.pais where stado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nom_pais'].'</option>';
+		}
+	}
+	//consulta la edad del personal con la fecha de nacimiento y fecha actual
+	if (isset($_POST['consulta_edad'])) {
+		$datetime1 = date_create($_POST['fecha']);
+		$datetime2 = date_create($class->fecha());
+		$interval = date_diff($datetime1, $datetime2);
+		//echo $interval->format('%R%a días');
+		print($interval->y) ;
 	}
 ?>
