@@ -74,7 +74,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombres:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_nombres" id="txt_nombres" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_nombres" id="txt_nombres" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -97,7 +97,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Apellidos:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_apellidos" id="txt_apellidos" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_apellidos" id="txt_apellidos" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -105,7 +105,7 @@
 															<label class="control-label col-xs-12 col-sm-5 no-padding-right" >Edad:</label>
 															<div class="col-xs-12 col-sm-3">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_edad" id="txt_edad" readonly class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_edad" id="txt_edad" readonly class="col-xs-12 input-sm"/>
 																</div>
 															</div>
 
@@ -127,7 +127,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cédula de Identidad:</label>
 															<div class="col-xs-12 col-sm-5">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_cedula" id="txt_cedula" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_cedula" id="txt_cedula" class="numeros col-xs-12 input-sm"/>
 																</div>
 															</div>
 														</div>
@@ -170,7 +170,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargas Familiares:</label>
 																<div class="col-xs-12 col-sm-6">
 																	<div class="clearfix">
-																		<input type="text" style="text-transform:uppercase" name="txt_cargas" id="txt_cargas" class="col-xs-12 input-sm"/>
+																		<input type="text" name="txt_cargas" id="txt_cargas" min="1" max="10"class="numeros col-xs-12 input-sm"/>
 																	</div>
 																</div>
 															</div>
@@ -185,8 +185,8 @@
 																</div>
 															</div>
 														</div>
-														<h3 class="header smaller blue">&nbsp; Instrucción:</h3>
 														<div class="col-sm-12">
+														<h3 class="header smaller blue">&nbsp; Instrucción:</h3>
 															<div class="form-group">
 																<div class="col-sm-2">
 																	<div class="radio">
@@ -222,7 +222,7 @@
 																</div>
 																<div class="col-sm-4">
 																	<div class="clearfix">
-																		<input type="text" style="text-transform:uppercase" name="txt_especialidad" id="txt_especialidad" placeholder="Ingrese Especialidad" class="col-xs-12 input-sm"/>
+																		<input type="text" name="txt_especialidad" id="txt_especialidad" placeholder="Ingrese Especialidad" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																	</div>
 																</div>
 															</div>
@@ -237,7 +237,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Curso realizado:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<textarea class="form-control" style="text-transform:uppercase" name="txta_curso1" id="form-field-8" placeholder="Cursos Realizados"></textarea>
+																	<textarea class="letras form-control" name="txta_curso1" id="form-field-8" placeholder="Cursos Realizados" onKeyUp="this.value = this.value.toUpperCase();"></textarea>
 																</div>
 															</div>
 														</div>
@@ -245,7 +245,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Establecimiento:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<textarea class="form-control" style="text-transform:uppercase" name="txta_establecimiento" id="form-field-8" placeholder="Establecimiento"></textarea>
+																	<textarea class="letras form-control" name="txta_establecimiento" id="form-field-8" placeholder="Establecimiento" onKeyUp="this.value = this.value.toUpperCase();"></textarea>
 																</div>
 															</div>
 														</div>
@@ -268,7 +268,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Curso realizado:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<textarea class="form-control" style="text-transform:uppercase" name="txta_curso2" id="form-field-8" placeholder="Cursos Realizados"></textarea>
+																	<textarea class="letras form-control" name="txta_curso2" id="form-field-8" placeholder="Cursos Realizados" onKeyUp="this.value = this.value.toUpperCase();"></textarea>
 																</div>
 															</div>
 														</div>
@@ -276,7 +276,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Establecimiento:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<textarea class="form-control" style="text-transform:uppercase" name="txta_establecimiento2" id="form-field-8" placeholder="Establecimiento"></textarea>
+																	<textarea class="letras form-control" name="txta_establecimiento2" id="form-field-8" placeholder="Establecimiento" onKeyUp="this.value = this.value.toUpperCase();"></textarea>
 																</div>
 															</div>
 														</div>
@@ -379,7 +379,7 @@
 															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Dirección Domiciliaria:&nbsp;</label>
 															<div class="col-xs-12 col-sm-10">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_direccion" id="txt_direccion" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_direccion" id="txt_direccion" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -409,7 +409,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Alérgico Antibióticos:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_alergia" id="txt_alergia" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_alergia" id="txt_alergia" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -419,7 +419,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Enfermedad Específica:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_enfermedad" id="txt_enfermedad" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_enfermedad" id="txt_enfermedad" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -466,7 +466,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Número:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_numero_banco" id="txt_numero_banco" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_numero_banco" id="txt_numero_banco" class="numeros col-xs-12 input-sm"/>
 																</div>
 															</div>
 														</div>
@@ -481,7 +481,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre de la Empresa:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_empresa" id="txt_empresa" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_empresa" id="txt_empresa" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -489,7 +489,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargo:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_cargo" id="txt_cargo" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_cargo" id="txt_cargo" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -510,7 +510,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Jefe:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_jefe" id="txt_jefe" style="text-transform:uppercase" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_jefe" id="txt_jefe"  class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -544,7 +544,7 @@
 															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Dirección:</label>
 															<div class="col-xs-12 col-sm-10">
 																<div class="clearfix">
-																	<input type="text" txt_direccion_trab name="txt_direccion_trab" id="txt_direccion_trab" class="col-xs-12 input-sm"/>
+																	<input type="text" txt_direccion_trab name="txt_direccion_trab" id="txt_direccion_trab" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -554,7 +554,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Ciudad:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_ciudad" id="txt_ciudad" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_ciudad" id="txt_ciudad" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -574,7 +574,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombres:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_nombres_familia" id="txt_nombres_familia" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_nombres_familia" id="txt_nombres_familia" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -584,7 +584,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Parentesco:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_parentesco" id="txt_parentesco" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_parentesco" id="txt_parentesco" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -607,7 +607,7 @@
 															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Dirección:</label>
 															<div class="col-xs-12 col-sm-10">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_dir_fami" id="txt_dir_fami" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_dir_fami" id="txt_dir_fami" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -617,7 +617,7 @@
 															<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Ciudad:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_ciudad_fami" id="txt_ciudad_fami" class="col-xs-12 input-sm"/>
+																	<input type="text" name="txt_ciudad_fami" id="txt_ciudad_fami" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
 																</div>
 															</div>
 														</div>
@@ -628,31 +628,37 @@
 														<div class="col-sm-12">
 															<h3 class="header smaller">&nbsp; Declaro que todos los datos aquí emitidos son reales por lo tanto autorizó su verificación, aprobación y aceptación.</h3>	
 														</div>
-														<div class="form-group">
-															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Fecha de Inicio de Trabajo:</label>
-															<div class="col-xs-12 col-sm-2">
-																<div class="input-group input-group-sm">
-																	<input type="text" id="txt_ini_trab" name="txt_ini_trab" class="form-control datepicker" />
-																	<span class="input-group-addon">
-																		<i class="ace-icon fa fa-calendar"></i>
-																	</span>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Fecha de Inicio de Trabajo:</label>
+																<div class="col-xs-12 col-sm-2">
+																	<div class="input-group input-group-sm">
+																		<input type="text" id="txt_ini_trab" name="txt_ini_trab" class="form-control datepicker" />
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-calendar"></i>
+																		</span>
+																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Area:</label>
-															<div class="col-xs-12 col-sm-8">
-																<div class="clearfix">
-																	<select id="select_areas" name="select_areas" class="select2" data-placeholder="Area...">
-																	</select>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Area:</label>
+																<div class="col-xs-12 col-sm-3">
+																	<div class="clearfix">
+																		<select id="select_areas" name="select_areas" class="select2" data-placeholder="Area...">
+																		</select>
+																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Función o Cargo a Ocupar:</label>
-															<div class="col-xs-12 col-sm-8">
-																<div class="clearfix">
-																	<input type="text" style="text-transform:uppercase" name="txt_cargo_desempe" id="txt_cargo_desempe" class="col-xs-12 input-sm"/>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Función o Cargo a Ocupar:</label>
+																<div class="col-xs-12 col-sm-2">
+																	<div class="clearfix">
+																		<input type="text" name="txt_cargo_desempe" i 	d="txt_cargo_desempe" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																	</div>
 																</div>
 															</div>
 														</div>

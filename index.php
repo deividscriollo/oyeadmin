@@ -45,11 +45,11 @@
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
   		<script src="data/home/app.js"></script>
-  		<script src="data/reportes/app.js"></script>
+  		<script src="data/personal/app.js"></script>
   		<script src="data/programas/app.js"></script>
   		<script src="data/prueba_form/app.js"></script>
   		<script src="data/ingresos_princi/app.js"></script>
-  		<script src="data/personal/app.js"></script>
+  		<script src="data/reportes/app.js"></script>
   		<!-- <script src="data/login/login.js"></script> -->
 
 	</head>
@@ -346,6 +346,7 @@
  window.jQuery || document.write("<script src='dist/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
+
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
@@ -360,7 +361,7 @@
 		<script src="dist/js/jquery-ui.custom.min.js"></script>
 		<script src="dist/js/jquery.validate.min.js"></script>
 
-		
+		<script src="dist/js/ruc_jquery_validator.min.js"></script>
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>

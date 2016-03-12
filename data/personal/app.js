@@ -58,9 +58,6 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			select_civil: {
 				required: true				
 			},
-			txt_cargas: {
-				required: true				
-			},
 			txt_email: {
 				required: true				
 			},
@@ -105,7 +102,8 @@ var app = angular.module('scotchApp').controller('personalController', function 
 				required: "Por favor, Elija un estado civil",
 			},
 			txt_cargas: {
-				required: "Por favor, Digíte el Número de cargas Familiares",
+				min: "Por Favor, Ingrese número valido de cargas familiares",
+				max: "Por Favor, Ingrese número valido de cargas familiares"
 			},
 			txt_email: {
 				required: "Por favor, Ingrese un E-mail",
@@ -272,7 +270,6 @@ var app = angular.module('scotchApp').controller('personalController', function 
 	});
 	// FIN DEL FORMULARIO DE DATOS FAMILIARES
 
-	    
 	//definir formato campos números de teléfono
 		$('#txt_telf_fijo, #txt_telf_celular, #txt_telf_fijo_trab, #txt_telf_celular_trab, #txt_telf_familia').mask('(999) 999-9999');
 		// rango de los tiempos de trabajo
@@ -284,11 +281,37 @@ var app = angular.module('scotchApp').controller('personalController', function 
 				cancelLabel: 'Cancelar',
 			}
 		})
-			
+		//Se utiliza para que el campo de texto solo acepte letras
+		$(".letras").keypress(function (key) {
+            window.console.log(key.charCode)
+            if ((key.charCode < 97 || key.charCode > 122)//letras mayusculas
+                && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+                && (key.charCode != 45) //retroceso
+                && (key.charCode != 241) //ñ
+                && (key.charCode != 209) //Ñ
+                && (key.charCode != 32) //espacio
+                && (key.charCode != 225) //á
+                && (key.charCode != 233) //é
+                && (key.charCode != 237) //í
+                && (key.charCode != 243) //ó
+                && (key.charCode != 250) //ú
+                && (key.charCode != 193) //Á
+                && (key.charCode != 201) //É
+                && (key.charCode != 205) //Í
+                && (key.charCode != 211) //Ó
+                && (key.charCode != 218) //Ú
+                )
+                return false;
+        });	
+        //Se utiliza para que el campo de texto solo acepte numeros
+        $('.numeros').keyup(function (){
+            this.value = (this.value + '').replace(/[^0-9]/g, '');
+          });
+      	$("#txt_cedula").validarCedulaEC();
 		/////////////////////////////////////////////////////
 		$("#txt_fecha_nacimiento").change(function(){
 			var fecha=$(this).val()
-			console.log(fecha);
+			//console.log(fecha);
 			$.ajax({
 				url: 'data/personal/app.php',
 				type: 'post',
@@ -315,6 +338,7 @@ var app = angular.module('scotchApp').controller('personalController', function 
 		init();
 		//llenar_text();
 		// ///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
+
 		function init(){
 			//para la fecha del calendario
 			$("#txt_fecha_aplicacion, #txt_fecha_nacimiento, #txt_ini_trab").datepicker({ 
@@ -382,6 +406,7 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			//in ajax mode, remove remaining elements before leaving page
 			$('[class*=select2]').remove();
 		});
+
 	})
 
 });	
