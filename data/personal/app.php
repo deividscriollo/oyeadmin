@@ -8,7 +8,13 @@
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id = $class->idz();
 		$id_personal = $class->idz();
+		$id_bancos = $class->idz();
 		$fecha = $class->fecha_hora();
+
+		$elemento_relacion='false';
+		if(isset($_POST['inp_relacion']))
+			$elemento_relacion='true';
+
 		$resp = $class->consulta("INSERT INTO corporativo.personal VALUES (			'$id_personal',
 																					'$_POST[txt_nombres]',
 																					'$_POST[txt_apellidos]',
@@ -27,9 +33,9 @@
 																					'$_POST[select_sangre]',
 																					'$_POST[txt_alergia]',
 																					'$_POST[txt_enfermedad]',
-																					'$_POST[inp_relacion]',
+																					'$elemento_relacion',
 																					'1', '$_POST[txt_fecha_aplicacion]');");
-		$resp = $class->consulta("INSERT INTO corporativo.cuentas VALUES (			'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.cuentas VALUES (			'$id_bancos',
 																					'$_POST[select_banco]',
 																					'$id_personal',
 																					'$_POST[txt_numero_banco]',
@@ -61,9 +67,10 @@
 																					'$_POST[txta_establecimiento],$_POST[txta_establecimiento2]',
 																					'$_POST[tiempo1],$_POST[tiempo2]',
 																					'1', '$fecha');");
-
-
-		//fin del segundo formulario Entrevista
+		$resp = $class->consulta("INSERT INTO corporativo.nacionalidad VALUES (		'$id',
+																					'$id_personal',
+																					'$_POST[select_ciudad]',
+																					'1', '$fecha');");
 
 		if ($resp) {
 			//respuesta correcta
@@ -100,6 +107,34 @@
 		while ($row=$class->fetch_array($resultado)) {
 			 print '<option value="'.$row['id'].'">'.$row['nom_pais'].'</option>';
 		}
+	}
+	//LLena las provincia del Combo
+	if (isset($_POST['llenar_provincia'])) {
+		$id = $class->idz();
+		$id_provincia = $_POST['id_provincia'];
+		$resultado = $class->consulta("SELECT provincia.id, provincia.nom_provincia FROM localizacion.pais ,localizacion.provincia where provincia.id_pais='$id_provincia' and pais.id='$id_provincia' and provincia.stado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nom_provincia'].'</option>';
+		}
+	}
+	//LLena las  ciudades del Combo
+	if (isset($_POST['llenar_ciudad'])) {
+		$id = $class->idz();
+		$id_ciudad = $_POST['id_ciudad'];
+		$resultado = $class->consulta("SELECT ciudad.id, ciudad.nom_ciudad FROM localizacion.ciudad ,localizacion.provincia where ciudad.id_provincia='$id_ciudad' and provincia.id='$id_ciudad' and ciudad.stado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nom_ciudad'].'</option>';
+		}
+	}
+	//para la consulta de los datos de la ciudad
+	if(isset($_POST['consultar_datos_ciudad'])){
+		$resultado = $class->consulta("SELECT id, nom_ciudad, stado, fecha FROM localizacion.ciudad where id='$_POST[id]';");
+		while ($row=$class->fetch_array($resultado)) {
+			$data= array('id' => $row['id'], 'nom_ciudad'=>$row['nom_ciudad']);
+		}
+		print_r(json_encode($data));
 	}
 	//consulta la edad del personal con la fecha de nacimiento y fecha actual
 	if (isset($_POST['consulta_edad'])) {

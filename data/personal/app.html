@@ -58,7 +58,7 @@
 														<div class="form-group">
 															<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 																<label>
-																	<input name="inp_relacion" id="inp_relacion" type="checkbox" class="ace" />
+																	<input name="inp_relacion" id="inp_relacion" type="checkbox" value="relacion" class="ace" />
 																	<span class="lbl"> Relación de Dependencia</span>
 																</label>
 															</div>
@@ -115,7 +115,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_fijo" name="txt_telf_fijo" />
+																	<input type="tel" id="txt_telf_fijo" name="txt_telf_fijo" class="telefonos" />
 																</div>
 															</div>
 														</div>
@@ -127,7 +127,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cédula de Identidad:</label>
 															<div class="col-xs-12 col-sm-5">
 																<div class="clearfix">
-																	<input type="text" name="txt_cedula" id="txt_cedula" class="numeros col-xs-12 input-sm"/>
+																	<input type="text" name="txt_cedula" id="txt_cedula" class="numeros col-xs-12 input-sm" onblur="validarDocumento()"/>
 																</div>
 															</div>
 														</div>
@@ -138,7 +138,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_celular" name="txt_telf_celular" />
+																	<input type="tel" id="txt_telf_celular" name="txt_telf_celular" class="telefonos"/>
 																</div>
 															</div>	
 														</div>
@@ -502,7 +502,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_fijo_trab" name="txt_telf_fijo_trab" />
+																	<input type="tel" id="txt_telf_fijo_trab" name="txt_telf_fijo_trab" class="telefonos"/>
 																</div>
 															</div>
 														</div>
@@ -523,7 +523,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_celular_trab" name="txt_telf_celular_trab" />
+																	<input type="tel" id="txt_telf_celular_trab" name="txt_telf_celular_trab" class="telefonos"/>
 																</div>
 															</div>
 														</div>
@@ -597,7 +597,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_familia" name="txt_telf_familia" />
+																	<input type="tel" id="txt_telf_familia" name="txt_telf_familia" class="telefonos" />
 																</div>
 															</div>
 														</div>
