@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
+		<link rel="stylesheet" href="dist/css/ui.jqgrid.min.css" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
 
@@ -46,6 +47,7 @@
   		<script src="data/app.js"></script>
   		<script src="data/home/app.js"></script>
   		<script src="data/personal/app.js"></script>
+  		<script src="data/ficha_programas/app.js"></script>
   		<script src="data/programas/app.js"></script>
   		<script src="data/prueba_form/app.js"></script>
   		<script src="data/ingresos_princi/app.js"></script>
@@ -256,6 +258,49 @@
 						</ul>
 					</li>
 					<!-- Fin de agenda Invitados -->
+					<!-- inicio de ingreso de programas -->
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-folder-open-o"></i>
+							<span class="menu-text">
+								Programas
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="#/">
+									<i class="menu-icon fa fa-files-o"></i>
+									Ingresos Principales
+									<i class="menu-icon fa fa-files-o"></i>
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+							<li class="">
+								<a href="#/ficha_programas">
+									<i class="menu-icon fa fa-calendar"></i>
+									Ficha de Programas
+									<i class="menu-icon fa fa-calendar"></i>
+								</a>
+							</li>
+
+							<li class="">
+								<a href="#/reportes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Reportes
+									<i class="menu-icon fa fa-file-archive-o right"></i>
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<!-- Fin de ingreso de Programas -->
 					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-archive"></i>
@@ -382,7 +427,9 @@
 		<script src="dist/js/date-time/moment.min.js"></script>
 		<script src="dist/js/date-time/daterangepicker.min.js"></script>
 		<script src="dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-
+		<!-- script de las tablas -->
+		<script src="dist/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="dist/js/jqGrid/i18n/grid.locale-en.js"></script>
 		
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>

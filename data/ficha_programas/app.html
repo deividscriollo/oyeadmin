@@ -1,0 +1,594 @@
+ <div class="main-content">
+	<div class="main-content-inner">
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="widget-box">
+						<div class="widget-header widget-header-blue widget-header-flat">
+							<h4 class="widget-title lighter">Ficha de Ingreso de Programas</h4>
+						</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<div id="fuelux-wizard-container">
+									<div>
+										<ul class="steps">
+											<li data-step="1" class="active">
+												<span class="step">1</span>
+												<span class="title">Datos Principales</span>
+											</li>
+
+											<li data-step="2" class="active">
+												<span class="step">2</span>
+												<span class="title">Primera Etapa</span>
+											</li>
+
+											<li data-step="3" class="active">
+												<span class="step">3</span>
+												<span class="title">Segunda Etapa</span>
+											</li>
+
+											<li data-step="4" class="active">
+												<span class="step">4</span>
+												<span class="title">Tecera Etapa</span>
+											</li>
+										</ul>
+									</div>
+									<hr/>
+									<div class="step-content pos-rel">
+										<!-- INICIO DEL PRIMER FORMULARIO DATOS PERSONALES -->
+										<div class="step-pane active" data-step="1">
+											<form class="form-horizontal" id="form_etapa1">
+												<!-- fin de generar -->
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Fecha de Aplicación:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_fecha_aplicacion" name="txt_fecha_aplicacion" class="form-control datepicker" />
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-calendar"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+																<label>
+																	<input name="inp_relacion" id="inp_relacion" type="checkbox" value="relacion" class="ace" />
+																	<span class="lbl"> Estado y Seguimiento &nbsp; Ingresado:</span>
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- INICIO PRIMER ROW-->
+												<div class="row ">
+													<!-- inicio de datos Personales -->
+													<h3 class="header smaller blue">&nbsp; Datos Principales Primera Etapa:</h3>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Diseño el Proyecto:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_diseño" id="txt_diseño" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cédula de Identidad:</label>
+															<div class="col-xs-12 col-sm-5">
+																<div class="clearfix">
+																	<input type="text" name="txt_cedula" id="txt_cedula" class="numeros col-xs-12 input-sm" onblur="validarDocumento()"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono Fijo:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_fijo" name="txt_telf_fijo" class="telefonos"/>
+																</div>
+															</div>	
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono Celular:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_celular" name="txt_telf_celular" class="telefonos"/>
+																</div>
+															</div>	
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right">E-mail:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="email" name="txt_email" id="txt_email" class="col-xs-12 input-sm" />
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Dirección:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_direccion" id="txt_direccion" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Contacto de un Familiar:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_familiar" name="txt_telf_familiar" class="telefonos"/>
+																</div>
+															</div>	
+														</div>
+													</div>
+													<!-- fin del primero -->
+													<!-- inicio del segundo -->
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Programa 1:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_nom_pro1" id="txt_nom_pro1" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Programa 2:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_nom_pro2" id="txt_nom_pro2" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Programa 3:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_nom_pro3" id="txt_nom_pro3" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tipo de Programa:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_tipo_pro" id="txt_tipo_pro" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Público Objetivo:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_publico" id="txt_publico" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Temática:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_tematica" id="txt_tematica" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tiempo que esta Diseñado:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_tiempo_dise" id="txt_tiempo_dise" class="numeros col-xs-12 input-sm" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- fin del segundo -->
+												</div>
+												<!-- FIN PRIMER ROW-->
+												<!-- INICIO SEGUNDO ROW -->
+												<div class="row">
+													<h3 class="header smaller blue">&nbsp; Equipo que lo Conforman:</h3>
+													<!-- inicio de la tabla para los equipos que lo conforman	 -->
+													<div class="content">
+													<div class="col-xs-12">
+														<!-- <div id="contenedor"> -->
+														<div id="btn_agregar" class="btn btn-success">Agregar</div>
+															<table class="table">
+																<thead>
+																	<tr>
+																		<td>Nro</td>
+																		<td>Nombre</td>
+																		<td>Telefono</td>
+																		<td>Correo</td>
+																		<td>Cargo/Funcion</td>
+																		<td>Proceso</td>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>1</td>
+																		<td>juan perez</td>
+																		<td>0224545</td>
+																		<td>fsadsad@</td>
+																		<td>ing</td>
+																		<td><button type="">Elimnar</button></td>
+																	</tr>
+																</tbody>
+															</table>
+
+															<!-- <div id="grid-pager"></div> -->
+														<!-- </div> -->
+													</div><!-- /.col -->
+													</div>
+												</div>
+												<!-- FIN SEGUNDO ROW -->
+												<!-- INICIO TERCER ROW -->
+												<div class="row">
+													<h3 class="header smaller blue">&nbsp; Detalles del Programa:</h3>
+													<div class="col-sm-12">
+													<!-- inicio de detalles que lo conforman -->
+
+													</div>
+												</div>
+												<!-- INICIO CUARTO ROW -->
+												<div class="row">
+													<h3 class="header smaller blue">xxx</h3>
+													<div class="col-sm-12">
+												<!-- inicio de obj_justi_mision_visio -->
+													</div>
+												</div>
+												<!-- FIN DEL CUARTO ROW -->
+											</form>
+										</div>
+									<!-- FIN DEL PRIMER FORMULARIO DATOS PERSONALES -->
+									<!-- INICIO DEL SEGUNDO FORMULARIO DIAS DE TRANSMISION -->
+										<div class="step-pane active" data-step="2">
+											<h3 class="header smaller blue">&nbsp; Datos Bancarios:</h3>
+											<form class="form-horizontal" id="form_etapa2">
+												<!-- INICIO DEL PRIMER ROW -->
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Banco:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<select id="select_banco" name="select_banco" class="select2" data-placeholder="Banco...">
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cuenta:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<select id="select_cuenta" name="select_cuenta" class="select2" data-placeholder="Cuenta...">
+																	<option value="">&nbsp;</option>
+																	<option value="Cuenta Corriente">Cuenta Corriente</option>
+																	<option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Número:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_numero_banco" id="txt_numero_banco" class="numeros col-xs-12 input-sm"/>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- FIN DEL PRIMER ROW -->
+												<!-- INICIO DEL SEGUNDO ROW -->
+												<div class="row">
+												<h3 class="header smaller blue">&nbsp; Trabajos Anteriores:</h3>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre de la Empresa:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_empresa" id="txt_empresa" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargo:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_cargo" id="txt_cargo" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Teléfono Fijo:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_fijo_trab" name="txt_telf_fijo_trab" class="telefonos"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre del Jefe:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_jefe" id="txt_jefe"  class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Teléfono Celular:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_celular_trab" name="txt_telf_celular_trab" class="telefonos"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tiempo:</label>
+															<div class="col-xs-8 col-sm-8">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+																	</span>
+																	<input class="form-control" type="text" name="tiempo3" id="id-date-range-picker-1" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-8">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Dirección:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<input type="text" txt_direccion_trab name="txt_direccion_trab" id="txt_direccion_trab" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Ciudad:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_ciudad" id="txt_ciudad" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- FIN DEL SEGUNDO ROW -->
+											</form>
+										</div>
+									<!-- FIN DEL SEGUNDO FORMULARIO DIAS DE TRANSMISION -->
+									<!-- INICIO DEL TERCER FORMULARIO ESTRUCTURA DEL PROGRAMA -->
+										<div class="step-pane active" data-step="3">
+											<h3 class="header smaller blue">&nbsp; Datos de un familiar cercano o representante si es menor de edad con firma de autorización:</h3>
+											<form class="form-horizontal" id="form_etapa3">
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombres:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_nombres_familia" id="txt_nombres_familia" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Parentesco:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_parentesco" id="txt_parentesco" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-6">Teléfono Fijo o Celular:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="input-group">
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-phone"></i>
+																	</span>
+																	<input type="tel" id="txt_telf_familia" name="txt_telf_familia" class="telefonos" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-8">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Dirección:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<input type="text" name="txt_dir_fami" id="txt_dir_fami" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Ciudad:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_ciudad_fami" id="txt_ciudad_fami" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- Inicio Row de declaracion -->
+													<br>
+													<div class="row">
+														<div class="col-sm-12">
+															<h3 class="header smaller">&nbsp; Declaro que todos los datos aquí emitidos son reales por lo tanto autorizó su verificación, aprobación y aceptación.</h3>	
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Fecha de Inicio de Trabajo:</label>
+																<div class="col-xs-12 col-sm-2">
+																	<div class="input-group input-group-sm">
+																		<input type="text" id="txt_ini_trab" name="txt_ini_trab" class="form-control datepicker" />
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-calendar"></i>
+																		</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Area:</label>
+																<div class="col-xs-12 col-sm-3">
+																	<div class="clearfix">
+																		<select id="select_areas" name="select_areas" class="select2" data-placeholder="Area...">
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Función o Cargo a Ocupar:</label>
+																<div class="col-xs-12 col-sm-2">
+																	<div class="clearfix">
+																		<input type="text" name="txt_cargo_desempe" i 	d="txt_cargo_desempe" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-4">
+															<h4 class="header red" align="center">Cargo netamente inicial y referencial, pudiendo ser removido reemplazado o reubicado de acuerdo a las necesidades de la empresa y sobre todo a sus actitudes y habilidades que demuestre.</h4>	
+														</div>
+													</div>
+													<!-- Fin de Row de declaracion -->
+												</div>
+											</form>
+										</div>
+									<!-- FIN DEL TERCER FORMULARIO ESTRUCTURA DEL PROGRAMA -->
+										<div class="step-pane active" data-step="4">
+											<div class="center">
+												<h3 class="green">Felicidades!</h3>
+												Presione Finalizar para poder Guardar!
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- boton guardar -->
+								<div class="wizard-actions">
+									<button class="btn btn-prev">
+										<i class="ace-icon fa fa-arrow-left"></i>
+										Atras
+									</button>
+									<button class="btn btn-success btn-next" data-last="Guardar">
+										Siguiente
+										<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+									</button>
+								</div>
+							</div><!-- /.widget-main -->
+						</div><!-- /.widget-body -->
+					</div>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->
+<div id="modal-equipo-conforma" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Agregar Equipo que lo Conforman
+				</div>
+			</div>
+
+			<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-12">
+					<form class="form-horizontal" id="form_modal_equipo">
+						<div class="col-sm-11">
+							<div class="form-group">
+								<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre:</label>
+								<div class="col-xs-12 col-sm-8">
+									<div class="clearfix">
+										<input type="text" name="txt_nombre_conf" id="txt_nombre_conf" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono:</label>
+								<div class="col-xs-12 col-sm-8">
+									<div class="clearfix">										
+										<input type="tel" id="txt_telf_conf" name="txt_telf_conf" class="col-xs-12 input-sm"/>
+									</div>
+								</div>	
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-12 col-sm-4 no-padding-right">E-mail:</label>
+								<div class="col-xs-12 col-sm-8">
+									<div class="clearfix">
+										<input type="email" name="txt_email_conf" id="txt_email_conf" class="col-xs-12 input-sm" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargo:</label>
+								<div class="col-xs-12 col-sm-8">
+									<div class="clearfix">
+									<select id="select_cargo_conf" name="select_cargo_conf" class="select2" data-placeholder="Cargo...">
+									</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+				
+			</div>
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cerrar
+				</button>
+				<button class="btn btn-sm btn-success pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-check"></i>
+					Guardar
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->

@@ -34,6 +34,11 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/ingresos_princi/app.html',
             controller  : 'ingresos_princiController',
         })
+        // proceso ingreso ficha programas
+        .when('/ficha_programas', {
+            templateUrl : 'data/ficha_programas/app.html',
+            controller  : 'ficha_programasController',
+        })
         // proceso Personal de Trabajo
         .when('/personal', {
             templateUrl : 'data/personal/app.html',
