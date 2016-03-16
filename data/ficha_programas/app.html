@@ -15,22 +15,22 @@
 										<ul class="steps">
 											<li data-step="1" class="active">
 												<span class="step">1</span>
-												<span class="title">Datos Principales</span>
+												<span class="title">Primera Etapa</span>
 											</li>
 
 											<li data-step="2" class="active">
 												<span class="step">2</span>
-												<span class="title">Primera Etapa</span>
+												<span class="title">Segunda Etapa</span>
 											</li>
 
 											<li data-step="3" class="active">
 												<span class="step">3</span>
-												<span class="title">Segunda Etapa</span>
+												<span class="title">Tercera Etapa</span>
 											</li>
 
 											<li data-step="4" class="active">
 												<span class="step">4</span>
-												<span class="title">Tecera Etapa</span>
+												<span class="title">Guardar Datos</span>
 											</li>
 										</ul>
 									</div>
@@ -80,7 +80,7 @@
 														</div>
 														<div class="form-group">
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cédula de Identidad:</label>
-															<div class="col-xs-12 col-sm-5">
+															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
 																	<input type="text" name="txt_cedula" id="txt_cedula" class="numeros col-xs-12 input-sm" onblur="validarDocumento()"/>
 																</div>
@@ -204,51 +204,260 @@
 													<h3 class="header smaller blue">&nbsp; Equipo que lo Conforman:</h3>
 													<!-- inicio de la tabla para los equipos que lo conforman	 -->
 													<div class="content">
-													<div class="col-xs-12">
-														<!-- <div id="contenedor"> -->
-														<div id="btn_agregar" class="btn btn-success">Agregar</div>
-															<table class="table">
-																<thead>
-																	<tr>
-																		<td>Nro</td>
-																		<td>Nombre</td>
-																		<td>Telefono</td>
-																		<td>Correo</td>
-																		<td>Cargo/Funcion</td>
-																		<td>Proceso</td>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>1</td>
-																		<td>juan perez</td>
-																		<td>0224545</td>
-																		<td>fsadsad@</td>
-																		<td>ing</td>
-																		<td><button type="">Elimnar</button></td>
-																	</tr>
-																</tbody>
-															</table>
-
-															<!-- <div id="grid-pager"></div> -->
-														<!-- </div> -->
-													</div><!-- /.col -->
+														<div class="col-xs-12">
+															<!-- <div id="contenedor"> -->
+															<div id="btn_agregar" class="btn btn-success">Agregar</div>
+															<br>
+															<br>
+																<table class="table table-hover" id="tabla_equipo">
+																	<thead>
+																		<tr class="success" style="font-size: 16px;font-weight: bold">
+																			<td>Nro</td>
+																			<td>Nombre</td>
+																			<td>Telefono</td>
+																			<td>Correo</td>
+																			<td>Cargo/Función</td>
+																			<td>Proceso</td>
+																		</tr>
+																	</thead>
+																	<tbody>
+																	<!-- proceso del llenado de la tabla -->
+																	</tbody>
+																</table>
+																<!-- <div id="grid-pager"></div> -->
+															<!-- </div> -->
+														</div><!-- /.col -->
 													</div>
 												</div>
 												<!-- FIN SEGUNDO ROW -->
 												<!-- INICIO TERCER ROW -->
 												<div class="row">
 													<h3 class="header smaller blue">&nbsp; Detalles del Programa:</h3>
-													<div class="col-sm-12">
-													<!-- inicio de detalles que lo conforman -->
+													<!-- inicio de detalles del programa -->
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Horario: De:</label>
+															<div class="col-xs-12 col-sm-3">
+																<div class="input-daterange input-group">
+																	<input type="text" class="input-sm form-control" name="inicio_hora" id="inicio_hora" />
+																	<span class="input-group-addon">
+																		<i class="fa fa-exchange"></i>
+																	</span>
+																	<input type="text" class="input-sm form-control" name="fin_hora"  id="fin_hora"/>
+																</div>
+															</div>
+															<div class="col-xs-12 col-sm-5">
+																<div class="col-sm-12">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Demo:</label>
+																	<div class="col-xs-12 col-sm-8">
+																		<div class="clearfix">
+																			<input type="text" name="txt_demo" id="txt_demo" class="letras col-xs-12 input-sm"/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Contenidos:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_contenido" id="txt_contenido" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Género Musical:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_genero_musi" id="txt_genero_musi" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Artistas Nacionales:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="clearfix">
+																	<input type="text" name="txt_art_na" id="txt_art_na" class="numeros col-xs-12 input-sm" placeholder="%" />
+																</div>
 
+															</div>
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Artistas Internacionales:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="clearfix">
+																	<input type="text" name="txt_art_int" id="txt_art_int" class="numeros col-xs-12 input-sm" placeholder=" %" />
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Fecha de Inicio:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="input-group input-group-sm">
+																	<input type="text" id="txt_ini_pro" name="txt_ini_pro" class="form-control datepicker" />
+																	<span class="input-group-addon">
+																		<i class="ace-icon fa fa-calendar"></i>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tiempo de Duración:</label>
+															<div class="col-xs-12 col-sm-3">
+																<div class="clearfix">
+																	<input type="text" name="txt_tiempo_du" id="txt_tiempo_du" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();" placeholder="años" />
+																</div>
+															</div>
+															<div class="col-xs-12 col-sm-5">
+																<div class="col-sm-12">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Código:</label>
+																	<div class="col-xs-12 col-sm-8">
+																		<div class="clearfix">
+																			<input type="text" name="txt_codigo" id="txt_codigo" class="letras col-xs-12 input-sm"/>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Tipo de Invitados:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_tipo_inv" id="txt_tipo_inv" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Música de los años:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_musica" id="txt_musica" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Ingresos Mínimos por Hora:</label>
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input type="text" name="txt_ingresos" id="txt_ingresos" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();" placeholder="$400,00 dólares hora" readonly/>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Calificación:</label>
+															<div class="col-xs-12 col-sm-1">
+																<div class="clearfix">
+																	<input type="text" name="txt_calificacion" id="txt_calificacion" class="numeros col-xs-12 input-sm" placeholder="" />
+																</div>
+															</div>
+															<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Producción:</label>
+															<div class="col-xs-12 col-sm-2">
+																<div class="clearfix">
+																	<input type="text" name="txt_produccion" id="txt_produccion" class="letras col-xs-12 input-sm" placeholder="Oye Fm" readonly/>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Objetivo:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<textarea class="form-control" id="txtarea_objetivo" placeholder="Objetivos"></textarea>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Justificación:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<textarea class="form-control" id="txtarea_justificacion" placeholder="Justificación"></textarea>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Misión:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<textarea class="form-control" id="txtarea_mision" placeholder="Misión"></textarea>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label class="control-label col-xs-12 col-sm-2 no-padding-right" >Visión:</label>
+															<div class="col-xs-12 col-sm-10">
+																<div class="clearfix">
+																	<textarea class="form-control" id="txtarea_vision" placeholder="Visión"></textarea>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 												<!-- INICIO CUARTO ROW -->
 												<div class="row">
-													<h3 class="header smaller blue">xxx</h3>
+													<h3 class="header smaller blue">Días de Transmisión con Frecuencia:</h3>
 													<div class="col-sm-12">
-												<!-- inicio de obj_justi_mision_visio -->
+													<!-- inicio de transmisi{on con frecuencia -->
+														<div class="tabbable tabs-left">
+															<ul class="nav nav-tabs" id="myTab3">
+																<li class="active">
+																	<a data-toggle="tab1" href="#home3">
+																		<i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+																		Lunes
+																	</a>
+																</li>
+
+																<li>
+																	<a data-toggle="tab2" href="#profile3">
+																		<i class="blue ace-icon fa fa-user bigger-110"></i>
+																		Martes
+																	</a>
+																</li>
+
+																<li>
+																	<a data-toggle="tab3" href="#dropdown13">
+																		<i class="ace-icon fa fa-rocket"></i>
+																		Miercoles
+																	</a>
+																</li>
+
+																<li>
+																	<a data-toggle="tab" href="#dropdown13">
+																		<i class="ace-icon fa fa-rocket"></i>
+																		Jueves
+																	</a>
+																</li>
+
+																<li>
+																	<a data-toggle="tab" href="#dropdown13">
+																		<i class="ace-icon fa fa-rocket"></i>
+																		Viernes
+																	</a>
+																</li>
+															</ul>
+
+															<div class="tab-content">
+																<div id="home3" class="tab-pane in active">
+																	<textarea class="form-control" id="txtarea_vision" placeholder="Visión"></textarea>
+																</div>
+
+																<div id="profile3" class="tab-pane">
+																	<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+																	<p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+																</div>
+
+																<div id="dropdown13" class="tab-pane">
+																	<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+																	<p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 												<!-- FIN DEL CUARTO ROW -->
@@ -532,63 +741,63 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 						<span class="white">&times;</span>
 					</button>
-					Agregar Equipo que lo Conforman
+					<!-- Agregar Equipo que lo Conforman -->
 				</div>
 			</div>
 
 			<div class="modal-body">
-			<div class="row">
-				<div class="col-sm-12">
-					<form class="form-horizontal" id="form_modal_equipo">
-						<div class="col-sm-11">
-							<div class="form-group">
-								<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre:</label>
-								<div class="col-xs-12 col-sm-8">
-									<div class="clearfix">
-										<input type="text" name="txt_nombre_conf" id="txt_nombre_conf" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-horizontal" id="form_modal_equipo">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Nombre:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">
+											<input type="text" name="txt_nombre_conf" id="txt_nombre_conf" class="letras col-xs-12 input-sm" onKeyUp="this.value = this.value.toUpperCase();"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_telf_conf" name="txt_telf_conf" class="col-xs-12 input-sm"/>
+										</div>
+									</div>	
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">E-mail:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">
+											<input type="email" name="txt_email_conf" id="txt_email_conf" class="col-xs-12 input-sm" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargo:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">
+										<select id="select_cargo_conf" name="select_cargo_conf" class="select2" data-placeholder="Cargo...">
+										</select>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono:</label>
-								<div class="col-xs-12 col-sm-8">
-									<div class="clearfix">										
-										<input type="tel" id="txt_telf_conf" name="txt_telf_conf" class="col-xs-12 input-sm"/>
-									</div>
-								</div>	
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-12 col-sm-4 no-padding-right">E-mail:</label>
-								<div class="col-xs-12 col-sm-8">
-									<div class="clearfix">
-										<input type="email" name="txt_email_conf" id="txt_email_conf" class="col-xs-12 input-sm" />
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Cargo:</label>
-								<div class="col-xs-12 col-sm-8">
-									<div class="clearfix">
-									<select id="select_cargo_conf" name="select_cargo_conf" class="select2" data-placeholder="Cargo...">
-									</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
-				
 			</div>
 			<div class="modal-footer no-margin-top">
 				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 					<i class="ace-icon fa fa-times"></i>
 					Cerrar
 				</button>
-				<button class="btn btn-sm btn-success pull-left" data-dismiss="modal">
+				<button name="form-ficha-programas" id="btn_agregarprogramas" class="btn btn-sm btn-success pull-right">
 					<i class="ace-icon fa fa-check"></i>
 					Guardar
 				</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
+</div>

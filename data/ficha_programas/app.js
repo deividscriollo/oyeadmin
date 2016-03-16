@@ -2,7 +2,10 @@
 var app = angular.module('scotchApp').controller('ficha_programasController', function ($scope) {
 
     jQuery(function($) {
-			
+		$(".chosen-select").chosen({
+			width: '100%',
+		});
+
 		$('[data-rel=tooltip]').tooltip();
 		var $validation = true;
 		$('#fuelux-wizard-container').ace_wizard({
@@ -236,11 +239,80 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		}
 	});
 	// FIN DEL FORMULARIO ETAPA 3
+	// INICIO DE VALIDACION FORMULARIO MODAL
+	$('#btn_agregarprogramas').click(function(){
+		var respuesta = $('#form_modal_equipo').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#txt_nombre_conf').val()+'</td>'
+						+'<td>'+$('#txt_telf_conf').val()+'</td>'
+						+'<td>'+$('#txt_email_conf').val()+'</td>'
+						+'<td>'+$('#select_cargo_conf').text()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_equipo tbody').append(html_fila);			
+			$('#form_modal_equipo').each (function(){
+              this.reset();
+            });
+            llenar_select_equipo();
+		}
+	});
+
+	$('#form_modal_equipo').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_nombre_conf: {
+				required: true				
+			},
+			txt_telf_conf: {
+				required: true				
+			},
+			txt_email_conf: {
+				required: true				
+			},
+			select_cargo_conf: {
+				required: true				
+			},
+		},
+		messages: {
+			txt_nombre_conf: {
+				required: "Por favor, Digíte un Nombre",
+			},
+			txt_telf_conf: { 	
+				required: "Por favor, Digíte un teléfono",			
+			},
+			txt_email_conf: {
+				required: "Por favor, Ingrese un E-mail",
+				email: "Por favor, Ingrese un E-mail valido"
+			},
+			select_cargo_conf: {
+				required: "Por favor, Elija un cargo",
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	// FIN DE VALIDACION FORMULARIO MODAL
 	//////////////////PROCESO DE LA TABLA EQUIPO QUE LO CONFORMAN///////////////
 	$('#btn_agregar').click(function(){
 		$('#modal-equipo-conforma').modal('show')
 	})
-	////////////////////////////////////////////////////////////////////////////
+	///////////////FIN DE PROCESO DE LA TABLA////////////////////////////
 	//definir formato campos números de teléfono
 	$('.telefonos, #txt_telf_conf').mask('(999) 999-9999');
 	// rango de los tiempos de trabajo
@@ -355,28 +427,46 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	$( "#btn_guardar" ).click(function() {
 		  proceso_guardar();
 		});
-	///clase select para el diseño///////////
+	///clase select para el diseño///////////\
 	$(".select2").css({
-	    	'width':'60%',
+	    	'width':'100%',
 	    	'text-align':'left',
 	    }).select2().on("change", function(e) {
 		$(this).closest('form').validate().element($(this));
     })
-
+	///////////
+	$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+				  //console.log(e.target.getAttribute("href"));
+				});
+					
+				$('#accordion').on('shown.bs.collapse', function (e) {
+					//console.log($(e.target).is('#collapseTwo'))
+				});
+				
+				
+				$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+					//if($(e.target).attr('href') == "#home") doSomethingNow();
+				});
+	///////////
 	///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
 	llenar_select_equipo();
 	init();
 	///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 
 	function init(){
-		//para la fecha del calendario
+	//para la fecha del calendario
 		$(".datepicker").datepicker({ 
 			format: "yyyy-mm-dd",
 	        autoclose: true
 		}).datepicker("setDate","today");
+		// //para la hora prevista
+			$("#inicio_hora,#fin_hora ").datetimepicker({ 
+		       pickDate: false
+		    });
 	}
 
 	function llenar_select_equipo(){
+		$("#select_cargo_conf").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
 			type: 'post',
