@@ -68,4 +68,22 @@
 			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
+	//LLena los genero musical en el Combo
+	if (isset($_POST['llenar_genero'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT id, nombre FROM programas.genero where estado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+		}
+	}
+	//LLena los tipo programacion en el Combo
+	if (isset($_POST['llenar_programacion'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT id, nombre FROM programas.tipo_programa where estado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+		}
+	}
 ?>

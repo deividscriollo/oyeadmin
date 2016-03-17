@@ -18,8 +18,8 @@
 		<link rel="stylesheet" href="dist/css/font-awesome.min.css" />
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
-		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
+		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/select2.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-timepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />

@@ -53,9 +53,6 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			txt_edad: {
 				required: true				
 			},
-			txt_telf_fijo: {
-				required: true				
-			},
 			txt_cedula: {
 				required: true,
 				digits: true, 
@@ -79,6 +76,15 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			txt_direccion: {
 				required: true				
 			},
+			select_pais: {
+				required: true				
+			},
+			select_provincia: {
+				required: true				
+			},
+			select_ciudad: {
+				required: true				
+			},
 			select_sangre: {
 				required: true				
 			},
@@ -95,9 +101,6 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			},
 			txt_edad: {
 				required: "Por favor, Se necesita la edad",
-			},
-			txt_telf_fijo: { 	
-				required: "Por favor, Digíte un teléfono Fijo"			
 			},
 			txt_cedula: { 	
 				required: "Por favor, Digíte el Número de Cédula",
@@ -126,6 +129,15 @@ var app = angular.module('scotchApp').controller('personalController', function 
 			},
 			txt_direccion: {
 				required: "Por favor, Digíte una Dirección Domiciliaria",
+			},
+			select_pais: {
+				required: "Por favor, Elija un País",
+			},
+			select_provincia: {
+				required: "Por favor, Elija una Provincia",
+			},
+			select_ciudad: {
+				required: "Por favor, Elija una Ciudad",
 			},
 			select_sangre: {
 				required: "Por favor, Elija un Tipo de Sangre",

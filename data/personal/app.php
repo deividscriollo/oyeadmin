@@ -34,7 +34,8 @@
 																					'$_POST[txt_alergia]',
 																					'$_POST[txt_enfermedad]',
 																					'$elemento_relacion',
-																					'1', '$_POST[txt_fecha_aplicacion]');");
+																					'1', '$_POST[txt_fecha_aplicacion]',
+																					'$_POST[txt_ini_trab]');");
 		$resp = $class->consulta("INSERT INTO corporativo.cuentas VALUES (			'$id_bancos',
 																					'$_POST[select_banco]',
 																					'$id_personal',

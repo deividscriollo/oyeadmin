@@ -1,10 +1,6 @@
 // create the controller and inject Angular's $scope
 var app = angular.module('scotchApp').controller('ficha_programasController', function ($scope) {
-
     jQuery(function($) {
-		$(".chosen-select").chosen({
-			width: '100%',
-		});
 
 		$('[data-rel=tooltip]').tooltip();
 		var $validation = true;
@@ -38,120 +34,120 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			//e.preventDefault();//this will prevent clicking and selecting steps
 		});
 	// formulario registro de la primera: Datos Personales
-	$('#form_etapa1').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		ignore: "",
-		rules: {
-			txt_diseño: {
-				required: true				
-			},
-			txt_telf_fijo: {
-				required: true				
-			},
-			txt_cedula: {
-				required: true,
-				digits: true, 
-				maxlength: 10				
-			},
-			txt_telf_celular: {
-				required: true				
-			},
-			txt_email: {
-				required: true				
-			},
-			txt_direccion: {
-				required: true				
-			},
-			txt_nom_pro1: {
-				required: true
-			},
-			txt_tipo_pro: {
-				required: true
-			},
-			txt_publico: {
-				required: true
-			},
-			txt_tematica: {
-				required: true
-			},
-			txt_tiempo_dise: {
-				required: true
-			},
-		},
-		messages: {
-			txt_diseño: {
-				required: "Por favor, Digíte un Diseño de Proyecto",
-			},
-			txt_telf_fijo: { 	
-				required: "Por favor, Digíte un teléfono Fijo",			
-			},
-			txt_cedula: { 	
-				required: "Por favor, Digíte el Número de Cédula",
-				digits: "Sólo son permitido dígitos, Gracias",
-				maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
-			},
-			txt_telf_celular: {
-				required: "Por favor, Digíte un telefono Celular",
-			},
-			txt_email: {
-				required: "Por favor, Ingrese un E-mail",
-				email: "Por favor, Ingrese un E-mail valido"
-			},
-			txt_direccion: {
-				required: "Por favor, Digíte una Dirección Domiciliaria",
-			},
-			txt_nom_pro1: {
-				required: "Por favor, Digíte almenos un nombre de programa",
-			},
-			txt_tipo_pro: {
-				required: "Por favor, Digíte un Tipo de Programa",
-			},
-			txt_publico: {
-				required: "Por favor, Digíte un Público Objetivo",
-			},
-			txt_tematica: {
-				required: "Por favor, Digíte una Temática",
-			},
-			txt_tiempo_dise: {
-				required: "Por favor, Digíte un Tiempo correspondiente",
-			},
-		},
-		//para prender y apagar los errores
-		highlight: function (e) {
-			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-		},
-		success: function (e) {
-			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-			$(e).remove();
-		},
-		submitHandler: function (form) {
-			$.ajax({
-				url: 'data/ficha_programas/app.php',
-				type: 'post',
-				data: $(form).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if (data['valid']=="true") {
-						$.gritter.add({
-							title: 'Proceso Guardado Correctamente',
-							text: 'Sus Datos han sido guardados de forma Correcta',
-							class_name: 'gritter-success',
-							time:2000
-						});	
-					}else{
-						$.gritter.add({
-							title: 'Proceso No Guardado',
-							text: 'Porvafor Verifique que sus Datos esten llenos',
-							class_name: 'gritter-error',
-							time:2000
-						});
-					}
-				}
-			});
-		}
-	});
+	// $('#form_etapa1').validate({
+	// 	errorElement: 'div',
+	// 	errorClass: 'help-block',
+	// 	focusInvalid: false,
+	// 	ignore: "",
+	// 	rules: {
+	// 		txt_diseño: {
+	// 			required: true				
+	// 		},
+	// 		txt_telf_fijo: {
+	// 			required: true				
+	// 		},
+	// 		txt_cedula: {
+	// 			required: true,
+	// 			digits: true, 
+	// 			maxlength: 10				
+	// 		},
+	// 		txt_telf_celular: {
+	// 			required: true				
+	// 		},
+	// 		txt_email: {
+	// 			required: true				
+	// 		},
+	// 		txt_direccion: {
+	// 			required: true				
+	// 		},
+	// 		txt_nom_pro1: {
+	// 			required: true
+	// 		},
+	// 		txt_tipo_pro: {
+	// 			required: true
+	// 		},
+	// 		txt_publico: {
+	// 			required: true
+	// 		},
+	// 		txt_tematica: {
+	// 			required: true
+	// 		},
+	// 		txt_tiempo_dise: {
+	// 			required: true
+	// 		},
+	// 	},
+	// 	messages: {
+	// 		txt_diseño: {
+	// 			required: "Por favor, Digíte un Diseño de Proyecto",
+	// 		},
+	// 		txt_telf_fijo: { 	
+	// 			required: "Por favor, Digíte un teléfono Fijo",			
+	// 		},
+	// 		txt_cedula: { 	
+	// 			required: "Por favor, Digíte el Número de Cédula",
+	// 			digits: "Sólo son permitido dígitos, Gracias",
+	// 			maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
+	// 		},
+	// 		txt_telf_celular: {
+	// 			required: "Por favor, Digíte un telefono Celular",
+	// 		},
+	// 		txt_email: {
+	// 			required: "Por favor, Ingrese un E-mail",
+	// 			email: "Por favor, Ingrese un E-mail valido"
+	// 		},
+	// 		txt_direccion: {
+	// 			required: "Por favor, Digíte una Dirección Domiciliaria",
+	// 		},
+	// 		txt_nom_pro1: {
+	// 			required: "Por favor, Digíte almenos un nombre de programa",
+	// 		},
+	// 		txt_tipo_pro: {
+	// 			required: "Por favor, Digíte un Tipo de Programa",
+	// 		},
+	// 		txt_publico: {
+	// 			required: "Por favor, Digíte un Público Objetivo",
+	// 		},
+	// 		txt_tematica: {
+	// 			required: "Por favor, Digíte una Temática",
+	// 		},
+	// 		txt_tiempo_dise: {
+	// 			required: "Por favor, Digíte un Tiempo correspondiente",
+	// 		},
+	// 	},
+	// 	//para prender y apagar los errores
+	// 	highlight: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	// 	},
+	// 	success: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+	// 		$(e).remove();
+	// 	},
+	// 	submitHandler: function (form) {
+	// 		$.ajax({
+	// 			url: 'data/ficha_programas/app.php',
+	// 			type: 'post',
+	// 			data: $(form).serialize(),
+	// 			dataType:"json",
+	// 			success: function (data) {
+	// 				if (data['valid']=="true") {
+	// 					$.gritter.add({
+	// 						title: 'Proceso Guardado Correctamente',
+	// 						text: 'Sus Datos han sido guardados de forma Correcta',
+	// 						class_name: 'gritter-success',
+	// 						time:2000
+	// 					});	
+	// 				}else{
+	// 					$.gritter.add({
+	// 						title: 'Proceso No Guardado',
+	// 						text: 'Porvafor Verifique que sus Datos esten llenos',
+	// 						class_name: 'gritter-error',
+	// 						time:2000
+	// 					});
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+	// });
 	// FIN DEL FORMULARIO DE DATOS PERSONALES
 	// formulario registro de la segunda: Datos Bancarios
 	$('#form_etapa2').validate({
@@ -195,8 +191,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			});
 		}
 	});
-	// FIN DEL FORMULARIO DE DATOS BANCARIOS
-	// formulario registro de la tercera: Datos Familiares
+	// FIN DEL FORMULARIO DE ETAPA2
 	$('#form_etapa3').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -239,28 +234,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		}
 	});
 	// FIN DEL FORMULARIO ETAPA 3
-	// INICIO DE VALIDACION FORMULARIO MODAL
-	$('#btn_agregarprogramas').click(function(){
-		var respuesta = $('#form_modal_equipo').valid();
-		var cont = 1;
-		if (respuesta == true) {
-			
-			var html_fila = '<tr>'
-						+'<td>'+cont+'</td>'
-						+'<td>'+$('#txt_nombre_conf').val()+'</td>'
-						+'<td>'+$('#txt_telf_conf').val()+'</td>'
-						+'<td>'+$('#txt_email_conf').val()+'</td>'
-						+'<td>'+$('#select_cargo_conf').text()+'</td>'
-						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
-					+'</tr>'
-			$('#tabla_equipo tbody').append(html_fila);			
-			$('#form_modal_equipo').each (function(){
-              this.reset();
-            });
-            llenar_select_equipo();
-		}
-	});
-
+	//INICIO DE VALIDACION FORNULARIO MODAL EQUIPOS
 	$('#form_modal_equipo').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -307,10 +281,148 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	// FIN DE VALIDACION FORMULARIO MODAL
+	// FIN DE VALIDACION FORMULARIO MODAL EQUIPOS
+	//INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL
+	$('#form_modal_genero').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			select_genero_musical: {
+				required: true				
+			},
+			txt_porcentaje_modal: {
+				required: true,
+				min: 1,
+				max: 100				
+			},
+		},
+		messages: {
+			select_genero_musical: {
+				required: "Por favor, Elija un Género Musical",
+			},
+			txt_porcentaje_modal: { 	
+				required: "Por favor, Digíte un Porcentaje Valido",	
+				min: "Por favor, Digite un número valido que esta entre 1 y 100",
+				max: "Por favor, Digite un número valido que esta entre 1 y 100",		
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACIÓN
+	$('#form_modal_programacion').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			select_tipo_programacion: {
+				required: true				
+			},
+			txt_porcentaje_modal_pro: {
+				required: true,
+				min: 1,
+				max: 100				
+			},
+		},
+		messages: {
+			select_tipo_programacion: {
+				required: "Por favor, Elija un Tipo de Programación",
+			},
+			txt_porcentaje_modal_pro: { 	
+				required: "Por favor, Digíte un Porcentaje Valido",	
+				min: "Por favor, Digite un número valido que esta entre 1 y 100",
+				max: "Por favor, Digite un número valido que esta entre 1 y 100",		
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	// INICIO DE VALIDACION FORMULARIO MODAL EQUIPOS LLENAR TABLA
+	$('#btn_agregarprogramas').click(function(){
+		var respuesta = $('#form_modal_equipo').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#txt_nombre_conf').val()+'</td>'
+						+'<td>'+$('#txt_telf_conf').val()+'</td>'
+						+'<td>'+$('#txt_email_conf').val()+'</td>'
+						+'<td>'+$('#select_cargo_conf').text()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_equipo tbody').append(html_fila);			
+			$('#form_modal_equipo').each (function(){
+              this.reset();
+            });
+            llenar_select_equipo();
+		}
+	});
+	// INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL LLENAR TABLA
+	$('#btn_agregargenero').click(function(){
+		var respuesta = $('#form_modal_genero').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#select_genero_musical').text()+'</td>'
+						+'<td>'+$('#txt_porcentaje_modal').val()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_genero tbody').append(html_fila);			
+			$('#form_modal_genero').each (function(){
+              this.reset();
+            });
+            llenar_select_genero();
+		}
+	});
+	// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
+	$('#btn_agregarprogramacion').click(function(){
+		var respuesta = $('#form_modal_programacion').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#select_tipo_programacion').text()+'</td>'
+						+'<td>'+$('#txt_porcentaje_modal_pro').val()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_programacion tbody').append(html_fila);			
+			$('#form_modal_programacion').each (function(){
+              this.reset();
+            });
+            llenar_select_programacion();
+		}
+	});
 	//////////////////PROCESO DE LA TABLA EQUIPO QUE LO CONFORMAN///////////////
 	$('#btn_agregar').click(function(){
 		$('#modal-equipo-conforma').modal('show')
+	})
+	$('#btn_agregar_genero').click(function(){
+		$('#modal-genero-musical').modal('show')
+	})
+	$('#btn_agregar_programacion').click(function(){
+		$('#modal-tipo-programacion').modal('show')
 	})
 	///////////////FIN DE PROCESO DE LA TABLA////////////////////////////
 	//definir formato campos números de teléfono
@@ -434,22 +546,10 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	    }).select2().on("change", function(e) {
 		$(this).closest('form').validate().element($(this));
     })
-	///////////
-	$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-				  //console.log(e.target.getAttribute("href"));
-				});
-					
-				$('#accordion').on('shown.bs.collapse', function (e) {
-					//console.log($(e.target).is('#collapseTwo'))
-				});
-				
-				
-				$('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-					//if($(e.target).attr('href') == "#home") doSomethingNow();
-				});
-	///////////
 	///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
 	llenar_select_equipo();
+	llenar_select_genero();
+	llenar_select_programacion();
 	init();
 	///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 
@@ -473,6 +573,30 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			data: {llenar_equipo:'equip'},
 			success: function (data) {
 				$('#select_cargo_conf').html(data);
+			}
+		});
+	}
+
+	function llenar_select_genero(){
+		$("#select_genero_musical").select2('val', 'All');
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			data: {llenar_genero:'equip'},
+			success: function (data) {
+				$('#select_genero_musical').html(data);
+			}
+		});
+	}
+
+	function llenar_select_programacion(){
+		$("#select_tipo_programacion").select2('val', 'All');
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			data: {llenar_programacion:'equip'},
+			success: function (data) {
+				$('#select_tipo_programacion').html(data);
 			}
 		});
 	}
