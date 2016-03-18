@@ -86,4 +86,12 @@
 			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
+	//para la consulta del genero musical
+	if(isset($_POST['consultar_id'])){
+		$resultado = $class->consulta("SELECT id, nombre, estado, fecha FROM programas.genero where id='$_POST[id]';");
+		while ($row=$class->fetch_array($resultado)) {
+			$data= array('id' => $row['id'], 'nombre'=>$row['nombre']);
+		}
+		print_r(json_encode($data));
+	}
 ?>

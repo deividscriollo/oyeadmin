@@ -381,12 +381,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	// INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL LLENAR TABLA
 	$('#btn_agregargenero').click(function(){
 		var respuesta = $('#form_modal_genero').valid();
+		//var info_id_genero= $('#select_genero_musical').val();
 		var cont = 1;
 		if (respuesta == true) {
 			var html_fila = '<tr>'
 						+'<td>'+cont+'</td>'
-						+'<td>'+$('#select_genero_musical').text()+'</td>'
-						+'<td>'+$('#txt_porcentaje_modal').val()+'</td>'
+						+'<td>'+$('#select_genero_musical').val()+'</td>'
+						+'<td>'+info_id_genero($('#select_genero_musical').val())+'</td>'
+						+'<td>'+$('#txt_porcentaje_modal').text()+'</td>'
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_genero tbody').append(html_fila);			
@@ -396,6 +398,20 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
             llenar_select_genero();
 		}
 	});
+	function x(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			data: {consultar_id:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data
+			}
+		});
+		return data_global;
+	}
+
 	// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
 	$('#btn_agregarprogramacion').click(function(){
 		var respuesta = $('#form_modal_programacion').valid();
