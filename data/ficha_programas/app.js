@@ -320,7 +320,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACIÓN
+	//INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION
 	$('#form_modal_programacion').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -358,17 +358,160 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
+	//INICIO DE VALIDACION FORMULARIO MODAL HORA1
+	$('#form_modal_1hora').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			inicio_hora_uno: {
+				required: true				
+			},
+			fin_hora_uno: {
+				required: true				
+			},
+			txt_actividad: {
+				required: true
+			},
+			select_responsable_hora1: {
+				required: true
+			},
+		},
+		messages: {
+			inicio_hora_uno: { 	
+				required: "Por favor, Ingrese un inicio de hora",	
+			},
+			fin_hora_uno: { 	
+				required: "Por favor, Ingrese un fin de hora",	
+			},
+			txt_actividad: { 	
+				required: "Por favor, Ingrese la actividad",	
+			},
+			select_responsable_hora1: {
+				required: "Por favor, Elija un Responsable",
+			},
+			
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION FORMULARIO MODAL HORA2
+	$('#form_modal_2hora').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			inicio_hora_dos: {
+				required: true				
+			},
+			fin_hora_dos: {
+				required: true				
+			},
+			txt_actividad2: {
+				required: true
+			},
+			select_responsable_hora2: {
+				required: true
+			},
+		},
+		messages: {
+			inicio_hora_dos: { 	
+				required: "Por favor, Ingrese un inicio de hora",	
+			},
+			fin_hora_dos: { 	
+				required: "Por favor, Ingrese un fin de hora",	
+			},
+			txt_actividad2: { 	
+				required: "Por favor, Ingrese la actividad",	
+			},
+			select_responsable_hora2: {
+				required: "Por favor, Elija un Responsable",
+			},
+			
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION FORMULARIO MODAL HORA3
+	$('#form_modal_3hora').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			inicio_hora_tres: {
+				required: true				
+			},
+			fin_hora_tres: {
+				required: true				
+			},
+			txt_actividad3: {
+				required: true
+			},
+			select_responsable_hora3: {
+				required: true
+			},
+		},
+		messages: {
+			inicio_hora_tres: { 	
+				required: "Por favor, Ingrese un inicio de hora",	
+			},
+			fin_hora_tres: { 	
+				required: "Por favor, Ingrese un fin de hora",	
+			},
+			txt_actividad3: { 	
+				required: "Por favor, Ingrese la actividad",	
+			},
+			select_responsable_hora3: {
+				required: "Por favor, Elija un Responsable",
+			},
+			
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
 	// INICIO DE VALIDACION FORMULARIO MODAL EQUIPOS LLENAR TABLA
 	$('#btn_agregarprogramas').click(function(){
 		var respuesta = $('#form_modal_equipo').valid();
 		var cont = 1;
 		if (respuesta == true) {
+		var info_id_equipo = $('#select_cargo_conf').val();
+		var infor_nombre_cargo=equipo(info_id_equipo)
 			var html_fila = '<tr>'
 						+'<td>'+cont+'</td>'
 						+'<td>'+$('#txt_nombre_conf').val()+'</td>'
 						+'<td>'+$('#txt_telf_conf').val()+'</td>'
 						+'<td>'+$('#txt_email_conf').val()+'</td>'
-						+'<td>'+$('#select_cargo_conf').text()+'</td>'
+						+'<td>'+infor_nombre_cargo+'</td>'
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_equipo tbody').append(html_fila);			
@@ -378,16 +521,31 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
             llenar_select_equipo();
 		}
 	});
+	function equipo(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_cargo:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombre
+			}
+		});
+		return data_global;
+	}
 	// INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL LLENAR TABLA
 	$('#btn_agregargenero').click(function(){
 		var respuesta = $('#form_modal_genero').valid();
-		//var info_id_genero= $('#select_genero_musical').val();
 		var cont = 1;
 		if (respuesta == true) {
+			var info_id_genero= $('#select_genero_musical').val();
+			var infor_nombre=x(info_id_genero)
 			var html_fila = '<tr>'
 						+'<td>'+cont+'</td>'
 						+'<td>'+$('#select_genero_musical').val()+'</td>'
-						+'<td>'+info_id_genero($('#select_genero_musical').val())+'</td>'
+						+'<td>'+infor_nombre+'</td>'
 						+'<td>'+$('#txt_porcentaje_modal').text()+'</td>'
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
@@ -403,23 +561,26 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
 			type: 'post',
+			dataType: 'json',
 			data: {consultar_id:'', id:id},
 			async:false,
 			success: function (data) {
-				data_global = data
+				data_global = data.nombre
 			}
 		});
 		return data_global;
 	}
 
-	// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
+	/// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
 	$('#btn_agregarprogramacion').click(function(){
 		var respuesta = $('#form_modal_programacion').valid();
 		var cont = 1;
 		if (respuesta == true) {
+			var info_id_programacion= $('#select_tipo_programacion').val();
+			var infor_nombre_progra=id_programacion(info_id_programacion)
 			var html_fila = '<tr>'
 						+'<td>'+cont+'</td>'
-						+'<td>'+$('#select_tipo_programacion').text()+'</td>'
+						+'<td>'+infor_nombre_progra+'</td>'
 						+'<td>'+$('#txt_porcentaje_modal_pro').val()+'</td>'
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
@@ -430,6 +591,128 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
             llenar_select_programacion();
 		}
 	});
+	function id_programacion(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_programacion:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombre
+			}
+		});
+		return data_global;
+	}
+	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO PRIMERA HORA LLENAR TABLA
+	$('#btn_agregarprimerahora').click(function(){
+		var respuesta = $('#form_modal_1hora').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var info_id_1hora= $('#select_responsable_hora1').val();
+			var infor_nombre_hora1=id_hora1(info_id_1hora)
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#inicio_hora_uno').val()+'</td>'
+						+'<td>'+$('#fin_hora_uno').val()+'</td>'
+						+'<td>'+$('#txt_actividad').val()+'</td>'
+						+'<td>'+infor_nombre_hora1+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_hora1 tbody').append(html_fila);			
+			$('#form_modal_1hora').each (function(){
+              this.reset();
+            });
+            llenar_select_responsables();
+		}
+	});
+	function id_hora1(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_responsables:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombres
+			}
+		});
+		return data_global;
+	}
+	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO SEGUNDA HORA LLENAR TABLA
+	$('#btn_agregarsegundahora').click(function(){
+		var respuesta = $('#form_modal_2hora').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var info_id_2hora= $('#select_responsable_hora2').val();
+			var infor_nombre_hora2=id_hora2(info_id_2hora)
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#inicio_hora_dos').val()+'</td>'
+						+'<td>'+$('#fin_hora_dos').val()+'</td>'
+						+'<td>'+$('#txt_actividad2').val()+'</td>'
+						+'<td>'+infor_nombre_hora2+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_hora2 tbody').append(html_fila);			
+			$('#form_modal_2hora').each (function(){
+              this.reset();
+            });
+            llenar_select_responsables();
+		}
+	});
+	function id_hora2(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_responsables:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombres
+			}
+		});
+		return data_global;
+	}
+	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO TERCERA HORA LLENAR TABLA
+	$('#btn_agregartercerahora').click(function(){
+		var respuesta = $('#form_modal_3hora').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var info_id_3hora= $('#select_responsable_hora3').val();
+			var infor_nombre_hora3=id_hora3(info_id_3hora)
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#inicio_hora_tres').val()+'</td>'
+						+'<td>'+$('#fin_hora_tres').val()+'</td>'
+						+'<td>'+$('#txt_actividad3').val()+'</td>'
+						+'<td>'+infor_nombre_hora3+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_hora3 tbody').append(html_fila);			
+			$('#form_modal_3hora').each (function(){
+              this.reset();
+            });
+            llenar_select_responsables();
+		}
+	});
+	function id_hora3(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_responsables:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombres
+			}
+		});
+		return data_global;
+	}
 	//////////////////PROCESO DE LA TABLA EQUIPO QUE LO CONFORMAN///////////////
 	$('#btn_agregar').click(function(){
 		$('#modal-equipo-conforma').modal('show')
@@ -439,6 +722,15 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	})
 	$('#btn_agregar_programacion').click(function(){
 		$('#modal-tipo-programacion').modal('show')
+	})
+	$('#btn_agregar_hora1').click(function(){
+		$('#modal-primera-hora').modal('show')
+	})
+	$('#btn_agregar_hora2').click(function(){
+		$('#modal-segunda-hora').modal('show')
+	})
+	$('#btn_agregar_hora3').click(function(){
+		$('#modal-tercera-hora').modal('show')
 	})
 	///////////////FIN DE PROCESO DE LA TABLA////////////////////////////
 	//definir formato campos números de teléfono
@@ -566,6 +858,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	llenar_select_equipo();
 	llenar_select_genero();
 	llenar_select_programacion();
+	llenar_select_responsables();
 	init();
 	///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 
@@ -575,10 +868,10 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			format: "yyyy-mm-dd",
 	        autoclose: true
 		}).datepicker("setDate","today");
-		// //para la hora prevista
-			$("#inicio_hora,#fin_hora ").datetimepicker({ 
-		       pickDate: false
-		    });
+		// //para la hora detalles programa
+		$("#inicio_hora,#fin_hora").datetimepicker({
+	    	pickDate: false
+	    });
 	}
 
 	function llenar_select_equipo(){
@@ -594,13 +887,13 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	}
 
 	function llenar_select_genero(){
-		$("#select_genero_musical").select2('val', 'All');
+		$("#select_genero_musical,#select_genero_musical_form").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
 			type: 'post',
 			data: {llenar_genero:'equip'},
 			success: function (data) {
-				$('#select_genero_musical').html(data);
+				$('#select_genero_musical,#select_genero_musical_form').html(data);
 			}
 		});
 	}
@@ -613,6 +906,18 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			data: {llenar_programacion:'equip'},
 			success: function (data) {
 				$('#select_tipo_programacion').html(data);
+			}
+		});
+	}
+
+	function llenar_select_responsables(){
+		$("#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3").select2('val', 'All');
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			data: {llenar_responsables:'equip'},
+			success: function (data) {
+				$('#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3').html(data);
 			}
 		});
 	}
