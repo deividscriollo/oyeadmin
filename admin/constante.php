@@ -22,7 +22,7 @@
 	// define("CLAVE","h9kpWbGB1D7NuUQlz8PSbsUuOX");
 	// define("PUERTO",5432);
 
-	if ('www.nextbook.ec'==$_SERVER['SERVER_NAME']||'nextbook.ec'==$_SERVER['SERVER_NAME']) {
+	if ('www.oyeecuador.com'==$_SERVER['SERVER_NAME']||'oyeecuador.com'==$_SERVER['SERVER_NAME']) {
 		// ------------------------ Informacion base de datos dominio ------------------------------//
 		define("BD","nextbook_book");
 		define("SERVIDOR","localhost");
