@@ -499,6 +499,158 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
+	//INICIO DE VALIDACION FORMULARIO MODAL HORA4
+	$('#form_modal_4hora').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			inicio_hora_cuatro: {
+				required: true				
+			},
+			fin_hora_cuatro: {
+				required: true				
+			},
+			txt_actividad4: {
+				required: true
+			},
+			select_responsable_hora4: {
+				required: true
+			},
+		},
+		messages: {
+			inicio_hora_cuatro: { 	
+				required: "Por favor, Ingrese un inicio de hora",	
+			},
+			fin_hora_cuatro: { 	
+				required: "Por favor, Ingrese un fin de hora",	
+			},
+			txt_actividad4: { 	
+				required: "Por favor, Ingrese la actividad",	
+			},
+			select_responsable_hora4: {
+				required: "Por favor, Elija un Responsable",
+			},
+			
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION SEGMENTOS
+	$('#form_modal_segmentos').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_proceso: {
+				required: true
+			},
+		},
+		messages: {
+			txt_proceso: { 	
+				required: "Por favor, Ingrese la actividad",	
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
+	$('#form_modal_clientes').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_clientes: {
+				required: true				
+			},
+			txt_porcentaje_modal_clientes: {
+				required: true,
+				min: 1,
+				max: 100				
+			},
+		},
+		messages: {
+			txt_clientes: {
+				required: "Por favor, Digíte un Cliente",
+			},
+			txt_porcentaje_modal_clientes: { 	
+				required: "Por favor, Digíte un Porcentaje Valido",	
+				min: "Por favor, Digite un número valido que esta entre 1 y 100",
+				max: "Por favor, Digite un número valido que esta entre 1 y 100",		
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	//INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
+	$('#form_modal_posibles_clientes').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_posibles_clientes: {
+				required: true				
+			},
+			txt_porcentaje_modal_poclientes: {
+				required: true,
+				min: 1,
+				max: 100				
+			},
+		},
+		messages: {
+			txt_posibles_clientes: {
+				required: "Por favor, Digíte un Posible Cliente",
+			},
+			txt_porcentaje_modal_poclientes: { 	
+				required: "Por favor, Digíte un Porcentaje Valido",	
+				min: "Por favor, Digite un número valido que esta entre 1 y 100",
+				max: "Por favor, Digite un número valido que esta entre 1 y 100",		
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			
+		}
+	});
+	// INICIO DE LLENADO DE LAS TABLAS
 	// INICIO DE VALIDACION FORMULARIO MODAL EQUIPOS LLENAR TABLA
 	$('#btn_agregarprogramas').click(function(){
 		var respuesta = $('#form_modal_equipo').valid();
@@ -570,7 +722,6 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-
 	/// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
 	$('#btn_agregarprogramacion').click(function(){
 		var respuesta = $('#form_modal_programacion').valid();
@@ -713,6 +864,92 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
+	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO CUARTA HORA LLENAR TABLA
+	$('#btn_agregarcuartahora').click(function(){
+		var respuesta = $('#form_modal_4hora').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var info_id_4hora= $('#select_responsable_hora4').val();
+			var infor_nombre_hora4=id_hora4(info_id_4hora)
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#inicio_hora_cuatro').val()+'</td>'
+						+'<td>'+$('#fin_hora_cuatro').val()+'</td>'
+						+'<td>'+$('#txt_actividad4').val()+'</td>'
+						+'<td>'+infor_nombre_hora4+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_hora4 tbody').append(html_fila);			
+			$('#form_modal_4hora').each (function(){
+              this.reset();
+            });
+            llenar_select_responsables();
+		}
+	});
+	function id_hora4(id){
+		var data_global;
+		$.ajax({
+			url: 'data/ficha_programas/app.php',
+			type: 'post',
+			dataType: 'json',
+			data: {consultar_id_responsables:'', id:id},
+			async:false,
+			success: function (data) {
+				data_global = data.nombres
+			}
+		});
+		return data_global;
+	}
+	/// INICIO DE VALIDACION FORMULARIO MODAL SEGMENTOS LLENAR TABLA
+	$('#btn_agregarsegmentos').click(function(){
+		var respuesta = $('#form_modal_segmentos').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#txt_proceso').val()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_segmentos tbody').append(html_fila);			
+			$('#form_modal_segmentos').each (function(){
+              this.reset();
+            });
+		}
+	});
+	// INICIO DE VALIDACION FORMULARIO MODAL CLIENTES LLENAR TABLA
+	$('#btn_agregarclientes').click(function(){
+		var respuesta = $('#form_modal_clientes').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#txt_clientes').val()+'</td>'
+						+'<td>'+$('#txt_porcentaje_modal_clientes').val()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_clientes tbody').append(html_fila);			
+			$('#form_modal_clientes').each (function(){
+              this.reset();
+            });
+		}
+	});
+	// INICIO DE VALIDACION FORMULARIO MODAL POSIBLES CLIENTES LLENAR TABLA
+	$('#btn_agregarpoclientes').click(function(){
+		var respuesta = $('#form_modal_posibles_clientes').valid();
+		var cont = 1;
+		if (respuesta == true) {
+			var html_fila = '<tr>'
+						+'<td>'+cont+'</td>'
+						+'<td>'+$('#txt_posibles_clientes').val()+'</td>'
+						+'<td>'+$('#txt_porcentaje_modal_poclientes').val()+'</td>'
+						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
+					+'</tr>'
+			$('#tabla_posibles tbody').append(html_fila);			
+			$('#form_modal_posibles_clientes').each (function(){
+              this.reset();
+            });
+		}
+	});
 	//////////////////PROCESO DE LA TABLA EQUIPO QUE LO CONFORMAN///////////////
 	$('#btn_agregar').click(function(){
 		$('#modal-equipo-conforma').modal('show')
@@ -732,6 +969,18 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	$('#btn_agregar_hora3').click(function(){
 		$('#modal-tercera-hora').modal('show')
 	})
+	$('#btn_agregar_hora4').click(function(){
+		$('#modal-cuarta-hora').modal('show')
+	})
+	$('#btn_agregar_segmentos').click(function(){
+		$('#modal-segmentos').modal('show')
+	})
+	$('#btn_agregar_clientes').click(function(){
+		$('#modal-clientes').modal('show')
+	})
+	$('#btn_agregar_posibles').click(function(){
+		$('#modal-posibles-clientes').modal('show')
+	})
 	///////////////FIN DE PROCESO DE LA TABLA////////////////////////////
 	//definir formato campos números de teléfono
 	$('.telefonos, #txt_telf_conf').mask('(999) 999-9999');
@@ -746,7 +995,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	})
 	//Se utiliza para que el campo de texto solo acepte letras
 	$(".letras").keypress(function (key) {
-        window.console.log(key.charCode)
+        //window.console.log(key.charCode)
         if ((key.charCode < 97 || key.charCode > 122)//letras mayusculas
             && (key.charCode < 65 || key.charCode > 90) //letras minusculas
             && (key.charCode != 45) //retroceso
@@ -872,6 +1121,10 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		$("#inicio_hora,#fin_hora").datetimepicker({
 	    	pickDate: false
 	    });
+	    ////para la hora detalles programa
+		$("#inicio_hora_uno,#fin_hora_uno").datetimepicker({
+	    	pickDate: false
+	    });
 	}
 
 	function llenar_select_equipo(){
@@ -911,13 +1164,13 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	}
 
 	function llenar_select_responsables(){
-		$("#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3").select2('val', 'All');
+		$("#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3,#select_responsable_hora4").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
 			type: 'post',
 			data: {llenar_responsables:'equip'},
 			success: function (data) {
-				$('#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3').html(data);
+				$('#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3,#select_responsable_hora4').html(data);
 			}
 		});
 	}

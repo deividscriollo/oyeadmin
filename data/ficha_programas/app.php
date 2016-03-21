@@ -89,10 +89,10 @@
 	//LLena los responsables en el Combo
 	if (isset($_POST['llenar_responsables'])) {
 		$id = $class->idz();
-		$resultado = $class->consulta("SELECT id, nombres FROM corporativo.personal where estado='1';");
+		$resultado = $class->consulta("SELECT id, nombres, apellidos FROM corporativo.personal where estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
-			 print '<option value="'.$row['id'].'">'.$row['nombres'].'</option>';
+			 print '<option value="'.$row['id'].'">'.$row['nombres']."&nbsp;".$row['apellidos'].'</option>';
 		}
 	}
 	//para la consulta del genero musical

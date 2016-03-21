@@ -1,9 +1,16 @@
 <?php  
 include '../../procesos/base.php';
+
 $conexion = conectarse();
 $data = 0;
 
 session_start();
+
+// if(!isset($_SESSION)){
+//         session_start();        
+//     }
+// 	include_once('../../admin/class.php');
+// 	$class=new constante();
 
 $consulta = pg_query("select * from agenda_invitados.cargo,agenda_invitados.usuario  where cargo.nombre = '".$_POST['txt_nombre']."' and usuario.clave = md5('".$_POST['txt_clave']."')");
 while($row = pg_fetch_row($consulta)) {

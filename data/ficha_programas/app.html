@@ -915,7 +915,7 @@
 														<div class="content">
 															<div class="col-xs-12">
 																<!-- <div id="contenedor"> -->
-																<div id="btn_agregar_cliente" class="btn btn-success">Agregar</div>
+																<div id="btn_agregar_clientes" class="btn btn-success">Agregar</div>
 																<br>
 																<br>
 																	<table class="table table-hover" id="tabla_clientes">
@@ -1167,7 +1167,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <!-- MODAL PARA SINCRONIZADO DE TIEMPO PRIMERA HORA -->
-<div id="modal-primera-hora" class="modal fade" tabindex="-1">
+<div id="modal-primera-hora" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header no-padding">
@@ -1351,6 +1351,215 @@
 					Cerrar
 				</button>
 				<button name="form-tercera-hora" id="btn_agregartercerahora" class="btn btn-sm btn-success pull-right">
+					<i class="ace-icon fa fa-check"></i>
+					Guardar
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- MODAL PARA SINCRONIZADO DE TIEMPO CUARTA HORA -->
+<div id="modal-cuarta-hora" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Sincronizado de Tiempo Cuarta Hora
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-horizontal" id="form_modal_4hora">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right" >4 Hora:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="input-daterange input-group">
+											<input type="text" class="input-sm form-control" name="inicio_hora_cuatro" id="inicio_hora_cuatro" />
+											<span class="input-group-addon">
+												<i class="fa fa-exchange"></i>
+											</span>
+											<input type="text" class="input-sm form-control" name="fin_hora_cuatro"  id="fin_hora_cuatro"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Actividad:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_actividad4" name="txt_actividad4" class="col-xs-12 input-sm" placeholder="Actividad a Realizar" onKeyUp="this.value = this.value.toUpperCase();"/>
+										</div>
+									</div>	
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Responsable:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">
+										<select id="select_responsable_hora4" name="select_responsable_hora4" class="select2" data-placeholder="Responsable...">
+										</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cerrar
+				</button>
+				<button name="form-cuarta-hora" id="btn_agregarcuartahora" class="btn btn-sm btn-success pull-right">
+					<i class="ace-icon fa fa-check"></i>
+					Guardar
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- MODAL PARA SEGMENTOS, TERCERA ETAPA -->
+<div id="modal-segmentos" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Segmentos
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-horizontal" id="form_modal_segmentos">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Segmento:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_proceso" name="txt_proceso" class="col-xs-12 input-sm" placeholder="Segmento a ocupar" onKeyUp="this.value = this.value.toUpperCase();"/>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cerrar
+				</button>
+				<button name="form-segmentos" id="btn_agregarsegmentos" class="btn btn-sm btn-success pull-right">
+					<i class="ace-icon fa fa-check"></i>
+					Guardar
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- MODAL PARA CLIENTES -->
+<div id="modal-clientes" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Agregar Clientes
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-horizontal" id="form_modal_clientes">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Clientes:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_clientes" name="txt_clientes" class="letras col-xs-12 input-sm" placeholder="Cliente" onKeyUp="this.value = this.value.toUpperCase();"/>
+										</div>
+									</div>	
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Porcentaje:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_porcentaje_modal_clientes" name="txt_porcentaje_modal_clientes" class="numeros col-xs-12 input-sm" placeholder=" Ingrese % en números" />
+										</div>
+									</div>	
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cerrar
+				</button>
+				<button name="form-modal-clientes" id="btn_agregarclientes" class="btn btn-sm btn-success pull-right">
+					<i class="ace-icon fa fa-check"></i>
+					Guardar
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- MODAL PARA POSIBLES CLIENTES -->
+<div id="modal-posibles-clientes" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					Agregar Posibles Clientes
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<form class="form-horizontal" id="form_modal_posibles_clientes">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Posibles Clientes:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_posibles_clientes" name="txt_posibles_clientes" class="letras col-xs-12 input-sm" placeholder="Cliente" onKeyUp="this.value = this.value.toUpperCase();"/>
+										</div>
+									</div>	
+								</div>
+								<div class="form-group">
+									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Porcentaje:</label>
+									<div class="col-xs-12 col-sm-8">
+										<div class="clearfix">										
+											<input type="tel" id="txt_porcentaje_modal_poclientes" name="txt_porcentaje_modal_poclientes" class="numeros col-xs-12 input-sm" placeholder=" Ingrese % en números" />
+										</div>
+									</div>	
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer no-margin-top">
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Cerrar
+				</button>
+				<button name="form-modal-poclientes" id="btn_agregarpoclientes" class="btn btn-sm btn-success pull-right">
 					<i class="ace-icon fa fa-check"></i>
 					Guardar
 				</button>

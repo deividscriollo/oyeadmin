@@ -16,9 +16,12 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="dist/css/font-awesome.min.css" />
+	<!-- 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" /> -->
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300" />
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
+		<link rel="stylesheet" href="dist/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/select2.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-timepicker.min.css" />
@@ -30,7 +33,6 @@
 		<link rel="stylesheet" href="dist/css/ui.jqgrid.min.css" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
-
 		<!-- ace styles -->
 		<link rel="stylesheet" href="dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<script src="dist/js/ace-extra.min.js"></script>
@@ -45,6 +47,7 @@
 
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
+  		<script src="data/login/app.js"></script>
   		<script src="data/home/app.js"></script>
   		<script src="data/personal/app.js"></script>
   		<script src="data/ficha_programas/app.js"></script>
@@ -52,7 +55,6 @@
   		<script src="data/prueba_form/app.js"></script>
   		<script src="data/ingresos_princi/app.js"></script>
   		<script src="data/reportes/app.js"></script>
-  		<!-- <script src="data/login/login.js"></script> -->
 
 	</head>
 
@@ -411,7 +413,6 @@
 		<script src="dist/js/bootbox.min.js"></script>
 		<script src="dist/js/jquery.easypiechart.min.js"></script>
 		<script src="dist/js/fuelux/fuelux.wizard.min.js"></script>
-		<!-- <script src="dist/js/jquery.validate.min.js"></script> -->
 		<script src="dist/js/additional-methods.min.js"></script>
 
 		<script src="dist/js/jquery.hotkeys.min.js"></script>
@@ -421,7 +422,7 @@
 		<script src="dist/js/x-editable/bootstrap-editable.min.js"></script>
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
-		<script src="dist/js/bootbox.min.js"></script>
+		
 		<script src="dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="dist/js/date-time/bootstrap-timepicker.min.js"></script>
 		<script src="dist/js/date-time/moment.min.js"></script>

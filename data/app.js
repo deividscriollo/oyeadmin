@@ -10,14 +10,14 @@ scotchApp.config(function($routeProvider) {
             controller  : 'mainController',
         })
         // route para los programas
-        .when('/login', {
-            templateUrl : 'data/login/app.html',
-            controller  : 'loginController'
-        })
-        // route para los programas
         .when('/programas', {
             templateUrl : 'data/programas/app.html',
             controller  : 'programasController'
+        })
+          // route para el login
+        .when('/login', {
+            templateUrl : 'data/login/app.html',
+            controller  : 'loginController'
         })
         // proceso reportes
         .when('/reportes', {
