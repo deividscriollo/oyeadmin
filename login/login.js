@@ -1,5 +1,10 @@
-var app = angular.module('scotchApp').controller('loginController',function ($scope) {
-// validacion de formulario LOGIN
+
+function redireccionar() {
+setTimeout("location.href='../'", 3000);	
+}
+
+$(function(){
+// validacion de formulario
 	$('#form_proceso').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -18,7 +23,7 @@ var app = angular.module('scotchApp').controller('loginController',function ($sc
 				required: "Por favor, Digíte nombre de usuario"
 			},
 			txt_clave: {
-				required: "Por favor, Digíte su password / clave"
+				required: "Por favor, Digíte password / clave"
 			}			
 		},
 		highlight: function (e) {
@@ -48,9 +53,9 @@ var app = angular.module('scotchApp').controller('loginController',function ($sc
 			$.ajax({
 				url:'login.php',
 				type:'POST',
-				data:{txt_nombre:$('#txt_nombre').val(),txt_clave:$('#txt_clave').val()},
+				data:{consultar_login_user:'',txt_nombre:$('#txt_nombre').val(),txt_clave:$('#txt_clave').val()},
 				success:function(data) {					
-					console.log(data)
+					// console.log(data)
 					if (data==1) {
 						$.gritter.add({
 							title: 'Información Mensaje',
@@ -58,11 +63,11 @@ var app = angular.module('scotchApp').controller('loginController',function ($sc
 										+' Bienvenido: <span class="text-success">'+$('#txt_nombre').val().toUpperCase()
 									+'</span><br><span class="fa fa-paw"></span> Dame unos segundos para acceder a la aplicación <span class="text-succes fa fa-spinner fa-spin"></span>'
 									,
-							image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+							image: '../dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
 							sticky: false,
-							time: 3000,
+							time: 3000,												
 						});		
-						setTimeout("location.href='app.html'", 3000);	
+						redireccionar();		
 					};
 					if (data == 0) {
 						$.gritter.add({
@@ -70,7 +75,7 @@ var app = angular.module('scotchApp').controller('loginController',function ($sc
 							text: '	<span class="fa fa-shield"></span>'
 										+' <span class="text-danger">Su usuario o contraseña son incorrectos</span>'
 									+'<span class="fa fa-ban fa-stack-2x text-danger"></span>',
-							image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+							image: '../dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
 							sticky: false,
 							time: 3000,												
 						});	
@@ -85,7 +90,7 @@ var app = angular.module('scotchApp').controller('loginController',function ($sc
 							text: '	<span class="fa fa-shield"></span>'
 										+' <span class="text-danger">ERROR PROCESO AUTENTIFICACIÓN<BR></span>'
 									+'<span class="fa fa-ban fa-stack-2x text-danger"></span>',
-							image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+							image: '../dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
 							sticky: false,
 							time: 3000,												
 						});	

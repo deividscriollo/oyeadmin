@@ -1,10 +1,9 @@
 <?php 
 	session_start();
-	if(!isset($_SESSION["Id"])) {
-		header('Location: data/login/');
+	if(!$_SESSION) {
+		header('Location: login/');
 	}
-
-?>
+?> 
 <!DOCTYPE html>
 <html ng-app="scotchApp" lang="es">
 	<head>
@@ -114,7 +113,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="data/login">
+									<a href="login/exit.php">
 										<i class="ace-icon fa fa-power-off"></i>
 										Salir
 									</a>
@@ -422,7 +421,7 @@
 		<script src="dist/js/x-editable/bootstrap-editable.min.js"></script>
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
-		
+		<script src="dist/js/bootbox.min.js"></script>
 		<script src="dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="dist/js/date-time/bootstrap-timepicker.min.js"></script>
 		<script src="dist/js/date-time/moment.min.js"></script>
