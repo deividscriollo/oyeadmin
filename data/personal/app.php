@@ -9,6 +9,11 @@
 		$id = $class->idz();
 		$id_personal = $class->idz();
 		$id_bancos = $class->idz();
+		$id_ant_trab = $class->idz();
+		$id_familia = $class->idz();
+		$id_cargos = $class->idz();
+		$id_cursos = $class->idz();
+		$id_nacionalidad = $class->idz();
 		$fecha = $class->fecha_hora();
 
 		$elemento_relacion='false';
@@ -22,7 +27,7 @@
 																					'$_POST[txt_fecha_nacimiento]',
 																					'$_POST[txt_edad]',
 																					'$_POST[txt_telf_fijo]',
-																					'$_POST[txt_cedula]',
+																					'$_POST[txt_telf_celular]',
 																					'$_POST[select_civil]',
 																					'$_POST[txt_cargas]',
 																					'$_POST[txt_email]',
@@ -40,35 +45,39 @@
 																					'$_POST[select_banco]',
 																					'$id_personal',
 																					'$_POST[txt_numero_banco]',
+																					'$_POST[select_cuenta]',
 																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO corporativo.anterior_trab VALUES (	'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.anterior_trab VALUES (	'$id_ant_trab',
 																					'$id_personal',
+																					'$_POST[txt_empresa]',
 																					'$_POST[txt_cargo]',
 																					'$_POST[txt_direccion_trab]',
 																					'$_POST[txt_telf_fijo_trab]',
 																					'$_POST[txt_telf_celular_trab]',
 																					'$_POST[txt_jefe]',
 																					'$_POST[tiempo3]',
+																					'$_POST[txt_ciudad_trab]',
 																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO corporativo.datos_familiar VALUES (	'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.datos_familiar VALUES (	'$id_familia',
 																					'$id_personal',
 																					'$_POST[txt_nombres_familia]',
 																					'$_POST[txt_parentesco]',
 																					'$_POST[txt_telf_familia]',
 																					'$_POST[txt_dir_fami]',
+																					'$_POST[txt_ciudad_fami]',
 																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO corporativo.cargos VALUES (			'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.cargos VALUES (			'$id_cargos',
 																					'$_POST[select_areas]',
 																					'$id_personal',
 																					'$_POST[txt_cargo_desempe]',
 																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO corporativo.cursos VALUES (			'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.cursos VALUES (			'$id_cursos',
 																					'$id_personal',
 																					'$_POST[txta_curso1],$_POST[txta_curso2]',
 																					'$_POST[txta_establecimiento],$_POST[txta_establecimiento2]',
 																					'$_POST[tiempo1],$_POST[tiempo2]',
 																					'1', '$fecha');");
-		$resp = $class->consulta("INSERT INTO corporativo.nacionalidad VALUES (		'$id',
+		$resp = $class->consulta("INSERT INTO corporativo.nacionalidad VALUES (		'$id_nacionalidad',
 																					'$id_personal',
 																					'$_POST[select_ciudad]',
 																					'1', '$fecha');");

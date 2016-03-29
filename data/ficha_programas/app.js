@@ -33,121 +33,121 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		}).on('stepclick.fu.wizard', function(e){
 			//e.preventDefault();//this will prevent clicking and selecting steps
 		});
-	// formulario registro de la primera: Datos Personales
-	// $('#form_etapa1').validate({
-	// 	errorElement: 'div',
-	// 	errorClass: 'help-block',
-	// 	focusInvalid: false,
-	// 	ignore: "",
-	// 	rules: {
-	// 		txt_diseño: {
-	// 			required: true				
-	// 		},
-	// 		txt_telf_fijo: {
-	// 			required: true				
-	// 		},
-	// 		txt_cedula: {
-	// 			required: true,
-	// 			digits: true, 
-	// 			maxlength: 10				
-	// 		},
-	// 		txt_telf_celular: {
-	// 			required: true				
-	// 		},
-	// 		txt_email: {
-	// 			required: true				
-	// 		},
-	// 		txt_direccion: {
-	// 			required: true				
-	// 		},
-	// 		txt_nom_pro1: {
-	// 			required: true
-	// 		},
-	// 		txt_tipo_pro: {
-	// 			required: true
-	// 		},
-	// 		txt_publico: {
-	// 			required: true
-	// 		},
-	// 		txt_tematica: {
-	// 			required: true
-	// 		},
-	// 		txt_tiempo_dise: {
-	// 			required: true
-	// 		},
-	// 	},
-	// 	messages: {
-	// 		txt_diseño: {
-	// 			required: "Por favor, Digíte un Diseño de Proyecto",
-	// 		},
-	// 		txt_telf_fijo: { 	
-	// 			required: "Por favor, Digíte un teléfono Fijo",			
-	// 		},
-	// 		txt_cedula: { 	
-	// 			required: "Por favor, Digíte el Número de Cédula",
-	// 			digits: "Sólo son permitido dígitos, Gracias",
-	// 			maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
-	// 		},
-	// 		txt_telf_celular: {
-	// 			required: "Por favor, Digíte un telefono Celular",
-	// 		},
-	// 		txt_email: {
-	// 			required: "Por favor, Ingrese un E-mail",
-	// 			email: "Por favor, Ingrese un E-mail valido"
-	// 		},
-	// 		txt_direccion: {
-	// 			required: "Por favor, Digíte una Dirección Domiciliaria",
-	// 		},
-	// 		txt_nom_pro1: {
-	// 			required: "Por favor, Digíte almenos un nombre de programa",
-	// 		},
-	// 		txt_tipo_pro: {
-	// 			required: "Por favor, Digíte un Tipo de Programa",
-	// 		},
-	// 		txt_publico: {
-	// 			required: "Por favor, Digíte un Público Objetivo",
-	// 		},
-	// 		txt_tematica: {
-	// 			required: "Por favor, Digíte una Temática",
-	// 		},
-	// 		txt_tiempo_dise: {
-	// 			required: "Por favor, Digíte un Tiempo correspondiente",
-	// 		},
-	// 	},
-	// 	//para prender y apagar los errores
-	// 	highlight: function (e) {
-	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-	// 	},
-	// 	success: function (e) {
-	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-	// 		$(e).remove();
-	// 	},
-	// 	submitHandler: function (form) {
-	// 		$.ajax({
-	// 			url: 'data/ficha_programas/app.php',
-	// 			type: 'post',
-	// 			data: $(form).serialize(),
-	// 			dataType:"json",
-	// 			success: function (data) {
-	// 				if (data['valid']=="true") {
-	// 					$.gritter.add({
-	// 						title: 'Proceso Guardado Correctamente',
-	// 						text: 'Sus Datos han sido guardados de forma Correcta',
-	// 						class_name: 'gritter-success',
-	// 						time:2000
-	// 					});	
-	// 				}else{
-	// 					$.gritter.add({
-	// 						title: 'Proceso No Guardado',
-	// 						text: 'Porvafor Verifique que sus Datos esten llenos',
-	// 						class_name: 'gritter-error',
-	// 						time:2000
-	// 					});
-	// 				}
-	// 			}
-	// 		});
-	// 	}
-	// });
+	formulario registro de la primera: Datos Personales
+	$('#form_etapa1').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			txt_diseño: {
+				required: true				
+			},
+			txt_telf_fijo: {
+				required: true				
+			},
+			txt_cedula: {
+				required: true,
+				digits: true, 
+				maxlength: 10				
+			},
+			txt_telf_celular: {
+				required: true				
+			},
+			txt_email: {
+				required: true				
+			},
+			txt_direccion: {
+				required: true				
+			},
+			txt_nom_pro1: {
+				required: true
+			},
+			txt_tipo_pro: {
+				required: true
+			},
+			txt_publico: {
+				required: true
+			},
+			txt_tematica: {
+				required: true
+			},
+			txt_tiempo_dise: {
+				required: true
+			},
+		},
+		messages: {
+			txt_diseño: {
+				required: "Por favor, Digíte un Diseño de Proyecto",
+			},
+			txt_telf_fijo: { 	
+				required: "Por favor, Digíte un teléfono Fijo",			
+			},
+			txt_cedula: { 	
+				required: "Por favor, Digíte el Número de Cédula",
+				digits: "Sólo son permitido dígitos, Gracias",
+				maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
+			},
+			txt_telf_celular: {
+				required: "Por favor, Digíte un telefono Celular",
+			},
+			txt_email: {
+				required: "Por favor, Ingrese un E-mail",
+				email: "Por favor, Ingrese un E-mail valido"
+			},
+			txt_direccion: {
+				required: "Por favor, Digíte una Dirección Domiciliaria",
+			},
+			txt_nom_pro1: {
+				required: "Por favor, Digíte almenos un nombre de programa",
+			},
+			txt_tipo_pro: {
+				required: "Por favor, Digíte un Tipo de Programa",
+			},
+			txt_publico: {
+				required: "Por favor, Digíte un Público Objetivo",
+			},
+			txt_tematica: {
+				required: "Por favor, Digíte una Temática",
+			},
+			txt_tiempo_dise: {
+				required: "Por favor, Digíte un Tiempo correspondiente",
+			},
+		},
+		//para prender y apagar los errores
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+		submitHandler: function (form) {
+			$.ajax({
+				url: 'data/ficha_programas/app.php',
+				type: 'post',
+				data: $(form).serialize(),
+				dataType:"json",
+				success: function (data) {
+					if (data['valid']=="true") {
+						$.gritter.add({
+							title: 'Proceso Guardado Correctamente',
+							text: 'Sus Datos han sido guardados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+					}else{
+						$.gritter.add({
+							title: 'Proceso No Guardado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+					}
+				}
+			});
+		}
+	});
 	// FIN DEL FORMULARIO DE DATOS PERSONALES
 	// formulario registro de la segunda: Datos Bancarios
 	$('#form_etapa2').validate({
@@ -993,6 +993,34 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			cancelLabel: 'Cancelar',
 		}
 	})
+	//////////////
+	     $("#btnRecorrer").click(function () {
+            $("#tabla_equipo tbody tr").each(function (index) {
+                 var campo1, campo2, campo3, campo4, campo5;
+                $(this).children("td").each(function (index2) {
+                     switch (index2) {
+                        case 0:
+                            campo1 = $(this).text();
+                            break;
+                        case 1:
+                           campo2 = $(this).text();
+                            break;
+                        case 2:
+                            campo3 = $(this).text();
+                            break;
+                        case 3:
+                            campo4 = $(this).text();
+                            break;
+                        case 4:
+                            campo5 = $(this).text();
+                            break;
+                   }
+               $(this).css("background-color", "#ECF8E0");
+               })
+           console.log(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+           })
+       })
+
 	//Se utiliza para que el campo de texto solo acepte letras
 	$(".letras").keypress(function (key) {
         //window.console.log(key.charCode)
