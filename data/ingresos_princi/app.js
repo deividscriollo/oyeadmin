@@ -1,5 +1,5 @@
 // create the controller and inject Angular's $scope
-var app = angular.module('scotchApp').controller('ingresos_princiController',function ($scope) {
+var app = angular.module('scotchApp').controller('ingresos_princiController',function ($scope, $http) {
 	// formulario registro de areas
 	$('#form_areas').validate({
 		errorElement: 'div',
@@ -15,7 +15,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			        data: {
 			          validar_existencia: ''
 			        }
-			      }
+			    }
 			},
 		},
 		messages: {
@@ -39,29 +39,30 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 				data: $(form).serialize(),
 				dataType:"json",
 				success: function (data) {
-					console.log(data);
-						if (data['valid']=="true") {
-							$.gritter.add({
-								title: 'Proceso Guardado Correctamente',
-								text: 'Sus Datos han sido guardados de forma Correcta',
-								class_name: 'gritter-success',
-								time:2000
-							});	
-						}else{
-							$.gritter.add({
-								title: 'Proceso No Guardado',
-								text: 'Porvafor Verifique que sus Datos esten llenos',
-								class_name: 'gritter-error',
-								time:2000
-							});
-						}
-						llenar_tabla_areas()
+					if (data['valid'] == "true") {
+						$.gritter.add({
+							title: 'Proceso Guardado Correctamente',
+							text: 'Sus Datos han sido guardados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+					} else {
+						$.gritter.add({
+							title: 'Proceso No Guardado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+					}
+					llenar_tabla_areas()
 				}
 			});
 		}		
-	}); 
-//Fin de las validaciones de areas   
-// Inicio Formulario registro de Bancos
+	});
+	// Fin 
+
+	//Fin de las validaciones de areas   
+	// Inicio Formulario registro de Bancos
 	$('#form_bancos').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -77,7 +78,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			        data: {
 			          validar_existencia2: ''
 			        }
-			      }
+			    }
 			},
 			txt_direccion: {
 				required: true				
@@ -107,41 +108,43 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 				data: $(form).serialize(),
 				dataType:"json",
 				success: function (data) {
-					console.log(data);
-						if (data['valid']=="true") {
-							$.gritter.add({
-								title: 'Proceso Guardado Correctamente',
-								text: 'Sus Datos han sido guardados de forma Correcta',
-								class_name: 'gritter-success',
-								time:2000
-							});	
-						}else{
-							$.gritter.add({
-								title: 'Proceso No Guardado',
-								text: 'Porvafor Verifique que sus Datos esten llenos',
-								class_name: 'gritter-error',
-								time:2000
-							});
-						}
-						llenar_tabla_bancos()
+					if (data['valid'] == "true") {
+						$.gritter.add({
+							title: 'Proceso Guardado Correctamente',
+							text: 'Sus Datos han sido guardados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+					} else {
+						$.gritter.add({
+							title: 'Proceso No Guardado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+					}
+					llenar_tabla_bancos();
 				}
 			});
 		}		
 	}); 
 
-// fin de las validaciones de bancos
-//llenado de la tabla de areas
-	llenar_tabla_areas()
-	llenar_tabla_bancos()
-	init_principales()
-});
-////funciones principales
-	function init_principales(){
-			///formatos de telefono
-			$('#txt_telf').mask('(999) 999-9999');
-		}
-//para llenar la tabla con los datos de las areas
-	function llenar_tabla_areas(){
+	// fin de las validaciones de bancos
+	//llenado de la tabla de areas
+	llenar_tabla_areas();
+	llenar_tabla_bancos();
+	init_principales();
+	});
+
+	////funciones principales
+	function init_principales () {
+		///formatos de telefono
+		$('#txt_telf').mask('(999) 999-9999');
+	}
+	// Fin
+
+	//para llenar la tabla con los datos de las areas
+	function llenar_tabla_areas () {
 		$.ajax({
 			url: 'data/ingresos_princi/app.php',
 			type: 'post',
@@ -151,8 +154,10 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			}
 		});
 	}
-//para eliminar las areas con el cuadro de dialogo
-	function eliminar_areas(id) {
+	// Fin
+
+	//para eliminar las areas con el cuadro de dialogo
+	function eliminar_areas (id) {
 		bootbox.confirm("ESTA SEGURO DE ELIMINAR EL AREA?", function(result) {
 			if(result) {
 				$.ajax({
@@ -167,16 +172,19 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 							class_name: 'gritter-success',
 							time:2000
 						});
-						llenar_tabla_areas()
+						llenar_tabla_areas();
 					}
 				});
 			}
 		});
 	}
-//para modificar las areas
-	function modificar_areas(id) {
+	//Fin 
+
+	//para modificar las areas
+	function modificar_areas (id) {
 		$('#obj_nombre').html('');
 		$('#obj_nombre').html('<span class="editable" name="x" id="edit_nombre"></span>');
+		
 		$.ajax({
 			url: 'data/ingresos_princi/app.php',
 			type: 'post',
@@ -184,7 +192,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			data: {consultar_datos_areas:'asjkef', id: id},
 			success: function (data) {
 				$("#edit_nombre").text(data['nombre'])			
-				console.log(data);
+				// console.log(data);
 				$('#modal-actualizar').modal('show');
 				$('#edit_nombre').editable({
 					type: 'text',
@@ -192,13 +200,13 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 					value: data['nombre'],
 					pk:id,
 					url:'data/ingresos_princi/app.php',
-					validate:function(value){		                
-				    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+					validate:function (value) {		                
+				    	if(value == '') return 'Campo Requerido Ingrese Nombre';
 				    },
-				    success:function(data){
-				    	llenar_tabla_areas()
+				    success:function (data) {
+				    	llenar_tabla_areas();
 				    	var json = jQuery.parseJSON(data);
-				    	if (json['valid']!='true') {
+				    	if (json['valid'] != 'true') {
 				    		$.gritter.add({
 								title: 'Proceso No Modificado',
 								text: 'Porvafor Verifique que sus Datos esten llenos',
@@ -206,7 +214,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 								time:2000
 							});
 				    	}
-				    	if (json['valid']=='true') {
+				    	if (json['valid'] == 'true') {
 				    		$.gritter.add({
 								title: 'Proceso Modificado Correctamente',
 								text: 'Sus Datos han sido Modificados de forma Correcta',
@@ -219,9 +227,10 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			}
 		});
 	}
-// FIN DE TODO LO CORRESPONDIENTE A AREAS
-		//para llenar la tabla con los datos de programas
-	function llenar_tabla_bancos(){
+	// FIN DE TODO LO CORRESPONDIENTE A AREAS
+
+	//para llenar la tabla con los datos de programas
+	function llenar_tabla_bancos () {
 		$.ajax({
 			url: 'data/ingresos_princi/app.php',
 			type: 'post',
@@ -231,9 +240,11 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 			}
 		});
 	}
+	// Fin
+
 	//para eliminar los bancos con el cuadro de dialogo
-	function eliminar_bancos(id) {
-		bootbox.confirm("ESTA SEGURO DE ELIMINAR EL BANCO?", function(result) {
+	function eliminar_bancos (id) {
+		bootbox.confirm("ESTA SEGURO DE ELIMINAR EL BANCO?", function (result) {
 			if(result) {
 				$.ajax({
 					url: 'data/ingresos_princi/app.php',
@@ -246,19 +257,21 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 							class_name: 'gritter-success',
 							time:2000
 						});
-						llenar_tabla_bancos()
+						llenar_tabla_bancos();
 					}
 				});
 			}
 		});
 	}
+	// Fin
 
 	//PARA MODIFICAR LOS BANCOS
-	function modificar_bancos(id) {
+	function modificar_bancos (id) {
 		$('#obj_nom_banco, #obj_telefono, #obj_direccion').html('');
 		$('#obj_nom_banco').html('<span class="editable" name="x" id="edit_nom_banco"></span>');
 		$('#obj_telefono').html('<span class="editable" name="y" id="edit_telefono"></span>');
 		$('#obj_direccion').html('<span class="editable" name="z" id="edit_direccion"></span>');
+
 		$.ajax({
 			url: 'data/ingresos_princi/app.php',
 			type: 'post',
@@ -268,7 +281,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 				$("#edit_nom_banco").text(data['nombre'])			
 				$("#edit_telefono").text(data['telefono'])
 				$("#edit_direccion").text(data['direccion'])
-				console.log(data);
+				// console.log(data);
 				$('#modal-actualizar-bancos').modal('show');
 				//para actualizar el nombre de los Bancos
 				$('#edit_nom_banco').editable({
@@ -277,13 +290,13 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 					value: data['nombre'],
 					pk:id,
 					url:'data/ingresos_princi/app.php',
-					validate:function(value){		                
-				    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+					validate:function (value) {		                
+				    	if(value == '') return 'Campo Requerido Ingrese Nombre';
 				    },
-				    success:function(data){
+				    success:function (data) {
 				    	llenar_tabla_bancos()
 				    	var json = jQuery.parseJSON(data);
-				    	if (json['valid']!='true') {
+				    	if (json['valid'] != 'true') {
 				    		$.gritter.add({
 								title: 'Proceso No Modificado',
 								text: 'Porvafor Verifique que sus Datos esten llenos',
@@ -291,7 +304,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 								time:2000
 							});
 				    	}
-				    	if (json['valid']=='true') {
+				    	if (json['valid'] == 'true') {
 				    		$.gritter.add({
 								title: 'Proceso Modificado Correctamente',
 								text: 'Sus Datos han sido Modificados de forma Correcta',
@@ -309,12 +322,12 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 					pk:id,
 					url:'data/ingresos_princi/app.php',
 					validate:function(value){		                
-				    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+				    	if(value == '') return 'Campo Requerido Ingrese Nombre';
 				    },
 				    success:function(data){
 				    	llenar_tabla_bancos()
 				    	var json = jQuery.parseJSON(data);
-				    	if (json['valid']!='true') {
+				    	if (json['valid'] != 'true') {
 				    		$.gritter.add({
 								title: 'Proceso No Modificado',
 								text: 'Porvafor Verifique que sus Datos esten llenos',
@@ -322,7 +335,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 								time:2000
 							});
 				    	}
-				    	if (json['valid']=='true') {
+				    	if (json['valid'] == 'true') {
 				    		$.gritter.add({
 								title: 'Proceso Modificado Correctamente',
 								text: 'Sus Datos han sido Modificados de forma Correcta',
@@ -332,6 +345,8 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 				    	}
 				    }
 			    });
+			    // Fin 
+
 			    //para actualizar los datos de Direccion de Bancos
 		    	$('#edit_direccion').editable({
 					type: 'text',
@@ -340,12 +355,12 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 					pk:id,
 					url:'data/ingresos_princi/app.php',
 					validate:function(value){		                
-				    	if(value=='') return 'Campo Requerido Ingrese Nombre';
+				    	if(value == '') return 'Campo Requerido Ingrese Nombre';
 				    },
 				    success:function(data){
 				    	llenar_tabla_bancos()
 				    	var json = jQuery.parseJSON(data);
-				    	if (json['valid']!='true') {
+				    	if (json['valid'] != 'true') {
 				    		$.gritter.add({
 								title: 'Proceso No Modificado',
 								text: 'Porvafor Verifique que sus Datos esten llenos',
@@ -353,7 +368,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 								time:2000
 							});
 				    	}
-				    	if (json['valid']=='true') {
+				    	if (json['valid'] == 'true') {
 				    		$.gritter.add({
 								title: 'Proceso Modificado Correctamente',
 								text: 'Sus Datos han sido Modificados de forma Correcta',
@@ -363,6 +378,7 @@ var app = angular.module('scotchApp').controller('ingresos_princiController',fun
 				    	}
 				    }
 			    });
+			    // Fin
 			}
 		});
 	}

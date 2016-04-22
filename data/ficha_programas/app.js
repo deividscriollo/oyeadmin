@@ -8,7 +8,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			//step: 2 //optional argument. wizard will jump to step "2" at first
 			//buttons: '.wizard-actions:eq(0)'
 		})
-		.on('actionclicked.fu.wizard' , function(e, info){
+		.on('actionclicked.fu.wizard' , function (e, info) {
 			if(info.step == 1 && $validation) {
 				if(!$('#form_etapa1').valid()) e.preventDefault();
 			}
@@ -19,7 +19,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 				if(!$('#form_etapa3').valid()) e.preventDefault();
 			}
 		})
-		.on('finished.fu.wizard', function(e) {
+		.on('finished.fu.wizard', function (e) {
 			proceso_guardar();
 			bootbox.dialog({
 				message: "Gracias! Por su Información Datos Correctamente Guardados!", 
@@ -30,10 +30,11 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 					}
 				}
 			});
-		}).on('stepclick.fu.wizard', function(e){
+		}).on('stepclick.fu.wizard', function (e) {
 			//e.preventDefault();//this will prevent clicking and selecting steps
-		});
-	formulario registro de la primera: Datos Personales
+	});
+
+	// formulario registro de la primera: Datos Personales
 	$('#form_etapa1').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -115,7 +116,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			},
 		},
 		//para prender y apagar los errores
-		highlight: function (e) {
+		highlight: function(e) {
 			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
 		},
 		success: function (e) {
@@ -136,7 +137,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 							class_name: 'gritter-success',
 							time:2000
 						});	
-					}else{
+					} else {
 						$.gritter.add({
 							title: 'Proceso No Guardado',
 							text: 'Porvafor Verifique que sus Datos esten llenos',
@@ -148,6 +149,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			});
 		}
 	});
+
 	// FIN DEL FORMULARIO DE DATOS PERSONALES
 	// formulario registro de la segunda: Datos Bancarios
 	$('#form_etapa2').validate({
@@ -171,26 +173,26 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 				data: $(form).serialize(),
 				dataType:"json",
 				success: function (data) {
-					console.log(data);
-						if (data['valid']=="true") {
-							$.gritter.add({
-								title: 'Proceso Guardado Correctamente',
-								text: 'Sus Datos han sido guardados de forma Correcta',
-								class_name: 'gritter-success',
-								time:2000
-							});	
-						}else{
-							$.gritter.add({
-								title: 'Proceso No Guardado',
-								text: 'Porvafor Verifique que sus Datos esten llenos',
-								class_name: 'gritter-error',
-								time:2000
-							});
-						}
+					if (data['valid']=="true") {
+						$.gritter.add({
+							title: 'Proceso Guardado Correctamente',
+							text: 'Sus Datos han sido guardados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+					} else {
+						$.gritter.add({
+							title: 'Proceso No Guardado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+					}
 				}
 			});
 		}
 	});
+
 	// FIN DEL FORMULARIO DE ETAPA2
 	$('#form_etapa3').validate({
 		errorElement: 'div',
@@ -213,28 +215,28 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 				data: $(form).serialize(),
 				dataType:"json",
 				success: function (data) {
-					console.log(data);
-						if (data['valid']=="true") {
-							$.gritter.add({
-								title: 'Proceso Guardado Correctamente',
-								text: 'Sus Datos han sido guardados de forma Correcta',
-								class_name: 'gritter-success',
-								time:2000
-							});	
-						}else{
-							$.gritter.add({
-								title: 'Proceso No Guardado',
-								text: 'Porvafor Verifique que sus Datos esten llenos',
-								class_name: 'gritter-error',
-								time:2000
-							});
-						}
+					if (data['valid']=="true") {
+						$.gritter.add({
+							title: 'Proceso Guardado Correctamente',
+							text: 'Sus Datos han sido guardados de forma Correcta',
+							class_name: 'gritter-success',
+							time:2000
+						});	
+					} else {
+						$.gritter.add({
+							title: 'Proceso No Guardado',
+							text: 'Porvafor Verifique que sus Datos esten llenos',
+							class_name: 'gritter-error',
+							time:2000
+						});
+					}
 				}
 			});
 		}
 	});
 	// FIN DEL FORMULARIO ETAPA 3
-	//INICIO DE VALIDACION FORNULARIO MODAL EQUIPOS
+
+	// INICIO DE VALIDACION FORNULARIO MODAL EQUIPOS
 	$('#form_modal_equipo').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -282,7 +284,8 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		}
 	});
 	// FIN DE VALIDACION FORMULARIO MODAL EQUIPOS
-	//INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL
+
+	// INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL
 	$('#form_modal_genero').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -320,7 +323,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION
+	// FIN
+
+	// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION
 	$('#form_modal_programacion').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -358,7 +363,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL HORA1
+	// FIN 
+
+	// INICIO DE VALIDACION FORMULARIO MODAL HORA1
 	$('#form_modal_1hora').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -405,7 +412,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL HORA2
+	// FIN
+
+	// INICIO DE VALIDACION FORMULARIO MODAL HORA2
 	$('#form_modal_2hora').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -452,7 +461,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL HORA3
+	// FIN 
+
+	// INICIO DE VALIDACION FORMULARIO MODAL HORA3
 	$('#form_modal_3hora').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -499,7 +510,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL HORA4
+	// FIN
+
+	// INICIO DE VALIDACION FORMULARIO MODAL HORA4
 	$('#form_modal_4hora').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -546,7 +559,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION SEGMENTOS
+	// FIN
+
+	// INICIO DE VALIDACION SEGMENTOS
 	$('#form_modal_segmentos').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -574,7 +589,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
+	// FIN
+
+	// INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
 	$('#form_modal_clientes').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -612,7 +629,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
-	//INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
+	// FIN
+
+	// INICIO DE VALIDACION FORMULARIO MODAL CLIENTES Y POSIBLES CLIENTES
 	$('#form_modal_posibles_clientes').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',
@@ -638,7 +657,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 				max: "Por favor, Digite un número valido que esta entre 1 y 100",		
 			},
 		},
-		//para prender y apagar los errores
+		// para prender y apagar los errores
 		highlight: function (e) {
 			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
 		},
@@ -650,9 +669,11 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 			
 		}
 	});
+	// FIN
+
 	// INICIO DE LLENADO DE LAS TABLAS
 	// INICIO DE VALIDACION FORMULARIO MODAL EQUIPOS LLENAR TABLA
-	$('#btn_agregarprogramas').click(function(){
+	$('#btn_agregarprogramas').click(function() {
 		var respuesta = $('#form_modal_equipo').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -667,13 +688,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_equipo tbody').append(html_fila);			
-			$('#form_modal_equipo').each (function(){
+			$('#form_modal_equipo').each (function() {
               this.reset();
             });
             llenar_select_equipo();
 		}
 	});
-	function equipo(id){
+
+	function equipo(id) {
 		var data_global;
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -687,8 +709,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
+
 	// INICIO DE VALIDACION FORMULARIO MODAL GENERO MUSICAL LLENAR TABLA
-	$('#btn_agregargenero').click(function(){
+	$('#btn_agregargenero').click(function() {
 		var respuesta = $('#form_modal_genero').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -702,13 +725,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_genero tbody').append(html_fila);			
-			$('#form_modal_genero').each (function(){
+			$('#form_modal_genero').each (function() {
               this.reset();
             });
             llenar_select_genero();
 		}
 	});
-	function x(id){
+
+	function x(id) {
 		var data_global;
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -722,8 +746,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
-	$('#btn_agregarprogramacion').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL TIPO DE PROGRAMACION LLENAR TABLA
+	$('#btn_agregarprogramacion').click(function() {
 		var respuesta = $('#form_modal_programacion').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -736,13 +761,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_programacion tbody').append(html_fila);			
-			$('#form_modal_programacion').each (function(){
+			$('#form_modal_programacion').each (function() { 
               this.reset();
             });
             llenar_select_programacion();
 		}
 	});
-	function id_programacion(id){
+
+	function id_programacion(id) {
 		var data_global;
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -756,8 +782,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO PRIMERA HORA LLENAR TABLA
-	$('#btn_agregarprimerahora').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO PRIMERA HORA LLENAR TABLA
+	$('#btn_agregarprimerahora').click(function() {
 		var respuesta = $('#form_modal_1hora').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -772,12 +799,13 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_hora1 tbody').append(html_fila);			
-			$('#form_modal_1hora').each (function(){
+			$('#form_modal_1hora').each (function() {
               this.reset();
             });
             llenar_select_responsables();
 		}
 	});
+
 	function id_hora1(id){
 		var data_global;
 		$.ajax({
@@ -792,8 +820,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO SEGUNDA HORA LLENAR TABLA
-	$('#btn_agregarsegundahora').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO SEGUNDA HORA LLENAR TABLA
+	$('#btn_agregarsegundahora').click(function() {
 		var respuesta = $('#form_modal_2hora').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -808,13 +837,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_hora2 tbody').append(html_fila);			
-			$('#form_modal_2hora').each (function(){
+			$('#form_modal_2hora').each (function() {
               this.reset();
             });
             llenar_select_responsables();
 		}
 	});
-	function id_hora2(id){
+
+	function id_hora2(id) {
 		var data_global;
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -828,8 +858,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO TERCERA HORA LLENAR TABLA
-	$('#btn_agregartercerahora').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO TERCERA HORA LLENAR TABLA
+	$('#btn_agregartercerahora').click(function() {
 		var respuesta = $('#form_modal_3hora').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -844,13 +875,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_hora3 tbody').append(html_fila);			
-			$('#form_modal_3hora').each (function(){
+			$('#form_modal_3hora').each (function() {
               this.reset();
             });
             llenar_select_responsables();
 		}
 	});
-	function id_hora3(id){
+
+	function id_hora3(id) {
 		var data_global;
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -864,8 +896,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO CUARTA HORA LLENAR TABLA
-	$('#btn_agregarcuartahora').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL SINCRONIZADO CUARTA HORA LLENAR TABLA
+	$('#btn_agregarcuartahora').click(function() {
 		var respuesta = $('#form_modal_4hora').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -880,12 +913,13 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_hora4 tbody').append(html_fila);			
-			$('#form_modal_4hora').each (function(){
+			$('#form_modal_4hora').each (function() {
               this.reset();
             });
             llenar_select_responsables();
 		}
 	});
+
 	function id_hora4(id){
 		var data_global;
 		$.ajax({
@@ -900,8 +934,9 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 		return data_global;
 	}
-	/// INICIO DE VALIDACION FORMULARIO MODAL SEGMENTOS LLENAR TABLA
-	$('#btn_agregarsegmentos').click(function(){
+
+	// INICIO DE VALIDACION FORMULARIO MODAL SEGMENTOS LLENAR TABLA
+	$('#btn_agregarsegmentos').click(function() {
 		var respuesta = $('#form_modal_segmentos').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -911,13 +946,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_segmentos tbody').append(html_fila);			
-			$('#form_modal_segmentos').each (function(){
+			$('#form_modal_segmentos').each (function() {
               this.reset();
             });
 		}
 	});
+
 	// INICIO DE VALIDACION FORMULARIO MODAL CLIENTES LLENAR TABLA
-	$('#btn_agregarclientes').click(function(){
+	$('#btn_agregarclientes').click(function() {
 		var respuesta = $('#form_modal_clientes').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -928,13 +964,14 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_clientes tbody').append(html_fila);			
-			$('#form_modal_clientes').each (function(){
+			$('#form_modal_clientes').each (function() {
               this.reset();
             });
 		}
 	});
+
 	// INICIO DE VALIDACION FORMULARIO MODAL POSIBLES CLIENTES LLENAR TABLA
-	$('#btn_agregarpoclientes').click(function(){
+	$('#btn_agregarpoclientes').click(function() {
 		var respuesta = $('#form_modal_posibles_clientes').valid();
 		var cont = 1;
 		if (respuesta == true) {
@@ -945,42 +982,44 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 						+'<td><button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></button></td>'
 					+'</tr>'
 			$('#tabla_posibles tbody').append(html_fila);			
-			$('#form_modal_posibles_clientes').each (function(){
+			$('#form_modal_posibles_clientes').each (function() {
               this.reset();
             });
 		}
 	});
+
 	//////////////////PROCESO DE LA TABLA EQUIPO QUE LO CONFORMAN///////////////
-	$('#btn_agregar').click(function(){
-		$('#modal-equipo-conforma').modal('show')
-	})
-	$('#btn_agregar_genero').click(function(){
-		$('#modal-genero-musical').modal('show')
-	})
-	$('#btn_agregar_programacion').click(function(){
-		$('#modal-tipo-programacion').modal('show')
-	})
-	$('#btn_agregar_hora1').click(function(){
-		$('#modal-primera-hora').modal('show')
-	})
-	$('#btn_agregar_hora2').click(function(){
-		$('#modal-segunda-hora').modal('show')
-	})
-	$('#btn_agregar_hora3').click(function(){
-		$('#modal-tercera-hora').modal('show')
-	})
-	$('#btn_agregar_hora4').click(function(){
-		$('#modal-cuarta-hora').modal('show')
-	})
-	$('#btn_agregar_segmentos').click(function(){
-		$('#modal-segmentos').modal('show')
-	})
-	$('#btn_agregar_clientes').click(function(){
-		$('#modal-clientes').modal('show')
-	})
-	$('#btn_agregar_posibles').click(function(){
-		$('#modal-posibles-clientes').modal('show')
-	})
+	$('#btn_agregar').click(function() {
+		$('#modal-equipo-conforma').modal('show');
+	});
+	$('#btn_agregar_genero').click(function() {
+		$('#modal-genero-musical').modal('show');
+	});
+	$('#btn_agregar_programacion').click(function() {
+		$('#modal-tipo-programacion').modal('show');
+	});
+	$('#btn_agregar_hora1').click(function() {
+		$('#modal-primera-hora').modal('show');
+	});
+	$('#btn_agregar_hora2').click(function() {
+		$('#modal-segunda-hora').modal('show');
+	});
+	$('#btn_agregar_hora3').click(function() {
+		$('#modal-tercera-hora').modal('show');
+	});
+	$('#btn_agregar_hora4').click(function() {
+		$('#modal-cuarta-hora').modal('show');
+	});
+	$('#btn_agregar_segmentos').click(function() {
+		$('#modal-segmentos').modal('show');
+	});
+	$('#btn_agregar_clientes').click(function() {
+		$('#modal-clientes').modal('show');
+	});
+	$('#btn_agregar_posibles').click(function() {
+		$('#modal-posibles-clientes').modal('show');
+	});
+
 	///////////////FIN DE PROCESO DE LA TABLA////////////////////////////
 	//definir formato campos números de teléfono
 	$('.telefonos, #txt_telf_conf').mask('(999) 999-9999');
@@ -994,32 +1033,32 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		}
 	})
 	//////////////
-	     $("#btnRecorrer").click(function () {
-            $("#tabla_equipo tbody tr").each(function (index) {
-                 var campo1, campo2, campo3, campo4, campo5;
-                $(this).children("td").each(function (index2) {
-                     switch (index2) {
-                        case 0:
-                            campo1 = $(this).text();
-                            break;
-                        case 1:
-                           campo2 = $(this).text();
-                            break;
-                        case 2:
-                            campo3 = $(this).text();
-                            break;
-                        case 3:
-                            campo4 = $(this).text();
-                            break;
-                        case 4:
-                            campo5 = $(this).text();
-                            break;
-                   }
-               $(this).css("background-color", "#ECF8E0");
-               })
-           console.log(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
-           })
-       })
+    $("#btnRecorrer").click(function () {
+        $("#tabla_equipo tbody tr").each(function (index) {
+            var campo1, campo2, campo3, campo4, campo5;
+            $(this).children("td").each(function (index2) {
+                switch (index2) {
+                    case 0:
+                        campo1 = $(this).text();
+                        break;
+                    case 1:
+                       campo2 = $(this).text();
+                        break;
+                    case 2:
+                        campo3 = $(this).text();
+                        break;
+                    case 3:
+                        campo4 = $(this).text();
+                        break;
+                    case 4:
+                        campo5 = $(this).text();
+                        break;
+               }
+            $(this).css("background-color", "#ECF8E0");
+            });
+       // console.log(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+        });
+    });
 
 	//Se utiliza para que el campo de texto solo acepte letras
 	$(".letras").keypress(function (key) {
@@ -1044,53 +1083,55 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
             return false;
     });	
     //Se utiliza para que el campo de texto solo acepte numeros
-    $('.numeros').keyup(function (){
+    $('.numeros').keyup(function () {
         this.value = (this.value + '').replace(/[^0-9]/g, '');
       });
     //////////Validación de la Cédula///////////////////////////////////
-    validarDocumento  = function() {          
+    validarDocumento  = function () {          
 	    numero = document.getElementById('txt_cedula').value;
 	    /* alert(numero); */
-	      var suma = 0;      
-	      var residuo = 0;      
-	      var nat = false;      
-	      var numeroProvincias = 22;                  
-	      var modulo = 11;
-	      if (numero.length < 10 ){              
-	         $.gritter.add({
-					title: 'Incorrecto',
-					text: 'El número ingreado no esta completo o en invalido',
-					class_name: 'gritter-error',
-					time:2000
-				});
-	      }
+	    var suma = 0;      
+	    var residuo = 0;      
+	    var nat = false;      
+	    var numeroProvincias = 22;                  
+	    var modulo = 11;
+
+	    if (numero.length < 10 ) {              
+	        $.gritter.add({
+				title: 'Incorrecto',
+				text: 'El número ingreado no esta completo o en invalido',
+				class_name: 'gritter-error',
+				time:2000
+			});
+	    }
 	    /* Los primeros dos digitos corresponden al codigo de la provincia */
-	      provincia = numero.substr(0,2);      
-	      if (provincia < 1 || provincia > numeroProvincias){           
+	    provincia = numero.substr(0,2);      
+	    if (provincia < 1 || provincia > numeroProvincias) {           
 	        alert('El código de la provincia (dos primeros dígitos) es inválido');
 	     	return false;       
-	      }
+	    }
+
 	    /* Aqui almacenamos los digitos de la cedula en variables. */
-	      d1  = numero.substr(0,1);         
-	      d2  = numero.substr(1,1);         
-	      d3  = numero.substr(2,1);         
-	      d4  = numero.substr(3,1);         
-	      d5  = numero.substr(4,1);         
-	      d6  = numero.substr(5,1);         
-	      d7  = numero.substr(6,1);         
-	      d8  = numero.substr(7,1);         
-	      d9  = numero.substr(8,1);         
-	      d10 = numero.substr(9,1);                    
+	    d1  = numero.substr(0,1);         
+	    d2  = numero.substr(1,1);         
+	    d3  = numero.substr(2,1);         
+	    d4  = numero.substr(3,1);         
+	    d5  = numero.substr(4,1);         
+	    d6  = numero.substr(5,1);         
+	    d7  = numero.substr(6,1);         
+	    d8  = numero.substr(7,1);         
+	    d9  = numero.substr(8,1);         
+	    d10 = numero.substr(9,1);                    
 	    /* El tercer digito es: */                           
 	    /* 9 para sociedades privadas y extranjeros   */         
 	    /* 6 para sociedades publicas */         
 	    /* menor que 6 (0,1,2,3,4,5) para personas naturales */ 
-	    if (d3==7 || d3==8){           
+	    if (d3 == 7 || d3 == 8) {           
 	        alert('El tercer dígito ingresado es inválido');                     
 	        return false;
 	    }             
 	    /* Solo para personas naturales (modulo 10) */         
-	      if (d3 < 6){           
+	    if (d3 < 6) {           
 	        nat = true;            
 	        p1 = d1 * 2;  if (p1 >= 10) p1 -= 9;
 	        p2 = d2 * 1;  if (p2 >= 10) p2 -= 9;
@@ -1102,33 +1143,35 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	        p8 = d8 * 1;  if (p8 >= 10) p8 -= 9;
 	        p9 = d9 * 2;  if (p9 >= 10) p9 -= 9;             
 	        modulo = 10;
-	    }         
-	      suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
-	      residuo = suma % modulo;                                         
+	    } 
+
+	    suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
+	    residuo = suma % modulo;  
+
 	    /* Si residuo=0, dig.ver.=0, caso contrario 10 - residuo*/
-	      digitoVerificador = residuo==0 ? 0: modulo - residuo;                
-	      if(nat == true){         
-	         if (digitoVerificador != d10){                          
+	    digitoVerificador = residuo==0 ? 0: modulo - residuo;                
+	    if(nat == true)	{         
+	        if (digitoVerificador != d10){                          
 	            $.gritter.add({
 					title: 'Incorrecto',
 					text: 'Porvafor Verifique que su número de cédula sea correcta',
 					class_name: 'gritter-error',
 					time:2000
 				});
-	         }         
-	        
-	      }      
-	      return true;   
-   		}            
+	        }         
+	    }      
+	    return true;   
+   	}            
 	/////////////proceso de guardar//////
-	$( "#btn_guardar" ).click(function() {
-		  proceso_guardar();
-		});
+	$( "#btn_guardar" ).click(function () {
+		proceso_guardar();
+	});
+
 	///clase select para el diseño///////////\
 	$(".select2").css({
 	    	'width':'100%',
 	    	'text-align':'left',
-	    }).select2().on("change", function(e) {
+	    }).select2().on("change", function (e) {
 		$(this).closest('form').validate().element($(this));
     })
 	///////////////////////INICIO llamado funciones de procesos de inicio/////////////////////////////////
@@ -1139,7 +1182,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	init();
 	///////////////////////FIN llamado funciones de procesos de inicio/////////////////////////////////
 
-	function init(){
+	function init () {
 	//para la fecha del calendario
 		$(".datepicker").datepicker({ 
 			format: "yyyy-mm-dd",
@@ -1155,7 +1198,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 	    });
 	}
 
-	function llenar_select_equipo(){
+	function llenar_select_equipo () {
 		$("#select_cargo_conf").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -1167,7 +1210,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 	}
 
-	function llenar_select_genero(){
+	function llenar_select_genero () {
 		$("#select_genero_musical,#select_genero_musical_form").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -1179,7 +1222,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 	}
 
-	function llenar_select_programacion(){
+	function llenar_select_programacion () {
 		$("#select_tipo_programacion").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -1191,7 +1234,7 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 	}
 
-	function llenar_select_responsables(){
+	function llenar_select_responsables() {
 		$("#select_responsable_hora1,#select_responsable_hora2,#select_responsable_hora3,#select_responsable_hora4").select2('val', 'All');
 		$.ajax({
 			url: 'data/ficha_programas/app.php',
@@ -1203,32 +1246,33 @@ var app = angular.module('scotchApp').controller('ficha_programasController', fu
 		});
 	}
 
-	function proceso_guardar() {
-		var form_uno=$("#form_etapa1").serialize()
-		var form_dos= $("#form_etapa2").serialize()
-		var form_tres= $("#form_etapa3").serialize()
-		var submit = "btn_guardar"
+	function proceso_guardar () {
+		var form_uno =$("#form_etapa1").serialize();
+		var form_dos = $("#form_etapa2").serialize();
+		var form_tres = $("#form_etapa3").serialize();
+		var submit = "btn_guardar";
+
 		$.ajax({
-        url: "data/ficha_programas/app.php",
-        data: form_uno+"&"+form_dos+"&"+form_tres+"&btn_guardar=" +submit,
-        type: "POST",
-        success: function (result) {
-        },
-        error: function (xhr, status, errorThrown) {
-          alert("Hubo un problema!");
-          console.log("Error: " + errorThrown);
-          console.log("Status: " + status);
-          console.dir(xhr);
-        }
-    });
+	        url: "data/ficha_programas/app.php",
+	        data: form_uno+"&"+form_dos+"&"+form_tres+"&btn_guardar=" +submit,
+	        type: "POST",
+	        success: function (result) {
+	        },
+	        error: function (xhr, status, errorThrown) {
+	          alert("Hubo un problema!");
+	          console.log("Error: " + errorThrown);
+	          console.log("Status: " + status);
+	          console.dir(xhr);
+	        }
+	    });
 	}
 
-		$('#modal-wizard-container').ace_wizard();
-		$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
-		
+	$('#modal-wizard-container').ace_wizard();
+	$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
+	
 		$(document).one('ajaxloadstart.page', function(e) {
 			//in ajax mode, remove remaining elements before leaving page
 			$('[class*=select2]').remove();
 		});
-	})
+	});
 });	

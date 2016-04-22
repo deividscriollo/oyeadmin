@@ -4,7 +4,7 @@
 
 	"default": {
 
-		"host": "www.nextbook.ec",
+		"host": "",
 		"username": "nextbook",  // or null for anonymous login
 		"password": "EiCZTO.ePLFIP",
 		"path": "/oyeecuador.com/",

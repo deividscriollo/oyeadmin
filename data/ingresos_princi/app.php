@@ -14,7 +14,7 @@
 		if ($resp) {
 			//respuesta correcta
 			print_r(json_encode(array('valid' => 'true')));	
-		}else{
+		} else {
 			//respuesta false
 			print_r(json_encode(array('valid' => 'false')));
 		}
@@ -25,10 +25,10 @@
 		while ($row=$class->fetch_array($resp)) {
 			$val=$row[0];
 		}
-		if ($val==1) {
+		if ($val == 1) {
 			print'false';	
-		}else{
-			if ($val==0) {
+		} else {
+			if ($val == 0) {
 			print'true';
 			}
 		}
@@ -38,10 +38,11 @@
 		$id = $class->idz();
 		$fecha = $class->fecha_hora();
 		$resp = $class->consulta("UPDATE corporativo.areas set estado = '0' where id = '$_POST[id]'");
+
 		if ($resp) {
 			//respuesta correcta
 			print_r(json_encode(array('valid' => 'true')));	
-		}else{
+		} else {
 			//respuesta false
 			print_r(json_encode(array('valid' => 'false')));
 		}
@@ -49,12 +50,13 @@
 	//Actualiza el nombre de las areas
 	if (isset($_POST['name'])) {
 		$entrada = $_POST['name'];
-		if ($entrada=='actualizar_nombre_areas') {
+
+		if ($entrada == 'actualizar_nombre_areas') {
 			$resp = $class->consulta("UPDATE corporativo.areas set nombre = '$_POST[value]' where id = '$_POST[pk]'");
 			if ($resp) {
 				//respuesta correcta
 				print_r(json_encode(array('valid' => 'true')));	
-			}else{
+			} else {
 				//respuesta false
 				print_r(json_encode(array('valid' => 'false')));
 			}
@@ -66,7 +68,7 @@
 		$fecha = $class->fecha_hora();
 		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.areas where estado='1';");
 		$sum=0;
-		while ($row=$class->fetch_array($resultado)) {
+		while ($row = $class->fetch_array($resultado)) {
 			print '	<tr>
 						<td>'.$sum++.'</td>					
 						<td>'.$row[1].'</td>

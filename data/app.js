@@ -3,11 +3,46 @@ var scotchApp = angular.module('scotchApp', ['ngRoute']);
 // configure our routes
 scotchApp.config(function($routeProvider) {
     $routeProvider
-
-        // route for the home page
+        // route page initial
         .when('/', {
             templateUrl : 'data/home/app.html',
             controller  : 'mainController',
+        })
+        // route paquetes
+        .when('/paquetes', {
+            templateUrl : 'data/paquetes/app.html',
+            controller  : 'paquetesController',
+        })
+        // route tipo programa
+        .when('/tipo_programa', {
+            templateUrl : 'data/tipo_programa/app.html',
+            controller  : 'tipo_programaController',
+        })
+        // route tipo vendedor
+        .when('/tipo_vendedor', {
+            templateUrl : 'data/tipo_vendedor/app.html',
+            controller  : 'tipo_vendedoresController',
+        })
+        // route areas
+        .when('/areas', {
+            templateUrl : 'data/areas/app.html',
+            controller  : 'areasController',
+        })
+        // route cargos
+        .when('/cargos', {
+            templateUrl : 'data/cargos/app.html',
+            controller  : 'cargosController',
+        })
+
+        // route bancos
+        .when('/bancos', {
+            templateUrl : 'data/bancos/app.html',
+            controller  : 'bancosController',
+        })
+        // route clientes
+        .when('/clientes', {
+            templateUrl : 'data/clientes/app.html',
+            controller  : 'clientesController',
         })
         // route para los programas
         .when('/programas', {
@@ -25,9 +60,9 @@ scotchApp.config(function($routeProvider) {
             controller  : 'reportesController',
         })
         // proceso prueba
-        .when('/prueba_form', {
-            templateUrl : 'data/prueba_form/app.html',
-            controller  : 'prueba_formController',
+        .when('/ficha_invitados', {
+            templateUrl : 'data/ficha_invitados/app.html',
+            controller  : 'invitadosController',
         })
         // proceso ingresos principales
         .when('/ingresos_princi', {
@@ -40,9 +75,9 @@ scotchApp.config(function($routeProvider) {
             controller  : 'ficha_programasController',
         })
         // proceso Personal de Trabajo
-        .when('/personal', {
-            templateUrl : 'data/personal/app.html',
-            controller  : 'personalController',
+        .when('/ficha_ingresos', {
+            templateUrl : 'data/ficha_ingresos/app.html',
+            controller  : 'fichaingresosController',
         })
 });
 
