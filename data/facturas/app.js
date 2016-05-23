@@ -60,7 +60,6 @@ angular.module('scotchApp').controller('facturasController', function ($scope) {
 		});
 		// fin
 
-
 		// busqueda mensiones codigo
 		var busqueda_codigo = 'codigo';
 

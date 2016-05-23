@@ -263,6 +263,74 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 	}
 	// fin
 
+	// procesos cargado inicio
+	$('#btn_3').attr('disabled',true);
+	// fin
+
+
+	// actualizar formulario
+	$('#btn_1').click(function() {
+		location.reload(true);
+	});
+	// fin
+
+	// guardar formulario
+	$('#btn_0').click(function() {
+		if($('#nombre_empresa').val() == '') {
+			$.gritter.add({
+				title: 'Ingrese nombre Empresa',
+				class_name: 'gritter-error gritter-center',
+				time: 1000,
+			});
+			$('#nombre_empresa').focus();
+		} else {
+			if($('#ruc_empresa').val() == '') {
+				$.gritter.add({
+					title: 'Ingrese Ruc Empresa',
+					class_name: 'gritter-error gritter-center',
+					time: 1000,
+				});
+				$('#ruc_empresa').focus();
+			} else {
+				if($('#direccion_empresa').val() == '') {
+					$.gritter.add({
+						title: 'Ingrese dirección Empresa',
+						class_name: 'gritter-error gritter-center',
+						time: 1000,
+					});
+					$('#direccion_empresa').focus();
+				} else {
+					var submit = "btn_gardar";
+		
+					var formulario = $("#form_clientes").serialize();
+					$.ajax({
+				        url: "data/clientes/app.php",
+				        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
+				        type: "POST",
+				        async: true,
+				        success: function (data) {
+				        	var val = data;
+				        	if(data == '1') {
+				        		$.gritter.add({
+									title: 'Mensaje',
+									text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+									time: 2000				
+								});
+					    	}              
+				        },
+				        error: function (xhr, status, errorThrown) {
+					        alert("Hubo un problema!");
+					        console.log("Error: " + errorThrown);
+					        console.log("Status: " + status);
+					        console.dir(xhr);
+				        }
+				    });
+				} 
+			} 
+		} 
+	});
+	// fin
+
 	// modificar formulario
 	$('#btn_3').click(function() {
 		if($('#id_empresa').val() == '') {
@@ -273,37 +341,6 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 			});
 			$('#myModal').modal('show'); 
 		} else {
-			var submit = "btn_modificar";
-			var formulario = $("#form_clientes").serialize();
-			$.ajax({
-		        url: "data/clientes/app.php",
-		        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
-		        type: "POST",
-		        async: true,
-		        success: function (data) {
-		        	var val = data;
-		        	if(data == '2') {
-		        		$.gritter.add({
-							title: 'Mensaje',
-							text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-							time: 2000				
-						});
-						redireccionar();
-			    	}              
-		        },
-		        error: function (xhr, status, errorThrown) {
-			        alert("Hubo un problema!");
-			        console.log("Error: " + errorThrown);
-			        console.log("Status: " + status);
-			        console.dir(xhr);
-		        }
-		    });
-		} 
-	});
-	// fin
-
-		// guardar formulario
-		$('#btn_0').click(function() {
 			if($('#nombre_empresa').val() == '') {
 				$.gritter.add({
 					title: 'Ingrese nombre Empresa',
@@ -328,22 +365,22 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 						});
 						$('#direccion_empresa').focus();
 					} else {
-						var submit = "btn_gardar";
-			
+						var submit = "btn_modificar";
 						var formulario = $("#form_clientes").serialize();
 						$.ajax({
 					        url: "data/clientes/app.php",
-					        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
+					        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
 					        type: "POST",
 					        async: true,
 					        success: function (data) {
 					        	var val = data;
-					        	if(data == '1') {
+					        	if(data == '2') {
 					        		$.gritter.add({
 										title: 'Mensaje',
-										text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+										text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
 										time: 2000				
 									});
+									redireccionar();
 						    	}              
 					        },
 					        error: function (xhr, status, errorThrown) {
@@ -353,16 +390,12 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 						        console.dir(xhr);
 					        }
 					    });
-					} 
-				} 
-			} 
-		});
-		// fin
-
-
-		$('#btn_1').click(function() {
-			location.reload(true);
-		});
+					}
+				}
+			}		    
+		} 
+	});
+	// fin
 
 		/*jqgrid*/    
 		jQuery(function($) {
@@ -446,7 +479,9 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 	            	$('#txt_google').val(ret.google);
 		            $("#avatar").attr("src","data/clientes/imagenes/"+ret.imagen);	   	            
 	
+		            
 		            $('#myModal').modal('hide'); 
+		            $('#btn_3').attr('disabled',false);
 		            $('#btn_0').attr('disabled', true)  	            
 		        },
 		        

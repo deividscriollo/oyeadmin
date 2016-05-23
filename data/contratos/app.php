@@ -29,40 +29,6 @@
 																					'1', 
 																					'$fecha')");
 
-		// datos detalle factura
-		$campo1 = $_POST['campo1'];
-	    $campo2 = $_POST['campo2'];
-	    $campo3 = $_POST['campo3'];
-	    $campo4 = $_POST['campo4'];
-	    $campo5 = $_POST['campo5'];
-	    // Fin
-
-	    // descomponer detalle_factura_compra
-		$arreglo1 = explode('|', $campo1);
-	    $arreglo2 = explode('|', $campo2);
-	    $arreglo3 = explode('|', $campo3);
-	    $arreglo4 = explode('|', $campo4);
-	    $arreglo5 = explode('|', $campo5);
-	    $nelem = count($arreglo1);
-	    // fin
-
-	    for ($i = 1; $i < $nelem; $i++) {
-	    	$id_detalle_facturas = $class->idz();
-
-			$resp = $class->consulta("INSERT INTO detalle_factura_venta VALUES(		'$id_detalle_facturas',
-																					'$id_facturas',
-																					'".$arreglo1[$i]."',
-																					'".$arreglo2[$i]."',
-																					'".$arreglo3[$i]."',
-																					'".$arreglo4[$i]."',
-																					'".$arreglo5[$i]."',
-																					'1', 
-																					'$fecha')");
-
-	    }
-
-		$data = $id_facturas;
-		echo $data;
 	}
 	// fin
 
@@ -87,7 +53,7 @@
 	}
 	//fin
 
-	//LLena combo clientes ruc
+	//LLenar combo clientes ruc
 	if (isset($_POST['llenar_clientes_ruc'])) {
 		$resultado = $class->consulta("SELECT  C.id, C.ruc FROM clientes C WHERE estado = '1'");
 		print'<option value="">&nbsp;</option>';
@@ -97,7 +63,7 @@
 	}
 	// fin
 
-	//LLena combo clientes nombre
+	//LLenar combo clientes nombre
 	if (isset($_POST['llenar_clientes_nombre'])) {
 		$resultado = $class->consulta("SELECT  C.id, C.empresa FROM clientes C WHERE estado = '1'");
 		print'<option value="">&nbsp;</option>';
@@ -127,7 +93,7 @@
 	}
 	//fin
 
-	//LLena combo tipo paquete
+	//LLenar combo tipo paquete
 	if (isset($_POST['llenar_tipo_paquete'])) {
 		$resultado = $class->consulta("SELECT  * FROM tipo_paquetes WHERE estado = '1'");
 		print'<option value="">&nbsp;</option>';
@@ -137,7 +103,7 @@
 	}
 	// fin
 
-	//LLena combo paquetes
+	//LLenar combo paquetes
 	if (isset($_POST['llenar_paquete'])) {
 		$resultado = $class->consulta("SELECT * FROM paquetes P, tipo_paquetes T WHERE P.id_tipo_paquete = T.id AND P.id_tipo_paquete = '".$_POST['id']."';");
 		print'<option value="">&nbsp;</option>';
@@ -147,12 +113,22 @@
 	}
 	// fin
 
-	//LLena combo tipo contrato
+	//LLenar combo tipo contrato
 	if (isset($_POST['llenar_tipo_contrato'])) {
 		$resultado = $class->consulta("SELECT  * FROM tipo_contrato WHERE estado = '1'");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
 			print '<option value="'.$row['id'].'">'.$row['nombre_tipo'].'</option>';
+		}
+	}
+	// fin
+
+	//LLenar programas
+	if (isset($_POST['llenar_programa'])) {
+		$resultado = $class->consulta("SELECT  * FROM programas.programa WHERE estado = '1'");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			print '<option value="'.$row['id'].'">'.$row['nombre_programa'].'</option>';
 		}
 	}
 	// fin

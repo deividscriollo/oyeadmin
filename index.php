@@ -180,9 +180,6 @@
 		<script src="dist/js/bootstrap.min.js"></script>
 		<script src="dist/js/jquery.form.js"></script>
 		<script src="dist/js/chosen.jquery.min.js"></script>
-		<!-- <script src="dist/js/innovaeditor.js" type="text/javascript"></script>
-		// <script src="dist/js/innovamanager.js" type="text/javascript"></script>
-		// <script src="dist/js/webfont.js" type="text/javascript"></script> -->
 		
 		<script src="dist/js/jquery.validate.min.js"></script>
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
@@ -215,6 +212,5 @@
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
-		<!-- // <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript"></script> -->
 	</body>
 </html>

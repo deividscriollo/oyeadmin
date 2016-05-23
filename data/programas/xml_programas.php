@@ -13,7 +13,7 @@
         $sidx = 1;
     
     $count = 0;
-    $resultado = $class->consulta("SELECT  COUNT(*) AS count from clientes");         
+    $resultado = $class->consulta("SELECT  COUNT(*) AS count from programas.programa");         
     while ($row = $class->fetch_array($resultado)) {
         $count = $count + $row[0];    
     }    
@@ -29,15 +29,15 @@
         $start = 0;
     
     if ($search == 'false') {
-        $SQL = "SELECT * FROM clientes WHERE estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT * FROM programas.programa WHERE estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
     } else {
         $campo = $_GET['searchField'];
       
         if ($_GET['searchOper'] == 'eq') {
-            $SQL = "SELECT * FROM clientes WHERE estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT * FROM programas.programa WHERE estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
         }         
         if ($_GET['searchOper'] == 'cn') {
-            $SQL = "SELECT * FROM clientes WHERE estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT * FROM programas.programa WHERE estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
         }
     }  
 
@@ -60,12 +60,6 @@
             $s .= "<cell>" . $row[5] . "</cell>";
             $s .= "<cell>" . $row[6] . "</cell>";
             $s .= "<cell>" . $row[7] . "</cell>";
-            $s .= "<cell>" . $row[8] . "</cell>";
-            $s .= "<cell>" . $row[9] . "</cell>";
-            $s .= "<cell>" . $row[10] . "</cell>";
-            $s .= "<cell>" . $row[11] . "</cell>";
-            $s .= "<cell>" . $row[12] . "</cell>";
-            $s .= "<cell>" . $row[13] . "</cell>";
             $s .= "</row>";
         }
     $s .= "</rows>";

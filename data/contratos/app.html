@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="space"></div>
-					<form class="form-horizontal" name="form_facturacion" id="form_facturacion">
+					<form class="form-horizontal" name="form_contratos" id="form_contratos">
 						<div class="tabbable">
 							<ul class="nav nav-tabs padding-16">
 								<li ng-class="{ active: isSet(1) }">
@@ -49,28 +49,32 @@
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="codigo">Código del contrato:</label>
 													<div class="col-sm-8">
-														<input type="text" name="codigo" id="codigo" class="col-xs-12 col-sm-12" readonly />
+														<input type="text" name="codigo" id="codigo" class="form-control" readonly />
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_paquete">Tipo Paquete:</label>
 													<div class="col-sm-8">
-														<select id="select_tipo_paquete" name="select_tipo_paquete" class="select2" data-placeholder="Paquete..." class="col-xs-12 col-sm-10">
+														<select id="select_tipo_paquete" name="select_tipo_paquete" class="select2" data-placeholder="Tipo Paquete...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="fecha_inicio">Fecha inicio:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_programa">Programa:</label>
+													<div class="col-sm-8">
+														<select id="select_programa" name="select_programa" class="select2" data-placeholder="Programa...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="duracion">Duración:</label>
 													<div class="col-sm-6">
-														<div class="input-group">
-															<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control datepicker" />
-															<span class="input-group-addon">
-																<i class="ace-icon fa fa-calendar"></i>
-															</span>
-														</div>
+														<input type="text" name="duracion" id="duracion" class="form-control" placeholder = 'Duración contrato' />
 													</div>
 												</div>
 											</div>
@@ -88,17 +92,17 @@
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="select_paquete">Paquete:</label>
 													<div class="col-sm-8">
-														<select id="select_paquete" name="select_paquete" class="select2" data-placeholder="Paquete..." class="col-xs-12 col-sm-10">
+														<select id="select_paquete" name="select_paquete" class="select2" data-placeholder="Paquete...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="fecha_fin">Fecha fin:</label>
-													<div class="col-sm-4">
+													<label class="col-sm-4 control-label no-padding-right" for="fecha_inicio">Fecha inicio:</label>
+													<div class="col-sm-6">
 														<div class="input-group">
-															<input type="text" id="fecha_fin" name="fecha_fin" class="form-control datepicker" class="form-control" />
+															<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control datepicker" />
 															<span class="input-group-addon">
 																<i class="ace-icon fa fa-calendar"></i>
 															</span>
@@ -120,16 +124,21 @@
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_contrato">Tipo de Contrato:</label>
 													<div class="col-sm-8">
-														<select id="select_tipo_contrato" name="select_tipo_contrato" class="select2" data-placeholder = "Tipo Contrato..." class="col-xs-12 col-sm-10">
+														<select id="select_tipo_contrato" name="select_tipo_contrato" class="select2" data-placeholder = "Tipo Contrato...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="duracion">Duración:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="fecha_fin">Fecha fin:</label>
 													<div class="col-sm-6">
-														<input type="text" name="duracion" id="duracion" class="form-control" placeholder = 'Duración contrato' />
+														<div class="input-group">
+															<input type="text" id="fecha_fin" name="fecha_fin" class="form-control datepicker" class="form-control" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -151,34 +160,37 @@
 
 																<p><b>PRIMER OBJETO:</b> Mediante Servicio Publicitario, se hará el pautaje de la publicidad “DEL CLIENTE” en EL MEDIO.</p>
 
-																<p><b>SEGUNADA DURACIÓN DEL CONVENIO.-</b> La duración de la campaña publicitaria será de <b id = 'duracion'>__________</b> a partir del <b id='fecha_inicio'>__________________</b> hasta <b id='fecha_fin'>__________________</b>, quedando automáticamente renovado por periodos iguales, salvo que medie preaviso de 60 días de antelación por cualquiera de las partes solicitando su extinción.</p>
+																<p><b>SEGUNDA DURACIÓN DEL CONVENIO.-</b> La duración de la campaña publicitaria será de <b id = 'duracion'>__________</b> a partir del <b id='fecha_inicio'>__________________</b> hasta <b id='fecha_fin'>__________________</b>, quedando automáticamente renovado por periodos iguales, salvo que medie preaviso de 60 días de antelación por cualquiera de las partes solicitando su extinción.</p>
 
 																<p><b>TERCERA RESPONSABILIDADES DE:</b></p>
 
 																<p><b>EL CLIENTE</b>, debe entregar Al MEDIO, el material publicitario para su emisión, entendiéndose que El MEDIO recibe el Spot y los textos específicos destinados a las menciones pertinentes listos para emitir al aire; EL MEDIO se reserva el derecho de revisar la calidad de producción del spot publicitario, incluso puede llegar a modificar en un grado prudente, previo conocimiento y aceptación del cliente.</p>
 
-																<p><b>EL MEDIO.-</b> publicitará de conformidad al HORARIO DE PAUTAJE, de LUNES a VIERENES, con un número de <b id='impactos'>__________________</b> en el programa <b id='programa'>__________________</b>, más 2 impactos de bonificación en programación ROTATIVA; diarios respectivamente con menciones de hasta 10 segundos, o por cuñas, pregrabadas como spot publicitario de hasta 35 segundos, además el medio puede hacer uso del beneficio para fines propios de la empresa, o ceder su disponibilidad de cupo a terceros por así convenir a la empresa.</p>
+																<p><b>EL MEDIO.-</b> publicitará de conformidad al HORARIO DE PAUTAJE, de LUNES a VIERNES, con un número de <b id='impactos'>__________________</b> en el programa <b id='programa'>alo</b>, más 2 impactos de bonificación en programación ROTATIVA; diarios respectivamente con menciones de hasta 10 segundos, o por cuñas, pregrabadas como spot publicitario de hasta 35 segundos, además el medio puede hacer uso del beneficio para fines propios de la empresa, o ceder su disponibilidad de cupo a terceros por así convenir a la empresa.</p>
 
 																<p><b>CUARTA VALOR Y FORMA DE PAGO:</b></p>
 
 																<p>Por la publicidad descrita en el párrafo anterior las partes se comprometen a justificar el convenio con el cruce de FACTURAS MENSUALES valoradas en USD $ 275,00 (DOS CIENTOS SETENTA Y CINCO DÓLARES) más impuestos, que serán cancelados hasta cinco días después de ser entregados la factura o del corte mensual, sin interés de mora.</p>
 
 																<p><b>QUINTA ACLARACIONES.-</b> Ningún contrato puede ser modificado, peor aún dar por terminado por los siguientes motivos:
-																	1.	Cambios en la programación o parrilla de programas, sean estos de forma o de fondo.
-																	2.	Salidas o entradas de nuevos locutores, presentadores o animadores de uno o varios programas.
-																	3.	Cuando el asesor de cuenta deje de prestar los servicios al medio, porque el contrato es directamente con el medio.
-																	4.	Por exclusividad de cliente, en este caso deberá existir una clausula especial de exclusividad o un anexo de exclusividad y el medio cobrara un adicional económico que justifique este motivo.
-																	5.	De no cumplir de forma total la empresa procederá a realizar los cobros respectivos de incumplimiento al cliente.</p>
+																	<ol>
+																		<li>Cambios en la programación o parrilla de programas, sean estos de forma o de fondo.</li>
+																		<li>Salidas o entradas de nuevos locutores, presentadores o animadores de uno o varios programas.</li>
+																		<li>Cuando el asesor de cuenta deje de prestar los servicios al medio, porque el contrato es directamente con el medio.</li>
+																		<li>Por exclusividad de cliente, en este caso deberá existir una clausula especial de exclusividad o un anexo de exclusividad y el medio cobrara un adicional económico que justifique este motivo.</li>
+																		<li>De no cumplir de forma total la empresa procederá a realizar los cobros respectivos de incumplimiento al cliente.</li>
+																	</ol>
+																</p>
 
 																<p><b>SEXTA PENALIDAD.-</b> si por cualquier motivo de los detallados en la cláusula anterior EL CLIENTE decide dar por terminado el contrato, deberá pagar una penalidad AL MEDIO, correspondiente a tres meses del valor descrito en la cláusula cuarta.</p> 
 
-																<p><b>SEPTIMA REPOSICIONES.-</b> En lo referente a la difusión publicitaria, si EL MEDIO se ve obligado a participar en cadenas ordenadas por las Entidades de Control o si existieren cortes de energía eléctrica, o alguna otra causa o caso fortuito, EL MEDIO repondrá la publicidad no transmitida en otros horarios a los habituales.</p>
+																<p><b>SÉPTIMA  REPOSICIONES.-</b> En lo referente a la difusión publicitaria, si EL MEDIO se ve obligado a participar en cadenas ordenadas por las Entidades de Control o si existieren cortes de energía eléctrica, o alguna otra causa o caso fortuito, EL MEDIO repondrá la publicidad no transmitida en otros horarios a los habituales.</p>
 
 																<p><b>OCTAVA  MODIFICACIONES.-</b> Cualquier modificación a este convenio únicamente será válida siempre y cuando se haya realizado un Addendum, el mismo que debe estar firmado por las partes.  </p>
 
 																<p>En todo lo no previsto en el presente contrato habrá que estar a lo dispuesto en el Código de Comercio, en las Leyes especiales y en las reglas generales del Derecho común.</p>
 
-																<p><b>NOVENA JURISDICCION.-</b>  Las partes señalan como sus domicilios para todas las citaciones y notificaciones relacionadas con el arbitraje, los que constan detallados a continuación:</p>
+																<p><b>NOVENA JURISDICCIÓN.-</b>  Las partes señalan como sus domicilios para todas las citaciones y notificaciones relacionadas con el arbitraje, los que constan detallados a continuación:</p>
 
 																<p>Los comparecientes dejan expresa constancia que todo lo expuesto en este  Convenio y ratifican en su contenido, así mismo manifiestan que es de mutua voluntad lo suscriben conjuntamente por duplicado; para constancia firman las partes  en la ciudad de Ibarra, a 04 de mayo de 2016.</p>
 
@@ -199,7 +211,7 @@
 																	Guardar
 																</button>
 
-																<button class="btn btn-sm btn-success btn-white btn-round">
+																<button class="btn btn-sm btn-success btn-white btn-round" id="btn_vizualizar">
 																	<i class="ace-icon fa fa-globe bigger-125"></i>
 
 																	Vizualizar
@@ -233,18 +245,6 @@
 								<button class="btn btn-success" type="button" name="btn_2" id="btn_2" data-toggle="modal" href="#myModal">
 									<i class="ace-icon fa fa-search bigger-110"></i>
 									Buscar
-								</button>
-
-								&nbsp; &nbsp;
-								<button class="btn btn-success" type="button" name="btn_3" id="btn_3">
-									<i class="ace-icon fa fa-close bigger-110"></i>
-									Anular
-								</button>
-
-								&nbsp; &nbsp;
-								<button class="btn btn-success" type="button" name="btn_4" id="btn_4">
-									<i class="ace-icon fa fa-print bigger-110"></i>
-									Imprimir
 								</button>
 							</div>
 						</div>

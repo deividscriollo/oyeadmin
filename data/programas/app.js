@@ -90,7 +90,7 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 		    no_results_text: "No se encontraron resultados",
 		    allowClear: true,
 		    }).select2().on("change", function (e) {
-			$(this).closest('form').validate().element($(this));
+			// $(this).closest('form').validate().element($(this));
 	    });
 		// fin
 
@@ -101,19 +101,19 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 		// fin
 
 		// validación codigo
-		$("#ruc_empresa").keyup(function() {
+		$("#codigo_programa").keyup(function() {
         $.ajax({
             type: "POST",
-            url: "data/clientes/app.php",
-            data: {comparar_ruc:'comparar_ruc',ruc: $("#ruc_empresa").val()},
+            url: "data/programas/app.php",
+            data: {comparar_codigo:'comparar_codigo',codigo: $("#codigo_programa").val()},
             dataType: 'json',
             success: function(data) {
                 var val = data;
                 if (val == 1) {
-                    $("#ruc_empresa").val("");
-                    $("#ruc_empresa").focus();
+                    $("#codigo_programa").val("");
+                    $("#codigo_programa").focus();
                     $.gritter.add({
-						title: 'Error... El cliente ya fue registrado',
+						title: 'Error... El código ya fue registrado',
 						class_name: 'gritter-error gritter-center',
 						time: 1000,
 					});	
@@ -127,12 +127,14 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 	function redireccionar() {
 		setTimeout(function() {
 		    location.reload(true);
-		}, 2000);
+		}, 1000);
 	}
 	// fin
 
+	// procesos cargado inicio
 	select_tipo_programa();
-
+	$('#btn_3').attr('disabled',true);
+	// fin
 	
 	// llenar combo tipo pogramas
 	function select_tipo_programa() {
@@ -147,42 +149,9 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 	}
 	// fin
 
-	// modificar formulario
-	$('#btn_3').click(function() {
-		if($('#id_empresa').val() == '') {
-			$.gritter.add({
-				title: 'Error... Seleccione un cliente',
-				class_name: 'gritter-error gritter-center',
-				time: 1000,
-			});
-			$('#myModal').modal('show'); 
-		} else {
-			var submit = "btn_modificar";
-			var formulario = $("#form_clientes").serialize();
-			$.ajax({
-		        url: "data/clientes/app.php",
-		        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
-		        type: "POST",
-		        async: true,
-		        success: function (data) {
-		        	var val = data;
-		        	if(data == '2') {
-		        		$.gritter.add({
-							title: 'Mensaje',
-							text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-							time: 2000				
-						});
-						redireccionar();
-			    	}              
-		        },
-		        error: function (xhr, status, errorThrown) {
-			        alert("Hubo un problema!");
-			        console.log("Error: " + errorThrown);
-			        console.log("Status: " + status);
-			        console.dir(xhr);
-		        }
-		    });
-		} 
+	// Actualizar formulario
+	$('#btn_1').click(function() {
+		location.reload(true);
 	});
 	// fin
 
@@ -194,7 +163,6 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 				class_name: 'gritter-error gritter-center',
 				time: 1000,
 			});
-			$('#nombre_empresa').focus();
 		} else {
 			if($('#codigo_programa').val() == '') {
 				$.gritter.add({
@@ -212,41 +180,141 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 					});
 					$('#nombre_programa').focus();
 				} else {
-					var submit = "btn_gardar";
-		
-					var formulario = $("#form_clientes").serialize();
-					$.ajax({
-				        url: "data/clientes/app.php",
-				        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
-				        type: "POST",
-				        async: true,
-				        success: function (data) {
-				        	var val = data;
-				        	if(data == '1') {
-				        		$.gritter.add({
-									title: 'Mensaje',
-									text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-									time: 2000				
-								});
-					    	}              
-				        },
-				        error: function (xhr, status, errorThrown) {
-					        alert("Hubo un problema!");
-					        console.log("Error: " + errorThrown);
-					        console.log("Status: " + status);
-					        console.dir(xhr);
-				        }
-				    });
+					if($('#hora_inicio').val() == '') {
+						$.gritter.add({
+							title: 'Ingrese hora de inicio',
+							class_name: 'gritter-error gritter-center',
+							time: 1000,
+						});
+						$('#hora_inicio').focus();
+					} else {
+						if($('#hora_fin').val() == '') {
+							$.gritter.add({
+								title: 'Ingrese hora de finalización',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#hora_fin').focus();
+						} else {
+							var submit = "btn_gardar";
+				
+							var formulario = $("#form_programas").serialize();
+							$.ajax({
+						        url: "data/programas/app.php",
+						        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
+						        type: "POST",
+						        async: true,
+						        success: function (data) {
+						        	var val = data;
+						        	if(data == '1') {
+						        		$.gritter.add({
+											title: 'Mensaje',
+											text: 'Programa Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+											time: 1000				
+										});
+										redireccionar();
+							    	}              
+						        },
+						        error: function (xhr, status, errorThrown) {
+							        alert("Hubo un problema!");
+							        console.log("Error: " + errorThrown);
+							        console.log("Status: " + status);
+							        console.dir(xhr);
+						        }
+						    });
+						}
+					}
 				} 
 			} 
 		} 
 	});
 	// fin
 
+	// modificar formulario
+	$('#btn_3').click(function() {
+		if($('#id_programa').val() == '') {
+			$.gritter.add({
+				title: 'Error... Seleccione un programa',
+				class_name: 'gritter-error gritter-center',
+				time: 1000,
+			});
+			$('#myModal').modal('show'); 
+		} else {
+			if($('#select_tipo_programa').val() == '') {
+				$.gritter.add({
+					title: 'Seleccione tipo programa',
+					class_name: 'gritter-error gritter-center',
+					time: 1000,
+				});
+				$('#nombre_empresa').focus();
+			} else {
+				if($('#codigo_programa').val() == '') {
+					$.gritter.add({
+						title: 'Ingrese código programa',
+						class_name: 'gritter-error gritter-center',
+						time: 1000,
+					});
+					$('#codigo_programa').focus();
+				} else {
+					if($('#nombre_programa').val() == '') {
+						$.gritter.add({
+							title: 'Ingrese nombre programa',
+							class_name: 'gritter-error gritter-center',
+							time: 1000,
+						});
+						$('#nombre_programa').focus();
+					} else {
+						if($('#hora_inicio').val() == '') {
+							$.gritter.add({
+								title: 'Ingrese hora de inicio',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#hora_inicio').focus();
+						} else {
+							if($('#hora_fin').val() == '') {
+								$.gritter.add({
+									title: 'Ingrese hora de finalización',
+									class_name: 'gritter-error gritter-center',
+									time: 1000,
+								});
+								$('#hora_fin').focus();
+							} else {
+								var submit = "btn_modificar";
+								var formulario = $("#form_programas").serialize();
 
-	$('#btn_1').click(function() {
-		location.reload(true);
+								$.ajax({
+							        url: "data/programas/app.php",
+							        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
+							        type: "POST",
+							        async: true,
+							        success: function (data) {
+							        	var val = data;
+							        	if(data == '2') {
+							        		$.gritter.add({
+												title: 'Mensaje',
+												text: 'Programa Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+												time: 2000				
+											});
+											redireccionar();
+								    	}              
+							        },
+							        error: function (xhr, status, errorThrown) {
+								        alert("Hubo un problema!");
+								        console.log("Error: " + errorThrown);
+								        console.log("Status: " + status);
+								        console.dir(xhr);
+							        }
+							    });
+							}
+						}
+					}
+				}
+			}			
+		} 
 	});
+	// fin
+
 
 		/*jqgrid*/    
 		jQuery(function($) {
@@ -272,23 +340,17 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 		    // buscador clientes
 		    jQuery(grid_selector).jqGrid({	        
 		        datatype: "xml",
-		        url: 'data/clientes/xml_clientes.php',        
-		        colNames: ['ID','EMPRESA','RUC','DIRECCIÓN','OBSERVACIONES','MAIL','SITIO','TELÉFONO','REPRESENTANTE','C.I.','FACEBOOK','TWITTER','GOOGLE','IMAGEN'],
+		        url: 'data/programas/xml_programas.php',        
+		        colNames: ['ID','TIPO PROGRAMA','CÓDIGO PROGRAMA','NOMBRE PROGRAMA','HORA INICIO','HORA FIN','IMAGEN','OBSERVACIONES'],
 		        colModel:[      
 		            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
-		            {name:'empresa',index:'empresa',frozen : true,align:'left',search:true,width: '300px'},
-		            {name:'ruc',index:'ruc',frozen : true,align:'left',search:true},
-		            {name:'direccion',index:'direccion',frozen : true,align:'left',search:false,width: '250px'},
-		            {name:'observaciones',index:'observaciones',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'email',index:'email',frozen : true,align:'left',search:false},
-		            {name:'sitio',index:'sitio',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'telefono',index:'telefono',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'contacto',index:'contacto',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'identificacion',index:'identificacion',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'facebook',index:'facebook',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'twitter',index:'twitter',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'google',index:'google',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'imagen',index:'imagen',frozen : true,align:'left',search:false,width: '250px', hidden: true},
+		            {name:'id_tipo_programa',index:'id_tipo_programa', frozen:true, align:'left', search:true, hidden:true},
+		            {name:'codigo_programa',index:'codigo_programa', frozen:true, align:'left', search:true},
+		            {name:'nombre_programa',index:'nombre_programa', frozen:true, align:'left', search:false, width:'250px'},
+		            {name:'hora_inicio',index:'hora_inicio',frozen : true,align:'left',search:false, width:'100px', hidden:false},
+		            {name:'hora_fin',index:'hora_fin', frozen:true, align:'left', search:false, width:'100px'},
+		            {name:'imagen',index:'imagen', frozen:true, align:'left', search:false, width:'100px', hidden:true},
+		            {name:'observaciones',index:'observaciones', frozen:true, align:'left', search:false, width:'250px', hidden:false}
 		        ],          
 		        rowNum: 10,       
 		        width:600,
@@ -315,26 +377,21 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 		            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
 	            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);
 
-	            	$('#id_empresa').val(ret.id);
-	            	$('#nombre_empresa').val(ret.empresa);
-	            	$('#ruc_empresa').val(ret.ruc);
-	            	$('#direccion_empresa').val(ret.direccion);
+	            	$('#id_programa').val(ret.id);
+	            	$('#select_tipo_programa').select2('val', ret.id_tipo_programa).trigger("change");
+	            	$('#codigo_programa').val(ret.codigo_programa);
+	            	$('#nombre_programa').val(ret.nombre_programa);
+	            	$('#hora_inicio').val(ret.hora_inicio);
+	            	$('#hora_fin').val(ret.hora_fin);
+	            	$("#avatar").attr("src","data/programas/imagenes/"+ret.imagen);	
 	            	$('#observaciones').val(ret.observaciones);
-	            	$('#correo').val(ret.email);
-	            	$('#txt_sitio_web').val(ret.sitio);
-	            	$('#txt_telefono').val(ret.telefono);
-	            	$('#txt_contacto').val(ret.contacto);
-	            	$('#identificacion').val(ret.identificacion);
-	            	$('#txt_facebook').val(ret.facebook);
-	            	$('#txt_twitter').val(ret.twitter);
-	            	$('#txt_google').val(ret.google);
-		            $("#avatar").attr("src","data/clientes/imagenes/"+ret.imagen);	   	            
 	
 		            $('#myModal').modal('hide'); 
-		            $('#btn_0').attr('disabled', true)  	            
+		            $('#btn_3').attr('disabled', false);  
+		            $('#btn_0').attr('disabled', true);  	            
 		        },
 		        
-		        caption: "LISTA CLIENTES"
+		        caption: "LISTA PROGRAMAS"
 		    });
 	
 		    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto

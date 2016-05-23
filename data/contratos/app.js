@@ -59,14 +59,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 			}
 		});
 
-		//RESIZE IMAGE
-		
-		//Add Image Resize Functionality to Chrome and Safari
-		//webkit browsers don't have image resize functionality when content is editable
-		//so let's add something using jQuery UI resizable
-		//another option would be opening a dialog for user to enter dimensions.
 		if ( typeof jQuery.ui !== 'undefined' && ace.vars['webkit'] ) {
-			
 			var lastResizableImg = null;
 			function destroyResizable() {
 				if(lastResizableImg == null) return;
@@ -104,10 +97,75 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 					destroyResizable();
 				});
 		    }
-
 			enableImageResize();
-
 		}
+		// fin
+
+		//validacion formulario usuarios
+		$('#form_contratos').validate({
+			errorElement: 'div',
+			errorClass: 'help-block',
+			focusInvalid: false,
+			ignore: "",
+			rules: {
+				select_ruc: {
+					required: true			
+				},
+				select_cliente: {
+					required: true			
+				},
+				select_tipo_paquete: {
+					required: true				
+				},
+				select_paquete: {
+					required: true				
+				},
+				select_tipo_contrato: {
+					required: true				
+				},
+				select_programa: {
+					required: true				
+				},
+				duracion: {
+					required: true				
+				},
+			},
+			messages: {
+				select_ruc: {
+					required: "Por favor, Seleccione un cliente"
+				},
+				select_cliente: {
+					required: "Por favor, Seleccione un cliente"
+				},
+				select_tipo_paquete: { 	
+					required: "Por favor, Seleccione tipo paquete"		
+				},
+				select_paquete: { 	
+					required: "Por favor, Seleccione un paquete"			
+				},
+				select_tipo_contrato: {
+					required: "Por favor, Seleccione tipo contrato"
+				},
+				select_programa: {
+					required: "Por favor, Seleccione un programa",
+				},
+				duracion: {
+					required: "Por favor, Indique duración del contrato",
+				},
+			},
+			//para prender y apagar los errores
+			highlight: function (e) {
+				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+			},
+			success: function (e) {
+				$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+				$(e).remove();
+			},
+			submitHandler: function (form) {
+				
+			}
+		});
+		// Fin 
 
 		//para la fecha del calendario
 		$(".datepicker").datepicker({ 
@@ -136,8 +194,6 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		//selectores anidados clientes ruc
 		$("#select_ruc").change(function () {
 			$("#select_cliente").select2('val', 'All');
-			$("#ci b").remove();
-
 	        $("#select_ruc option:selected").each(function () {
 	            id = $(this).val();
 
@@ -151,10 +207,10 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 					}
 				});
 
-				var cliente = $(this).text();
+				// var cliente = $(this).text();
 
-				$("#ci").append($("<b>").text(cliente));
-                $("#ci b").css("color","red");
+				// $("#ci").append($("<b>").text(cliente));
+    //             $("#ci b").css("color","red");
 		   });
 		});
 		// fin
@@ -290,6 +346,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		cargar_serie_secuencia();
 		select_tipo_paquete();
 		select_tipo_contrato();
+		select_programa();
 
 		// llenar combo clientes ruc
 		function select_clientes_ruc() {
@@ -361,6 +418,19 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		}
 		// fin
 
+		// llenar combo tipo paquete
+		function select_programa() {
+			$.ajax({
+				url: 'data/contratos/app.php',
+				type: 'post',
+				data: {llenar_programa:'llenar_programa'},
+				success: function (data) {
+					$('#select_programa').html(data);
+				}
+			});
+		}
+		// fin
+
 		// guardar factura
 		$('#btn_0').click(function() {
 			guardar_factura();
@@ -373,79 +443,17 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		});
 		// fin
 
-		// anular facturas
-		$('#btn_3').click(function() {
-			if($('#id_factura').val() == '') {
-				$.gritter.add({
-					title: 'Seleccione factura Anular',
-					class_name: 'gritter-error gritter-center',
-					time: 1000,
-				});	
-			} else {
-				bootbox.dialog({
-					message: "<span class='bigger-110'>¿Esta Seguro de anular la factura?</span>",
-					buttons: 			
-					{
-						"success" :
-						 {
-							"label" : "<i class='ace-icon fa fa-check'></i> Aceptar",
-							"className" : "btn-sm btn-success",
-							"callback": function() {
-								var id = $('#id_factura').val();
+		// vizualizar contrato
+		$('#btn_vizualizar').click(function() {
+			var respuesta = $('#form_contratos').valid();
 
-								$.ajax({
-									url: 'data/facturas/app.php',
-									type: 'post',
-									data: {anular_factura:'anular_factura',id: id},
-									dataType: 'json',
-									success: function (data) {
-										var val = data;
-							        	if(data == '1') {
-							        		$.gritter.add({
-												title: 'Mensaje',
-												text: 'Factura Anulada correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-												time: 1000				
-											});
-											redireccionar();
-							        	}         	
-									}
-								}); 
-							}
-						},
-						"danger" :
-						{
-							"label" : "<i class='ace-icon fa fa-times'></i> Cancelar",
-							"className" : "btn-sm btn-danger",
-							"callback": function() {
-								$.gritter.add({
-									title: 'Mensaje',
-									text: 'Accion cancelada <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-									time: 1000				
-								});
-							}
-						}
-					}
-				});
+			if (respuesta == true) {
+				$("#programa").remove();
 			}
-		});
-		// fin
 
-		// reimprimir facturas
-		$('#btn_4').click(function() {
-			if($('#id_factura').val() == '') {
-				$.gritter.add({
-					title: 'Seleccione factura a reimprimir',
-					class_name: 'gritter-error gritter-center',
-					time: 1000,
-				});	
-			} else {
-				var id = $('#id_factura').val();
-				var myWindow = window.open('data/reportes/factura_oye.php?hoja=A5&id='+id,'popup','width=900,height=650');
-			}
 		});
-		// fin
 
-		// proceso guardar rol
+		// proceso guardar contrato
 		function guardar_factura() {
 			var form_uno = $("#form_facturacion").serialize();
 			var submit = "btn_guardar";

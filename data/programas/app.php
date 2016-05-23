@@ -5,7 +5,7 @@
 	include_once('../../admin/class.php');
 	include_once('../../admin/funciones_generales.php');
 	$class = new constante();
-	// error_reporting(0);
+	error_reporting(0);
 	
 	$fecha = $class->fecha_hora();
 
@@ -14,42 +14,30 @@
 	$cont = 0;
 
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
-		$id_clientes = $class->idz();
+		$id_programa = $class->idz();
 
 		if(strpos($cadena, $buscar) ==  FALSE) {
-			$resp = $class->consulta("INSERT INTO clientes VALUES (			'$id_clientes',
-																			'$_POST[nombre_empresa]',
-																			'$_POST[ruc_empresa]',
-																			'$_POST[direccion_empresa]',
-																			'$_POST[observaciones]',
-																			'$_POST[correo]',
-																			'$_POST[txt_sitio_web]',
-																			'$_POST[txt_telefono]',
-																			'$_POST[txt_contacto]',
-																			'$_POST[identificacion]',
-																			'$_POST[txt_facebook]',
-																			'$_POST[txt_twitter]',
-																			'$_POST[txt_google]',
-																			'defaul.jpg',
-																			'1', '$fecha');");	
+			$resp = $class->consulta("INSERT INTO programas.programa VALUES (	'$id_programa',
+																				'$_POST[select_tipo_programa]',
+																				'$_POST[codigo_programa]',
+																				'$_POST[nombre_programa]',
+																				'$_POST[hora_inicio]',
+																				'$_POST[hora_fin]',
+																				'programas.png',
+																				'$_POST[observaciones]',
+																				'1', '$fecha');");	
 		} else {
-			$resp = img_64("imagenes",$_POST['img'],'png',$id_clientes);
-			$resp = $class->consulta("INSERT INTO clientes VALUES (			'$id_clientes',
-																			'$_POST[nombre_empresa]',
-																			'$_POST[ruc_empresa]',
-																			'$_POST[direccion_empresa]',
-																			'$_POST[observaciones]',
-																			'$_POST[correo]',
-																			'$_POST[txt_sitio_web]',
-																			'$_POST[txt_telefono]',
-																			'$_POST[txt_contacto]',
-																			'$_POST[identificacion]',
-																			'$_POST[txt_facebook]',
-																			'$_POST[txt_twitter]',
-																			'$_POST[txt_google]',
-																			'".$id_clientes.".png',
-																			'1', '$fecha');");
-		}
+			$resp = img_64("imagenes",$_POST['img'],'png',$id_programa);
+			$resp = $class->consulta("INSERT INTO programas.programa VALUES (	'$id_programa',
+																				'$_POST[select_tipo_programa]',
+																				'$_POST[codigo_programa]',
+																				'$_POST[nombre_programa]',
+																				'$_POST[hora_inicio]',
+																				'$_POST[hora_fin]',
+																				'".$id_programa.".png',
+																				'$_POST[observaciones]',
+																				'1', '$fecha');");
+			}
 
 		$data = 1;
 		echo $data;
@@ -58,43 +46,31 @@
 	if (isset($_POST['btn_modificar']) == "btn_modificar") {
 
 		if(strpos($cadena, $buscar) ==  FALSE) {
-			$resp = $class->consulta("UPDATE clientes SET			        empresa = '$_POST[nombre_empresa]',
-																			ruc = '$_POST[ruc_empresa]',
-																			direccion = '$_POST[direccion_empresa]',
-																			observaciones = '$_POST[observaciones]',
-																			email = '$_POST[correo]',
-																			sitio = '$_POST[txt_sitio_web]',
-																			telefono = '$_POST[txt_telefono]',
-																			representante = '$_POST[txt_contacto]',
-																			identificacion = '$_POST[identificacion]',
-																			facebook = '$_POST[txt_facebook]',
-																			twitter = '$_POST[txt_twitter]',
-																			google = '$_POST[txt_google]',
-																			fecha_creacion = '$fecha' WHERE id = '$_POST[id_empresa]'");	
+			$resp = $class->consulta("UPDATE programas.programa SET			    id_tipo_programa = '$_POST[select_tipo_programa]',
+																				codigo_programa = '$_POST[codigo_programa]',
+																				nombre_programa = '$_POST[nombre_programa]',
+																				hora_inicio = '$_POST[hora_inicio]',
+																				hora_fin = '$_POST[hora_fin]',
+																				observaciones = '$_POST[observaciones]',
+																				fecha_creacion = '$fecha' WHERE id = '$_POST[id_programa]'");	
 		} else {
-			$resp = img_64("imagenes",$_POST['img'],'png',$_POST['id_empresa']);
-			$resp = $class->consulta("UPDATE clientes SET			        empresa = '$_POST[nombre_empresa]',
-																			ruc = '$_POST[ruc_empresa]',
-																			direccion = '$_POST[direccion_empresa]',
-																			observaciones = '$_POST[observaciones]',
-																			email = '$_POST[correo]',
-																			sitio = '$_POST[txt_sitio_web]',
-																			telefono = '$_POST[txt_telefono]',
-																			representante = '$_POST[txt_contacto]',
-																			identificacion = '$_POST[identificacion]',
-																			facebook = '$_POST[txt_facebook]',
-																			twitter = '$_POST[txt_twitter]',
-																			google = '$_POST[txt_google]',
-																			imagen = '$_POST[id_empresa].png',
-																			fecha_creacion = '$fecha' WHERE id = '$_POST[id_empresa]'");
+			$resp = img_64("imagenes",$_POST['img'],'png',$_POST['id_programa']);
+			$resp = $class->consulta("UPDATE programas.programa SET			    id_tipo_programa = '$_POST[select_tipo_programa]',
+																				codigo_programa = '$_POST[codigo_programa]',
+																				nombre_programa = '$_POST[nombre_programa]',
+																				hora_inicio = '$_POST[hora_inicio]',
+																				hora_fin = '$_POST[hora_fin]',
+																				imagen = '$_POST[id_programa].png',
+																				observaciones = '$_POST[observaciones]',
+																				fecha_creacion = '$fecha' WHERE id = '$_POST[id_programa]'");
 		}
 		$data = 2;
 		echo $data;
 	}
 
 	//Comparar ruc repetidos
-	if (isset($_POST['comparar_ruc'])) {
-		$resultado = $class->consulta("SELECT * FROM clientes C WHERE C.ruc = '$_POST[ruc]' AND C.estado = '1'");
+	if (isset($_POST['comparar_codigo'])) {
+		$resultado = $class->consulta("SELECT * FROM programas.programa C WHERE codigo_programa = '$_POST[codigo]' AND estado = '1'");
 		while ($row=$class->fetch_array($resultado)) {
 			$cont++;
 		}

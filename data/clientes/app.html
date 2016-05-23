@@ -67,7 +67,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="nombre_empresa">Empresa:</label>
 
 													<div class="col-sm-8">
-														<input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre empresa" value="" class="col-xs-12 col-sm-10"/>
+														<input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre empresa" class="col-xs-12 col-sm-10" onkeyup="this.value = this.value.toUpperCase();" />
 														<input type="hidden" name="id_empresa" id="id_empresa" placeholder="" value="" class=""/>
 													</div>
 												</div>
@@ -92,7 +92,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="txt_contacto">Representante:</label>
 
 													<div class="col-sm-8">
-														<input type="text" name="txt_contacto" id="txt_contacto" placeholder="Representante empresa" value="" class="col-xs-12 col-sm-10" />
+														<input type="text" name="txt_contacto" id="txt_contacto" placeholder="Representante empresa" value="" class="col-xs-12 col-sm-10" onkeyup="this.value = this.value.toUpperCase();" />
 													</div>
 												</div>
 
