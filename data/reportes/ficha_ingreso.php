@@ -1,6 +1,4 @@
 <?php
-
-
 require('../../fpdf/fpdf.php');
 include_once('../../admin/class.php');
 date_default_timezone_set('America/Guayaquil');
@@ -11,12 +9,12 @@ class PDF extends FPDF {
  function RoundedRect($x, $y, $w, $h, $r, $style = '') {
     $k = $this->k;
     $hp = $this->h;
-    if($style=='F')
-        $op='f';
-    elseif($style=='FD' || $style=='DF')
-        $op='B';
+    if($style == 'F')
+        $op = 'f';
+    elseif($style == 'FD' || $style == 'DF')
+        $op = 'B';
     else
-        $op='S';
+        $op = 'S';
     $MyArc = 4/3 * (sqrt(2) - 1);
     $this->_out(sprintf('%.2F %.2F m',($x+$r)*$k,($hp-$y)*$k ));
     $xc = $x+$w-$r ;
@@ -91,8 +89,7 @@ function Line($x1, $y1, $x2, $y2, $style = null) {
 
 //Cabecera de página
 function Header() {
-    $class=new constante();
-
+    $class = new constante();
     $style3 = array('width' => 0.3, 'cap' => 'round', 'join' => 'round', 'dash' => '2, 10', 'color' => array(25, 0, 0));
 
     //Logo
@@ -138,7 +135,7 @@ function Header() {
         $ciudad = $row[0];
     }
 
-    $resp = $class->consulta("SELECT C.nombre_cargo FROM corporativo.cargos_personal G, corporativo.cargo C, corporativo.personal P where P.id = G.id_personal and C.id = G.id_cargo  and G.id_personal = '".$_GET['id']."'");
+    $resp = $class->consulta("SELECT C.nombre FROM corporativo.cargos_personal G, corporativo.cargo C, corporativo.personal P where P.id = G.id_personal and C.id = G.id_cargo  and G.id_personal = '".$_GET['id']."'");
     while ($row = $class->fetch_array($resp)) {
         $cargo_p = $row[0];
     }
@@ -419,7 +416,7 @@ function Header() {
     $this->Cell(200,13,"",1);
     $this->SetFont('Arial','',10);
 
-    $resp = $class->consulta("SELECT C.nombre_cuenta, B.nombre, C.numero FROM corporativo.cuentas C, corporativo.bancos B WHERE C.id_bancos = B.id AND C.estado = '1' AND C.id_personal = '".$_GET['id']."'");
+    $resp = $class->consulta("SELECT C.nombre_cuenta, B.nombre, C.numero FROM corporativo.cuentas  C, corporativo.bancos B WHERE B.id = C.id_bancos AND C.id_personal = '".$_GET['id']."'");
     $sum1 = 0;
     while ($row = $class->fetch_array($resp)) {
         $sum1++;

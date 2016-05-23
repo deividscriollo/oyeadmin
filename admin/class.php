@@ -149,4 +149,6 @@ class constante
       return $pass;
   }
 }
+
+
 ?>

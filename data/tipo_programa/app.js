@@ -25,11 +25,10 @@ angular.module('scotchApp').controller('tipo_programaController', function ($sco
 	        autoencode: false,
 	        datatype: "xml",
 	        height: 330,
-	        colNames:['ID','TIPO PROGRAMA','CATEGORIA','OBSERVACIONES','FECHA CREACIÓN'],
+	        colNames:['ID','TIPO PROGRAMA','OBSERVACIONES','FECHA CREACIÓN'],
 	        colModel:[
 	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
 	            {name:'nombre',index:'nombre',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'categoria',index:'categoria',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
 	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}},
 	            {name:'fecha_creacion',index:'fecha_creacion', width:150, editable: true, search:false, editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}}
 	        ],

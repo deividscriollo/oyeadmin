@@ -275,6 +275,9 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 		    select_cargo: {
 		      required: true
 		    },
+		    sueldo: {
+		      required: true
+		    },
 		},
 		messages: {
 			txt_nombres_familia: {
@@ -298,6 +301,9 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 			select_cargo: {
 				required: "Por favor, Ingrese un cargo",
 			},
+			sueldo: {
+				required: "Por favor, Ingrese uel sueldo",
+			},
 		},
 		//para prender y apagar los errores
 		highlight: function (e) {
@@ -314,6 +320,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 
 	// definir formato campos números de teléfono
 	$('.telefonos').mask('(999) 999-9999');
+	$('.fijo').mask('(999) 999-999');
 	// rango de los tiempos de trabajo
 	$('input[name=tiempo1], input[name=tiempo2], input[name=tiempo3]').daterangepicker({
 		'applyClass' : 'btn-sm btn-success',
@@ -735,6 +742,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 				}	
 			}
 		});
+		// fin
 
 		// cargar cargos personales
 		$.ajax({
@@ -750,6 +758,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 				}	
 			}
 		});
+		// fin
 
 		// cargar combos dependientes
 		$.ajax({
@@ -1153,6 +1162,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 	});
 	// fin
 
+	// id general
 	function equipo(id) {
 		var data_global;
 		$.ajax({
@@ -1167,6 +1177,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 		});
 		return data_global;
 	}
+	// fin
 
 		$('#modal-wizard-container').ace_wizard();
 		$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');

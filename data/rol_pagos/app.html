@@ -1,0 +1,448 @@
+<div class="main-content">	
+	<div class="main-content-inner">
+	    <div class="breadcrumbs" id="breadcrumbs">
+			<script type="text/javascript">
+				try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+			</script>
+
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="#/">Inicio</a>
+				</li>
+
+				<li class="active">Rol Pagos</li>
+				<li class="active">Ingresar</li>
+			</ul><!-- /.breadcrumb -->
+
+			<div class="nav-search" id="nav-search">
+				<form class="form-search">
+					<span class="input-icon">
+						<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+						<i class="ace-icon fa fa-search nav-search-icon"></i>
+					</span>
+				</form>
+			</div><!-- /.nav-search -->
+		</div>
+
+	    <div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="space"></div>
+					<form class="form-horizontal" name="form_rolpagos" id="form_rolpagos">
+						<div class="tabbable">
+							<ul class="nav nav-tabs padding-16">
+								<li ng-class="{ active: isSet(1) }">
+									<a data-toggle="tab" href ng-click="setTab(1)">
+										<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+										PERMISOS SALIDA
+									</a>
+								</li>
+
+								<li ng-class="{ active: isSet(2) }">
+									<a data-toggle="tab" href ng-click="setTab(2)">
+										<i class="green ace-icon fa fa-money bigger-125"></i>
+										ADELANTOS
+									</a>
+								</li>
+
+								<li ng-class="{ active: isSet(3) }">
+									<a data-toggle="tab" href ng-click="setTab(3)">
+										<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+										ROL DE PAGOS INDIVIDUAL
+									</a>
+								</li>
+
+								<li ng-class="{ active: isSet(4) }">
+									<a data-toggle="tab" href ng-click="setTab(4)">
+										<i class="purple ace-icon fa fa-search bigger-125"></i>
+										CONSULTA ROLES
+									</a>
+								</li>
+							</ul>
+
+							<div class="tab-content profile-edit-tab-content" >
+								<div ng-show="isSet(1)" style="height:650px">	
+								</div>
+
+								<div ng-show="isSet(2)" style="height:650px">	
+								</div>
+
+								<div ng-show="isSet(3)" style="height:690px">
+									<div class="row">
+										&nbsp; &nbsp;
+										<div class="col-sm-12">
+											<div class="col-sm-5">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="codigo">CÓDIGO ROL:</label>
+													<div class="col-sm-8">
+														<input type="text" name="codigo" id="codigo" readonly class="col-xs-12 col-sm-10" />
+														<input type="hidden" name="codigo_general" id="codigo_general" readonly class="col-xs-12 col-sm-10" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">EMPLEADO:</label>
+													<div class="col-sm-8">
+														<select id="select_empleado" name="select_empleado" class="select2" data-placeholder="Empleado...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_cargo">CARGO:</label>
+													<div class="col-sm-8">
+														<input type="text" name="cargo" id="cargo" readonly value="" class="col-xs-12 col-sm-10" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="sueldo">SUELDO:</label>
+													<div class="col-sm-8">
+														<input type="text" name="sueldo" id="sueldo" placeholder="" value="0.000" class="col-xs-12 col-sm-10" readonly />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="txt_mes">MES:</label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<input type="text" id="txt_mes" name="txt_mes" class="form-control datepicker" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="tiempo_horas">HORAS DIARIAS:</label>
+													<div class="col-sm-8">
+														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="col-xs-12 col-sm-10"/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="dias_laborados">DÍAS LABORADOS:</label>
+													<div class="col-sm-8">
+														<input type="text" name="dias_laborados" id="dias_laborados" placeholder="" readonly value="30" class="col-xs-12 col-sm-10"/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="extras">HORAS EXTRAS:</label>
+													<div class="col-sm-8">
+														<input type="text" name="extras" id="extras" placeholder="" value="" class="col-xs-12 col-sm-10"/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="no_laborado">DÍAS NO LABORADOS:</label>
+													<div class="col-sm-8">
+														<input type="text" name="no_laborado" id="no_laborado" placeholder="" value="" class="col-xs-12 col-sm-10"/>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-2">
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_importar" name="btn_importar" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>IMPORTAL EXCEL</button>
+												</div>
+
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_permisos" name="btn_permisos" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>PERMISOS</button>
+												</div>
+
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_calcular" name="btn_calcular" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>CALCULAR</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="col-sm-5">
+												<h4 class="header blue bolder smaller center">INGRESOS</h4>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="sueldo_basico">Sueldo Mes:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="sueldo_basico" name="sueldo_basico" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="horas_extras">Horas Extras:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="horas_extras" name="horas_extras" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="comisiones">COMISIONES:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="comisiones" name="comisiones" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="decimo_tercero">Décimo Tercero:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="decimo_tercero" name="decimo_tercero" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="decimo_cuarto">Décimo Cuarto:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="decimo_cuarto" name="decimo_cuarto" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="total_ingresos">TOTAL INGRESOS:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="total_ingresos" name="total_ingresos" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-2"></div>
+
+											<div class="col-sm-5">
+												<h4 class="header blue bolder smaller center">DESCUENTOS</h4>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="aporte_iess">Aporte al IESS:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="aporte_iess" name="aporte_iess" class="" value="17.300"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="pres_quierografarios">Préstamos quirografarios:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="pres_quierografarios" name="pres_quierografarios" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="pres_anticipos">Préstamos y Anticipos:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="pres_anticipos" name="pres_anticipos" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="atrasos">Atrasos:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="atrasos" name="atrasos" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="permisos">Permisos:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="permisos" name="permisos" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="faltas">Faltas:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="faltas" name="faltas" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="total_descuentos">TOTAL DESCUENTOS:</label>
+													<div class="col-sm-8">
+														<span class="input-icon">
+															<input type="text" id="total_descuentos" name="total_descuentos" class="" value="0.000"/>
+															<i class="ace-icon fa fa fa-usd orange"></i>
+														</span>
+													</div>
+												</div>	
+											</div>
+
+											<div class="col-sm-12">
+												<div class="col-sm-3"></div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="neto_pagar">NETO A PAGAR:</label>
+														<div class="col-sm-8">
+															<span class="input-icon">
+																<input type="text" id="neto_pagar" name="neto_pagar" class="" value="0.000"/>
+																<i class="ace-icon fa fa fa-usd orange"></i>
+															</span>
+														</div>
+													</div>	
+												</div>
+												<div class="col-sm-3"></div>
+											</div>
+										</div>	
+									</div>
+								</div>
+
+								<div ng-show="isSet(4)" style="height:650px">
+									<div class="row">
+										&nbsp; &nbsp;
+										<div class="col-sm-12">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">EMPLEADO:</label>
+													<div class="col-sm-8">
+														<select id="select_empleado2" name="select_empleado2" class="select2" data-placeholder="Empleado...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-3">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fecha_inicio">FECHA INICIO:</label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control datepicker" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-3">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fecha_fin">FECHA FIN:</label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<input type="text" id="fecha_fin" name="fecha_fin" class="form-control datepicker" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-1">
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_filtrar" name="btn_filtrar" type="button"><i class="ace-icon fa fa-calendar"></i> FILTRAR</button>
+												</div>
+											</div>
+											<div class="col-sm-1">
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_limpiar" name="btn_limpiar" type="button"><i class="ace-icon fa fa-search-plus"></i> LIMPIAR</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<h4 class="header blue bolder smaller center"></h4>
+											<div id="container">
+												<table id="table"></table>
+												<div id="pager"></div>	
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearfix form-actions center">
+							<div class="col-md-offset-3 col-md-6">
+								<button class="btn btn-success" type="button" name="btn_0" id="btn_0">
+									<i class="ace-icon fa fa-save bigger-110"></i>
+									Guardar
+								</button>
+
+								&nbsp; &nbsp;
+								<button class="btn btn-success" type="button" name="btn_1" id="btn_1">
+									<i class="ace-icon fa fa-refresh bigger-110"></i>
+									Actualizar
+								</button>
+							</div>
+						</div>
+					</form>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div>	
+
+<div id="modal-importar" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" name="form_excel" id="form_excel">
+				<div class="modal-header no-padding">
+					<div class="table-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<span class="white">&times;</span>
+						</button>
+						Agregar Archivo CSV
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<div class="form-group">
+				                  <input type="file" id="archivo_excel" name="archivo_excel" class="file" />
+				                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal-footer no-margin-top">
+					<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+						<i class="ace-icon fa fa-times"></i>
+						Cerrar
+					</button>
+					<button name="btn_excel" id="btn_excel" class="btn btn-sm btn-success pull-right">
+						<i class="ace-icon fa fa-check"></i>
+						Cargar
+					</button>
+				</div>
+			</form>	
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>

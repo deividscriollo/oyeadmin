@@ -15,22 +15,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="dist/css/bootstrap_extend.css" />
 		<link rel="stylesheet" href="dist/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
-		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="dist/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="dist/css/select2.min.css" />
+		<link rel="stylesheet" href="dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-timepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
-		<link rel="stylesheet" href="dist/css/ui.jqgrid.min.css" />
+		
+		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
 		<link href="dist/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+		
 		<!-- text fonts -->
 		<link rel="stylesheet" href="dist/css/fontdc.css" />
 		<!-- ace styles -->
@@ -48,18 +51,24 @@
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
   		<script src="data/home/app.js"></script>
+  		<script src="data/tipo_paquetes/app.js"></script>
   		<script src="data/paquetes/app.js"></script>
   		<script src="data/tipo_programa/app.js"></script>
   		<script src="data/tipo_vendedor/app.js"></script>
+  		<script src="data/tipo_contrato/app.js"></script>
   		<script src="data/areas/app.js"></script>
   		<script src="data/cargos/app.js"></script>
   		<script src="data/bancos/app.js"></script>
+  		<script src="data/empresa/app.js"></script>
   		<script src="data/clientes/app.js"></script>
   		<script src="data/ficha_ingresos/app.js"></script>
   		<script src="data/ficha_programas/app.js"></script>
   		<script src="data/programas/app.js"></script>
   		<script src="data/ficha_invitados/app.js"></script>
   		<script src="data/ingresos_princi/app.js"></script>
+  		<script src="data/rol_pagos/app.js"></script>
+  		<script src="data/facturas/app.js"></script>
+  		<script src="data/contratos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
 	</head>
 
@@ -140,9 +149,7 @@
 				<?php menu_lateral(); ?>
 			</div>
 
-			<div class="main-content ng-view" id="main-container">
-				
-			</div>
+			<div class="main-content ng-view" id="main-container"></div>
 
 			<div class="footer">
 				<div class="footer-inner">
@@ -167,14 +174,17 @@
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-
+		
+		<script src="dist/js/jquery-ui.min.js"></script>
 		<script src="dist/js/fileinput.js" type="text/javascript"></script>
 		<script src="dist/js/bootstrap.min.js"></script>
 		<script src="dist/js/jquery.form.js"></script>
 		<script src="dist/js/chosen.jquery.min.js"></script>
-		<script src="dist/js/jquery-ui.custom.min.js"></script>
-		<script src="dist/js/jquery.validate.min.js"></script>
+		<!-- <script src="dist/js/innovaeditor.js" type="text/javascript"></script>
+		// <script src="dist/js/innovamanager.js" type="text/javascript"></script>
+		// <script src="dist/js/webfont.js" type="text/javascript"></script> -->
 		
+		<script src="dist/js/jquery.validate.min.js"></script>
 		<script src="dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="dist/js/jquery.gritter.min.js"></script>
 		<script src="dist/js/bootbox.min.js"></script>
@@ -205,8 +215,6 @@
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
-
-
-
+		<!-- // <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript"></script> -->
 	</body>
 </html>

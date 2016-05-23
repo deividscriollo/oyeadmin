@@ -1,5 +1,29 @@
 // create the controller and inject Angular's $scope
 angular.module('scotchApp').controller('paquetesController', function ($scope) {
+	function Validpunto() {
+	    var key;
+	    if (window.event) {
+	        key = event.keyCode;
+	    } else if (event.which) {
+	        key = event.which;
+	    }
+
+	    if (key < 48 || key > 57) {
+	        if (key === 46 || key === 8) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
+	function ValidNum() {
+	    if (event.keyCode < 48 || event.keyCode > 57) {
+	        event.returnValue = false;
+	    }
+	    return true;
+	}
 
 	jQuery(function($) {
 		var grid_selector = "#grid-table";
@@ -20,19 +44,31 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	        }
 	    });
 
-	    jQuery(grid_selector).jqGrid({
-	        url: 'data/paquetes/xml_paquetes.php',
+	    jQuery(grid_selector).jqGrid({	       
+	        url: 'data/paquetes/xml_mensiones.php',
 	        autoencode: false,
 	        datatype: "xml",
-			height: 330,
-			colNames:['ID','NOMBRE PAQUETE','OBSERVACIONES','FECHA CREACIÓN'],
-			colModel:[
-				{name:'id',index:'id', frozen:true,align:'left',search:false,editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
-				{name:'nombre',index:'nombre',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
-	            {name:'fecha_creacion',index:'fecha_creacion', width:150, editable: true, search:false, editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}}
-			],
-	        rownumbers: true,
+	        height: 330,
+	        colNames:['ID','PAQUETE','CÓDIGO','CUÑAS/MENSIONES','PRECIO IMPACTO','DESCUENTO','SUMA TOTAL MES','OBSERVACIONES','FECHA CREACIÓN'],
+	        colModel:[
+	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
+	            {name:'id_tipo_paquete',index:'id_tipo_paquete', width:150, hidden:false, editable: true, editrules:{edithidden:true},edittype:"select",
+					editoptions: {
+						dataUrl:'data/paquetes/select_paquetes.php',
+						dataInit: function(elem) {
+					        $(elem).width(170);
+					    }
+					} 
+				},
+	            {name:'codigo',index:'codigo',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
+	            {name:'descripcion',index:'descripcion',width:150, editable:true, search:false, editoptions:{size:"20",maxlength:"10"}, editrules: {required: true}},
+	            {name:'precio', index: 'precio', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 
+	            {name:'descuento', index: 'descuento', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 
+	            {name:'suma_mes', index: 'suma_mes', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 
+	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}},
+	            {name:'fecha_creacion',index:'fecha_creacion', width:150, editable: true, search:false, hidden: true, editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}}
+	        ],
+	        rownumbers: true, 
 	        rowNum:10,
 	        rowList:[10,20,30],
 	        pager : pager_selector,
@@ -44,7 +80,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	        viewrecords : true,
 	        loadComplete : function() {
 	            var table = this;
-	            setTimeout(function(){
+	            setTimeout(function() {
 	                styleCheckbox(table);
 	                updateActionIcons(table);
 	                updatePagerIcons(table);
@@ -52,8 +88,9 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	            }, 0);
 	        },
 	        editurl: "data/paquetes/app.php",
-	        caption: "LISTA PAQUETES"
+	        caption: "LISTA CUÑAS O MENSIONES"
 	    });
+
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
 	    function aceSwitch( cellvalue, options, cell ) {
@@ -67,9 +104,10 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	    function pickDate( cellvalue, options, cell ) {
 	        setTimeout(function(){
 	            $(cell) .find('input[type=text]')
-	            .datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+	            .datepicker({format:'yyyy-mm-dd', autoclose:true}); 
 	        }, 0);
 	    }
+
 	    //navButtons
 	    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 	    {   //navbar options
@@ -107,7 +145,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
                 } else {
                 	if(retorno == '3') {
                 		$("#nombre").val("");
-	                	return [false,"Error.. El paquete ya fue agregado"];
+	                	return [false,'Error.. La mensión ya fue agregada'];
 	                }
                 }
                 return [true,'',retorno];
@@ -118,6 +156,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	        recreateForm: true,
 	        viewPagerButtons: false,
 	        overlay:false,
+
 	        beforeShowForm : function(e) {
 	            var form = $(e[0]);
 	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
@@ -126,7 +165,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	        },
 	        afterSubmit: function(response)  {
                 retorno = response.responseText;
-                if(retorno == '1') {
+                if(retorno == '1'){
                 	$.gritter.add({
 						title: 'Mensaje',
 						text: 'Registro Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
@@ -135,7 +174,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
                 } else {
                 	if(retorno == '3') {
                 		$("#nombre").val("");
-	                	return [false,"Error.. El paquete ya fue agregado"];
+	                	return [false,'Error.. Error.. La mensión ya fue agregada'];
 	                }
                 }
                 return [true,'',retorno];
@@ -153,7 +192,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	            form.data('styled', true);
 	        },
 	        onClick : function(e) {
-	      
+	            //alert(1);
 	        }
 	    },
 	    {
@@ -185,7 +224,6 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 	    function style_edit_form(form) {
 	        //enable datepicker on "sdate" field and switches for "stock" field
 	        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-	        
 	        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
 	                
 	        //update buttons classes

@@ -3,13 +3,15 @@
         session_start();        
     }
 	include_once('../../admin/class.php');
-	include_once('../funciones_generales.php');
+	include_once('../../admin/funciones_generales.php');
 	$class = new constante();
+	// error_reporting(0);
 	
 	$fecha = $class->fecha_hora();
 
 	$cadena = " ".$_POST['img'];	
 	$buscar = 'data:image/png;base64,';
+	$cont = 0;
 
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id_clientes = $class->idz();
@@ -24,6 +26,7 @@
 																			'$_POST[txt_sitio_web]',
 																			'$_POST[txt_telefono]',
 																			'$_POST[txt_contacto]',
+																			'$_POST[identificacion]',
 																			'$_POST[txt_facebook]',
 																			'$_POST[txt_twitter]',
 																			'$_POST[txt_google]',
@@ -40,6 +43,7 @@
 																			'$_POST[txt_sitio_web]',
 																			'$_POST[txt_telefono]',
 																			'$_POST[txt_contacto]',
+																			'$_POST[identificacion]',
 																			'$_POST[txt_facebook]',
 																			'$_POST[txt_twitter]',
 																			'$_POST[txt_google]',
@@ -48,6 +52,7 @@
 		}
 
 		$data = 1;
+		echo $data;
 	}
 
 	if (isset($_POST['btn_modificar']) == "btn_modificar") {
@@ -60,7 +65,8 @@
 																			email = '$_POST[correo]',
 																			sitio = '$_POST[txt_sitio_web]',
 																			telefono = '$_POST[txt_telefono]',
-																			contacto = '$_POST[txt_contacto]',
+																			representante = '$_POST[txt_contacto]',
+																			identificacion = '$_POST[identificacion]',
 																			facebook = '$_POST[txt_facebook]',
 																			twitter = '$_POST[txt_twitter]',
 																			google = '$_POST[txt_google]',
@@ -74,17 +80,34 @@
 																			email = '$_POST[correo]',
 																			sitio = '$_POST[txt_sitio_web]',
 																			telefono = '$_POST[txt_telefono]',
-																			contacto = '$_POST[txt_contacto]',
+																			representante = '$_POST[txt_contacto]',
+																			identificacion = '$_POST[identificacion]',
 																			facebook = '$_POST[txt_facebook]',
 																			twitter = '$_POST[txt_twitter]',
 																			google = '$_POST[txt_google]',
 																			imagen = '$_POST[id_empresa].png',
 																			fecha_creacion = '$fecha' WHERE id = '$_POST[id_empresa]'");
 		}
-		$data = 1;
+		$data = 2;
+		echo $data;
 	}
 
+	//Comparar ruc repetidos
+	if (isset($_POST['comparar_ruc'])) {
+		$resultado = $class->consulta("SELECT * FROM clientes C WHERE C.ruc = '$_POST[ruc]' AND C.estado = '1'");
+		while ($row=$class->fetch_array($resultado)) {
+			$cont++;
+		}
 
-	echo $data
+		if ($cont == 0) {
+		    $data = 0;
+		} else {
+		    $data = 1;
+		}
+		echo $data;
+	}
+	// fin
+
+
 
 ?>

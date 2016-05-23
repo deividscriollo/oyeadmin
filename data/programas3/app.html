@@ -1,0 +1,203 @@
+<div class="page-header">
+	<h1>
+		Ingresos Principales
+		<small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Programas/Fichas
+		</small>
+	</h1>
+	
+</div><!-- /.page-header -->
+
+<div class="row">
+	<div class="col-sm-6">
+		<!-- formulario -->
+		<div class="widget-box">
+			<div class="widget-header widget-header-large">
+				<h4 class="widget-title">Formulario programas</h4>
+
+				<div class="widget-toolbar">
+					<a href="#" data-action="settings">
+						<i class="ace-icon fa fa-cog"></i>
+					</a>
+
+					<a href="#" data-action="reload">
+						<i class="ace-icon fa fa-refresh"></i>
+					</a>
+
+					<a href="#" data-action="collapse">
+						<i class="ace-icon fa fa-chevron-up"></i>
+					</a>
+
+					<a href="#" data-action="close">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<form class="form-horizontal" id="form_programas">
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right" >Código del Programa:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="clearfix">
+									<input type="text" name="txt_codigo" id="txt_codigo" class="col-xs-7 "/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="nombre">Nombre del Programa:</label>
+							<div class="col-xs-12 col-sm-8">
+								<div class="clearfix">
+									<input type="text" name="txt_nombre" id="txt_nombre" class="col-xs-7"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<button type="text" name="form-programas" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- tabla programas-->
+		<table id="tbt_programas" class="table table table-striped">
+			<thead>
+				<tr>
+					<th class="center">Nro</th>
+					<th>Código</th>
+					<th>Nombre</th>					
+					<th>Proceso</th>	
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<div class="widget-box">
+				<div class="widget-header widget-header-large">
+				<h4 class="widget-title">Formulario de Fichas</h4>
+
+				<div class="widget-toolbar">
+					<a href="#" data-action="settings">
+						<i class="ace-icon fa fa-cog"></i>
+					</a>
+
+					<a href="#" data-action="reload">
+						<i class="ace-icon fa fa-refresh"></i>
+					</a>
+
+					<a href="#" data-action="collapse">
+						<i class="ace-icon fa fa-chevron-up"></i>
+					</a>
+
+					<a href="#" data-action="close">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main">
+					<form class="form-horizontal" id="form_programas2">
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Código del Programa:</label>
+							<div class="col-xs-12 col-sm-9">
+								<h5 class="widget-title smaller">
+									<select id="select_codigo" name="select_codigo" class="select2" data-placeholder="Cod_Programa...">
+									</select>
+								</h5>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Código de la Ficha:</label>
+							<div class="col-xs-12 col-sm-9">
+								<div class="clearfix">
+									<input type="text" name="txt_codigo2" id="txt_codigo2" class="col-xs-7 " />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<button type="text" name="form-programas2" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- tabla fichas-->
+		<table id="tbt_fichas" class="table table table-striped">
+			<thead>
+				<tr>
+					<th class="center">Nro</th>
+					<th>Nombre del Programa</th>
+					<th>Ficha</th>					
+					<th>Proceso</th>	
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div><!-- /.col -->
+</div>
+<!-- modal para actualizar los programas -->
+<div id="modal-actualizar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Programas</h4>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+	     	 <div class="profile-info-row">
+					<div class="profile-info-name"> Codigo del Programa: </div>
+					<div class="profile-info-value" id="obj_codigo">	
+					</div>
+			  </div>
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Nombre del Programa: </div>
+					<div class="profile-info-value" id="obj_nombre">
+					</div>
+			  </div>
+		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- modal para actualizar las Fichas -->
+<div id="modal-actualizar-fichas" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Fichas</h4>
+      </div>
+      <div class="modal-body">
+	      <div class="profile-user-info profile-user-info-striped">
+		      <div class="profile-info-row">
+					<div class="profile-info-name"> Código de Ficha: </div>
+					<div class="profile-info-value" id="obj_cod_ficha">
+					</div>
+				</div>
+		  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

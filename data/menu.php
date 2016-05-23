@@ -38,6 +38,15 @@ function  menu_lateral() {
 
 					<ul class="submenu">
 						<li class="">
+							<a href="#/tipo_paquetes">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Tipo Paquetes
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
 							<a href="#/paquetes">
 								<i class="menu-icon fa fa-caret-right"></i>
 								Paquetes
@@ -59,6 +68,15 @@ function  menu_lateral() {
 							<a href="#/tipo_vendedor">
 								<i class="menu-icon fa fa-caret-right"></i>
 								Tipo Vendedor
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="#/tipo_contrato">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Tipo Contrato
 							</a>
 
 							<b class="arrow"></b>
@@ -93,6 +111,14 @@ function  menu_lateral() {
 				</li>
 
 				<li class="">
+					<a href="#/empresa" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Empresa
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
 					<a href="#/clientes" class="dropdown-toggle">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Clientes
@@ -101,7 +127,15 @@ function  menu_lateral() {
 				</li>
 
 				<li class="">
-					<a href="#/ingresos_princi" class="dropdown-toggle">
+					<a href="#/programas" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Programas
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
+					<a href="#/vendedores" class="dropdown-toggle">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Vendedores
 					</a>
@@ -260,6 +294,47 @@ function  menu_lateral() {
 			</ul>
 		</li>
 		<!-- Fin de ingreso de Programas -->
+
+		<li class="">
+			<a href="" class="dropdown-toggle">
+				<i class="menu-icon fa fa-file"></i>
+				<span class="menu-text">
+					Contratos
+				</span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+				<li class="">
+					<a href="#/contratos">
+						Ingreso Contratos
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="">
+			<a href="" class="dropdown-toggle">
+				<i class="menu-icon fa fa-pencil-square-o"></i>
+				<span class="menu-text">
+					Facturación
+				</span>
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+
+			<b class="arrow"></b>
+
+			<ul class="submenu">
+				<li class="">
+					<a href="#/facturas">
+						Ingreso Facturas
+					</a>
+				</li>
+			</ul>
+		</li>
+
 		<li class="">
 			<a href="" class="dropdown-toggle">
 				<i class="menu-icon fa fa-archive"></i>
@@ -273,21 +348,9 @@ function  menu_lateral() {
 
 			<ul class="submenu">
 				<li class="">
-					<a href="#/procesos">
-						<i class="menu-icon fa fa-calendar"></i>
-						proceso1
-						<i class="menu-icon fa fa-calendar"></i>
+					<a href="#/rol_pagos">
+						Ingreso Roles
 					</a>
-				</li>
-
-				<li class="">
-					<a href="#/reportes">
-						<i class="menu-icon fa fa-caret-right"></i>
-						proces2
-						<i class="menu-icon fa fa-file-archive-o right"></i>
-					</a>
-
-					<b class="arrow"></b>
 				</li>
 			</ul>
 		</li>

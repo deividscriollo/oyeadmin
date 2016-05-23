@@ -9,6 +9,11 @@ scotchApp.config(function($routeProvider) {
             controller  : 'mainController',
         })
         // route paquetes
+        .when('/tipo_paquetes', {
+            templateUrl : 'data/tipo_paquetes/app.html',
+            controller  : 'tipo_paquetesController',
+        })
+        // route paquetes
         .when('/paquetes', {
             templateUrl : 'data/paquetes/app.html',
             controller  : 'paquetesController',
@@ -22,6 +27,11 @@ scotchApp.config(function($routeProvider) {
         .when('/tipo_vendedor', {
             templateUrl : 'data/tipo_vendedor/app.html',
             controller  : 'tipo_vendedoresController',
+        })
+        // route tipo vendedor
+        .when('/tipo_contrato', {
+            templateUrl : 'data/tipo_contrato/app.html',
+            controller  : 'tipo_contratoController',
         })
         // route areas
         .when('/areas', {
@@ -38,6 +48,11 @@ scotchApp.config(function($routeProvider) {
         .when('/bancos', {
             templateUrl : 'data/bancos/app.html',
             controller  : 'bancosController',
+        })
+        // route empresa
+        .when('/empresa', {
+            templateUrl : 'data/empresa/app.html',
+            controller  : 'empresaController',
         })
         // route clientes
         .when('/clientes', {
@@ -79,17 +94,23 @@ scotchApp.config(function($routeProvider) {
             templateUrl : 'data/ficha_ingresos/app.html',
             controller  : 'fichaingresosController',
         })
+        // proceso roles de pago
+        .when('/rol_pagos', {
+            templateUrl : 'data/rol_pagos/app.html',
+            controller  : 'rolpagosController',
+        })
+        // proceso facturas
+        .when('/facturas', {
+            templateUrl : 'data/facturas/app.html',
+            controller  : 'facturasController',
+        })
+        // proceso contratos
+        .when('/contratos', {
+            templateUrl : 'data/contratos/app.html',
+            controller  : 'contratosController',
+        })
 });
 
-scotchApp.controller('mainController', function($scope, $rootScope){
-  
 
-  });
-// scotchApp.controller('mainController', function($scope) {
-//     $scope.pageClass = 'page-about';
-// });
-// scotchApp.controller('mainController', function($scope) {
-//     $scope.pageClass = 'page-contact';
-// });
 
     

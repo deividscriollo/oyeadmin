@@ -3,7 +3,7 @@
         session_start();        
     }
 	include_once('../../admin/class.php');
-	$class=new constante();
+	$class = new constante();
 
 	// LLenar el formulario del proceso 1 
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
@@ -48,6 +48,7 @@
 																				'$_POST[txt_enfermedad]',
 																				'$_POST[txt_ini_trab]',
 																				'$_POST[txt_fecha_aplicacion]',
+																				'$_POST[sueldo]',
 																				'1', 
 																				'$fecha')");
 
@@ -145,6 +146,7 @@
 																			enfermedad = '$_POST[txt_enfermedad]',
 																			fecha_ing_trab = '$_POST[txt_ini_trab]',
 																			fecha_aplicacion = '$_POST[txt_fecha_aplicacion]', 
+																			sueldo = '$_POST[sueldo]',
 																			fecha_creacion = '$fecha'
 																			where id = '$_POST[id_personal]'");
 
@@ -204,7 +206,7 @@
 		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.cargo WHERE estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
-			 print '<option value="'.$row['id'].'">'.$row['nombre_cargo'].'</option>';
+			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
 	//LLena los paises del Combo
