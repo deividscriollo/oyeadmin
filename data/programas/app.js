@@ -186,67 +186,67 @@ angular.module('scotchApp').controller('programasController', function ($scope) 
 	});
 	// fin
 
-		// guardar formulario
-		$('#btn_0').click(function() {
-			if($('#nombre_empresa').val() == '') {
+	// guardar formulario
+	$('#btn_0').click(function() {
+		if($('#select_tipo_programa').val() == '') {
+			$.gritter.add({
+				title: 'Seleccione tipo programa',
+				class_name: 'gritter-error gritter-center',
+				time: 1000,
+			});
+			$('#nombre_empresa').focus();
+		} else {
+			if($('#codigo_programa').val() == '') {
 				$.gritter.add({
-					title: 'Ingrese nombre Empresa',
+					title: 'Ingrese código programa',
 					class_name: 'gritter-error gritter-center',
 					time: 1000,
 				});
-				$('#nombre_empresa').focus();
+				$('#codigo_programa').focus();
 			} else {
-				if($('#ruc_empresa').val() == '') {
+				if($('#nombre_programa').val() == '') {
 					$.gritter.add({
-						title: 'Ingrese Ruc Empresa',
+						title: 'Ingrese nombre programa',
 						class_name: 'gritter-error gritter-center',
 						time: 1000,
 					});
-					$('#ruc_empresa').focus();
+					$('#nombre_programa').focus();
 				} else {
-					if($('#direccion_empresa').val() == '') {
-						$.gritter.add({
-							title: 'Ingrese dirección Empresa',
-							class_name: 'gritter-error gritter-center',
-							time: 1000,
-						});
-						$('#direccion_empresa').focus();
-					} else {
-						var submit = "btn_gardar";
-			
-						var formulario = $("#form_clientes").serialize();
-						$.ajax({
-					        url: "data/clientes/app.php",
-					        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
-					        type: "POST",
-					        async: true,
-					        success: function (data) {
-					        	var val = data;
-					        	if(data == '1') {
-					        		$.gritter.add({
-										title: 'Mensaje',
-										text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-										time: 2000				
-									});
-						    	}              
-					        },
-					        error: function (xhr, status, errorThrown) {
-						        alert("Hubo un problema!");
-						        console.log("Error: " + errorThrown);
-						        console.log("Status: " + status);
-						        console.dir(xhr);
-					        }
-					    });
-					} 
+					var submit = "btn_gardar";
+		
+					var formulario = $("#form_clientes").serialize();
+					$.ajax({
+				        url: "data/clientes/app.php",
+				        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
+				        type: "POST",
+				        async: true,
+				        success: function (data) {
+				        	var val = data;
+				        	if(data == '1') {
+				        		$.gritter.add({
+									title: 'Mensaje',
+									text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+									time: 2000				
+								});
+					    	}              
+				        },
+				        error: function (xhr, status, errorThrown) {
+					        alert("Hubo un problema!");
+					        console.log("Error: " + errorThrown);
+					        console.log("Status: " + status);
+					        console.dir(xhr);
+				        }
+				    });
 				} 
 			} 
-		});
-		// fin
+		} 
+	});
+	// fin
 
 
-		$('#btn_1').click(function() {
-			location.reload(true);
-		});
+	$('#btn_1').click(function() {
+		location.reload(true);
+	});
 
 		/*jqgrid*/    
 		jQuery(function($) {
