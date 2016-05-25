@@ -16,7 +16,7 @@
 		if ($data != 0) {
 			$data = "3";
 		} else {
-			$resp = $class->consulta("INSERT INTO tipo_contrato VALUES ('$id_tipo_contrato','$_POST[nombre_tipo]','$_POST[codigo_contrato]','$_POST[observaciones]','1','$fecha');");
+			$resp = $class->consulta("INSERT INTO tipo_contrato VALUES ('$id_tipo_contrato','$_POST[codigo_contrato]','$_POST[nombre_tipo]','$_POST[observaciones]','1','$fecha');");
 			$data = "1";
 		}
 	} else {
@@ -29,7 +29,7 @@
 			if ($data != 0) {
 			 	$data = "3";
 			} else {
-		    	$resp = $class->consulta("UPDATE tipo_contrato SET nombre_tipo = '$_POST[nombre_tipo]',codigo_contrato = '$_POST[codigo_contrato]',observaciones = '$_POST[observaciones]',fecha_creacion = '$fecha' WHERE id = '$_POST[id]'");
+		    	$resp = $class->consulta("UPDATE tipo_contrato SET codigo_contrato = '$_POST[codigo_contrato]', nombre_tipo = '$_POST[nombre_tipo]', observaciones = '$_POST[observaciones]',fecha_creacion = '$fecha' WHERE id = '$_POST[id]'");
 		    	$data = "2";
 		    }
 	    }

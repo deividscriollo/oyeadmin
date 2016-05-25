@@ -1,4 +1,4 @@
-angular.module('scotchApp').controller('contratosController', function ($scope) {
+angular.module('scotchApp').controller('contratos_selectivosController', function ($scope) {
 
 	// procesos tab
 	$scope.tab = 1;
@@ -13,10 +13,16 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
     // fin
 
 	jQuery(function($) {
+		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); 
+		var f = new Date(); 
+		var fecha_actual = f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear()
+		$('#bonificacion').ace_spinner({value:0,min:0,max:10,step:1, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
+
 		function showErrorAlert (reason, detail) {
 			var msg='';
-			if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-			else {
+			if (reason ==='unsupported-file-type') {
+				msg = "Unsupported format " +detail; 
+			} else {
 				//console.log("error uploading file", reason, detail);
 			}
 			$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
@@ -44,61 +50,6 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 			],
 			speech_button: false
 		});
-
-		$('[data-toggle="buttons"] .btn').on('click', function(e){
-			var target = $(this).find('input[type=radio]');
-			var which = parseInt(target.val());
-			var toolbar = $('#editor1').prev().get(0);
-			if(which >= 1 && which <= 4) {
-				toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
-				if(which == 1) $(toolbar).addClass('wysiwyg-style1');
-				else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
-				if(which == 4) {
-					$(toolbar).find('.btn-group > .btn').addClass('btn-white btn-round');
-				} else $(toolbar).find('.btn-group > .btn-white').removeClass('btn-white btn-round');
-			}
-		});
-
-		if ( typeof jQuery.ui !== 'undefined' && ace.vars['webkit'] ) {
-			var lastResizableImg = null;
-			function destroyResizable() {
-				if(lastResizableImg == null) return;
-				lastResizableImg.resizable( "destroy" );
-				lastResizableImg.removeData('resizable');
-				lastResizableImg = null;
-			}
-
-			var enableImageResize = function() {
-				$('.wysiwyg-editor')
-				.on('mousedown', function(e) {
-					var target = $(e.target);
-					if( e.target instanceof HTMLImageElement ) {
-						if( !target.data('resizable') ) {
-							target.resizable({
-								aspectRatio: e.target.width / e.target.height,
-							});
-							target.data('resizable', true);
-							
-							if( lastResizableImg != null ) {
-								//disable previous resizable image
-								lastResizableImg.resizable( "destroy" );
-								lastResizableImg.removeData('resizable');
-							}
-							lastResizableImg = target;
-						}
-					}
-				})
-				.on('click', function(e) {
-					if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
-						destroyResizable();
-					}
-				})
-				.on('keydown', function() {
-					destroyResizable();
-				});
-		    }
-			enableImageResize();
-		}
 		// fin
 
 		//validacion formulario usuarios
@@ -108,10 +59,10 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 			focusInvalid: false,
 			ignore: "",
 			rules: {
-				select_ruc: {
+				ruc: {
 					required: true			
 				},
-				select_cliente: {
+				cliente: {
 					required: true			
 				},
 				select_tipo_paquete: {
@@ -131,10 +82,10 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 				},
 			},
 			messages: {
-				select_ruc: {
+				ruc: {
 					required: "Por favor, Seleccione un cliente"
 				},
-				select_cliente: {
+				cliente: {
 					required: "Por favor, Seleccione un cliente"
 				},
 				select_tipo_paquete: { 	
@@ -171,7 +122,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		$(".datepicker").datepicker({ 
 			format: "yyyy-mm-dd",
 	        autoclose: true
-		}).datepicker("setDate","today");
+		});
 		// fin
 
 		// stilo select2
@@ -186,56 +137,9 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		// fin
 
 		// limpiar select2
-		$("#select_ruc,#select_cliente,#select_tipo_paquete,#select_paquete,#select_tipo_contrato").select2({
+		$("#select_tipo_paquete,#select_paquete,#select_tipo_contrato").select2({
 		  allowClear: true
 		});
-		// fin
-
-		//selectores anidados clientes ruc
-		$("#select_ruc").change(function () {
-			$("#select_cliente").select2('val', 'All');
-	        $("#select_ruc option:selected").each(function () {
-	            id = $(this).val();
-
-	            $.ajax({
-					url: 'data/contratos/app.php',
-					type: 'post',
-					data: {llenar_informacion_ruc:'llenar_informacion_ruc',id: id},
-					dataType: 'json',
-					success: function (data) {
-						$("#select_cliente").select2('val', data.id).trigger("change");
-					}
-				});
-
-				// var cliente = $(this).text();
-
-				// $("#ci").append($("<b>").text(cliente));
-    //             $("#ci b").css("color","red");
-		   });
-		});
-		// fin
-
-		//selectores anidados clientes nombres
-		// $("#select_cliente").change(function () {
-		// 	$("#select_ruc").select2('val', 'All');
-		// 	$('#direccion').val('');
-		// 	$('#telefono').val('');
-	 //        $("#select_cliente option:selected").each(function () {
-	 //            id = $(this).val();
-
-	 //            $.ajax({
-		// 			url: 'data/facturas/app.php',
-		// 			type: 'post',
-		// 			data: {llenar_informacion_nombres:'llenar_informacion_nombres',id: id},
-		// 			dataType: 'json',
-		// 			success: function (data) {
-		// 				$("#select_ruc").select2('val', data.id).trigger("change");
-		// 				$('#direccion').val(data.direccion);
-		// 				$('#telefono').val(data.telefono);
-		// 			}
-		// 		});
-		//    });
-		// });
 		// fin
 
 		// validacion punto
@@ -340,18 +244,143 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		}
 		// fin
 
-		// inicio llamado funciones de procesos de inicio 
-		select_clientes_ruc();
-		select_clientes_nombre();
-		cargar_serie_secuencia();
-		select_tipo_paquete();
+		// busqueda ruc cliente
+		var busqueda_ruc = 'ruc';
+
+        $("#ruc").autocomplete({
+            source: "data/contratos_selectivos/app.php?tipo_busqueda=" + busqueda_ruc,
+            minLength: 1,
+            focus: function(event, ui) {
+            $("#id_cliente").val(ui.item.id_cliente); 
+            $("#ruc").val(ui.item.value); 
+            $("#cliente").val(ui.item.cliente);
+            return false;
+            },
+            select: function(event, ui) {
+            $("#id_cliente").val(ui.item.id_cliente); 
+            $("#ruc").val(ui.item.value); 
+            $("#cliente").val(ui.item.cliente);
+            // limpiar texto plano
+            $("#ci b").remove();
+            $("#representante b").remove();
+			$("#empresa b").remove();
+			// fin
+
+			// cargar datos texto plano
+            $("#ci").append($("<b>").text(' ' + ui.item.identificacion));
+            $("#representante").append($("<b>").text(' ' + ui.item.representante + ' '));
+			$("#empresa").append($("<b>").text(' ' + ui.item.cliente));
+			// fin
+            return false;
+            }
+        });
+	    // fin
+
+
+	    //selectores llenar impactos texto plano
+		$("#select_paquete").change(function() {
+	        $("#select_paquete option:selected").each(function () {
+	            id = $(this).val();
+	            $("#impactos b").remove();
+				$("#precio b").remove();
+
+				$.ajax({
+					url: 'data/contratos_selectivos/app.php',
+					type: 'post',
+					data: {llenar_impactos:'llenar_impactos',id: id},
+					dataType: 'json',
+					success: function (data) {
+						$("#impactos").append($("<b>").text(' ' + data.descripcion + ' '));
+						$("#precio").append($("<b>").text('$ ' + data.precio));
+					}
+				});
+		   });
+		});
+		// fin
+
+		//selectores anidados programas texto plano
+		$("#select_programa").change(function() {
+	        $("#select_programa option:selected").each(function () {
+	        	$("#programa b").remove();
+				var programa = document.getElementById("select_programa");
+  				$("#programa").append($("<b>").text(programa.options[programa.selectedIndex].text));
+		   });
+		});
+		// fin
+
+		//selectores fecha inicio texto plano
+		$("#fecha_inicio").change(function() {
+			$("#fecha_ini b").remove();
+			// descomponer fecha inicio
+			var tem = $('#fecha_inicio').val();
+			var res1 = tem.substr(8, 10); 
+			var res2 = parseInt(tem.substr(6, 7)); 
+			var res3 = tem.substr(0, 4); 
+			var fecha_inicio = res1 + " de " + meses[res2 - 1] + " del " + res3;
+
+			$("#fecha_ini").append($("<b>").text(fecha_inicio));
+			// fin
+		});
+		// fin
+
+		//selectores fecha fin texto plano
+		$("#fecha_fin").change(function() {
+			$("#fecha_final b").remove();
+			// descomponer fecha fin
+			var tem2 = $('#fecha_fin').val();
+			var res4 = tem2.substr(8, 10); 
+			var res5 = parseInt(tem2.substr(6, 7)); 
+			var res6 = tem2.substr(0, 4); 
+			var fecha_fin = res4 + " de " + meses[res5 - 1] + " del " + res6;
+			
+			$("#fecha_final").append($("<b>").text(fecha_fin));
+			// fin
+		});
+		// fin
+
+		//selectores anidados programas texto plano
+		$("#select_tipo_contrato").change(function() {
+	        	$("#titulo h2").remove();
+	        	$("#tipo_contrato b").remove();
+	        	var contrato = document.getElementById("select_tipo_contrato");
+	        	contrato = contrato.options[contrato.selectedIndex].text;
+
+	        	if(contrato == 'CANJE') {
+	        		$("#titulo").append($("<h2>").text('CONTRATO DE CANJE PUBLICITARIO'));
+	        		$("#tipo_contrato").append($("<b>").text('CONTRATO DE CANJE PUBLICITARIO'));
+	        	} else {
+	        		$("#titulo").append($("<h2>").text('CONTRATO DE PUBLICIDAD'));
+	        		$("#tipo_contrato").append($("<b>").text('CONTRATO DE PUBLICIDAD'));
+	        	}
+
+		});
+		// fin
+		
 		select_tipo_contrato();
+		select_tipo_paquete();
 		select_programa();
+		// fin
+
+		// inicio lineas llenar
+		$('#titulo').append($('<h2>').text('_______________________________________'));
+		$('#tipo_contrato').append($('<b>').text('__________________'));
+		$('#ci').append($('<b>').text('__________________'));
+		$('#representante').append($('<b>').text('_________________________________'));
+		$('#empresa').append($('<b>').text('___________________________________________'));
+		$('#dura').append($('<b>').text('__________'));
+		$('#fecha_inicio').append($('<b>').text('__________________'));
+		$('#fecha_final').append($('<b>').text('__________________'));
+		$("#impactos").append($("<b>").text('__________________'));
+		$("#programa").append($("<b>").text('_________________'));
+		$("#boni").append($("<b>").text('0'));
+		$("#precio").append($("<b>").text('$ _________'));
+		$("#fecha_actual").append($("<b>").text(fecha_actual));
+		// fin
 
 		// llenar combo clientes ruc
 		function select_clientes_ruc() {
 			$.ajax({
-				url: 'data/contratos/app.php',
+				url: 'data/contratos_selectivos/app.php',
 				type: 'post',
 				data: {llenar_clientes_ruc:'llenar_clientes_ruc'},
 				success: function (data) {
@@ -364,7 +393,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		// llenar combo clientes nombre
 		function select_clientes_nombre() {
 			$.ajax({
-				url: 'data/contratos/app.php',
+				url: 'data/contratos_selectivos/app.php',
 				type: 'post',
 				data: {llenar_clientes_nombre:'llenar_clientes_nombre'},
 				success: function (data) {
@@ -377,7 +406,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		// llenar combo tipo paquete
 		function select_tipo_paquete() {
 			$.ajax({
-				url: 'data/contratos/app.php',
+				url: 'data/contratos_selectivos/app.php',
 				type: 'post',
 				data: {llenar_tipo_paquete:'llenar_tipo_paquete'},
 				success: function (data) {
@@ -394,7 +423,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 	            id = $(this).val();
 
 	            $.ajax({
-					url: 'data/contratos/app.php',
+					url: 'data/contratos_selectivos/app.php',
 					type: 'post',
 					data: {llenar_paquete:'llenar_paquete',id: id},
 					success: function (data) {
@@ -408,7 +437,7 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		// llenar combo tipo contrato
 		function select_tipo_contrato() {
 			$.ajax({
-				url: 'data/contratos/app.php',
+				url: 'data/contratos_selectivos/app.php',
 				type: 'post',
 				data: {llenar_tipo_contrato:'llenar_tipo_contrato'},
 				success: function (data) {
@@ -418,10 +447,10 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 		}
 		// fin
 
-		// llenar combo tipo paquete
+		// llenar combo programa
 		function select_programa() {
 			$.ajax({
-				url: 'data/contratos/app.php',
+				url: 'data/contratos_selectivos/app.php',
 				type: 'post',
 				data: {llenar_programa:'llenar_programa'},
 				success: function (data) {
@@ -448,9 +477,50 @@ angular.module('scotchApp').controller('contratosController', function ($scope) 
 			var respuesta = $('#form_contratos').valid();
 
 			if (respuesta == true) {
-				$("#programa").remove();
-			}
 
+				$("#dura b").remove();
+				
+				
+				
+				$("#boni b").remove();
+				
+
+				// llenar datos clientes
+					$.ajax({
+						url: 'data/contratos_selectivos/app.php',
+						type: 'post',
+						data: {llenar_clientes:'llenar_clientes',id: $('#select_ruc').val()},
+						dataType: 'json',
+						success: function (data) {
+							$("#cliente").append($("<b>").text(' ' + data.representante + ' '));
+							$("#ci").append($("<b>").text(' ' + data.identificacion));
+							$("#empresa").append($("<b>").text(' ' + data.empresa));
+						}
+					});
+				// fin
+
+				
+
+				
+				$("#dura").append($("<b>").text($('#duracion').val()));
+				$("#boni").append($("<b>").text($('#bonificacion').val()));
+
+				// llenar impactos
+					$.ajax({
+						url: 'data/contratos_selectivos/app.php',
+						type: 'post',
+						data: {llenar_impactos:'llenar_impactos',id: $('#select_paquete').val()},
+						dataType: 'json',
+						success: function (data) {
+							$("#impactos").append($("<b>").text(' ' + data.descripcion + ' '));
+							$("#precio").append($("<b>").text('$ ' + data.precio));
+						}
+					});
+				// fin
+
+  				var programa = document.getElementById("select_programa");
+  				$("#programa").append($("<b>").text(programa.options[programa.selectedIndex].text));
+			}
 		});
 
 		// proceso guardar contrato

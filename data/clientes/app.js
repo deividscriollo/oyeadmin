@@ -1,7 +1,6 @@
 angular.module('scotchApp').controller('clientesController', function ($scope) {
 
 	jQuery(function($) {	
-
 		$.fn.editable.defaults.mode = 'inline';
 		$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
 	    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
@@ -259,14 +258,13 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 	function redireccionar() {
 		setTimeout(function() {
 		    location.reload(true);
-		}, 2000);
+		}, 1000);
 	}
 	// fin
 
 	// procesos cargado inicio
 	$('#btn_3').attr('disabled',true);
 	// fin
-
 
 	// actualizar formulario
 	$('#btn_1').click(function() {
@@ -300,32 +298,51 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 					});
 					$('#direccion_empresa').focus();
 				} else {
-					var submit = "btn_gardar";
-		
-					var formulario = $("#form_clientes").serialize();
-					$.ajax({
-				        url: "data/clientes/app.php",
-				        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
-				        type: "POST",
-				        async: true,
-				        success: function (data) {
-				        	var val = data;
-				        	if(data == '1') {
-				        		$.gritter.add({
-									title: 'Mensaje',
-									text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-									time: 2000				
-								});
-					    	}              
-				        },
-				        error: function (xhr, status, errorThrown) {
-					        alert("Hubo un problema!");
-					        console.log("Error: " + errorThrown);
-					        console.log("Status: " + status);
-					        console.dir(xhr);
-				        }
-				    });
-				} 
+					if($('#txt_contacto').val() == '') {
+						$.gritter.add({
+							title: 'Ingrese representante de la Empresa',
+							class_name: 'gritter-error gritter-center',
+							time: 1000,
+						});
+						$('#txt_contacto').focus();
+					} else {
+						if($('#identificacion').val() == '') {
+							$.gritter.add({
+								title: 'Ingrese identificación del representante',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#identificacion').focus();
+						} else {
+							var submit = "btn_gardar";
+				
+							var formulario = $("#form_clientes").serialize();
+							$.ajax({
+						        url: "data/clientes/app.php",
+						        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
+						        type: "POST",
+						        async: true,
+						        success: function (data) {
+						        	var val = data;
+						        	if(data == '1') {
+						        		$.gritter.add({
+											title: 'Mensaje',
+											text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+											time: 1000				
+										});
+										redireccionar();
+							    	}              
+						        },
+						        error: function (xhr, status, errorThrown) {
+							        alert("Hubo un problema!");
+							        console.log("Error: " + errorThrown);
+							        console.log("Status: " + status);
+							        console.dir(xhr);
+						        }
+						    });
+						} 
+					}
+				}
 			} 
 		} 
 	});
@@ -365,31 +382,49 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 						});
 						$('#direccion_empresa').focus();
 					} else {
-						var submit = "btn_modificar";
-						var formulario = $("#form_clientes").serialize();
-						$.ajax({
-					        url: "data/clientes/app.php",
-					        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
-					        type: "POST",
-					        async: true,
-					        success: function (data) {
-					        	var val = data;
-					        	if(data == '2') {
-					        		$.gritter.add({
-										title: 'Mensaje',
-										text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-										time: 2000				
-									});
-									redireccionar();
-						    	}              
-					        },
-					        error: function (xhr, status, errorThrown) {
-						        alert("Hubo un problema!");
-						        console.log("Error: " + errorThrown);
-						        console.log("Status: " + status);
-						        console.dir(xhr);
-					        }
-					    });
+						if($('#txt_contacto').val() == '') {
+							$.gritter.add({
+								title: 'Ingrese representante de la Empresa',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#txt_contacto').focus();
+						} else {
+							if($('#identificacion').val() == '') {
+								$.gritter.add({
+									title: 'Ingrese identificación del representante',
+									class_name: 'gritter-error gritter-center',
+									time: 1000,
+								});
+								$('#identificacion').focus();
+							} else {
+								var submit = "btn_modificar";
+								var formulario = $("#form_clientes").serialize();
+								$.ajax({
+							        url: "data/clientes/app.php",
+							        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
+							        type: "POST",
+							        async: true,
+							        success: function (data) {
+							        	var val = data;
+							        	if(data == '2') {
+							        		$.gritter.add({
+												title: 'Mensaje',
+												text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+												time: 2000				
+											});
+											redireccionar();
+								    	}              
+							        },
+							        error: function (xhr, status, errorThrown) {
+								        alert("Hubo un problema!");
+								        console.log("Error: " + errorThrown);
+								        console.log("Status: " + status);
+								        console.dir(xhr);
+							        }
+							    });
+							}
+						}
 					}
 				}
 			}		    

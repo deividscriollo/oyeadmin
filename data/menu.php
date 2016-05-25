@@ -308,9 +308,33 @@ function  menu_lateral() {
 
 			<ul class="submenu">
 				<li class="">
-					<a href="#/contratos">
+					<a href="" class="dropdown-toggle">
+						<i class="menu-icon fa fa-caret-right"></i>
 						Ingreso Contratos
+						<b class="arrow fa fa-angle-down"></b>
 					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="#/contratos_selectivos">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Selectivo
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="#/paquetes">
+								<i class="menu-icon fa fa-caret-right"></i>
+								Rotativo
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</li>

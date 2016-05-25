@@ -61,7 +61,7 @@ angular.module('scotchApp').controller('paquetesController', function ($scope) {
 					} 
 				},
 	            {name:'codigo',index:'codigo',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
-	            {name:'descripcion',index:'descripcion',width:150, editable:true, search:false, editoptions:{size:"20",maxlength:"10"}, editrules: {required: true}},
+	            {name:'descripcion',index:'descripcion',width:150, editable:true, search:false, editoptions:{size:"20"}, editrules: {required: true}},
 	            {name:'precio', index: 'precio', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 
 	            {name:'descuento', index: 'descuento', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 
 	            {name:'suma_mes', index: 'suma_mes', editable: true, search: false, frozen: true, editrules: {required: true}, align: 'center', editoptions:{maxlength: 10,dataInit: function(elem){$(elem).bind("keypress", function(e) {return Validpunto(e)})}}}, 

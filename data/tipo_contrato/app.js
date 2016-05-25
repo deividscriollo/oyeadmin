@@ -24,11 +24,11 @@ angular.module('scotchApp').controller('tipo_contratoController', function ($sco
 	        autoencode: false,
 	        datatype: "xml",
 	        height: 330,
-	        colNames:['ID','NOMBRE','CÓDIGO','OBSERVACIONES','FECHA CREACIÓN'],
+	        colNames:['ID','CÓDIGO','NOMBRE','OBSERVACIONES','FECHA CREACIÓN'],
 	        colModel:[
 	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
-	            {name:'nombre_tipo',index:'nombre_tipo',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
 	            {name:'codigo_contrato',index:'codigo_contrato',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
+	            {name:'nombre_tipo',index:'nombre_tipo',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},
 	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
 	            {name:'fecha_creacion',index:'fecha_creacion', width:150, editable: true, search:false, editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}}
 	        ],

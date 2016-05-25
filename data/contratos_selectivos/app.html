@@ -12,7 +12,7 @@
 				</li>
 
 				<li class="active">Contratos</li>
-				<li class="active">Ingreso contrato</li>
+				<li class="active">Ingreso contrato Selectivo</li>
 			</ul><!-- /.breadcrumb -->
 
 			<div class="nav-search" id="nav-search">
@@ -35,7 +35,7 @@
 								<li ng-class="{ active: isSet(1) }">
 									<a data-toggle="tab" href ng-click="setTab(1)">
 										<i class="green ace-icon fa fa-file bigger-125"></i>
-										CONTRATO
+										CONTRATO SELECTIVO
 									</a>
 								</li>
 							</ul>
@@ -54,11 +54,18 @@
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_paquete">Tipo Paquete:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_contrato">Tipo de Contrato:</label>
 													<div class="col-sm-8">
-														<select id="select_tipo_paquete" name="select_tipo_paquete" class="select2" data-placeholder="Tipo Paquete...">
+														<select id="select_tipo_contrato" name="select_tipo_contrato" class="select2" data-placeholder = "Tipo Contrato...">
 															<option value="">&nbsp;</option>
 														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="duracion">Duración:</label>
+													<div class="col-sm-8">
+														<input type="text" name="duracion" id="duracion" class="form-control" placeholder = 'Duración contrato' />
 													</div>
 												</div>
 
@@ -70,29 +77,21 @@
 														</select>
 													</div>
 												</div>
-
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="duracion">Duración:</label>
-													<div class="col-sm-6">
-														<input type="text" name="duracion" id="duracion" class="form-control" placeholder = 'Duración contrato' />
-													</div>
-												</div>
 											</div>
 
 											<div class="col-sm-4">
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="select_ruc">Ruc:</label>
 													<div class="col-sm-8">
-														<select id="select_ruc" name="select_ruc" class="select2" data-placeholder="Ruc Cliente...">
-															<option value="">&nbsp;</option>
-														</select>
+														<input type="text" name="ruc" id="ruc" class="form-control" placeholder='Buscar.....' />
+														<input type="hidden" name="id_cliente" id="id_cliente" class="form-control" />
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_paquete">Paquete:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_paquete">Tipo Paquete:</label>
 													<div class="col-sm-8">
-														<select id="select_paquete" name="select_paquete" class="select2" data-placeholder="Paquete...">
+														<select id="select_tipo_paquete" name="select_tipo_paquete" class="select2" data-placeholder="Tipo Paquete...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
@@ -109,29 +108,34 @@
 														</div>
 													</div>
 												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="bonificacion">Bonificación:</label>
+													<div class="col-sm-6">
+														<input type="text" name="bonificacion" id="bonificacion" class="form-control" readonly />
+													</div>
+												</div>
 											</div>
 
 											<div class="col-sm-4">
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="select_cliente">Cliente:</label>
 													<div class="col-sm-8">
-														<select id="select_cliente" name="select_cliente" class="select2" data-placeholder="Nombre Cliente...">
-															<option value="">&nbsp;</option>
-														</select>
+														<input type="text" name="cliente" id="cliente" class="form-control" placeholder='Buscar.....'/>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_tipo_contrato">Tipo de Contrato:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_paquete">Paquete:</label>
 													<div class="col-sm-8">
-														<select id="select_tipo_contrato" name="select_tipo_contrato" class="select2" data-placeholder = "Tipo Contrato...">
+														<select id="select_paquete" name="select_paquete" class="select2" data-placeholder="Paquete...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="fecha_fin">Fecha fin:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="fecha_fin">Fecha final:</label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<input type="text" id="fecha_fin" name="fecha_fin" class="form-control datepicker" class="form-control" />
@@ -153,24 +157,24 @@
 													<div class="widget-body">
 														<div class="widget-main no-padding">
 															<div class="wysiwyg-editor" id="editor2">
-																<h2 align="center">CONTRATO DE CANJE PUBLICITARIO</h2>		
-																<p>Reunidos, por una parte el medio de comunicación RADIO OYE FM 93.1 con RUC. 1003129903001 representada por la señorita  CARLA ESTEFANIA MONTESDEOCA LOPEZ, en  calidad de GERENTE GENERAL, y EDWIN MONTESDEOCA como ASESOR DE CUENTA, a quienes en adelante se les denominará “EL MEDIO”, y por otra parte El Sr.(a)<b id = 'cliente'>_________________________________ </b>con C.I.:<b id='ci'>__________________</b>; Representante de la empresa<b id = 'empresa'>___________________________________________</b>, a quién en adelante se denominará “EL CLIENTE".</p>
+																<h2 align="center" id='titulo'></h2>		
+																<p>Reunidos, por una parte el medio de comunicación RADIO OYE FM 93.1 con RUC. 1003129903001 representada por la señorita  CARLA ESTEFANIA MONTESDEOCA LOPEZ, en  calidad de GERENTE GENERAL, y EDWIN MONTESDEOCA como ASESOR DE CUENTA, a quienes en adelante se les denominará “EL MEDIO”, y por otra parte El Sr.(a)<b id = 'representante'></b>con C.I.:<b id = 'ci'></b>; Representante de la empresa<b id = 'empresa'></b>, a quién en adelante se denominará “EL CLIENTE".</p>
 
-																<p>Ambas partes acuerdan celebran el presente <b>CONTRATO DE CANJE PUBLICITARIO</b>, bajo las siguientes cláusulas:</p>
+																<p>Ambas partes acuerdan celebran el presente <b id='tipo_contrato'></b>, bajo las siguientes cláusulas:</p>
 
 																<p><b>PRIMER OBJETO:</b> Mediante Servicio Publicitario, se hará el pautaje de la publicidad “DEL CLIENTE” en EL MEDIO.</p>
 
-																<p><b>SEGUNDA DURACIÓN DEL CONVENIO.-</b> La duración de la campaña publicitaria será de <b id = 'duracion'>__________</b> a partir del <b id='fecha_inicio'>__________________</b> hasta <b id='fecha_fin'>__________________</b>, quedando automáticamente renovado por periodos iguales, salvo que medie preaviso de 60 días de antelación por cualquiera de las partes solicitando su extinción.</p>
+																<p><b>SEGUNDA DURACIÓN DEL CONVENIO.-</b> La duración de la campaña publicitaria será de <b id = 'dura'></b> a partir del <b id='fecha_ini'></b> hasta <b id='fecha_final'></b>, quedando automáticamente renovado por periodos iguales, salvo que medie preaviso de 60 días de antelación por cualquiera de las partes solicitando su extinción.</p>
 
 																<p><b>TERCERA RESPONSABILIDADES DE:</b></p>
 
-																<p><b>EL CLIENTE</b>, debe entregar Al MEDIO, el material publicitario para su emisión, entendiéndose que El MEDIO recibe el Spot y los textos específicos destinados a las menciones pertinentes listos para emitir al aire; EL MEDIO se reserva el derecho de revisar la calidad de producción del spot publicitario, incluso puede llegar a modificar en un grado prudente, previo conocimiento y aceptación del cliente.</p>
+																<p><b>EL CLIENTE.-</b> Debe entregar AL MEDIO, el material publicitario para su emisión, entendiéndose que El MEDIO recibe el Spot y los textos específicos destinados a las menciones pertinentes listos para emitir al aire; EL MEDIO se reserva el derecho de revisar la calidad de producción del spot publicitario, incluso puede llegar a modificar en un grado prudente, previo conocimiento y aceptación del cliente.</p>
 
-																<p><b>EL MEDIO.-</b> publicitará de conformidad al HORARIO DE PAUTAJE, de LUNES a VIERNES, con un número de <b id='impactos'>__________________</b> en el programa <b id='programa'>alo</b>, más 2 impactos de bonificación en programación ROTATIVA; diarios respectivamente con menciones de hasta 10 segundos, o por cuñas, pregrabadas como spot publicitario de hasta 35 segundos, además el medio puede hacer uso del beneficio para fines propios de la empresa, o ceder su disponibilidad de cupo a terceros por así convenir a la empresa.</p>
+																<p><b>EL MEDIO.-</b> Publicitará en programación SELECTIVA de conformidad al HORARIO DE PAUTAJE, de LUNES a VIERNES, con un número de <b id='impactos'></b> en el programa <b id='programa'></b>, más <b id='boni'></b> impactos de bonificación; diarios respectivamente con menciones de hasta 10 segundos, o por cuñas, pregrabadas como spot publicitario de hasta 35 segundos, además el medio puede hacer uso del beneficio para fines propios de la empresa, o ceder su disponibilidad de cupo a terceros por así convenir a la empresa.</p>
 
 																<p><b>CUARTA VALOR Y FORMA DE PAGO:</b></p>
 
-																<p>Por la publicidad descrita en el párrafo anterior las partes se comprometen a justificar el convenio con el cruce de FACTURAS MENSUALES valoradas en USD $ 275,00 (DOS CIENTOS SETENTA Y CINCO DÓLARES) más impuestos, que serán cancelados hasta cinco días después de ser entregados la factura o del corte mensual, sin interés de mora.</p>
+																<p>Por la publicidad descrita en el párrafo anterior las partes se comprometen a justificar el convenio con el cruce de FACTURAS MENSUALES valoradas en USD <b id='precio'></b> (DOS CIENTOS SETENTA Y CINCO DÓLARES) más impuestos, que serán cancelados hasta cinco días después de ser entregados la factura o del corte mensual, sin interés de mora.</p>
 
 																<p><b>QUINTA ACLARACIONES.-</b> Ningún contrato puede ser modificado, peor aún dar por terminado por los siguientes motivos:
 																	<ol>
@@ -182,7 +186,7 @@
 																	</ol>
 																</p>
 
-																<p><b>SEXTA PENALIDAD.-</b> si por cualquier motivo de los detallados en la cláusula anterior EL CLIENTE decide dar por terminado el contrato, deberá pagar una penalidad AL MEDIO, correspondiente a tres meses del valor descrito en la cláusula cuarta.</p> 
+																<p><b>SEXTA PENALIDAD.-</b> Si por cualquier motivo de los detallados en la cláusula anterior EL CLIENTE decide dar por terminado el contrato, deberá pagar una penalidad AL MEDIO, correspondiente a tres meses del valor descrito en la cláusula cuarta.</p> 
 
 																<p><b>SÉPTIMA  REPOSICIONES.-</b> En lo referente a la difusión publicitaria, si EL MEDIO se ve obligado a participar en cadenas ordenadas por las Entidades de Control o si existieren cortes de energía eléctrica, o alguna otra causa o caso fortuito, EL MEDIO repondrá la publicidad no transmitida en otros horarios a los habituales.</p>
 
@@ -192,8 +196,7 @@
 
 																<p><b>NOVENA JURISDICCIÓN.-</b>  Las partes señalan como sus domicilios para todas las citaciones y notificaciones relacionadas con el arbitraje, los que constan detallados a continuación:</p>
 
-																<p>Los comparecientes dejan expresa constancia que todo lo expuesto en este  Convenio y ratifican en su contenido, así mismo manifiestan que es de mutua voluntad lo suscriben conjuntamente por duplicado; para constancia firman las partes  en la ciudad de Ibarra, a 04 de mayo de 2016.</p>
-
+																<p>Los comparecientes dejan expresa constancia que todo lo expuesto en este  Convenio y ratifican en su contenido, así mismo manifiestan que es de mutua voluntad lo suscriben conjuntamente por duplicado; para constancia firman las partes  en la ciudad de Ibarra, a <b id = 'fecha_actual'></b>.</p>
 															</div>
 														</div>
 

@@ -1,12 +1,15 @@
 // create the module and name it scotchApp
 var scotchApp = angular.module('scotchApp', ['ngRoute']);
+
 // configure our routes
 scotchApp.config(function($routeProvider) {
+    
     $routeProvider
         // route page initial
         .when('/', {
             templateUrl : 'data/home/app.html',
             controller  : 'mainController',
+            }
         })
         // route paquetes
         .when('/tipo_paquetes', {
@@ -105,9 +108,9 @@ scotchApp.config(function($routeProvider) {
             controller  : 'facturasController',
         })
         // proceso contratos
-        .when('/contratos', {
-            templateUrl : 'data/contratos/app.html',
-            controller  : 'contratosController',
+        .when('/contratos_selectivos', {
+            templateUrl : 'data/contratos_selectivos/app.html',
+            controller  : 'contratos_selectivosController',
         })
 });
 
