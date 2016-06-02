@@ -15,8 +15,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="dist/css/bootstrap_extend.css" />
 		<link rel="stylesheet" href="dist/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="dist/css/animate.min.css" />
+		<link rel="stylesheet" href="dist/css/style.css" />
 
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
@@ -30,7 +31,7 @@
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
-		
+
 		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
 		<link href="dist/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 		
@@ -39,8 +40,6 @@
 		<!-- ace styles -->
 		<link rel="stylesheet" href="dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<script src="dist/js/ace-extra.min.js"></script>
-
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 		<!-- Angular js -->
 		<script src="dist/angular-1.5.0/angular.js"></script>
@@ -69,6 +68,7 @@
   		<script src="data/rol_pagos/app.js"></script>
   		<script src="data/facturas/app.js"></script>
   		<script src="data/contratos_selectivos/app.js"></script>
+  		<script src="data/privilegios/app.js"></script>
   		<script src="data/reportes/app.js"></script>
 	</head>
 
@@ -78,7 +78,7 @@
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
 			<div class="navbar-container" id="navbar-container">
-				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+				<button type="button" class="navbar-toggle menu-toggler pull-left">
 					<span class="sr-only">Toggle sidebar</span>
 
 					<span class="icon-bar"></span>
@@ -110,7 +110,7 @@
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
-							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+							<ul class="dropdown-menu" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 								<li>
 									<a href="">
 										<i class="ace-icon fa fa-cog"></i>
@@ -145,14 +145,14 @@
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar                  responsive">
+			<div id="sidebar" class="sidebar responsive">
 				<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
 
 				<ul class="nav nav-list">
-					<li class="active">
-						<a href="#/">
+					<li ng-class="{active: $route.current.activetab == 'inicio'}">
+						<a href="#/" >
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Inicio </span>
 						</a>
@@ -160,7 +160,20 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li ng-class =	"{'active open': 
+												$route.current.activetab == 'tipo_paquetes' ||
+												$route.current.activetab == 'paquetes' ||
+												$route.current.activetab == 'tipo_programa' ||
+												$route.current.activetab == 'tipo_vendedor' ||
+												$route.current.activetab == 'tipo_contrato' ||
+												$route.current.activetab == 'areas' ||
+												$route.current.activetab == 'cargos' ||
+												$route.current.activetab == 'bancos' ||
+												$route.current.activetab == 'empresa' ||
+												$route.current.activetab == 'clientes' ||
+												$route.current.activetab == 'programas' ||
+												$route.current.activetab == 'vendedores'
+									}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-files-o"></i>
 							<span class="menu-text">
@@ -172,7 +185,16 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li ng-class=	"{'active open': 
+													$route.current.activetab == 'tipo_paquetes' ||
+													$route.current.activetab == 'paquetes' ||
+													$route.current.activetab == 'tipo_programa' ||
+													$route.current.activetab == 'tipo_vendedor' ||
+													$route.current.activetab == 'tipo_contrato' ||
+													$route.current.activetab == 'areas' ||
+													$route.current.activetab == 'cargos' ||
+													$route.current.activetab == 'bancos'
+											}">
 								<a href="" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Generales
@@ -182,7 +204,7 @@
 								<b class="arrow"></b>
 
 								<ul class="submenu">
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'tipo_paquetes'}">
 										<a href="#/tipo_paquetes">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Tipo Paquetes
@@ -191,7 +213,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'paquetes'}">
 										<a href="#/paquetes">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Paquetes
@@ -200,7 +222,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'tipo_programa'}">
 										<a href="#/tipo_programa">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Tipo Programa
@@ -209,7 +231,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'tipo_vendedor'}">
 										<a href="#/tipo_vendedor">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Tipo Vendedor
@@ -218,7 +240,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'tipo_contrato'}">
 										<a href="#/tipo_contrato">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Tipo Contrato
@@ -227,7 +249,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'areas'}">
 										<a href="#/areas">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Areas
@@ -236,7 +258,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'cargos'}">
 										<a href="#/cargos">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Cargos
@@ -245,7 +267,7 @@
 										<b class="arrow"></b>
 									</li>
 
-									<li class="">
+									<li ng-class="{active: $route.current.activetab == 'bancos'}">
 										<a href="#/bancos">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Bancos
@@ -255,7 +277,7 @@
 								</ul>
 							</li>
 
-							<li class="">
+							<li ng-class="{active: $route.current.activetab == 'empresa'}">
 								<a href="#/empresa" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Empresa
@@ -263,7 +285,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li ng-class="{active: $route.current.activetab == 'clientes'}">
 								<a href="#/clientes" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Clientes
@@ -271,7 +293,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li ng-class="{active: $route.current.activetab == 'programas'}">
 								<a href="#/programas" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Programas
@@ -279,7 +301,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li ng-class="{active: $route.current.activetab == 'vendedores'}">
 								<a href="#/vendedores" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Vendedores
@@ -289,7 +311,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_ingresos'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text">
@@ -301,39 +323,27 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="" class="dropdown-toggle">
-									<i class="menu-icon fa fa-user"></i>
-									Ficha de Ingresos
-									<b class="arrow fa fa-angle-down"></b>
+							<li ng-class="{active: $route.current.activetab == 'ficha_ingresos'}">
+								<a href="#/ficha_ingresos">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Ficha Ingreso
 								</a>
-
 								<b class="arrow"></b>
+							</li>
 
-								<ul class="submenu">
-									<li class="">
-										<a href="#/ficha_ingresos">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Ingresar Ficha
-										</a>
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a id="abrir_buscador" style="cursor:pointer; cursor: hand">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Buscar Ficha
-										</a>
-										<b class="arrow"></b>
-									</li>
-								</ul>
+							<li class="">
+								<a id="abrir_buscador" style="cursor:pointer; cursor: hand">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Buscar Ficha
+								</a>
+								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
 					<!-- Fin de Personal oyefm -->
 
 					<!-- inicio de agenda invitados -->
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_invitados'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">
@@ -345,40 +355,28 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
+							<li ng-class =	"{active: $route.current.activetab == 'ficha_invitados'}">
+								<a href="#/ficha_invitados">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Ficha Invitados
+								</a>
+								<b class="arrow"></b>
+							</li>
+
 							<li class="">
-								<a href="" class="dropdown-toggle">
-									<i class="menu-icon fa fa-user"></i>
-									Ficha de Invitados
-									<b class="arrow fa fa-angle-down"></b>
+								<a id="abrir_buscador_invitados" style="cursor:pointer; cursor: hand">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Buscar Invitados
 								</a>
 
 								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="#/ficha_invitados">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Ingresar Invitados
-										</a>
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a id="abrir_buscador_invitados" style="cursor:pointer; cursor: hand">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Buscar Invitados
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
 							</li>
 						</ul>
 					</li>
 					<!-- Fin de agenda Invitados -->
 
 					<!-- inicio de ingreso de programas -->
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_programas'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-folder-open-o"></i>
 							<span class="menu-text">
@@ -390,19 +388,17 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li ng-class =	"{active: $route.current.activetab == 'ficha_programas'}">
 								<a href="#/ficha_programas">
-									<i class="menu-icon fa fa-calendar"></i>
-									Ficha de Programas
-									<i class="menu-icon fa fa-calendar"></i>
+									<i class="menu-icon fa fa-caret-right"></i>
+									Ficha Programas
 								</a>
 							</li>
 
 							<li class="">
 								<a href="#/reportes">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Reportes
-									<i class="menu-icon fa fa-file-archive-o right"></i>
+									Buscar Programas
 								</a>
 
 								<b class="arrow"></b>
@@ -411,7 +407,7 @@
 					</li>
 					<!-- Fin de ingreso de Programas -->
 
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'contratos_selectivos'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file"></i>
 							<span class="menu-text">
@@ -423,39 +419,27 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="" class="dropdown-toggle">
+							<li ng-class =	"{active: $route.current.activetab == 'contratos_selectivos'}">
+								<a href="#/contratos_selectivos">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Ingreso Contratos
-									<b class="arrow fa fa-angle-down"></b>
+									Contrato Selectivo
 								</a>
 
 								<b class="arrow"></b>
+							</li>
 
-								<ul class="submenu">
-									<li class="">
-										<a href="#/contratos_selectivos">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Selectivo
-										</a>
+							<li class="">
+								<a href="#/paquetes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Contrato Rotativo
+								</a>
 
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="#/paquetes">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Rotativo
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
+								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
 
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'facturas'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-pencil-square-o"></i>
 							<span class="menu-text">
@@ -467,15 +451,16 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li ng-class =	"{active: $route.current.activetab == 'facturas'}">
 								<a href="#/facturas">
+									<i class="menu-icon fa fa-caret-right"></i>
 									Ingreso Facturas
 								</a>
 							</li>
 						</ul>
 					</li>
 
-					<li class="">
+					<li ng-class =	"{'active open': $route.current.activetab == 'rol_pagos'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-archive"></i>
 							<span class="menu-text">
@@ -487,8 +472,9 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li ng-class =	"{active: $route.current.activetab == 'rol_pagos'}">
 								<a href="#/rol_pagos">
+									<i class="menu-icon fa fa-caret-right"></i>
 									Ingreso Roles
 								</a>
 							</li>
@@ -549,6 +535,7 @@
 		<script src="dist/js/bootstrap-wysiwyg.min.js"></script>
 		<script src="dist/js/select2.min.js"></script>
 		<script src="dist/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="dist/js/fuelux/fuelux.tree.min.js"></script>
 		<script src="dist/js/x-editable/bootstrap-editable.min.js"></script>
 		<script src="dist/js/x-editable/ace-editable.min.js"></script>
 		<script src="dist/js/jquery.maskedinput.min.js"></script>
@@ -568,5 +555,6 @@
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
+		<script src="dist/js/wow.js"></script>
 	</body>
 </html>

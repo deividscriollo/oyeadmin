@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../dist/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="../dist/css/fontdc.css" />
+		<link rel="stylesheet" href="../dist/css/animate.min.css" />
 		<link rel="stylesheet" href="../dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="../dist/css/ace.min.css" />
 		<link rel="stylesheet" href="../dist/css/ace-rtl.min.css" />
@@ -24,8 +25,8 @@
 			<div class="main-content">
 				<div class="row">
 					<div class="col-sm-10 col-sm-offset-1">
-						<div class="login-container">
-							<div class="center">
+						<div class="login-container ">
+							<div class="center animated bounceInRight">
 								<h1>
 									<li class="fa fa-headphones green"></li>
 									<span class="red">Oye</span>
@@ -35,7 +36,7 @@
 							</div>
 							<div class="space-6"></div>
 							<div class="position-relative">
-								<div id="login-box" class="login-box visible widget-box no-border">
+								<div id="login-box" class="login-box visible widget-box no-border animated bounceInLeft">
 									<div class="widget-body">
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">

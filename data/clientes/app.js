@@ -315,8 +315,8 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 							$('#identificacion').focus();
 						} else {
 							var submit = "btn_gardar";
-				
 							var formulario = $("#form_clientes").serialize();
+							
 							$.ajax({
 						        url: "data/clientes/app.php",
 						        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,

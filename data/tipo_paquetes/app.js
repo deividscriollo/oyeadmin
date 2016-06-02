@@ -1,5 +1,6 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('tipo_paquetesController', function ($scope) {
+angular.module('scotchApp').controller('tipo_paquetesController', function ($scope, $route) {
+	$scope.$route = $route;
 
 	jQuery(function($) {
 		var grid_selector = "#grid-table";

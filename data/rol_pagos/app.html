@@ -29,83 +29,77 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="space"></div>
-					<form class="form-horizontal" name="form_rolpagos" id="form_rolpagos">
-						<div class="tabbable">
-							<ul class="nav nav-tabs padding-16">
-								<li ng-class="{ active: isSet(1) }">
-									<a data-toggle="tab" href ng-click="setTab(1)">
-										<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
-										PERMISOS SALIDA
-									</a>
-								</li>
+					<div class="tabbable">
+						<ul class="nav nav-tabs padding-16">
+							<li ng-class="{ active: isSet(1) }">
+								<a data-toggle="tab" href ng-click="setTab(1)">
+									<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+									ROL DE PAGOS INDIVIDUAL
+								</a>
+							</li>
 
-								<li ng-class="{ active: isSet(2) }">
-									<a data-toggle="tab" href ng-click="setTab(2)">
-										<i class="green ace-icon fa fa-money bigger-125"></i>
-										ADELANTOS
-									</a>
-								</li>
+							<li ng-class="{ active: isSet(2) }">
+								<a data-toggle="tab" href ng-click="setTab(2)">
+									<i class="purple ace-icon fa fa-search bigger-125"></i>
+									CONSULTA ROLES
+								</a>
+							</li>
 
-								<li ng-class="{ active: isSet(3) }">
-									<a data-toggle="tab" href ng-click="setTab(3)">
-										<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
-										ROL DE PAGOS INDIVIDUAL
-									</a>
-								</li>
+							<li ng-class="{ active: isSet(3) }">
+								<a data-toggle="tab" href ng-click="setTab(3)">
+									<i class="green ace-icon fa fa-money bigger-125"></i>
+									ANTICIPOS
+								</a>
+							</li>
 
-								<li ng-class="{ active: isSet(4) }">
-									<a data-toggle="tab" href ng-click="setTab(4)">
-										<i class="purple ace-icon fa fa-search bigger-125"></i>
-										CONSULTA ROLES
-									</a>
-								</li>
-							</ul>
+							<li ng-class="{ active: isSet(4) }">
+								<a data-toggle="tab" href ng-click="setTab(4)">
+									<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+									PERMISOS
+								</a>
+							</li>
+						</ul>
 
-							<div class="tab-content profile-edit-tab-content" >
-								<div ng-show="isSet(1)" style="height:650px">	
-								</div>
-
-								<div ng-show="isSet(2)" style="height:650px">	
-								</div>
-
-								<div ng-show="isSet(3)" style="height:690px">
+						<div class="tab-content profile-edit-tab-content" >
+							<div ng-show="isSet(1)">
+								<form class="form-horizontal" name="form_roles" id="form_roles">
 									<div class="row">
 										&nbsp; &nbsp;
 										<div class="col-sm-12">
 											<div class="col-sm-5">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="codigo">CÓDIGO ROL:</label>
-													<div class="col-sm-8">
-														<input type="text" name="codigo" id="codigo" readonly class="col-xs-12 col-sm-10" />
+													<label class="col-sm-4 control-label no-padding-right" for="codigo">Código Rol:</label>
+													<div class="col-sm-6">
+														<input type="text" name="codigo" id="codigo" readonly class="form-control" />
 														<input type="hidden" name="codigo_general" id="codigo_general" readonly class="col-xs-12 col-sm-10" />
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">EMPLEADO:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">Empleado:</label>
 													<div class="col-sm-8">
-														<select id="select_empleado" name="select_empleado" class="select2" data-placeholder="Empleado...">
+														<select id="select_empleado" name="select_empleado" class="select2" data-placeholder="Empleado rol pagos...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_cargo">CARGO:</label>
-													<div class="col-sm-8">
-														<input type="text" name="cargo" id="cargo" readonly value="" class="col-xs-12 col-sm-10" />
+													<label class="col-sm-4 control-label no-padding-right" for="select_cargo">Cargo:</label>
+													<div class="col-sm-6">
+														<input type="text" name="cargo" id="cargo" readonly value="" class="form-control" />
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="sueldo">SUELDO:</label>
-													<div class="col-sm-8">
-														<input type="text" name="sueldo" id="sueldo" placeholder="" value="0.000" class="col-xs-12 col-sm-10" readonly />
+													<label class="col-sm-4 control-label no-padding-right" for="sueldo">Sueldo:</label>
+													<div class="col-sm-6">
+														<input type="text" name="sueldo" id="sueldo" placeholder="" value="0.000" class="form-control" readonly />
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="txt_mes">MES:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="txt_mes">Fecha Rol:</label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<input type="text" id="txt_mes" name="txt_mes" class="form-control datepicker" />
@@ -119,30 +113,30 @@
 
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="tiempo_horas">HORAS DIARIAS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="tiempo_horas">Horas Diarias:</label>
 													<div class="col-sm-8">
-														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="col-xs-12 col-sm-10"/>
+														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="form-control"/>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="dias_laborados">DÍAS LABORADOS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="dias_laborados">Días Laborados:</label>
 													<div class="col-sm-8">
-														<input type="text" name="dias_laborados" id="dias_laborados" placeholder="" readonly value="30" class="col-xs-12 col-sm-10"/>
+														<input type="text" name="dias_laborados" id="dias_laborados" readonly class="form-control"/>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="extras">HORAS EXTRAS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="extras">Horas Extras:</label>
 													<div class="col-sm-8">
-														<input type="text" name="extras" id="extras" placeholder="" value="" class="col-xs-12 col-sm-10"/>
+														<input type="text" name="extras" id="extras" class="form-control"/>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="no_laborado">DÍAS NO LABORADOS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="no_laborado">Días no Laborados:</label>
 													<div class="col-sm-8">
-														<input type="text" name="no_laborado" id="no_laborado" placeholder="" value="" class="col-xs-12 col-sm-10"/>
+														<input type="text" name="no_laborado" id="no_laborado" class="form-control"/>
 													</div>
 												</div>
 											</div>
@@ -150,6 +144,10 @@
 											<div class="col-sm-2">
 												<div class="form-group">
 													<button class="btn btn-purple btn-sm blue" id="btn_importar" name="btn_importar" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>IMPORTAL EXCEL</button>
+												</div>
+
+												<div class="form-group">
+													<button class="btn btn-purple btn-sm blue" id="btn_adelantos" name="btn_adelantos" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>ADELANTOS</button>
 												</div>
 
 												<div class="form-group">
@@ -169,7 +167,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="sueldo_basico">Sueldo Mes:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="sueldo_basico" name="sueldo_basico" class="" value="0.000"/>
+															<input type="text" id="sueldo_basico" name="sueldo_basico" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -179,17 +177,17 @@
 													<label class="col-sm-4 control-label no-padding-right" for="horas_extras">Horas Extras:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="horas_extras" name="horas_extras" class="" value="0.000"/>
+															<input type="text" id="horas_extras" name="horas_extras" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="comisiones">COMISIONES:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="comisiones">Comisiones:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="comisiones" name="comisiones" class="" value="0.000"/>
+															<input type="text" id="comisiones" name="comisiones" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -199,7 +197,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="decimo_tercero">Décimo Tercero:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="decimo_tercero" name="decimo_tercero" class="" value="0.000"/>
+															<input type="text" id="decimo_tercero" name="decimo_tercero" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -209,7 +207,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="decimo_cuarto">Décimo Cuarto:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="decimo_cuarto" name="decimo_cuarto" class="" value="0.000"/>
+															<input type="text" id="decimo_cuarto" name="decimo_cuarto" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -219,7 +217,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="total_ingresos">TOTAL INGRESOS:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="total_ingresos" name="total_ingresos" class="" value="0.000"/>
+															<input type="text" id="total_ingresos" name="total_ingresos" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -234,7 +232,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="aporte_iess">Aporte al IESS:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="aporte_iess" name="aporte_iess" class="" value="17.300"/>
+															<input type="text" id="aporte_iess" name="aporte_iess" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -244,7 +242,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="pres_quierografarios">Préstamos quirografarios:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="pres_quierografarios" name="pres_quierografarios" class="" value="0.000"/>
+															<input type="text" id="pres_quierografarios" name="pres_quierografarios" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -254,7 +252,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="pres_anticipos">Préstamos y Anticipos:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="pres_anticipos" name="pres_anticipos" class="" value="0.000"/>
+															<input type="text" id="pres_anticipos" name="pres_anticipos" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -264,7 +262,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="atrasos">Atrasos:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="atrasos" name="atrasos" class="" value="0.000"/>
+															<input type="text" id="atrasos" name="atrasos" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -274,7 +272,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="permisos">Permisos:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="permisos" name="permisos" class="" value="0.000"/>
+															<input type="text" id="permisos" name="permisos" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -284,7 +282,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="faltas">Faltas:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="faltas" name="faltas" class="" value="0.000"/>
+															<input type="text" id="faltas" name="faltas" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -294,7 +292,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="total_descuentos">TOTAL DESCUENTOS:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="total_descuentos" name="total_descuentos" class="" value="0.000"/>
+															<input type="text" id="total_descuentos" name="total_descuentos" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -308,7 +306,7 @@
 														<label class="col-sm-4 control-label no-padding-right" for="neto_pagar">NETO A PAGAR:</label>
 														<div class="col-sm-8">
 															<span class="input-icon">
-																<input type="text" id="neto_pagar" name="neto_pagar" class="" value="0.000"/>
+																<input type="text" id="neto_pagar" name="neto_pagar" class="form-control" value="0.000"/>
 																<i class="ace-icon fa fa fa-usd orange"></i>
 															</span>
 														</div>
@@ -316,19 +314,38 @@
 												</div>
 												<div class="col-sm-3"></div>
 											</div>
+
+											<div class="col-sm-12">
+												<div class="clearfix form-actions center">
+													<div class="col-md-offset-3 col-md-6">
+														<button class="btn btn-success" type="button" name="btn_guardar_rol" id="btn_guardar_rol">
+															<i class="ace-icon fa fa-save bigger-110"></i>
+															Guardar Roles
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn btn-success" type="button" name="btn_1" id="btn_1">
+															<i class="ace-icon fa fa-refresh bigger-110"></i>
+															Actualizar
+														</button>
+													</div>
+												</div>
+											</div>
 										</div>	
 									</div>
-								</div>
+								</form>
+							</div>
 
-								<div ng-show="isSet(4)" style="height:650px">
+							<div ng-show="isSet(2)">
+								<form class="form-horizontal" name="form_consultas" id="form_consultas">
 									<div class="row">
 										&nbsp; &nbsp;
 										<div class="col-sm-12">
 											<div class="col-sm-4">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">EMPLEADO:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado1">EMPLEADO:</label>
 													<div class="col-sm-8">
-														<select id="select_empleado2" name="select_empleado2" class="select2" data-placeholder="Empleado...">
+														<select id="select_empleado1" name="select_empleado1" class="select2" data-placeholder="Empleado busqueda rol...">
 															<option value="">&nbsp;</option>
 														</select>
 													</div>
@@ -383,28 +400,320 @@
 											</div>
 										</div>	
 									</div>
-								</div>
+								</form>
+							</div>
+
+							<div ng-show="isSet(3)">
+								<form class="form-horizontal" name="form_anticipos" id="form_anticipos">
+									<div class="row">
+										&nbsp; &nbsp;
+										<div class="col-sm-12">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Serie Anticipo:</label>
+													<div class="col-sm-6">
+														<input type="text" name="serie_anticipo" id="serie_anticipo" class="form-control" />
+														<input type="hidden" name="id_anticipo" id="id_anticipo" readonly class="col-xs-12 col-sm-10" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha Anticipo:</label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<input type="text" id="fecha_anticipo" name="fecha_anticipo" class="form-control datepicker" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cheque N°:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="cheque_numero" id="cheque_numero" class="form-control" />
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado2">Empleado:</label>
+													<div class="col-sm-8">
+														<select id="select_empleado2" name="select_empleado2" class="select2" data-placeholder="Empleado anticipos...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Meses Anticipo:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="meses_anticipo" id="meses_anticipo" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_banco">Banco:</label>
+													<div class="col-sm-6">
+														<select id="select_banco" name="select_banco" class="select2" data-placeholder="Banco...">
+															<option value="">&nbsp;</option>	
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Monto Anticipo:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="monto_anticipo" id="monto_anticipo" value="0.000" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_forma_pago">Forma Pago:</label>
+													<div class="col-sm-6">
+														<select id="select_forma_pago" name="select_forma_pago" class="select2" data-placeholder="Seleccione forma pago...">
+															<option value="">&nbsp;</option>
+															<option value="EFECTIVO">EFECTIVO</option>
+															<option value="CHEQUE">CHEQUE</option>
+															<option value="TARJETA">TARJETA</option>
+															<option value="DEPÓSITO">DEPÓSITO</option>
+															<option value="TRANSFERENCIA">TRANSFERENCIA</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="clearfix form-actions center">
+												<div class="col-md-offset-3 col-md-6">
+													<button class="btn btn-success" type="button" name="btn_2" id="btn_guardar_anticipo">
+														<i class="ace-icon fa fa-save bigger-110"></i>
+														Guardar
+													</button>
+
+													&nbsp; &nbsp;
+													<button class="btn btn-success" type="button" name="btn_3" id="btn_buscar_anticipo">
+														<i class="ace-icon fa fa-search bigger-110"></i>
+														Buscar
+													</button>
+
+													&nbsp; &nbsp;
+													<button class="btn btn-success" type="button" name="btn_3" id="btn_anular_anticipo">
+														<i class="ace-icon fa fa-refresh bigger-110"></i>
+														Anular
+													</button>
+
+													&nbsp; &nbsp;
+													<button class="btn btn-success" type="button" name="btn_3" id="btn_vizualizar_anticipo">
+														<i class="ace-icon fa fa-refresh bigger-110"></i>
+														Visualizar
+													</button>
+
+													&nbsp; &nbsp;
+													<button class="btn btn-success" type="button" name="btn_3" id="btn_3">
+														<i class="ace-icon fa fa-refresh bigger-110"></i>
+														Actualizar
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div ng-show="isSet(4)">
+								<form class="form-horizontal" name="form_permisos" id="form_permisos">
+									<div class="row">
+										&nbsp; &nbsp;
+										<div class="col-sm-12">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Serie Permiso:</label>
+													<div class="col-sm-6">
+														<input type="text" name="serie_anticipo" id="serie_anticipo" class="form-control" />
+														<input type="hidden" name="id_permiso" id="id_permiso" readonly class="col-xs-12 col-sm-10" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado3">Empleado:</label>
+													<div class="col-sm-8">
+														<select id="select_empleado3" name="select_empleado3" class="select2" data-placeholder="Empleado permisos...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Días:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="dias" id="dias" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Hora de Retorno:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="hora_retorno" id="hora_retorno" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Lugar:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="lugar" id="lugar" class="form-control" />
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Ciudad:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="ciudad" id="ciudad" value="" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_empleado4">Dirigido:</label>
+													<div class="col-sm-8">
+														<select id="select_empleado4" name="select_empleado4" class="select2" data-placeholder="Permiso dirigido...">
+															<option value="">&nbsp;</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Hora de Salida:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="hora_salida" id="hora_salida" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Tiempo de Salida:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="tiempo_salida" id="tiempo_salida" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_parte">Parte de:</label>
+													<div class="col-sm-6">
+														<select id="select_parte" name="select_parte" class="select2" data-placeholder="Por parte de...">
+															<option value="">&nbsp;</option>
+															<option value="COMISIÓN OFICIAL">COMISIÓN OFICIAL</option>
+															<option value="ASUNTO PARTICULAR">ASUNTO PARTICULAR</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha Permiso:</label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<input type="text" id="fecha_permiso" name="fecha_permiso" class="form-control datepicker" />
+															<span class="input-group-addon">
+																<i class="ace-icon fa fa-calendar"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Horas:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="horas" id="horas" class="form-control" />
+														</div>
+													</div>
+												</div>
+												
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">¿Regresó?</label>
+													<div class="col-xs-12 col-sm-7">
+														<div class="clearfix">
+															<label>
+																<input name="regreso" id="regreso" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+																<span class="lbl"></span>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Asunto:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="asunto" id="asunto" class="form-control" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_motivo_cargos">Cargos a:</label>
+													<div class="col-sm-6">
+														<select id="select_motivo_cargos" name="select_motivo_cargos" class="select2" data-placeholder="Con cargos a...">
+															<option value="">&nbsp;</option>
+															<option value="DESCUENTOS">DESCUENTOS</option>
+															<option value="VACACIONES">VACACIONES</option>
+															<option value="NINGUNO">NINGUNO</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="clearfix form-actions center">
+												<div class="col-md-offset-3 col-md-6">
+													<button class="btn btn-success" type="button" name="btn_4" id="btn_4">
+														<i class="ace-icon fa fa-save bigger-110"></i>
+														Guardar Permisos
+													</button>
+
+													&nbsp; &nbsp;
+													<button class="btn btn-success" type="button" name="btn_5" id="btn_5">
+														<i class="ace-icon fa fa-refresh bigger-110"></i>
+														Actualizar
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</form>
 							</div>
 						</div>
-
-						<div class="clearfix form-actions center">
-							<div class="col-md-offset-3 col-md-6">
-								<button class="btn btn-success" type="button" name="btn_0" id="btn_0">
-									<i class="ace-icon fa fa-save bigger-110"></i>
-									Guardar
-								</button>
-
-								&nbsp; &nbsp;
-								<button class="btn btn-success" type="button" name="btn_1" id="btn_1">
-									<i class="ace-icon fa fa-refresh bigger-110"></i>
-									Actualizar
-								</button>
-							</div>
-						</div>
-					</form>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.page-content -->
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>	
 

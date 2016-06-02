@@ -5,12 +5,11 @@
 	include_once('../../admin/class.php');
 	$class = new constante();
 	error_reporting(0);
-
+	$fecha = $class->fecha_hora();
+	
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id_rol_pagos = $class->idz();
 		$id_detalle_rol_pagos = $class->idz();
-		$fecha = $class->fecha_hora();
-
 		$data = "";
 
 		$resp = $class->consulta("INSERT INTO rol_pagos.rol_pagos VALUES  (			'$id_rol_pagos',
@@ -47,12 +46,32 @@
 		echo $data;
 	}
 
+	if (isset($_POST['btn_guardar_anticipo']) == "btn_guardar_anticipo") {
+		$id_anticipo = $class->idz();
+		$data = "";
+
+		$resp = $class->consulta("INSERT INTO rol_pagos.anticipos VALUES  (			'$id_anticipo',
+																					'1',
+																					'$_POST[serie_anticipo]',
+																					'$_POST[select_empleado2]',
+																					'$_POST[monto_anticipo]',
+																					'$_POST[fecha_anticipo]',
+																					'$_POST[meses_anticipo]',
+																					'$_POST[select_forma_pago]',
+																					'$_POST[cheque_numero]',
+																					'$_POST[select_banco]',
+																					'1', 
+																					'$fecha')");
+
+		$data = $id_anticipo;
+		echo $data;
+	}
+
 
 
 
 	//LLena combo empleados
 	if (isset($_POST['llenar_empleado'])) {
-		$id = $class->idz();
 		$resultado = $class->consulta("SELECT id, nombres, apellidos FROM corporativo.personal WHERE estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
@@ -111,6 +130,16 @@
 	}
 	// fin
 
+	// cargar ultima codigo anticipos
+	if (isset($_POST['cargar_codigo_anticipo'])) {
+		$resultado = $class->consulta("SELECT max(serie_anticipo) FROM rol_pagos.anticipos GROUP BY id ORDER BY id asc");
+		while ($row = $class->fetch_array($resultado)) {
+			$data = array('serie_anticipo' => $row[0]);
+		}
+		print_r(json_encode($data));
+	}
+	// fin
+
 	// cargar ultima codigo rol pagos individual
 	if (isset($_POST['cargar_codigo_secuencia'])) {
 		$resultado = $class->consulta("SELECT max(codigo) FROM rol_pagos.rol_pagos WHERE id_personal = '".$_POST['id']."' GROUP BY id ORDER BY id asc");
@@ -121,5 +150,23 @@
 	}
 	// fin
 
+	// cargar ultima codigo rol pagos individual
+	if (isset($_POST['cargar_codigo_rol'])) {
+		$resultado = $class->consulta("SELECT * FROM corporativo.codigo_rol WHERE id_personal = '".$_POST['id']."' GROUP BY id ORDER BY id asc");
+		while ($row = $class->fetch_array($resultado)) {
+			$data = array('codigo' => $row['codigo']);
+		}
+		print_r(json_encode($data));
+	}
+	// fin
 
+	//LLena combo bancos
+	if (isset($_POST['llenar_bancos'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.bancos WHERE estado='1';");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+		}
+	}
 ?>

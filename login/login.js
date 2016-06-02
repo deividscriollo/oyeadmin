@@ -1,9 +1,9 @@
 
 function redireccionar() {
-setTimeout("location.href='../'", 3000);	
+setTimeout("location.href='../'", 2000);	
 }
 
-$(function(){
+$(function() {
 // validacion de formulario
 	$('#form_proceso').validate({
 		errorElement: 'div',

@@ -28,19 +28,32 @@
     if ($start < 0)
         $start = 0;
     
-    if($_GET['id_personal'] == 'Todos') {
+    if($_GET['id_personal'] != '') {
         if ($search == 'false') {
-            $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P where R.id_personal = P.id and R.id_personal = '".$_GET['id_personal']."' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id_personal = P.id AND R.id_personal = '".$_GET['id_personal']."' ORDER BY $sidx $sord offset $start limit $limit";
         } else {
             $campo = $_GET['searchField'];
           
             if ($_GET['searchOper'] == 'eq') {
-                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P where R.id_personal = P.id and R.id_personal = '".$_GET['id_personal']."' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id_personal = P.id AND R.id_personal = '".$_GET['id_personal']."' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
             }         
             if ($_GET['searchOper'] == 'cn') {
-                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P where R.id_personal = P.id and R.id_personal = '".$_GET['id_personal']."' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id_personal = P.id AND R.id_personal = '".$_GET['id_personal']."' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
             }
         }   
+    } else {
+        if ($search == 'false') {
+            $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, rol_pagos.detalle_rol_pagos D, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id = D.id_rol_pagos AND R.id_personal = P.id ORDER BY $sidx $sord offset $start limit $limit";
+        } else {
+            $campo = $_GET['searchField'];
+          
+            if ($_GET['searchOper'] == 'eq') {
+                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, rol_pagos.detalle_rol_pagos D, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id = D.id_rol_pagos AND R.id_personal = P.id AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+            }         
+            if ($_GET['searchOper'] == 'cn') {
+                $SQL = "SELECT R.id, R.codigo, P.cedula_identificacion, P.nombres, P.apellidos, P.direccion, R.fecha, R.neto_pagar FROM rol_pagos.rol_pagos R, rol_pagos.detalle_rol_pagos D, corporativo.personal P WHERE R.fecha BETWEEN '".$_GET['fecha_inicio']."' AND '".$_GET['fecha_fin']."' AND R.id = D.id_rol_pagos AND R.id_personal = P.id AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+            }
+        } 
     }
       
 
