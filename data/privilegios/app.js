@@ -28,6 +28,10 @@ angular.module('scotchApp').controller('privilegiosController', function ($scope
 			loadingHTML : '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>'
 		});
 
+		$('#tree1').on("click", function (evt, data) {
+	      	console.log("selected items: ", $('#tree1').tree('selectedItems'));
+	    });
+
 		function initiateDemoData(){
 			var tree_data = {
 				
