@@ -1,4 +1,4 @@
-angular.module('scotchApp').controller('clientesController', function ($scope) {
+angular.module('scotchApp').controller('clientesController', function ($scope, $location) {
 
 	jQuery(function($) {	
 		$.fn.editable.defaults.mode = 'inline';
@@ -257,7 +257,9 @@ angular.module('scotchApp').controller('clientesController', function ($scope) {
 	// recargar formulario
 	function redireccionar() {
 		setTimeout(function() {
-		    location.reload(true);
+		    $('#form_clientes').each(function(){
+			  this.reset();
+			});
 		}, 1000);
 	}
 	// fin

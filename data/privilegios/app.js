@@ -113,5 +113,19 @@ angular.module('scotchApp').controller('privilegiosController', function ($scope
 			
 			return {'dataSource1': dataSource1}
 		}
+
+		// inicio de procesos
+			llenar_select_usuarios()
+		// llenar select usuario
+			function llenar_select_usuarios() {
+				$.ajax({
+					url: 'data/privilegios/app.php',
+					type: 'post',
+					data: {llenar_usuarios:'llenar_usuarios'},
+					success: function (data) {
+						$('#select_usuario').html(data);
+					}
+				});
+			}
 	});
 });

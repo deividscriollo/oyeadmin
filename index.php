@@ -104,7 +104,7 @@
 								<img class="nav-user-photo" src="dist/avatars/user.jpg" alt="" />
 								<span class="user-info">
 									<small>Bienvenido,</small>
-									<?php echo $_SESSION['Nombre_usuario']; ?>
+									<?php  print_r($_SESSION['user']['name']); ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>

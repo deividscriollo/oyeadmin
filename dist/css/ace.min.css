@@ -1368,7 +1368,7 @@ pre.prettyprint {
     -webkit-box-shadow: none;
     box-shadow: none;
     min-height: 45px;
-    background: #87B87F
+    background: url(../images/patronbanner.png);
 }
 
 .navbar .navbar-text,

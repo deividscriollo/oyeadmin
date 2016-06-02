@@ -77,4 +77,14 @@
 		}
 	}
 	// fin
+	//LLena combo cargos
+	if (isset($_POST['llenar_usuarios'])) {
+		$id = $class->idz();
+		$resultado = $class->consulta("SELECT * FROM usuario WHERE ESTADO='1' order by id asc");
+		print'<option value="">&nbsp;</option>';
+		while ($row=$class->fetch_array($resultado)) {
+			print '<option value="'.$row['id'].'">'.$row['nombre'].' '.$row['apellido'].'</option>';
+		}
+	}
+	// fin
 ?>

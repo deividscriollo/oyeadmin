@@ -5,7 +5,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
@@ -62,7 +62,7 @@
 													<div class="space"></div>
 													
 													<div class="clearfix">
-														<button type="submit" id"btn_ingresar" name="btn_ingresar" class="width-40 pull-right btn btn-sm btn-success">
+														<button type="submit" id="btn_ingresar" name="btn_ingresar" class="width-40 pull-right btn btn-sm btn-success">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Ingresar</span>
 														</button>

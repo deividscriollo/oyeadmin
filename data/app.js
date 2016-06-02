@@ -1,8 +1,8 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngRoute']);
+var dcapp = angular.module('scotchApp', ['ngRoute']);
 
 // configure our routes
-scotchApp.config(function($routeProvider) {
+dcapp.config(function($routeProvider) {
     
     $routeProvider
         // route page initial
@@ -141,6 +141,65 @@ scotchApp.config(function($routeProvider) {
         })
 });
 
+dcapp.factory('Auth', function($location){
+    var user;
+    return{
+        setUser : function(aUser){
+            user = aUser;
+        },
+        isLoggedIn : function(){
+            var ruta = $location.path();
+            var accesos = [ '',
+                            '/',
+                            '/inicio',
+                            '/tipo_paquetes',
+                            '/paquetes',
+                            '/tipo_programa',
+                            '/tipo_vendedor',
+                            '/tipo_contrato',
+                            '/areas',
+                            '/cargos',
+                            '/bancos',
+                            '/empresa',
+                            // '/clientes',
+                            '/programas',
+                            '/login',
+                            '/reportes',
+                            '/ficha_invitados',
+                            '/ingresos_princi',
+                            '/ficha_programas',
+                            '/ficha_ingresos',
+                            '/rol_pagos',
+                            '/contratos_selectivos',
+                            '/facturas',
+                            '/privilegios'];
+                            console.log(ruta);
+            var a = accesos.lastIndexOf(ruta);
+            if (a<0) {
+                return false;    
+            }else{
+                return true;
+            }
+            
+        }
+    }
+});
 
 
-    
+dcapp.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+        var rutablock = $location.path();
+        if (!Auth.isLoggedIn()) {
+            console.log('denegado');
+            event.preventDefault();
+            // $location.path('/inicio');
+            alert('Lo Sentimos No ');
+        }
+        else {
+            
+            // console.log('ok');
+            // $location.path('/home');
+
+        }
+    });
+}]);
