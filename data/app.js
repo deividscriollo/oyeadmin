@@ -164,8 +164,6 @@ dcapp.factory('Auth', function($location){
             var accesos = [ '',
                             '/',
                             '/inicio',
-                            '/usuarios',
-                            '/perfiles',
                             '/tipo_paquetes',
                             '/paquetes',
                             '/tipo_programa',
@@ -186,6 +184,8 @@ dcapp.factory('Auth', function($location){
                             '/rol_pagos',
                             '/contratos_selectivos',
                             '/facturas',
+                            '/usuarios',
+                            '/perfiles',
                             '/privilegios'];
                             console.log(ruta);
             var a = accesos.lastIndexOf(ruta);
