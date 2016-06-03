@@ -1,6 +1,9 @@
-angular.module('scotchApp').controller('usuariosController', function ($scope) {
+angular.module('scotchApp').controller('usuariosController', function ($scope, $route) {
+	
+	$scope.$route = $route;
 
 	jQuery(function($) {
+		$('[data-toggle="tooltip"]').tooltip(); 
 		// mascaras input
 		$('#telefono1').mask('(999) 999-999');
 		$('#telefono2').mask('(999) 999-9999');
@@ -202,6 +205,10 @@ angular.module('scotchApp').controller('usuariosController', function ($scope) {
 			location.reload(true);
 		});
 		// fin
+
+		$('#btn_2').click(function() {
+			$('#myModal').modal('show');
+		});
 
 		// modificar formulario
 		$('#btn_3').click(function() {

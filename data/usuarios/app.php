@@ -3,7 +3,6 @@
         session_start();        
     }
 	include_once('../../admin/class.php');
-	include_once('../funciones_generales.php');
 	$class = new constante();
 	error_reporting(0);
 	
@@ -24,6 +23,7 @@
 																		'$_POST[usuario]',
 																		'$contrasenia',
 																		'$_POST[select_cargo]',
+																		'defaul.jpg',
 																		'$_POST[observaciones]',
 																		'1', 
 																		'$fecha');");	
