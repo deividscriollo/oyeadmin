@@ -50,9 +50,6 @@
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
   		<script src="data/home/app.js"></script>
-  		<script src="data/usuarios/app.js"></script>
-  		<script src="data/perfiles/app.js"></script>
-  		<script src="data/privilegios/app.js"></script>
   		<script src="data/tipo_paquetes/app.js"></script>
   		<script src="data/paquetes/app.js"></script>
   		<script src="data/tipo_programa/app.js"></script>
@@ -72,6 +69,9 @@
   		<script src="data/facturas/app.js"></script>
   		<script src="data/contratos_selectivos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
+  		<script src="data/usuarios/app.js"></script>
+  		<script src="data/perfiles/app.js"></script>
+  		<script src="data/privilegios/app.js"></script>
 	</head>
 
 	<body ng-controller="mainController" class="no-skin">
@@ -161,50 +161,6 @@
 
 						<b class="arrow"></b>
 					</li>
-
-					<!-- inicio de agenda invitados -->
-					<li ng-class =	"{'active open': 
-												$route.current.activetab == 'usuarios' ||
-												$route.current.activetab == 'perfiles' ||
-												$route.current.activetab == 'privilegios'
-									}">
-						<a href="" class="dropdown-toggle">
-							<i class="menu-icon fa fa-user"></i>
-							<span class="menu-text">
-								Usuarios
-							</span>
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li ng-class =	"{active: $route.current.activetab == 'usuarios'}">
-								<a href="#/usuarios">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Nuevo Usuario
-								</a>
-								<b class="arrow"></b>
-							</li>
-
-							<li ng-class =	"{active: $route.current.activetab == 'perfiles'}">
-								<a href="#/perfiles">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Perfiles
-								</a>
-								<b class="arrow"></b>
-							</li>
-
-							<li ng-class =	"{active: $route.current.activetab == 'privilegios'}">
-								<a href="#/privilegios">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Privilegios
-								</a>
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-					<!-- Fin de agenda Invitados -->
 
 					<li ng-class =	"{'active open': 
 												$route.current.activetab == 'tipo_paquetes' ||
@@ -526,6 +482,50 @@
 							</li>
 						</ul>
 					</li>
+
+					<!-- inicio de agenda invitados -->
+					<li ng-class =	"{'active open': 
+												$route.current.activetab == 'usuarios' ||
+												$route.current.activetab == 'perfiles' ||
+												$route.current.activetab == 'privilegios'
+									}">
+						<a href="" class="dropdown-toggle">
+							<i class="menu-icon fa fa-user"></i>
+							<span class="menu-text">
+								Usuarios
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li ng-class =	"{active: $route.current.activetab == 'usuarios'}">
+								<a href="#/usuarios">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Nuevo Usuario
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class =	"{active: $route.current.activetab == 'perfiles'}">
+								<a href="#/perfiles">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Perfiles
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class =	"{active: $route.current.activetab == 'privilegios'}">
+								<a href="#/privilegios">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Privilegios
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<!-- Fin de agenda Invitados -->
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

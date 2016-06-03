@@ -11,24 +11,6 @@ dcapp.config(function($routeProvider) {
             controller  : 'mainController',
             activetab: 'inicio'
         })
-        // route usuarios
-        .when('/usuarios', {
-            templateUrl : 'data/usuarios/app.html',
-            controller  : 'usuariosController',
-            activetab: 'usuarios'
-        })
-        // route paquetes
-        .when('/perfiles', {
-            templateUrl : 'data/perfiles/app.html',
-            controller  : 'perfilesController',
-            activetab: 'perfiles'
-        })
-        // proceso privilegios
-        .when('/privilegios', {
-            templateUrl : 'data/privilegios/app.html',
-            controller  : 'privilegiosController',
-            activetab: 'privilegios'
-        })
         // route paquetes
         .when('/tipo_paquetes', {
             templateUrl : 'data/tipo_paquetes/app.html',
@@ -150,6 +132,24 @@ dcapp.config(function($routeProvider) {
             templateUrl : 'data/facturas/app.html',
             controller  : 'facturasController',
             activetab: 'facturas'
+        })
+        // route usuarios
+        .when('/usuarios', {
+            templateUrl : 'data/usuarios/app.html',
+            controller  : 'usuariosController',
+            activetab: 'usuarios'
+        })
+        // route paquetes
+        .when('/perfiles', {
+            templateUrl : 'data/perfiles/app.html',
+            controller  : 'perfilesController',
+            activetab: 'perfiles'
+        })
+        // proceso privilegios
+        .when('/privilegios', {
+            templateUrl : 'data/privilegios/app.html',
+            controller  : 'privilegiosController',
+            activetab: 'privilegios'
         })
 });
 
