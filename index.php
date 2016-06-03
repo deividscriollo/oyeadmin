@@ -3,7 +3,6 @@
 	if(!$_SESSION) {
 		header('Location: login/');
 	}
-	// include('data/menu.php');
 ?> 
 <!DOCTYPE html>
 <html ng-app="scotchApp" lang="es">
@@ -60,14 +59,15 @@
   		<script src="data/bancos/app.js"></script>
   		<script src="data/empresa/app.js"></script>
   		<script src="data/clientes/app.js"></script>
+  		<script src="data/programas/app.js"></script>
+  		<script src="data/vendedores/app.js"></script>
   		<script src="data/ficha_ingresos/app.js"></script>
   		<script src="data/ficha_programas/app.js"></script>
-  		<script src="data/programas/app.js"></script>
   		<script src="data/ficha_invitados/app.js"></script>
-  		<script src="data/ingresos_princi/app.js"></script>
-  		<script src="data/rol_pagos/app.js"></script>
-  		<script src="data/facturas/app.js"></script>
   		<script src="data/contratos_selectivos/app.js"></script>
+  		<script src="data/contratos_rotativos/app.js"></script>
+  		<script src="data/facturas/app.js"></script>
+  		<script src="data/rol_pagos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
   		<script src="data/usuarios/app.js"></script>
   		<script src="data/perfiles/app.js"></script>
@@ -139,7 +139,7 @@
 						</li>
 					</ul>
 				</div>
-			</div><!-- /.navbar-container -->
+			</div>
 		</div>
 
 		<div class="main-container" id="main-container">
@@ -342,9 +342,7 @@
 							</li>
 						</ul>
 					</li>
-					<!-- Fin de Personal oyefm -->
 
-					<!-- inicio de agenda invitados -->
 					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_invitados'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
@@ -375,9 +373,7 @@
 							</li>
 						</ul>
 					</li>
-					<!-- Fin de agenda Invitados -->
 
-					<!-- inicio de ingreso de programas -->
 					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_programas'}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-folder-open-o"></i>
@@ -407,9 +403,11 @@
 							</li>
 						</ul>
 					</li>
-					<!-- Fin de ingreso de Programas -->
 
-					<li ng-class =	"{'active open': $route.current.activetab == 'contratos_selectivos'}">
+					<li ng-class=	"{'active open': 
+													$route.current.activetab == 'contratos_selectivos' ||
+													$route.current.activetab == 'contratos_rotativos'
+									}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file"></i>
 							<span class="menu-text">
@@ -430,8 +428,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="#/paquetes">
+							<li ng-class =	"{active: $route.current.activetab == 'contratos_rotativos'}">
+								<a href="#/contratos_rotativos">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Contrato Rotativo
 								</a>
@@ -483,7 +481,6 @@
 						</ul>
 					</li>
 
-					<!-- inicio de agenda invitados -->
 					<li ng-class =	"{'active open': 
 												$route.current.activetab == 'usuarios' ||
 												$route.current.activetab == 'perfiles' ||
@@ -525,8 +522,7 @@
 							</li>
 						</ul>
 					</li>
-					<!-- Fin de agenda Invitados -->
-				</ul><!-- /.nav-list -->
+				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

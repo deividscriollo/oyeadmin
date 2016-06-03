@@ -23,16 +23,14 @@ angular.module('scotchApp').controller('perfilesController', function ($scope, $
 	    });
 
 	    jQuery(grid_selector).jqGrid({
-	        url: 'data/cargos/xml_cargos.php',
+	        url: 'data/perfiles/xml_perfiles.php',
 	        autoencode: false,
 	        datatype: "xml",
 			height: 330,
-			colNames:['ID','CARGO','PRINCIPAL','OBSERVACIONES','FECHA CREACIÓN'],
+			colNames:['ID','PERFIL','FECHA CREACIÓN'],
 			colModel:[
 				{name:'id',index:'id', frozen:true,align:'left',search:false,editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
 				{name:'nombre_cargo',index:'nombre_cargo',width:150, editable:true, editoptions:{size:"20", maxlength:"30"}, editrules: {required: true}},
-				{name:'principal',index:'principal', width:60, editable: true, search:false, edittype:"checkbox",editoptions: {value:"Si:No"}},
-	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
 	            {name:'fecha_creacion',index:'fecha_creacion', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}}
 			],
 	        rownumbers: true,
@@ -54,8 +52,8 @@ angular.module('scotchApp').controller('perfilesController', function ($scope, $
 	                enableTooltips(table);
 	            }, 0);
 	        },
-	        editurl: "data/cargos/app.php",
-	        caption: "LISTA FUNCIONES / CARGOS"
+	        editurl: "data/perfiles/app.php",
+	        caption: "LISTA PERFILES"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 

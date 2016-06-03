@@ -3,7 +3,6 @@ var dcapp = angular.module('scotchApp', ['ngRoute']);
 
 // configure our routes
 dcapp.config(function($routeProvider) {
-    
     $routeProvider
         // route page initial
         .when('/', {
@@ -11,7 +10,7 @@ dcapp.config(function($routeProvider) {
             controller  : 'mainController',
             activetab: 'inicio'
         })
-        // route paquetes
+        // route tipo paquetes
         .when('/tipo_paquetes', {
             templateUrl : 'data/tipo_paquetes/app.html',
             controller  : 'tipo_paquetesController',
@@ -23,19 +22,19 @@ dcapp.config(function($routeProvider) {
             controller  : 'paquetesController',
             activetab: 'paquetes'
         })
-        // route tipo programa
+        // route tipo programas
         .when('/tipo_programa', {
             templateUrl : 'data/tipo_programa/app.html',
             controller  : 'tipo_programaController',
             activetab: 'tipo_programa'
         })
-        // route tipo vendedor
+        // route tipo vendedores
         .when('/tipo_vendedor', {
             templateUrl : 'data/tipo_vendedor/app.html',
             controller  : 'tipo_vendedoresController',
             activetab: 'tipo_vendedor'
         })
-        // route tipo vendedor
+        // route tipo contrato
         .when('/tipo_contrato', {
             templateUrl : 'data/tipo_contrato/app.html',
             controller  : 'tipo_contratoController',
@@ -72,47 +71,41 @@ dcapp.config(function($routeProvider) {
             controller  : 'clientesController',
             activetab: 'clientes'
         })
-        // route para los programas
+        // route vendedores
+        .when('/vendedores', {
+            templateUrl : 'data/vendedores/app.html',
+            controller  : 'vendedoresController',
+            activetab: 'vendedores'
+        })
+        // route vendedores
         .when('/programas', {
             templateUrl : 'data/programas/app.html',
             controller  : 'programasController',
             activetab: 'programas'
         })
-          // route para el login
+          // route login
         .when('/login', {
             templateUrl : 'data/login/app.html',
             controller  : 'loginController',
             activetab: 'login'
         })
-        // proceso reportes
-        .when('/reportes', {
-            templateUrl : 'data/reportes/app.html',
-            controller  : 'reportesController',
-            activetab: 'reportes'
+        // proceso ficha ingresos
+        .when('/ficha_ingresos', {
+            templateUrl : 'data/ficha_ingresos/app.html',
+            controller  : 'fichaingresosController',
+            activetab: 'ficha_ingresos'
         })
-        // proceso prueba
+        // proceso ficha invitados
         .when('/ficha_invitados', {
             templateUrl : 'data/ficha_invitados/app.html',
             controller  : 'invitadosController',
             activetab: 'ficha_invitados'
         })
-        // proceso ingresos principales
-        .when('/ingresos_princi', {
-            templateUrl : 'data/ingresos_princi/app.html',
-            controller  : 'ingresos_princiController',
-            activetab: 'ingresos_princi'
-        })
-        // proceso ingreso ficha programas
+        // proceso ficha programas
         .when('/ficha_programas', {
             templateUrl : 'data/ficha_programas/app.html',
             controller  : 'ficha_programasController',
             activetab: 'ficha_programas'
-        })
-        // proceso Personal de Trabajo
-        .when('/ficha_ingresos', {
-            templateUrl : 'data/ficha_ingresos/app.html',
-            controller  : 'fichaingresosController',
-            activetab: 'ficha_ingresos'
         })
         // proceso roles de pago
         .when('/rol_pagos', {
@@ -120,12 +113,17 @@ dcapp.config(function($routeProvider) {
             controller  : 'rolpagosController',
             activetab: 'rol_pagos'
         })
-        
-        // proceso contratos
+        // proceso contratos selectivos
         .when('/contratos_selectivos', {
             templateUrl : 'data/contratos_selectivos/app.html',
             controller  : 'contratos_selectivosController',
             activetab: 'contratos_selectivos'
+        })
+        // proceso contratos rotativos
+        .when('/contratos_rotativos', {
+            templateUrl : 'data/contratos_rotativos/app.html',
+            controller  : 'contratos_rotativosController',
+            activetab: 'contratos_rotativos'
         })
         // proceso facturas
         .when('/facturas', {
@@ -139,7 +137,7 @@ dcapp.config(function($routeProvider) {
             controller  : 'usuariosController',
             activetab: 'usuarios'
         })
-        // route paquetes
+        // route perfiles
         .when('/perfiles', {
             templateUrl : 'data/perfiles/app.html',
             controller  : 'perfilesController',
@@ -175,15 +173,17 @@ dcapp.factory('Auth', function($location){
                             '/empresa',
                             // '/clientes',
                             '/programas',
+                            '/vendedores',
                             '/login',
                             '/reportes',
                             '/ficha_invitados',
                             '/ingresos_princi',
                             '/ficha_programas',
                             '/ficha_ingresos',
-                            '/rol_pagos',
                             '/contratos_selectivos',
+                            '/contratos_rotativos',
                             '/facturas',
+                            '/rol_pagos',
                             '/usuarios',
                             '/perfiles',
                             '/privilegios'];

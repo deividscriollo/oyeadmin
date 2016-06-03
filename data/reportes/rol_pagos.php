@@ -288,7 +288,7 @@ function Header() {
     $this->SetFont('Arial','B',8);
     $this->Text(13, 130, utf8_decode('REALIZADO POR:'), 1, 'L');
     $this->SetFont('Arial','',8);
-    $this->Text(39, 130, utf8_decode($_SESSION['Nombre_usuario']),1,'L');
+    $this->Text(39, 130, utf8_decode($_SESSION['user']['name']),1,'L');
     $this->Text(160, 140, utf8_decode('RECIBÍ CONFORME'), 1, 'L');
     $this->Text(163, 143, utf8_decode('C.I: '.$cedula), 1, 'L');
 

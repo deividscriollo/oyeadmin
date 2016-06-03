@@ -1,7 +1,6 @@
-angular.module('scotchApp').controller('clientesController', function ($scope) {
+angular.module('scotchApp').controller('vendedoresController', function ($scope) {
 
 	jQuery(function($) {	
-
 		$.fn.editable.defaults.mode = 'inline';
 		$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
 	    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+

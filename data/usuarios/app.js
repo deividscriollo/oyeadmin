@@ -186,7 +186,7 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 								text: 'Registro Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
 								time: 1000				
 							});
-							redireccionar();
+							// redireccionar();
 				    	}              
 			        },
 			        error: function (xhr, status, errorThrown) {
@@ -271,21 +271,20 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 		    jQuery(grid_selector).jqGrid({	        
 		        datatype: "xml",
 		        url: 'data/usuarios/xml_usuarios.php',        
-		        colNames: ['ID','IDENTIFICACIÓN','NOMBRES COMPLETOS','TELÉFONO','CELULAR','CIUDAD','DIRECCIÓN','CORREO','USUARIO','CLAVE','ID_CARGO','CARGO','OBSERVACIONES'],
+		        colNames: ['ID','IDENTIFICACIÓN','NOMBRES','APELLIDOS','TELÉFONO','CELULAR','DIRECCIÓN','CORREO','USUARIO','CLAVE','ID_CARGO','CARGO'],
 		        colModel:[      
 		            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
 		            {name:'identificacion',index:'identificacion',frozen : true, hidden: false, align:'left',search:true,width: ''},
-		            {name:'nombres_completos',index:'nombres_completos',frozen : true, hidden: false, align:'left',search:true,width: ''},
+		            {name:'nombres',index:'nombres',frozen : true, hidden: false, align:'left',search:true,width: ''},
+		            {name:'apellidos',index:'apellidos',frozen : true, hidden: false, align:'left',search:true,width: ''},
 		            {name:'telefono1',index:'telefono1',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'telefono2',index:'telefono2',frozen : true, hidden: false, align:'left',search:false,width: ''},
-		            {name:'ciudad',index:'ciudad',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'direccion',index:'direccion',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'correo',index:'correo',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'usuario',index:'usuario',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'clave',index:'clave',frozen : true, hidden: true, align:'left',search:false,width: ''},
 		            {name:'id_cargo',index:'id_cargo',frozen : true, hidden: true, align:'left',search:false,width: ''},
 		            {name:'cargo',index:'cargo',frozen : true, hidden: false, align:'left',search:false,width: ''},
-		            {name:'observaciones',index:'observaciones',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		        ],          
 		        rowNum: 10,       
 		        width:600,
@@ -314,17 +313,16 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 
 	            	$('#id_usuario').val(ret.id);
 	            	$('#identificacion').val(ret.identificacion);
-	            	$('#nombres_completos').val(ret.nombres_completos);
+	            	$('#nombres').val(ret.nombres);
+	            	$('#apellidos').val(ret.apellidos);
 	            	$('#telefono1').val(ret.telefono1);
 	            	$('#telefono2').val(ret.telefono2);
-	            	$('#ciudad').val(ret.ciudad);
 	            	$('#direccion').val(ret.direccion);
 	            	$('#correo').val(ret.correo);
 	            	$('#usuario').val(ret.usuario);
 	            	$('#clave').val(ret.clave);
 	            	$('#clave2').val(ret.clave);
-	            	$("#select_cargo").select2('val', ret.id_cargo).trigger("change");
-	            	$('#observaciones').val(ret.observaciones);   	            
+	            	$("#select_cargo").select2('val', ret.id_cargo).trigger("change");  	            
 	
 		            $('#clave').attr('disabled',true);
 		            $('#clave2').attr('disabled',true);

@@ -13,7 +13,7 @@
         $sidx = 1;
     
     $count = 0;
-    $resultado = $class->consulta("SELECT  COUNT(*) AS count from usuario");         
+    $resultado = $class->consulta("SELECT  COUNT(*) AS count FROM factura_venta");         
     while ($row = $class->fetch_array($resultado)) {
         $count = $count + $row[0];    
     }    
@@ -29,15 +29,15 @@
         $start = 0;
     
     if ($search == 'false') {
-        $SQL = "SELECT U.id, U.cedula, U.nombre, U.apellido, U.telefono, U.celular, U.direccion, U.email, U.usuario, U.clave, U.id_cargo, C.nombre FROM usuario U, cargo C WHERE U.estado = '1' and U.id_cargo = C.id ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT F.id, C.ruc, C.empresa, C.direccion, F.fecha_actual, F.total_pagar  FROM factura_venta F, clientes C WHERE F.id_clientes = C.id ORDER BY $sidx $sord offset $start limit $limit";
     } else {
         $campo = $_GET['searchField'];
       
         if ($_GET['searchOper'] == 'eq') {
-            $SQL = "SELECT * FROM usuario WHERE estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT F.id, C.ruc, C.empresa, C.direccion, F.fecha_actual, F.total_pagar  FROM factura_venta F, clientes C WHERE F.id_clientes = C.id AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
         }         
         if ($_GET['searchOper'] == 'cn') {
-            $SQL = "SELECT * FROM usuario WHERE estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT F.id, C.ruc, C.empresa, C.direccion, F.fecha_actual, F.total_pagar  FROM factura_venta F, clientes C WHERE F.id_clientes = C.id AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
         }
     }  
 
@@ -58,12 +58,7 @@
             $s .= "<cell>" . $row[3] . "</cell>";
             $s .= "<cell>" . $row[4] . "</cell>";
             $s .= "<cell>" . $row[5] . "</cell>";
-            $s .= "<cell>" . $row[6] . "</cell>";
-            $s .= "<cell>" . $row[7] . "</cell>";
-            $s .= "<cell>" . $row[8] . "</cell>";
-            $s .= "<cell>" . $row[9] . "</cell>";
-            $s .= "<cell>" . $row[10] . "</cell>";
-            $s .= "<cell>" . $row[11] . "</cell>";
+            $s .= "<cell></cell>";
             $s .= "</row>";
         }
     $s .= "</rows>";
