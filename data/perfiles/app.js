@@ -1,5 +1,5 @@
 // create the controller and inject Angular's $scope
-angular.module('scotchApp').controller('cargosController', function ($scope, $route) {
+angular.module('scotchApp').controller('perfilesController', function ($scope, $route) {
 
 	$scope.$route = $route;
 	
