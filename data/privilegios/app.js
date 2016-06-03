@@ -28,87 +28,47 @@ angular.module('scotchApp').controller('privilegiosController', function ($scope
 			loadingHTML : '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>'
 		});
 
-		$('#tree1').on("click", function (evt, data) {
-	      	console.log("selected items: ", $('#tree1').tree('selectedItems'));
+		// $('#tree1').on("click", function (evt, data) {
+	 //      	console.log("selected items: ", $('#tree1').tree('selectedItems'));
+	 //    });
+	    $('#btn_importar').click(function(){
+	    	console.log("selected items: ", $('#tree1').tree('selectedItems'));
 	    });
 
+		function recursosdata(){
+			var retorno;
+			$.ajax({
+				url: 'data/privilegios/app.php',
+				dataType: "json",
+				type: 'post',
+				data: {'retornar':'recursosdata'},
+				// datatype :'json',
+				async:false,
+				success: function (data) {
+					retorno = data;
+				}
+			});
+			return retorno;
+		}
+
 		function initiateDemoData(){
-			var tree_data = {
-				
-				'Ingresos' : {text: 'Ingresos', type: 'folder'}	,
-				'coorporativo' : {text: 'Coorporativo', type: 'folder'}	,
-				'invitados' : {text: 'Agenda Invitados', type: 'folder'}	,
-				'programas' : {text: 'Programas', type: 'folder'}	,
-				'contratos' : {text: 'Contratos', type: 'folder'}	,
-				'facturacion' : {text: 'Facturación', type: 'item'}	,
-				'roles' : {text: 'Roles de Pagos', type: 'item'}	,
-				'reportes' : {text: 'Reportes', type: 'item'}
-			}
-			
-			tree_data['Ingresos']['additionalParameters'] = {
-				'children' : {
-					'cars' : {text: 'Generales', type: 'folder'},
-					'usuario' : {text: 'Usuarios', type: 'item'},
-					'perfil' : {text: 'Perfil', type: 'item'},
-					'privilegios' : {text: 'Privilegios', type: 'item'},
-					'empresa' : {text: 'Empresa', type: 'item'},
-					'usuarios' : {text: 'Usuarios', type: 'item'},
-					'clientes' : {text: 'Clientes', type: 'item'},
-					'programas' : {text: 'Programas', type: 'item'},
-					'vendedores' : {text: 'Vendedores', type: 'item'}
-				}
-			}
-			tree_data['Ingresos']['additionalParameters']['children']['cars']['additionalParameters'] = {
-				'children' : {
-					'classics' : {text: 'Tipo Paquetes', type: 'item'},
-					'convertibles' : {text: 'Paquetes', type: 'item'},
-					'coupes' : {text: 'Tipo Programa', type: 'item'},
-					'hatchbacks' : {text: 'Tipo Vendedor', type: 'item'},
-					'hybrids' : {text: 'Tipo Contrato', type: 'item'},
-					'suvs' : {text: 'Areas', type: 'item'},
-					'sedans' : {text: 'Cargos', type: 'item'},
-					'trucks' : {text: 'Bancos', type: 'item'}
-				}
-			}
-
-			tree_data['coorporativo']['additionalParameters'] = {
-				'children' : {
-					'appliances' : {text: 'Ficha ingresos', type: 'item'}
-				}
-			}
-
-			tree_data['invitados']['additionalParameters'] = {
-				'children' : {
-					'apartments-rentals' : {text: 'Ficha invitados', type: 'item'}
-				}
-			}
-			tree_data['programas']['additionalParameters'] = {
-				'children' : {
-					'apartments' : {text: 'Ficha programas', type: 'item'}
-				}
-			}
-			tree_data['contratos']['additionalParameters'] = {
-				'children' : {
-					'rotativo' : {text: 'Rotativo', type: 'item'},
-					'selectivo' : {text: 'Selectivo', type: 'item'}
-				}
-			}
+			var tree_data = recursosdata();
 
 			var dataSource1 = function(options, callback){
-				var $data = null
+				var _data = null
 				if(!("text" in options) && !("type" in options)){
-					$data = tree_data;//the root tree
-					callback({ data: $data });
+					_data = recursosdata();//the root tree
+					callback({ data: _data });
 					return;
 				}
 				else if("type" in options && options.type == "folder") {
 					if("additionalParameters" in options && "children" in options.additionalParameters)
-						$data = options.additionalParameters.children || {};
-					else $data = {}//no data
+						_data = options.additionalParameters.children || {};
+					else _data = {}//no data
 				}
 				
-				if($data != null)//this setTimeout is only for mimicking some random delay
-					setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
+				if(_data != null)//this setTimeout is only for mimicking some random delay
+					setTimeout(function(){callback({ data: _data });} , parseInt(Math.random() * 500) + 200);
 
 				//we have used static data here
 				//but you can retrieve your data dynamically from a server using ajax call
@@ -117,6 +77,26 @@ angular.module('scotchApp').controller('privilegiosController', function ($scope
 			
 			return {'dataSource1': dataSource1}
 		}
+
+		$('#tree1')
+		.on('loaded.fu.tree', function(e) {
+			console.log('1',e);
+		})
+		.on('updated.fu.tree', function(e, result) {
+			console.log('2',e);
+		})
+		.on('selected.fu.tree', function(e) {
+			console.log('3',e);
+		})
+		.on('deselected.fu.tree', function(e) {
+			console.log('4',e);
+		})
+		.on('opened.fu.tree', function(e) {
+			console.log('5',e);
+		})
+		.on('closed.fu.tree', function(e) {
+			console.log('6',e);
+		});
 
 		// inicio de procesos
 			llenar_select_usuarios()
