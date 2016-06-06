@@ -1,9 +1,8 @@
 <?php
 	include_once('../../admin/class.php');
+	include_once('phpexcel/PHPExcel-1.7.7/Classes/PHPExcel/IOFactory.php');
 	$class = new constante();
-
-	require_once 'phpexcel/PHPExcel-1.7.7/Classes/PHPExcel/IOFactory.php';
-	$data=1;
+	$data = 1;
 
 	$extension = explode(".", $_FILES["archivo_excel"]["name"]);
 
