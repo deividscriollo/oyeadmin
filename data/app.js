@@ -1,6 +1,8 @@
 // create the module and name it scotchApp
 var dcapp = angular.module('scotchApp', ['ngRoute']);
 
+
+
 // configure our routes
 dcapp.config(function($routeProvider) {
     $routeProvider
@@ -165,36 +167,42 @@ dcapp.factory('Auth', function($location){
         },
         isLoggedIn : function(){
             var ruta = $location.path();
-            var accesos = [ '',
-                            '/',
-                            '/inicio',
-                            '/tipo_paquetes',
-                            '/paquetes',
-                            '/tipo_programa',
-                            '/tipo_vendedor',
-                            '/tipo_contrato',
-                            '/areas',
-                            '/cargos',
-                            '/bancos',
-                            '/empresa',
-                            '/clientes',
-                            '/programas',
-                            '/vendedores',
-                            '/login',
-                            '/reportes',
-                            '/ficha_invitados',
-                            '/ingresos_princi',
-                            '/ficha_programas',
-                            '/ficha_ingresos',
-                            '/contratos_selectivos',
-                            '/contratos_rotativos',
-                            '/facturas',
-                            '/rol_pagos',
-                            '/usuarios',
-                            '/fotos_usuario',
-                            '/perfiles',
-                            '/privilegios'];
-                            console.log(ruta);
+            var ruta = ruta.replace("/","");
+            console.log(ruta);
+            var accesos = JSON.parse(Lockr.get('users'));
+                accesos.push('inicio');
+                accesos.push('');
+
+            // [ '',
+            //                 '/',
+            //                 '/inicio',
+            //                 '/tipo_paquetes',
+            //                 '/paquetes',
+            //                 '/tipo_programa',
+            //                 '/tipo_vendedor',
+            //                 '/tipo_contrato',
+            //                 '/areas',
+            //                 '/cargos',
+            //                 '/bancos',//
+            //                 '/empresa',
+            //                 '/clientes',
+            //                 '/programas',
+            //                 '/vendedores',
+            //                 '/login',
+            //                 '/reportes',
+            //                 '/ficha_invitados',
+            //                 '/ingresos_princi',
+            //                 '/ficha_programas',
+            //                 '/ficha_ingresos',
+            //                 '/contratos_selectivos',
+            //                 '/contratos_rotativos',
+            //                 '/facturas',
+            //                 '/rol_pagos',
+            //                 '/usuarios',
+            //                 '/fotos_usuario',
+            //                 '/perfiles',
+            //                 '/privilegios'];
+                            console.log(accesos);
             var a = accesos.lastIndexOf(ruta);
             if (a<0) {
                 return false;    

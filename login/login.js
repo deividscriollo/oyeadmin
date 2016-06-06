@@ -53,9 +53,11 @@ $(function() {
 			$.ajax({
 				url:'login.php',
 				type:'POST',
+				dataType:'json',
 				data:{consultar_login_user:'',txt_nombre:$('#txt_nombre').val(),txt_clave:$('#txt_clave').val()},
 				success:function(data) {
-					if (data == 1) {
+					Lockr.flush()
+					if (data['status'] == 'ok') {
 						$.gritter.add({
 							title: 'Información Mensaje',
 							text: '	<span class="fa fa-shield"></span>'
@@ -66,9 +68,10 @@ $(function() {
 							sticky: false,
 							time: 3000,												
 						});		
-						redireccionar();		
+						Lockr.set('users', data['privilegio']);
+						redireccionar();
 					};
-					if (data == 0) {
+					if (data['status'] == 'error') {
 						$.gritter.add({
 							title: '<span>Información Mensaje</span>',
 							text: '	<span class="fa fa-shield"></span>'
@@ -83,7 +86,7 @@ $(function() {
 						  this.reset();
 						});
 					};
-					if (data!= 0 && data != 1) {
+					if (data['status'] != 'ok' && data['status'] != 'error') {
 						$.gritter.add({
 							title: '<span>Información Mensaje</span>',
 							text: '	<span class="fa fa-shield"></span>'

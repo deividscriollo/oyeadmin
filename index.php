@@ -609,6 +609,8 @@
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
+		<script src="dist/js/lockr.min.js"></script>
+		
 		<script src="dist/js/wow.js"></script>
 	</body>
 </html>

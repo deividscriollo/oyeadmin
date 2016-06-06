@@ -89,6 +89,8 @@
 		</script>
 		<script src="../dist/js/jquery.validate.min.js"></script>
 		<script src="../dist/js/jquery.gritter.min.js"></script>
+		<script src="../dist/js/lockr.min.js"></script>
+		
 		<script src="login.js"></script>
         
 	</body>
