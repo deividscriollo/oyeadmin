@@ -2,11 +2,13 @@
 	if(!isset($_SESSION)){
         session_start();        
     }
+
 	include_once('../../admin/class.php');
 	$class = new constante();
 	error_reporting(0);
 	$fecha = $class->fecha_hora();
 	
+	// guardar rol pagos
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id_rol_pagos = $class->idz();
 		$id_detalle_rol_pagos = $class->idz();
@@ -15,8 +17,8 @@
 		$resp = $class->consulta("INSERT INTO rol_pagos.rol_pagos VALUES  (			'$id_rol_pagos',
 																					'$_POST[select_empleado]',
 																					'$_POST[txt_mes]',
-																					'$_POST[sueldo]',
-																					'$_POST[neto_pagar]',
+																					'".number_format($_POST['sueldo'], 3, '.', '')."',
+																					'".number_format($_POST['neto_pagar'], 3, '.', '')."',
 																					'$_POST[codigo]',
 																					'1', 
 																					'$fecha')");
@@ -26,18 +28,18 @@
 																					'$_POST[tiempo_horas]',
 																					'$_POST[dias_laborados]',
 																					'$_POST[extras]',
-																					'$_POST[sueldo_basico]',
-																					'$_POST[horas_extras]',
-																					'$_POST[comisiones]',
-																					'$_POST[decimo_tercero]',
-																					'$_POST[decimo_cuarto]',
-																					'$_POST[total_ingresos]',
-																					'$_POST[aporte_iess]',
-																					'$_POST[pres_quierografarios]',
-																					'$_POST[pres_anticipos]',
-																					'$_POST[atrasos]',
-																					'$_POST[permisos]',
-																					'$_POST[total_descuentos]',
+																					'".number_format($_POST['sueldo_basico'], 3, '.', '')."',
+																					'".number_format($_POST['horas_extras'], 3, '.', '')."',
+																					'".number_format($_POST['comisiones'], 3, '.', '')."',
+																					'".number_format($_POST['decimo_tercero'], 3, '.', '')."',
+																					'".number_format($_POST['decimo_cuarto'], 3, '.', '')."',
+																					'".number_format($_POST['total_ingresos'], 3, '.', '')."',
+																					'".number_format($_POST['aporte_iess'], 3, '.', '')."',
+																					'".number_format($_POST['pres_quirografarios'], 3, '.', '')."',
+																					'".number_format($_POST['pres_anticipos'], 3, '.', '')."',
+																					'".number_format($_POST['atrasos'], 3, '.', '')."',
+																					'".number_format($_POST['permisos'], 3, '.', '')."',
+																					'".number_format($_POST['total_descuentos'], 3, '.', '')."',
 																					'1', 
 																					'$fecha',
 																					'$_POST[faltas]',
@@ -45,16 +47,18 @@
 		$data = $id_rol_pagos;
 		echo $data;
 	}
+	// fin
 
+	// guardar anticipos
 	if (isset($_POST['btn_guardar_anticipo']) == "btn_guardar_anticipo") {
 		$id_anticipo = $class->idz();
 		$data = "";
 
 		$resp = $class->consulta("INSERT INTO rol_pagos.anticipos VALUES  (			'$id_anticipo',
-																					'1',
+																					'".$_SESSION['user']['id']."',
 																					'$_POST[serie_anticipo]',
 																					'$_POST[select_empleado2]',
-																					'$_POST[monto_anticipo]',
+																					'".number_format($_POST['monto_anticipo'], 3, '.', '')."',
 																					'$_POST[fecha_anticipo]',
 																					'$_POST[meses_anticipo]',
 																					'$_POST[select_forma_pago]',
@@ -62,13 +66,42 @@
 																					'$_POST[select_banco]',
 																					'1', 
 																					'$fecha')");
-
 		$data = $id_anticipo;
 		echo $data;
 	}
+	// fin
 
-
-
+	// guardar permisos
+	if (isset($_POST['btn_guardar_permiso']) == "btn_guardar_permiso") {
+		$id_permiso = $class->idz();
+		$data = "";
+		$regreso = "NO";
+		if(isset($_POST["regreso"]))
+			$regreso = "SI";
+		
+		$resp = $class->consulta("INSERT INTO rol_pagos.permisos VALUES  (			'$id_permiso',
+																					'".$_SESSION['user']['id']."',
+																					'$_POST[serie_permiso]',
+																					'$_POST[ciudad]',
+																					'$_POST[fecha_permiso]',
+																					'$_POST[select_empleado3]',
+																					'$_POST[select_empleado4]',
+																					'$_POST[horas]',
+																					'$_POST[dias]',
+																					'$_POST[hora_salida]',
+																					'$regreso',
+																					'$_POST[hora_retorno]',
+																					'$_POST[tiempo_salida]',
+																					'$_POST[asunto]',
+																					'$_POST[lugar]',
+																					'$_POST[select_parte]',
+																					'$_POST[select_motivo_cargos]',
+																					'1', 
+																					'$fecha')");
+		$data = $id_permiso;
+		echo $data;
+	}
+	// fin
 
 	//LLena combo empleados
 	if (isset($_POST['llenar_empleado'])) {
@@ -135,6 +168,16 @@
 		$resultado = $class->consulta("SELECT max(serie_anticipo) FROM rol_pagos.anticipos GROUP BY id ORDER BY id asc");
 		while ($row = $class->fetch_array($resultado)) {
 			$data = array('serie_anticipo' => $row[0]);
+		}
+		print_r(json_encode($data));
+	}
+	// fin
+
+	// cargar ultima codigo permisos
+	if (isset($_POST['cargar_codigo_permisos'])) {
+		$resultado = $class->consulta("SELECT max(serie_permiso) FROM rol_pagos.permisos GROUP BY id ORDER BY id asc");
+		while ($row = $class->fetch_array($resultado)) {
+			$data = array('serie_permiso' => $row[0]);
 		}
 		print_r(json_encode($data));
 	}

@@ -45,277 +45,277 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 	});
 
 	//INICIO DE VALIDACION FORNULARIO cursos realizados
-	$('#form_modal_cursos').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		ignore: "",
-		rules: {
-			txt_nombre_curso: {
-				required: true				
-			},
-			txt_establecimiento_curso: {
-				required: true				
-			},
-			txt_tiempo_curso: {
-				required: true				
-			},
-		},
-		messages: {
-			txt_nombre_curso: {
-				required: "Por favor, Indique nombre del curso",
-			},
-			txt_establecimiento_curso: { 	
-				required: "Por favor, Indique establecimiento",			
-			},
-			txt_tiempo_curso: {
-				required: "Por favor, Indique tiempo del curso",
-			},
-		},
-		//para prender y apagar los errores
-		highlight: function (e) {
-			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-		},
-		success: function (e) {
-			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-			$(e).remove();
-		},
-		submitHandler: function (form) {
+	// $('#form_modal_cursos').validate({
+	// 	errorElement: 'div',
+	// 	errorClass: 'help-block',
+	// 	focusInvalid: false,
+	// 	ignore: "",
+	// 	rules: {
+	// 		txt_nombre_curso: {
+	// 			required: true				
+	// 		},
+	// 		txt_establecimiento_curso: {
+	// 			required: true				
+	// 		},
+	// 		txt_tiempo_curso: {
+	// 			required: true				
+	// 		},
+	// 	},
+	// 	messages: {
+	// 		txt_nombre_curso: {
+	// 			required: "Por favor, Indique nombre del curso",
+	// 		},
+	// 		txt_establecimiento_curso: { 	
+	// 			required: "Por favor, Indique establecimiento",			
+	// 		},
+	// 		txt_tiempo_curso: {
+	// 			required: "Por favor, Indique tiempo del curso",
+	// 		},
+	// 	},
+	// 	//para prender y apagar los errores
+	// 	highlight: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	// 	},
+	// 	success: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+	// 		$(e).remove();
+	// 	},
+	// 	submitHandler: function (form) {
 			
-		}
-	});
+	// 	}
+	// });
 	// Fin
 
 	// formulario registro de la primera: Datos Personales
-	$('#form_personal').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		ignore: "",
-		rules: {
-			txt_nombres: {
-				required: true				
-			},
-			txt_fecha_nacimiento:{
-				required:true
-			},
-			txt_apellidos: {
-				required: true				
-			},
-			txt_edad: {
-				required: true				
-			},
-			txt_cedula: {
-				required: true,
-				digits: true, 
-				maxlength: 10				
-			},
-			txt_telf_celular: {
-				required: true				
-			},
-			select_civil: {
-				required: true				
-			},
-			txt_email: {
-				required: true				
-			},
-			rb_instruccion: {
-				required: true				
-			},
-			rb_vivienda: {
-				required: true				
-			},
-			txt_direccion: {
-				required: true				
-			},
-			select_pais: {
-				required: true				
-			},
-			select_provincia: {
-				required: true				
-			},
-			select_ciudad: {
-				required: true				
-			},
-			select_sangre: {
-				required: true				
-			},
-		},
-		messages: {
-			txt_nombres: {
-				required: "Por favor, Digíte los Nombres Completos",
-			},
-			txt_fecha_nacimiento: {
-				required: "Por favor, Elija una Fecha de Nacimiento",
-			},
-			txt_apellidos: {
-				required: "Por favor, Digíte los Apellidos Completos",
-			},
-			txt_edad: {
-				required: "Por favor, Se necesita la edad",
-			},
-			txt_cedula: { 	
-				required: "Por favor, Digíte el Número de Cédula",
-				digits: "Sólo son permitido dígitos, Gracias",
-				maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
-			},
-			txt_telf_celular: {
-				required: "Por favor, Digíte un telefono Celular",
-			},
-			select_civil: {
-				required: "Por favor, Elija un estado civil",
-			},
-			txt_cargas: {
-				min: "Por Favor, Ingrese número valido de cargas familiares",
-				max: "Por Favor, Ingrese número valido de cargas familiares"
-			},
-			txt_email: {
-				required: "Por favor, Ingrese un E-mail",
-				email: "Por favor, Ingrese un E-mail valido"
-			},
-			rb_instruccion: {
-				required: "Por favor, Elija una instruccion",
-			},
-			rb_vivienda: {
-				required: "Por favor, Elija tipo Vivienda",
-			},
-			txt_direccion: {
-				required: "Por favor, Digíte una Dirección Domiciliaria",
-			},
-			select_pais: {
-				required: "Por favor, Elija un País",
-			},
-			select_provincia: {
-				required: "Por favor, Elija una Provincia",
-			},
-			select_ciudad: {
-				required: "Por favor, Elija una Ciudad",
-			},
-			select_sangre: {
-				required: "Por favor, Elija un Tipo de Sangre",
-			},
-		},
-		//para prender y apagar los errores
-		highlight: function (e) {
-			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-		},
-		success: function (e) {
-			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-			$(e).remove();
-		},
-		submitHandler: function (form) {
-		}
-	});
+	// $('#form_personal').validate({
+	// 	errorElement: 'div',
+	// 	errorClass: 'help-block',
+	// 	focusInvalid: false,
+	// 	ignore: "",
+	// 	rules: {
+	// 		txt_nombres: {
+	// 			required: true				
+	// 		},
+	// 		txt_fecha_nacimiento:{
+	// 			required:true
+	// 		},
+	// 		txt_apellidos: {
+	// 			required: true				
+	// 		},
+	// 		txt_edad: {
+	// 			required: true				
+	// 		},
+	// 		txt_cedula: {
+	// 			required: true,
+	// 			digits: true, 
+	// 			maxlength: 10				
+	// 		},
+	// 		txt_telf_celular: {
+	// 			required: true				
+	// 		},
+	// 		select_civil: {
+	// 			required: true				
+	// 		},
+	// 		txt_email: {
+	// 			required: true				
+	// 		},
+	// 		rb_instruccion: {
+	// 			required: true				
+	// 		},
+	// 		rb_vivienda: {
+	// 			required: true				
+	// 		},
+	// 		txt_direccion: {
+	// 			required: true				
+	// 		},
+	// 		select_pais: {
+	// 			required: true				
+	// 		},
+	// 		select_provincia: {
+	// 			required: true				
+	// 		},
+	// 		select_ciudad: {
+	// 			required: true				
+	// 		},
+	// 		select_sangre: {
+	// 			required: true				
+	// 		},
+	// 	},
+	// 	messages: {
+	// 		txt_nombres: {
+	// 			required: "Por favor, Digíte los Nombres Completos",
+	// 		},
+	// 		txt_fecha_nacimiento: {
+	// 			required: "Por favor, Elija una Fecha de Nacimiento",
+	// 		},
+	// 		txt_apellidos: {
+	// 			required: "Por favor, Digíte los Apellidos Completos",
+	// 		},
+	// 		txt_edad: {
+	// 			required: "Por favor, Se necesita la edad",
+	// 		},
+	// 		txt_cedula: { 	
+	// 			required: "Por favor, Digíte el Número de Cédula",
+	// 			digits: "Sólo son permitido dígitos, Gracias",
+	// 			maxlength: "Por Favor, Ingrese los 10 dígitos del número de cédula"			
+	// 		},
+	// 		txt_telf_celular: {
+	// 			required: "Por favor, Digíte un telefono Celular",
+	// 		},
+	// 		select_civil: {
+	// 			required: "Por favor, Elija un estado civil",
+	// 		},
+	// 		txt_cargas: {
+	// 			min: "Por Favor, Ingrese número valido de cargas familiares",
+	// 			max: "Por Favor, Ingrese número valido de cargas familiares"
+	// 		},
+	// 		txt_email: {
+	// 			required: "Por favor, Ingrese un E-mail",
+	// 			email: "Por favor, Ingrese un E-mail valido"
+	// 		},
+	// 		rb_instruccion: {
+	// 			required: "Por favor, Elija una instruccion",
+	// 		},
+	// 		rb_vivienda: {
+	// 			required: "Por favor, Elija tipo Vivienda",
+	// 		},
+	// 		txt_direccion: {
+	// 			required: "Por favor, Digíte una Dirección Domiciliaria",
+	// 		},
+	// 		select_pais: {
+	// 			required: "Por favor, Elija un País",
+	// 		},
+	// 		select_provincia: {
+	// 			required: "Por favor, Elija una Provincia",
+	// 		},
+	// 		select_ciudad: {
+	// 			required: "Por favor, Elija una Ciudad",
+	// 		},
+	// 		select_sangre: {
+	// 			required: "Por favor, Elija un Tipo de Sangre",
+	// 		},
+	// 	},
+	// 	//para prender y apagar los errores
+	// 	highlight: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	// 	},
+	// 	success: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+	// 		$(e).remove();
+	// 	},
+	// 	submitHandler: function (form) {
+	// 	}
+	// });
 	// Fin
 
 	// Validacion: Datos Bancarios modal
-	$('#form_modal_cuentas').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		ignore: "",
-		rules: {
-			select_cuenta: {
-				required: true				
-			},
-			select_banco: {
-				required: true				
-			},
-			txt_tiempo_curso: {
-				required: true				
-			},
-		},
-		messages: {
-			select_cuenta: {
-				required: "Por favor, Elija una opción",
-			},
-			select_banco: {
-				required: "Por favor, Elija una opción",
-			},
-		},
-		//para prender y apagar los errores
-		highlight: function (e) {
-			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-		},
-		success: function (e) {
-			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-			$(e).remove();
-		},
-		submitHandler: function (form) {
+	// $('#form_modal_cuentas').validate({
+	// 	errorElement: 'div',
+	// 	errorClass: 'help-block',
+	// 	focusInvalid: false,
+	// 	ignore: "",
+	// 	rules: {
+	// 		select_cuenta: {
+	// 			required: true				
+	// 		},
+	// 		select_banco: {
+	// 			required: true				
+	// 		},
+	// 		txt_tiempo_curso: {
+	// 			required: true				
+	// 		},
+	// 	},
+	// 	messages: {
+	// 		select_cuenta: {
+	// 			required: "Por favor, Elija una opción",
+	// 		},
+	// 		select_banco: {
+	// 			required: "Por favor, Elija una opción",
+	// 		},
+	// 	},
+	// 	//para prender y apagar los errores
+	// 	highlight: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	// 	},
+	// 	success: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+	// 		$(e).remove();
+	// 	},
+	// 	submitHandler: function (form) {
 			
-		}
-	});
+	// 	}
+	// });
 	// Fin
 
 	// formulario registro de la tercera: Datos Familiares
-	$('#form_familia').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		ignore: "",
-		rules: {
-			txt_nombres_familia: {
-		      required: true
-		    },
-		    txt_parentesco: {
-		      required: true
-		    },
-		    txt_telf_familia: {
-		      required: true
-		    },
-		    txt_dir_fami: {
-		      required: true
-		    },
-		    txt_ciudad_fami: {
-		      required: true
-		    },
-		    select_areas: {
-		      required: true
-		    },
-		    select_cargo: {
-		      required: true
-		    },
-		    sueldo: {
-		      required: true
-		    },
-		},
-		messages: {
-			txt_nombres_familia: {
-				required: "Por favor, Ingrese un Nombre de Familiar",
-			},
-			txt_parentesco: {
-				required: "Por favor, Ingrese un Parentesco de Familiar",
-			},
-			txt_telf_familia: {
-				required: "Por favor, Ingrese un Teléfono Familiar",
-			},
-			txt_dir_fami: {
-				required: "Por favor, Ingrese una Dirección Familiar",
-			},
-			txt_ciudad_fami: {
-				required: "Por favor, Ingrese una Ciudad",
-			},
-			select_areas: {
-				required: "Por favor, Seleccione una Área",
-			},
-			select_cargo: {
-				required: "Por favor, Ingrese un cargo",
-			},
-			sueldo: {
-				required: "Por favor, Ingrese uel sueldo",
-			},
-		},
-		//para prender y apagar los errores
-		highlight: function (e) {
-			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-		},
-		success: function (e) {
-			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-			$(e).remove();
-		},
-		submitHandler: function (form) {
-		}
-	});
+	// $('#form_familia').validate({
+	// 	errorElement: 'div',
+	// 	errorClass: 'help-block',
+	// 	focusInvalid: false,
+	// 	ignore: "",
+	// 	rules: {
+	// 		txt_nombres_familia: {
+	// 	      required: true
+	// 	    },
+	// 	    txt_parentesco: {
+	// 	      required: true
+	// 	    },
+	// 	    txt_telf_familia: {
+	// 	      required: true
+	// 	    },
+	// 	    txt_dir_fami: {
+	// 	      required: true
+	// 	    },
+	// 	    txt_ciudad_fami: {
+	// 	      required: true
+	// 	    },
+	// 	    select_areas: {
+	// 	      required: true
+	// 	    },
+	// 	    select_cargo: {
+	// 	      required: true
+	// 	    },
+	// 	    sueldo: {
+	// 	      required: true
+	// 	    },
+	// 	},
+	// 	messages: {
+	// 		txt_nombres_familia: {
+	// 			required: "Por favor, Ingrese un Nombre de Familiar",
+	// 		},
+	// 		txt_parentesco: {
+	// 			required: "Por favor, Ingrese un Parentesco de Familiar",
+	// 		},
+	// 		txt_telf_familia: {
+	// 			required: "Por favor, Ingrese un Teléfono Familiar",
+	// 		},
+	// 		txt_dir_fami: {
+	// 			required: "Por favor, Ingrese una Dirección Familiar",
+	// 		},
+	// 		txt_ciudad_fami: {
+	// 			required: "Por favor, Ingrese una Ciudad",
+	// 		},
+	// 		select_areas: {
+	// 			required: "Por favor, Seleccione una Área",
+	// 		},
+	// 		select_cargo: {
+	// 			required: "Por favor, Ingrese un cargo",
+	// 		},
+	// 		sueldo: {
+	// 			required: "Por favor, Ingrese uel sueldo",
+	// 		},
+	// 	},
+	// 	//para prender y apagar los errores
+	// 	highlight: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+	// 	},
+	// 	success: function (e) {
+	// 		$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+	// 		$(e).remove();
+	// 	},
+	// 	submitHandler: function (form) {
+	// 	}
+	// });
 	// FIN DEL FORMULARIO DE DATOS FAMILIARES
 
 	// definir formato campos números de teléfono
@@ -459,7 +459,7 @@ var app = angular.module('scotchApp').controller('fichaingresosController', func
 		$(this).closest('form').validate().element($(this));
     });
 
-	$("#select_civil,#select_pais,#select_provincia,#select_ciudad,#select_sangre").select2({
+	$("#select_civil,#select_pais,#select_provincia,#select_ciudad,#select_sangre,#select_areas,#select_cargo").select2({
 	  placeholder: "Seleccione una opción",
 	  allowClear: true
 	});

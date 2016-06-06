@@ -5,13 +5,13 @@
 	include_once('../admin/class.php');
 	$class=new constante();
 
-	if(isset($_POST['consultar_login_user'])){
+	if(isset($_POST['consultar_login_user'])) {
 		$resultado = $class->consulta("SELECT * FROM usuario  where usuario = '".$_POST['txt_nombre']."' and clave = md5('".$_POST['txt_clave']."')");
-		if($class->num_rows($resultado)==1) {
+		if($class->num_rows($resultado) == 1) {
 			$row=$class->fetch_array($resultado);
-			$_SESSION['user'] = array('id'=>$row[0], 'usuario' => $row[1], 'name' => $row['nombre'].' '.$row['apellido']);
+			$_SESSION['user'] = array('id'=>$row[0], 'usuario' => $row[1], 'name' => $row['nombre'].' '.$row['apellido'], 'imagen' => $row[11]);
 			print 1;		
-		}else{
+		} else {
 			print 0;
 		}		
 	}

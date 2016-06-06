@@ -70,6 +70,7 @@
   		<script src="data/rol_pagos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
   		<script src="data/usuarios/app.js"></script>
+  		<script src="data/fotos_usuario/app.js"></script>
   		<script src="data/perfiles/app.js"></script>
   		<script src="data/privilegios/app.js"></script>
 	</head>
@@ -103,7 +104,7 @@
 					<ul class="nav ace-nav">
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="" class="dropdown-toggle">
-								<img class="nav-user-photo" src="dist/avatars/user.jpg" alt="" />
+								<img class="nav-user-photo" src=<?php  print_r('data/fotos_usuario/imagenes/'. $_SESSION['user']['imagen']); ?> alt="" />
 								<span class="user-info">
 									<small>Bienvenido,</small>
 									<?php  print_r($_SESSION['user']['name']); ?>
@@ -483,6 +484,7 @@
 
 					<li ng-class =	"{'active open': 
 												$route.current.activetab == 'usuarios' ||
+												$route.current.activetab == 'fotos_usuario' ||
 												$route.current.activetab == 'perfiles' ||
 												$route.current.activetab == 'privilegios'
 									}">
@@ -501,6 +503,14 @@
 								<a href="#/usuarios">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Nuevo Usuario
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class =	"{active: $route.current.activetab == 'fotos_usuario'}">
+								<a href="#/fotos_usuario">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Imagen
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -593,6 +603,8 @@
 		<script src="dist/js/jqGrid/i18n/grid.locale-en.js"></script>
 		<script src="dist/js/dataTables/jquery.dataTables.min.js"></script>
 		<script src="dist/js/dataTables/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="dist/js/dataTables/dataTables.tableTools.min.js"></script>
+		<script src="dist/js/dataTables/dataTables.colVis.min.js"></script>
 
 		<!-- ace scripts -->
 		<script src="dist/js/ace-elements.min.js"></script>

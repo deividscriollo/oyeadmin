@@ -13,7 +13,7 @@
 
 				<li class="active">Rol Pagos</li>
 				<li class="active">Ingresar</li>
-			</ul><!-- /.breadcrumb -->
+			</ul>
 
 			<div class="nav-search" id="nav-search">
 				<form class="form-search">
@@ -22,7 +22,7 @@
 						<i class="ace-icon fa fa-search nav-search-icon"></i>
 					</span>
 				</form>
-			</div><!-- /.nav-search -->
+			</div>
 		</div>
 
 	    <div class="page-content">
@@ -115,7 +115,7 @@
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="tiempo_horas">Horas Diarias:</label>
 													<div class="col-sm-8">
-														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="form-control"/>
+														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="form-control" readonly />
 													</div>
 												</div>
 
@@ -155,7 +155,7 @@
 												</div>
 
 												<div class="form-group">
-													<button class="btn btn-purple btn-sm blue" id="btn_calcular" name="btn_calcular" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>CALCULAR</button>
+													<button class="btn btn-purple btn-sm blue" id="btn_calcular" name="btn_calcular" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>CALCULAR ROL</button>
 												</div>
 											</div>
 										</div>
@@ -214,7 +214,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="total_ingresos">TOTAL INGRESOS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="total_ingresos">Total Ingresos:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
 															<input type="text" id="total_ingresos" name="total_ingresos" class="form-control" value="0.000"/>
@@ -242,7 +242,7 @@
 													<label class="col-sm-4 control-label no-padding-right" for="pres_quierografarios">Préstamos quirografarios:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
-															<input type="text" id="pres_quierografarios" name="pres_quierografarios" class="form-control" value="0.000"/>
+															<input type="text" id="pres_quirografarios" name="pres_quirografarios" class="form-control" value="0.000"/>
 															<i class="ace-icon fa fa fa-usd orange"></i>
 														</span>
 													</div>
@@ -289,7 +289,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="total_descuentos">TOTAL DESCUENTOS:</label>
+													<label class="col-sm-4 control-label no-padding-right" for="total_descuentos">Total Descuentos:</label>
 													<div class="col-sm-8">
 														<span class="input-icon">
 															<input type="text" id="total_descuentos" name="total_descuentos" class="form-control" value="0.000"/>
@@ -303,7 +303,7 @@
 												<div class="col-sm-3"></div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-sm-4 control-label no-padding-right" for="neto_pagar">NETO A PAGAR:</label>
+														<label class="col-sm-4 control-label no-padding-right" for="neto_pagar">Neto a Pagar:</label>
 														<div class="col-sm-8">
 															<span class="input-icon">
 																<input type="text" id="neto_pagar" name="neto_pagar" class="form-control" value="0.000"/>
@@ -499,7 +499,7 @@
 												<div class="col-md-offset-3 col-md-6">
 													<button class="btn btn-success" type="button" name="btn_2" id="btn_guardar_anticipo">
 														<i class="ace-icon fa fa-save bigger-110"></i>
-														Guardar
+														Guardar Anticipos
 													</button>
 
 													&nbsp; &nbsp;
@@ -541,7 +541,7 @@
 												<div class="form-group">
 													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Serie Permiso:</label>
 													<div class="col-sm-6">
-														<input type="text" name="serie_anticipo" id="serie_anticipo" class="form-control" />
+														<input type="text" name="serie_permiso" id="serie_permiso" class="form-control" />
 														<input type="hidden" name="id_permiso" id="id_permiso" readonly class="col-xs-12 col-sm-10" />
 													</div>
 												</div>
@@ -693,7 +693,7 @@
 										<div class="col-sm-12">
 											<div class="clearfix form-actions center">
 												<div class="col-md-offset-3 col-md-6">
-													<button class="btn btn-success" type="button" name="btn_4" id="btn_4">
+													<button class="btn btn-success" type="button" name="btn_guardar_permiso" id="btn_guardar_permiso">
 														<i class="ace-icon fa fa-save bigger-110"></i>
 														Guardar Permisos
 													</button>

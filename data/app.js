@@ -137,6 +137,12 @@ dcapp.config(function($routeProvider) {
             controller  : 'usuariosController',
             activetab: 'usuarios'
         })
+        // route imagenes
+        .when('/fotos_usuario', {
+            templateUrl : 'data/fotos_usuario/app.html',
+            controller  : 'fotos_usuarioController',
+            activetab: 'fotos_usuario'
+        })
         // route perfiles
         .when('/perfiles', {
             templateUrl : 'data/perfiles/app.html',
@@ -171,7 +177,7 @@ dcapp.factory('Auth', function($location){
                             '/cargos',
                             '/bancos',
                             '/empresa',
-                            // '/clientes',
+                            '/clientes',
                             '/programas',
                             '/vendedores',
                             '/login',
@@ -185,6 +191,7 @@ dcapp.factory('Auth', function($location){
                             '/facturas',
                             '/rol_pagos',
                             '/usuarios',
+                            '/fotos_usuario',
                             '/perfiles',
                             '/privilegios'];
                             console.log(ruta);

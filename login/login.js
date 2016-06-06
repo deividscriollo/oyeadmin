@@ -49,14 +49,13 @@ $(function() {
 		},
 
 		submitHandler: function (form) {
-			var form=$("#form_proceso");
+			var form = $("#form_proceso");
 			$.ajax({
 				url:'login.php',
 				type:'POST',
 				data:{consultar_login_user:'',txt_nombre:$('#txt_nombre').val(),txt_clave:$('#txt_clave').val()},
-				success:function(data) {					
-					// console.log(data)
-					if (data==1) {
+				success:function(data) {
+					if (data == 1) {
 						$.gritter.add({
 							title: 'Información Mensaje',
 							text: '	<span class="fa fa-shield"></span>'
@@ -84,7 +83,7 @@ $(function() {
 						  this.reset();
 						});
 					};
-					if (data!=0&&data!=1) {
+					if (data!= 0 && data != 1) {
 						$.gritter.add({
 							title: '<span>Información Mensaje</span>',
 							text: '	<span class="fa fa-shield"></span>'

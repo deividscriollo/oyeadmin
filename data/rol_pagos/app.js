@@ -38,7 +38,10 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			format: "yyyy-mm-dd",
 	        autoclose: true
 		}).datepicker("setDate","today");
+		// fin
 
+
+		// estilo seelct2 
 		$(".select2").css({
 		    'width': '100%',
 		    allow_single_deselect: true,
@@ -47,10 +50,17 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		    }).select2().on("change", function (e) {
 			$(this).closest('form').validate().element($(this));
 	    });
-
-		$("#select_empleado,#select_empleado1,#select_empleado2,#select_empleado3#select_empleado4,#select_forma_pago,#select_banco").select2({
+		
+		$("#select_empleado,#select_empleado1,#select_empleado2,#select_empleado3,#select_empleado4,#select_forma_pago,#select_banco,#select_parte,#select_motivo_cargos").select2({
 		  allowClear: true
 		});
+		// fin
+
+		// para la hora
+		$("#hora_salida,#hora_retorno").datetimepicker({
+	    	pickDate: false
+	    });
+	    // fin
 
 		//inicio validacion roles
 		$('#form_roles').validate({
@@ -62,10 +72,112 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 				select_empleado: {
 					required: true				
 				},
+				txt_mes: {
+					required: true				
+				},
+				extras: {
+					required: true				
+				},
+				no_laborado: {
+					required: true				
+				},
+				sueldo_basico: {
+					required: true				
+				},
+				horas_extras: {
+					required: true				
+				},
+				comisiones: {
+					required: true				
+				},
+				decimo_tercero: {
+					required: true				
+				},
+				decimo_cuarto: {
+					required: true				
+				},
+				total_ingresos: {
+					required: true				
+				},
+				aporte_iess: {
+					required: true				
+				},
+				pres_quirografarios: {
+					required: true				
+				},
+				pres_anticipos: {
+					required: true				
+				},
+				atrasos: {
+					required: true				
+				},
+				permisos: {
+					required: true				
+				},
+				faltas: {
+					required: true				
+				},
+				total_descuentos: {
+					required: true				
+				},
+				neto_pagar: {
+					required: true				
+				},
 			},
 			messages: {
 				select_empleado: {
 					required: "Por favor, Seleccione un empleado",
+				},
+				txt_mes: {
+					required: "Por favor, Indique una fecha",
+				},
+				extras: {
+					required: "Por favor, Ingrese horas extras",
+				},
+				no_laborado: {
+					required: "Por favor, Ingrese dias no laborados",
+				},
+				sueldo_basico: {
+					required: "Por favor, Ingrese sueldo",
+				},
+				horas_extras: {
+					required: "Por favor, Ingrese horas extras",
+				},
+				comisiones: {
+					required: "Por favor, Ingrese comisiones",
+				},
+				decimo_tercero: {
+					required: "Por favor, Ingrese décimo tercero",
+				},
+				decimo_cuarto: {
+					required: "Por favor, Ingrese décimo cuarto",
+				},
+				total_ingresos: {
+					required: "Por favor, Ingrese total ingresos",
+				},
+				aporte_iess: {
+					required: "Por favor, Ingrese aporte iess",
+				},
+				pres_quirografarios: {
+					required: "Por favor, Ingrese prestamo quirografário",
+				},
+				pres_anticipos: {
+					required: "Por favor, Ingrese valor anticipos",
+				},
+				atrasos: {
+					required: "Por favor, Ingrese valor atrasos",
+				},
+				permisos: {
+					required: "Por favor, Ingrese valor permisos",
+				},
+				faltas: {
+					required: "Por favor, Ingrese valor faltas",
+				},
+				total_descuentos: {
+					required: "Por favor, Ingrese total descuentos",
+				},
+				neto_pagar: {
+					required: "Por favor, Ingrese neto pagar",
 				},
 			},
 			//para prender y apagar los errores
@@ -142,6 +254,96 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		});
 		// Fin
 
+		//inicio validacion permisos
+		$('#form_permisos').validate({
+			errorElement: 'div',
+			errorClass: 'help-block',
+			focusInvalid: false,
+			ignore: "",
+			rules: {
+				serie_permiso: {
+					required: true				
+				},
+				ciudad: {
+					required: true				
+				},
+				fecha_permiso: {
+					required: true				
+				},
+				select_empleado3: {
+					required: true				
+				},
+				select_empleado4: {
+					required: true				
+				},
+				hora_salida: {
+					required: true				
+				},
+				asunto: {
+					required: true				
+				},
+				lugar: {
+					required: true				
+				},
+				tiempo_salida: {
+					required: true				
+				},
+				select_parte: {
+					required: true				
+				},
+				select_motivo_cargos: {
+					required: true				
+				},
+			},
+			messages: {
+				serie_permiso: {
+					required: "Por favor, Indique serie",
+				},
+				ciudad: {
+					required: "Por favor, Ingrese un ciudad",
+				},
+				fecha_permiso: {
+					required: "Por favor, Indique fecha permiso",
+				},
+				select_empleado3: {
+					required: "Por favor, Seleccione empleado solicitante",
+				},
+				select_empleado4: {
+					required: "Por favor, Seleccione empleado dirigido",
+				},
+				hora_salida: {
+					required: "Por favor, Indique hora salida",
+				},
+				asunto: {
+					required: "Por favor, Indique el asunto",
+				},
+				lugar: {
+					required: "Por favor, Ingrese el lugar",
+				},
+				tiempo_salida: {
+					required: "Por favor, Ingrese el tiempo salida",
+				},
+				select_parte: {
+					required: "Por favor, Seleccione una opción",
+				},
+				select_motivo_cargos: {
+					required: "Por favor, Seleccione una opción",
+				},
+			},
+			//para prender y apagar los errores
+			highlight: function (e) {
+				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+			},
+			success: function (e) {
+				$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+				$(e).remove();
+			},
+			submitHandler: function (form) {
+				
+			}
+		});
+		// Fin
+
 		// funcion autocompletar la serie ro pagos
 		function autocompletar() {
 		    var temp = "";
@@ -179,7 +381,7 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		}
 		// fin
 
-		// funcion autocompletar la serie ro pagos
+		// funcion autocompletar la serie anticipos
 		function autocompletar_anticipos() {
 		    var temp = "";
 		    var serie = $("#serie_anticipo").val();
@@ -190,7 +392,7 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		}
 		// fin
 
-		// funcion cargar maximo codigo rol
+		// funcion cargar maximo anticipos
 		function cargar_codigo_anticipos() {
 			$.ajax({
 				url: 'data/rol_pagos/app.php',
@@ -214,6 +416,47 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 						var a = autocompletar_anticipos(res);
 						var validado = a + "" + res;
 						$("#serie_anticipo").val(validado);
+					}
+				}
+			});
+		}
+		// fin
+
+		// funcion autocompletar la serie permisos
+		function autocompletar_permisos() {
+		    var temp = "";
+		    var serie = $("#serie_permiso").val();
+		    for (var i = serie.length; i < 7; i++) {
+		        temp = temp + "0";
+		    }
+		    return temp;
+		}
+		// fin
+
+		// funcion cargar maximo permisos
+		function cargar_codigo_permisos() {
+			$.ajax({
+				url: 'data/rol_pagos/app.php',
+				type: 'post',
+				data: {cargar_codigo_permisos:'cargar_codigo_permisos'},
+				dataType: 'json',
+				success: function (data) {
+					if(data != null) {
+						var res = parseInt(data.serie_permiso);
+						res = res + 1;
+
+						$("#serie_permiso").val(res);
+						var a = autocompletar_permisos(res);
+						var validado = a + "" + res;
+						$("#serie_permiso").val(validado);
+					} else {
+						var res = parseInt(0);
+						res = res + 1;
+
+						$("#serie_permiso").val(res);
+						var a = autocompletar_permisos(res);
+						var validado = a + "" + res;
+						$("#serie_permiso").val(validado);
 					}
 				}
 			});
@@ -345,8 +588,12 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		$("#dias_laborados").keypress(ValidNum);
 		$("#extras").keypress(ValidNum);
 		$("#no_laborado").keypress(ValidNum);
+		$("#serie_anticipo").keypress(ValidNum);
 		$("#meses_anticipo").keypress(ValidNum);
 		$("#cheque_numero").keypress(ValidNum);
+		$("#serie_permiso").keypress(ValidNum);
+		$("#horas").keypress(ValidNum);
+		$("#dias").keypress(ValidNum);
 		$("#sueldo").keypress(Valida_punto);
 		$("#sueldo_basico").keypress(Valida_punto);
 		$("#horas_extras").keypress(Valida_punto);
@@ -368,9 +615,12 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		llenar_select_empleado();
 		llenar_select_empleado1();
 		llenar_select_empleado2();
+		llenar_select_empleado3();
+		llenar_select_empleado4();
 		llenar_select_bancos();
 		cargar_codigo();
 		cargar_codigo_anticipos();
+		cargar_codigo_permisos();
 		
 		// llenar combo empleado
 		function llenar_select_empleado() {
@@ -406,6 +656,32 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 				data: {llenar_empleado:'llenar_empleado'},
 				success: function (data) {
 					$('#select_empleado2').html(data);
+				}
+			});
+		}
+		// fin
+
+		// llenar combo empleado 3
+		function llenar_select_empleado3() {
+			$.ajax({
+				url: 'data/rol_pagos/app.php',
+				type: 'post',
+				data: {llenar_empleado:'llenar_empleado'},
+				success: function (data) {
+					$('#select_empleado3').html(data);
+				}
+			});
+		}
+		// fin
+
+		// llenar combo empleado 4
+		function llenar_select_empleado4() {
+			$.ajax({
+				url: 'data/rol_pagos/app.php',
+				type: 'post',
+				data: {llenar_empleado:'llenar_empleado'},
+				success: function (data) {
+					$('#select_empleado4').html(data);
 				}
 			});
 		}
@@ -517,8 +793,7 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 
 			var comisiones = $('#comisiones').val();
 
-			var aporte_iess = $('#aporte_iess').val();
-			var pres_quierografarios = $('#pres_quierografarios').val();
+			var pres_quierografarios = $('#pres_quirografarios').val();
 			var pres_anticipos = $('#pres_anticipos').val();
 			var atrasos = $('#atrasos').val();
 			var permisos = $('#permisos').val();
@@ -533,6 +808,16 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			var neto_pagar = 0;
 			var valor_no_laborado = 0;
 			var aporte = 0;
+
+			// calculo aporte iess
+			if(horas >= 8 ) {
+				aporte = ((sueldo * 9.45)/100).toFixed(3);
+				$('#aporte_iess').val(aporte);
+			} else {
+				aporte = (((sueldo * 9.45)/100)/2).toFixed(3);
+				$('#aporte_iess').val(aporte);
+			}
+			// fin
 
 			// redondeos
 			sueldo = parseFloat(sueldo).toFixed(3);
@@ -570,27 +855,18 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			// fin
 
 			// calculo total descuentos
-			total_descuentos = (parseFloat(aporte_iess) + parseFloat(pres_quierografarios) + parseFloat(pres_anticipos) + parseFloat(atrasos) + parseFloat(permisos) + parseFloat(valor_no_laborado)).toFixed(3); 
+			total_descuentos = (parseFloat(aporte) + parseFloat(pres_quierografarios) + parseFloat(pres_anticipos) + parseFloat(atrasos) + parseFloat(permisos) + parseFloat(valor_no_laborado)).toFixed(3); 
 			$('#total_descuentos').val(total_descuentos);
 			// fin
 
 			// calculo neto pagar
 			neto_pagar = (total_ingresos - total_descuentos).toFixed(3);
 			$('#neto_pagar').val(neto_pagar);
-			// fin
-
-			// calculo aporte iess
-			if(horas >= 8 ) {
-				aporte = ((sueldo * 9.45)/100).toFixed(3);
-				$('#aporte_iess').val(aporte);
-			} else {
-				aporte = (((sueldo * 9.45)/100)/2).toFixed(3);
-				$('#aporte_iess').val(aporte);
-			}
-			// fin
+			// fin	
 		}
 		// fin
 
+		// guardar rol pagos
 		$('#btn_guardar_rol').click(function() {
 			var respuesta = $('#form_roles').valid();
 
@@ -620,7 +896,9 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			    });
 			}
 		});
+		// fin
 
+		// guardar anticipos
 		$('#btn_guardar_anticipo').click(function() {
 			var respuesta = $('#form_anticipos').valid();
 
@@ -650,11 +928,45 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			    });
 			}
 		});
+		// fin
 
+		// guardar permisos
+		$('#btn_guardar_permiso').click(function() {
+			var respuesta = $('#form_permisos').valid();
 
+			if (respuesta == true) {
+				var form_uno = $("#form_permisos").serialize();
+				var submit = "btn_guardar_permiso";
+
+				$.ajax({
+			        url: "data/rol_pagos/app.php",
+			        data: form_uno+"&btn_guardar_permiso=" + submit,
+			        type: "POST",
+			        success: function (data) {
+			        	var val = data;
+			        	if(data != '') {
+			        		bootbox.alert("Gracias! Por su Información Datos Correctamente Agregados!", function() {
+							  var myWindow = window.open('data/reportes/rol_pagos.php?hoja=A5&id='+val,'popup','width=900,height=650'); 
+							  location.reload();
+							});
+				    	}                                                
+			        },
+			        error: function (xhr, status, errorThrown) {
+				        alert("Hubo un problema!");
+				        console.log("Error: " + errorThrown);
+				        console.log("Status: " + status);
+				        console.dir(xhr);
+			        }
+			    });
+			}
+		});
+		// fin
+
+		// filtrar roles
 		$('#btn_filtrar').click(function() {
 			gridReload();
 		});
+		// fin
 	});
 	// fin
 

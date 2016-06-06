@@ -100,12 +100,13 @@
 														<h3 class="header smaller blue">&nbsp; Datos Personales:</h3>
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombres:</label>
-																<div class="col-xs-12 col-sm-8">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cédula de Identidad:</label>
+																<div class="col-xs-12 col-sm-6">
 																	<div class="clearfix">
-																		<input type="text" name="txt_nombres" id="txt_nombres" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombres completos" />
+																		<input type="text" name="txt_cedula" id="txt_cedula" class="form-control numeros"  maxlength="10" />
 																	</div>
 																</div>
+																<button class="btn btn-purple btn-sm blue" id="btn_verificar" type="button"><i class="ace-icon fa fa-check"></i></button>
 															</div>
 
 															<div class="form-group">
@@ -132,10 +133,10 @@
 
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Apellidos:</label>
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombres:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_apellidos" id="txt_apellidos" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Apellidos completos" />
+																		<input type="text" name="txt_nombres" id="txt_nombres" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombres completos" />
 																	</div>
 																</div>
 															</div>
@@ -155,13 +156,13 @@
 
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cédula de Identidad:</label>
-																<div class="col-xs-12 col-sm-6">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Apellidos:</label>
+																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_cedula" id="txt_cedula" class="form-control numeros"  maxlength="10" />
+																		<input type="text" name="txt_apellidos" id="txt_apellidos" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Apellidos completos" />
 																	</div>
 																</div>
-															</div>
+															</div>	
 
 															<div class="form-group">
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono Celular:</label>
