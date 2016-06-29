@@ -2,7 +2,7 @@
 	include_once('../../admin/class.php');
 	$class = new constante();
 	session_start(); 
-	error_reporting(0);
+	// error_reporting(0);
 
 	// guardar facturas
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
@@ -55,8 +55,8 @@
 	if($_GET['tipo_busqueda'] == 'ruc') {
 		$texto = $_GET['term'];
 		
-		$resultado = $class->consulta("SELECT * FROM clientes WHERE estado = '1' AND ruc like '%$texto%'");
-		while ($row=$class->fetch_array($resultado)) {
+		$resultado = $class->consulta("SELECT * FROM clientes WHERE ruc_empresa like '%$texto%' AND estado = '1'");
+		while ($row = $class->fetch_array($resultado)) {
 			$data[] = array(
 		            'id_cliente' => $row[0],
 		            'value' => $row[2],
@@ -73,7 +73,7 @@
 	if (isset($_POST['llenar_tipo_paquete'])) {
 		$resultado = $class->consulta("SELECT  * FROM tipo_paquetes WHERE estado = '1' ORDER BY id asc");
 		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
+		while ($row = $class->fetch_array($resultado)) {
 			print '<option value="'.$row['id'].'">'.$row['nombre_paquete'].'</option>';
 		}
 	}
@@ -83,7 +83,7 @@
 	if (isset($_POST['llenar_paquete'])) {
 		$resultado = $class->consulta("SELECT * FROM paquetes P, tipo_paquetes T WHERE P.id_tipo_paquete = T.id AND P.id_tipo_paquete = '".$_POST['id']."'");
 		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
+		while ($row = $class->fetch_array($resultado)) {
 			print '<option value="'.$row[0].'">'.$row['descripcion'].'</option>';
 		}
 	}
@@ -93,7 +93,7 @@
 	if (isset($_POST['llenar_tipo_contrato'])) {
 		$resultado = $class->consulta("SELECT  * FROM tipo_contrato WHERE estado = '1' ORDER BY id asc");
 		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
+		while ($row = $class->fetch_array($resultado)) {
 			print '<option value="'.$row['id'].'">'.$row['nombre_tipo'].'</option>';
 		}
 	}
@@ -103,7 +103,7 @@
 	if (isset($_POST['llenar_programa'])) {
 		$resultado = $class->consulta("SELECT  * FROM programas.programa WHERE estado = '1' ORDER BY id asc");
 		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
+		while ($row = $class->fetch_array($resultado)) {
 			print '<option value="'.$row['id'].'">'.$row['nombre_programa'].'</option>';
 		}
 	}

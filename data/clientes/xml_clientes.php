@@ -41,9 +41,7 @@
         }
     }  
 
-    $resultado = $class->consulta($SQL);  
-    $ss ='';
-    
+    $resultado = $class->consulta($SQL);     
     header("Content-Type: text/html;charset=utf-8");   
     $s = "<?xml version='1.0' encoding='utf-8'?>";
     $s .= "<rows>";
@@ -66,6 +64,8 @@
             $s .= "<cell>" . $row[11] . "</cell>";
             $s .= "<cell>" . $row[12] . "</cell>";
             $s .= "<cell>" . $row[13] . "</cell>";
+            $s .= "<cell>" . $row[14] . "</cell>";
+            $s .= "<cell>" . $row[15] . "</cell>";
             $s .= "</row>";
         }
     $s .= "</rows>";

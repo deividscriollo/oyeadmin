@@ -30,6 +30,7 @@
 		<link rel="stylesheet" href="dist/css/bootstrap-datetimepicker-standalone.css" />
 		<link rel="stylesheet" href="dist/css/bootstrap-editable.min.css" />
 		<link rel="stylesheet" href="dist/css/daterangepicker.min.css" />
+		<link rel="stylesheet" href="dist/css/sweetalert.css" />
 
 		<link rel="stylesheet" href="dist/css/jquery-ui.custom.min.css" />
 		<link href="dist/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
@@ -45,6 +46,7 @@
 		<script src="dist/angular-1.5.0/angular-route.js"></script>
 		<script src="dist/angular-1.5.0/angular-animate.js"></script>
 		<script src="dist/angular-1.5.0/ui-bootstrap-tpls-1.1.2.min.js"></script>
+		<script src="dist/angular-1.5.0/angular-resource.js"></script>
 
 		<!-- controlador procesos angular -->
   		<script src="data/app.js"></script>
@@ -58,14 +60,17 @@
   		<script src="data/cargos/app.js"></script>
   		<script src="data/bancos/app.js"></script>
   		<script src="data/empresa/app.js"></script>
-  		<script src="data/clientes/app.js"></script>
   		<script src="data/programas/app.js"></script>
   		<script src="data/vendedores/app.js"></script>
+  		<script src="data/clientes/app.js"></script>
+  		<script src="data/fotos_clientes/app.js"></script>
   		<script src="data/ficha_ingresos/app.js"></script>
+  		<script src="data/fotos_personal/app.js"></script>
   		<script src="data/ficha_programas/app.js"></script>
   		<script src="data/ficha_invitados/app.js"></script>
   		<script src="data/contratos_selectivos/app.js"></script>
   		<script src="data/contratos_rotativos/app.js"></script>
+  		<script src="data/cartera/app.js"></script>
   		<script src="data/facturas/app.js"></script>
   		<script src="data/rol_pagos/app.js"></script>
   		<script src="data/reportes/app.js"></script>
@@ -94,7 +99,7 @@
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
 						<small>
-							<i class="fa fa-user"></i>
+							<i class="fa fa-music"></i>
 							OyeFm 93.1
 						</small>
 					</a>
@@ -163,7 +168,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li ng-class =	"{'active open': 
+					<li ng-class=	"{'active open': 
 												$route.current.activetab == 'tipo_paquetes' ||
 												$route.current.activetab == 'paquetes' ||
 												$route.current.activetab == 'tipo_programa' ||
@@ -171,9 +176,94 @@
 												$route.current.activetab == 'tipo_contrato' ||
 												$route.current.activetab == 'areas' ||
 												$route.current.activetab == 'cargos' ||
-												$route.current.activetab == 'bancos' ||
+												$route.current.activetab == 'bancos'
+									}">
+						<a href="" class="dropdown-toggle">
+							<i class="menu-icon fa fa-cog"></i>
+							<span class="menu-text">
+								Generales
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li ng-class="{active: $route.current.activetab == 'tipo_paquetes'}">
+								<a href="#/tipo_paquetes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Paquetes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'paquetes'}">
+								<a href="#/paquetes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Paquetes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tipo_programa'}">
+								<a href="#/tipo_programa">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Programa
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tipo_vendedor'}">
+								<a href="#/tipo_vendedor">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Vendedor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tipo_contrato'}">
+								<a href="#/tipo_contrato">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Contrato
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'areas'}">
+								<a href="#/areas">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Areas
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'cargos'}">
+								<a href="#/cargos">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cargos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'bancos'}">
+								<a href="#/bancos">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Bancos
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li ng-class =	"{'active open': 
 												$route.current.activetab == 'empresa' ||
-												$route.current.activetab == 'clientes' ||
 												$route.current.activetab == 'programas' ||
 												$route.current.activetab == 'vendedores'
 									}">
@@ -188,110 +278,12 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li ng-class=	"{'active open': 
-													$route.current.activetab == 'tipo_paquetes' ||
-													$route.current.activetab == 'paquetes' ||
-													$route.current.activetab == 'tipo_programa' ||
-													$route.current.activetab == 'tipo_vendedor' ||
-													$route.current.activetab == 'tipo_contrato' ||
-													$route.current.activetab == 'areas' ||
-													$route.current.activetab == 'cargos' ||
-													$route.current.activetab == 'bancos'
-											}">
-								<a href="" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Generales
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li ng-class="{active: $route.current.activetab == 'tipo_paquetes'}">
-										<a href="#/tipo_paquetes">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Tipo Paquetes
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'paquetes'}">
-										<a href="#/paquetes">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Paquetes
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'tipo_programa'}">
-										<a href="#/tipo_programa">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Tipo Programa
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'tipo_vendedor'}">
-										<a href="#/tipo_vendedor">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Tipo Vendedor
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'tipo_contrato'}">
-										<a href="#/tipo_contrato">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Tipo Contrato
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'areas'}">
-										<a href="#/areas">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Areas
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'cargos'}">
-										<a href="#/cargos">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Cargos
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li ng-class="{active: $route.current.activetab == 'bancos'}">
-										<a href="#/bancos">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Bancos
-										</a>
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li>
+							
 
 							<li ng-class="{active: $route.current.activetab == 'empresa'}">
 								<a href="#/empresa" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Empresa
-								</a>
-								<b class="arrow"></b>
-							</li>
-
-							<li ng-class="{active: $route.current.activetab == 'clientes'}">
-								<a href="#/clientes" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Clientes
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -314,7 +306,43 @@
 						</ul>
 					</li>
 
-					<li ng-class =	"{'active open': $route.current.activetab == 'ficha_ingresos'}">
+					<li ng-class =	"{'active open': 
+												$route.current.activetab == 'clientes' || 
+												$route.current.activetab == 'fotos_clientes'
+									}">
+						<a href="" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+							<span class="menu-text">
+								Clientes
+							</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li ng-class="{active: $route.current.activetab == 'clientes'}">
+								<a href="#/clientes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Nuevo Cliente
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'fotos_clientes'}">
+								<a href="#/fotos_clientes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Fotos Clientes
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li ng-class =	"{'active open': 
+												$route.current.activetab == 'ficha_ingresos' || 
+												$route.current.activetab == 'fotos_personal'
+									}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text">
@@ -330,6 +358,14 @@
 								<a href="#/ficha_ingresos">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Ficha Ingreso
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'fotos_personal'}">
+								<a href="#/fotos_personal">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Fotos Personal
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -395,7 +431,7 @@
 							</li>
 
 							<li class="">
-								<a href="#/reportes">
+								<a id="abrir_buscador_programas" style="cursor:pointer; cursor: hand">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Buscar Programas
 								</a>
@@ -407,7 +443,8 @@
 
 					<li ng-class=	"{'active open': 
 													$route.current.activetab == 'contratos_selectivos' ||
-													$route.current.activetab == 'contratos_rotativos'
+													$route.current.activetab == 'contratos_rotativos' ||
+													$route.current.activetab == 'cartera'
 									}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file"></i>
@@ -433,6 +470,15 @@
 								<a href="#/contratos_rotativos">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Contrato Rotativo
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class =	"{active: $route.current.activetab == 'cartera'}">
+								<a href="#/cartera">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cuentas Cobrar
 								</a>
 
 								<b class="arrow"></b>
@@ -510,7 +556,7 @@
 							<li ng-class =	"{active: $route.current.activetab == 'fotos_usuario'}">
 								<a href="#/fotos_usuario">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Imagen
+									Fotos Usuarios
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -610,7 +656,8 @@
 		<script src="dist/js/ace-elements.min.js"></script>
 		<script src="dist/js/ace.min.js"></script>
 		<script src="dist/js/lockr.min.js"></script>
-		
-		<script src="dist/js/wow.js"></script>
+		<script src="dist/js/sweetalert.min.js"></script>
+		<script src="dist/js/jquery.blockUI.js"></script>
+		<script src="dist/js/NumeroALetras.js"></script>
 	</body>
 </html>

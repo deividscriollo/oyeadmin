@@ -92,55 +92,40 @@ function Header() {
     $class = new constante();
     $style3 = array('width' => 0.3, 'cap' => 'round', 'join' => 'round', 'dash' => '2, 10', 'color' => array(25, 0, 0));
 
-    //Logo
-    $this->Image('logo.png',9,8,55);
-    //Arial bold 9
-    $this->SetFont('Arial','B',16);
-    //Movernos a la derecha
-    $this->Cell(80);
-    //Título
-    $this->Cell(40,25,'Ficha de Ingreso',0,0,'C');
-    $this->Image('foto.png', 180, 8, 25, 28, 'PNG');
-    //Salto de línea
-    $this->Ln(20);
-
     $resp = $class->consulta("SELECT * from corporativo.personal where id = '".$_GET['id']."' and estado = '1'");
     while ($row = $class->fetch_array($resp)) {
-        $fecha_aplicacion = $row[22];
-        $relacion_dependencia = $row[1];
-        $nombres = $row[2];
-        $apellidos = $row[3];
-        $ci = $row[4];
-        $fecha_nacimiento = $row[5];
-        $edad = $row[6];
-        $tel_fijo = $row[7];
-        $tel_celular = $row[8];
-        $estado_civil = $row[9];
-        $cargas = $row[10];
-        $email = $row[11];
-        $instruccion = $row[12];
-        $especialidad = $row[13];
-        $vivienda = $row[14];
-        $barrio = $row[15];
-        $sector = $row[16];
-        $direccion_per = $row[17];
-        $sangre = $row[18];
-        $alergia = $row[19];
-        $enfermedad = $row[20];
-        $fecha_inicio_traba = $row[21];
+        $fecha_aplicacion = $row[25];
+        $relacion_dependencia = $row[3];
+        $codigo_ficha = $row[2];
+        $nombres_completos = $row[4];
+        $ci = $row[5];
+        $fecha_nacimiento = $row[6];
+        $edad = $row[7];
+        $tel_fijo = $row[8];
+        $tel_celular = $row[9];
+        $estado_civil = $row[10];
+        $cargas = $row[11];
+        $email = $row[12];
+        $instruccion = $row[13];
+        $especialidad = $row[14];
+        $vivienda = $row[15];
+        $ciudad = $row[17];
+        $parroquia = $row[18];
+        $sector = $row[19];
+        $direccion_per = $row[20];
+        $sangre = $row[21];
+        $alergia = $row[22];
+        $enfermedad = $row[23];
+        $fecha_inicio_traba = $row[24];
+        $imagen = $row[29];
     }
 
-    $resp = $class->consulta("SELECT L.nom_ciudad FROM corporativo.nacionalidad N, Localizacion.ciudad L, corporativo.personal P WHERE N.id_ciudad_pais = L.id and N.id_personal = P.id and N.id_personal = '".$_GET['id']."'");
-    while ($row = $class->fetch_array($resp)) {
-        $ciudad = $row[0];
-    }
-
-    $resp = $class->consulta("SELECT C.nombre FROM corporativo.cargos_personal G, corporativo.cargo C, corporativo.personal P where P.id = G.id_personal and C.id = G.id_cargo  and G.id_personal = '".$_GET['id']."'");
+    $resp = $class->consulta("SELECT C.nombre FROM corporativo.cargos_asignacion G, corporativo.cargos C, corporativo.personal P where P.id = G.id_personal and C.id = G.id_cargoS  and G.id_personal = '".$_GET['id']."'");
     while ($row = $class->fetch_array($resp)) {
         $cargo_p = $row[0];
     }
 
-    $resp = $class->consulta("SELECT A.nomre_empresa, A.cargo, A.direccion, A.telf_fijo, A.telf_celular, A.nombre_jefe, A.tiempo_trab, A.ciudad FROM corporativo.anterior_trab A, corporativo.personal P WHERE P.id= A.id_personal and A.id_personal='".$_GET['id']."'");
+    $resp = $class->consulta("SELECT A.nomre_empresa, A.cargo, A.direccion, A.telf_fijo, A.telf_celular, A.nombre_jefe, A.tiempo_trab, A.ciudad FROM corporativo.trabajo_anterior A, corporativo.personal P WHERE P.id= A.id_personal and A.id_personal='".$_GET['id']."'");
     while ($row = $class->fetch_array($resp)) {
         $nom_empresa = $row[0];
         $cargo = $row[1];
@@ -161,6 +146,17 @@ function Header() {
         $ciudad_fami = $row[4];
     } 
 
+    //Logo
+    $this->Image('logo.png',9,8,55);
+    //Arial bold 9
+    $this->SetFont('Arial','B',16);
+    //Movernos a la derecha
+    $this->Cell(80);
+    //Título
+    $this->Cell(40,25,'Ficha de Ingreso',0,0,'C');
+    $this->Image('../fotos_personal/imagenes/'.$imagen, 180, 8, 25, 28);
+    //Salto de línea
+    $this->Ln(20);
     $this->SetFont('Arial','',11);
     $mydate = strtotime($fecha_aplicacion); 
     $this->Text(5, 45, utf8_decode('Fecha de Aplicación:'), 1, 'L');
@@ -171,10 +167,14 @@ function Header() {
     $this->Text(5, 53, 'Datos personales:',1, 'L');
     $this->SetFont('Arial','B',14);
     $this->Text(75, 53, 'FICHA Nro.',1, 'L');
+    $this->SetTextColor(85,107,47); 
+    $this->Text(105, 53, utf8_decode($codigo_ficha),1,0, 'L',0);/////nombre
+    $this->SetTextColor(25,25,25);
     $this->SetXY(5,55);
     $this->Cell(200,20,"",1);
     $this->SetFont('Arial','',10);
     $this->Text(150, 53, utf8_decode('Relación de Dependencia:'),1, 'L');
+
     if(utf8_decode($relacion_dependencia) == 'true') {
         $this->SetLineWidth(0.3);
         $this->SetFillColor(123,172,56);
@@ -187,17 +187,14 @@ function Header() {
         } 
     }
     
-    $this->Text(7, 60, 'Nombres:',1, 'L');
+    $this->Text(7, 60, 'Nombres Completos:',1, 'L');
     $this->SetTextColor(85,107,47); 
-    $this->Text(7, 65, utf8_decode($nombres),1,0, 'L',0);/////nombre
+    $this->Text(7, 65, utf8_decode($nombres_completos),1,0, 'L',0);/////nombre
     $this->SetTextColor(25,25,25); 
-    $this->Text(73, 60, 'Apellidos:', 1, 'L');
-    $this->SetTextColor(85,107,47);
-    $this->Text(73, 65, utf8_decode($apellidos),1,0, 'L',0);/////apellidos
     $this->SetTextColor(25,25,25);
-    $this->Text(136, 60, utf8_decode('Cedula de identificación:'),1, 'L');
+    $this->Text(110, 60, utf8_decode('Cedula de identificación:'),1, 'L');
     $this->SetTextColor(85,107,47);
-    $this->Text(136, 65, utf8_decode($ci),1,0, 'L',0);////ci
+    $this->Text(110, 65, utf8_decode($ci),1,0, 'L',0);////ci
     $this->SetTextColor(25,25,25);
     $this->Text(7, 72, 'Fecha de nacimiento:',1, 'L');
     $this->SetTextColor(85,107,47);
@@ -385,11 +382,11 @@ function Header() {
     $this->SetTextColor(85,107,47);
     $this->Text(21, 140, utf8_decode($ciudad),1,0, 'L',0);////barrio
     $this->SetTextColor(25,25,25);
-    $this->Text(80, 140, 'Barrio:', 1, 'L');
+    $this->Text(80, 140, 'Parroquia:', 1, 'L');
     $this->SetTextColor(85,107,47);
-    $this->Text(92, 140, utf8_decode($barrio),1,0, 'L',0);////barrio
+    $this->Text(98, 140, utf8_decode($parroquia),1,0, 'L',0);////barrio
     $this->SetTextColor(25,25,25);
-    $this->Text(140, 140, 'sector:', 1, 'L');
+    $this->Text(140, 140, 'Sector:', 1, 'L');
     $this->SetTextColor(85,107,47);
     $this->Text(152, 140, utf8_decode($sector),1,0, 'L',0);////barrio
     $this->SetTextColor(25,25,25);
@@ -483,13 +480,13 @@ function Header() {
     $this->SetTextColor(85,107,47);
     $this->Text(150, 206, utf8_decode($tiempo_trab),1,0, 'L',0);///tiempo trabajado
     $this->SetTextColor(25,25,25);
-    $this->Text(7, 213, utf8_decode('Dirección:'),1, 'L');
+    $this->Text(7, 211, utf8_decode('Dirección:'),1, 'L');
     $this->SetTextColor(85,107,47);
-    $this->Text(25, 213,utf8_decode($direccion),1,0, 'L',0);///tiempo trabajado 
+    $this->Text(25, 211,utf8_decode($direccion),1,0, 'L',0);///tiempo trabajado 
     $this->SetTextColor(25,25,25);
-    $this->Text(150, 213, 'Ciudad:',1, 'L');
+    $this->Text(150, 211, 'Ciudad:',1, 'L');
     $this->SetTextColor(85,107,47);
-    $this->Text(164, 213, utf8_decode($ciudad_trab),1,0, 'L',0);///ciudad de trabajo
+    $this->Text(164, 211, utf8_decode($ciudad_trab),1,0, 'L',0);///ciudad de trabajo
     $this->SetTextColor(25,25,25);
 
     $this->SetFont('Arial','B',12);
@@ -509,9 +506,9 @@ function Header() {
     $this->SetTextColor(85,107,47);
     $this->Text(150, 235, utf8_decode($telf_fami),1,0, 'L',0);///telefono familiar
     $this->SetTextColor(25,25,25);
-    $this->Text(7, 242, utf8_decode('Dirección:'),1, 'L');
+    $this->Text(7, 240, utf8_decode('Dirección:'),1, 'L');
     $this->SetTextColor(85,107,47);
-    $this->Text(25, 242, utf8_decode($direccion_fami),1,0, 'L',0);///direccion familiar
+    $this->Text(25, 240, utf8_decode($direccion_fami),1,0, 'L',0);///direccion familiar
     $this->SetTextColor(25,25,25);
     $this->Text(150, 240, 'Ciudad:', 1, 'L');
     $this->SetTextColor(85,107,47);

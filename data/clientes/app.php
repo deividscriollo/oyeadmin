@@ -8,93 +8,57 @@
 	// error_reporting(0);
 	
 	$fecha = $class->fecha_hora();
-
-	$cadena = " ".$_POST['img'];	
-	$buscar = 'data:image/png;base64,';
 	$cont = 0;
-
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id_clientes = $class->idz();
 
-		if(strpos($cadena, $buscar) ==  FALSE) {
-			$resp = $class->consulta("INSERT INTO clientes VALUES (			'$id_clientes',
-																			'$_POST[nombre_empresa]',
-																			'$_POST[ruc_empresa]',
-																			'$_POST[direccion_empresa]',
-																			'$_POST[observaciones]',
-																			'$_POST[correo]',
-																			'$_POST[txt_sitio_web]',
-																			'$_POST[txt_telefono]',
-																			'$_POST[txt_contacto]',
-																			'$_POST[identificacion]',
-																			'$_POST[txt_facebook]',
-																			'$_POST[txt_twitter]',
-																			'$_POST[txt_google]',
-																			'defaul.jpg',
-																			'1', '$fecha');");	
-		} else {
-			$resp = img_64("imagenes",$_POST['img'],'png',$id_clientes);
-			$resp = $class->consulta("INSERT INTO clientes VALUES (			'$id_clientes',
-																			'$_POST[nombre_empresa]',
-																			'$_POST[ruc_empresa]',
-																			'$_POST[direccion_empresa]',
-																			'$_POST[observaciones]',
-																			'$_POST[correo]',
-																			'$_POST[txt_sitio_web]',
-																			'$_POST[txt_telefono]',
-																			'$_POST[txt_contacto]',
-																			'$_POST[identificacion]',
-																			'$_POST[txt_facebook]',
-																			'$_POST[txt_twitter]',
-																			'$_POST[txt_google]',
-																			'".$id_clientes.".png',
-																			'1', '$fecha');");
-		}
-
+		$resp = $class->consulta("INSERT INTO clientes VALUES (			'$id_clientes',
+																		'$_POST[ruc_empresa]',
+																		'$_POST[nombre_comercial]',
+																		'$_POST[actividad_economica]',
+																		'$_POST[razon_social]',
+																		'$_POST[representante_legal]',
+																		'$_POST[cedula]',
+																		'$_POST[celular]',
+																		'$_POST[telefono]',
+																		'$_POST[direccion]',
+																		'$_POST[correo]',
+																		'$_POST[sitio_web]',
+																		'$_POST[facebook]',
+																		'$_POST[twitter]',
+																		'$_POST[google]',
+																		'$_POST[observaciones]',
+																		'defaul.jpg',
+																		'1', '$fecha');");	
 		$data = 1;
 		echo $data;
 	}
 
 	if (isset($_POST['btn_modificar']) == "btn_modificar") {
 
-		if(strpos($cadena, $buscar) ==  FALSE) {
-			$resp = $class->consulta("UPDATE clientes SET			        empresa = '$_POST[nombre_empresa]',
-																			ruc = '$_POST[ruc_empresa]',
-																			direccion = '$_POST[direccion_empresa]',
-																			observaciones = '$_POST[observaciones]',
-																			email = '$_POST[correo]',
-																			sitio = '$_POST[txt_sitio_web]',
-																			telefono = '$_POST[txt_telefono]',
-																			representante = '$_POST[txt_contacto]',
-																			identificacion = '$_POST[identificacion]',
-																			facebook = '$_POST[txt_facebook]',
-																			twitter = '$_POST[txt_twitter]',
-																			google = '$_POST[txt_google]',
-																			fecha_creacion = '$fecha' WHERE id = '$_POST[id_empresa]'");	
-		} else {
-			$resp = img_64("imagenes",$_POST['img'],'png',$_POST['id_empresa']);
-			$resp = $class->consulta("UPDATE clientes SET			        empresa = '$_POST[nombre_empresa]',
-																			ruc = '$_POST[ruc_empresa]',
-																			direccion = '$_POST[direccion_empresa]',
-																			observaciones = '$_POST[observaciones]',
-																			email = '$_POST[correo]',
-																			sitio = '$_POST[txt_sitio_web]',
-																			telefono = '$_POST[txt_telefono]',
-																			representante = '$_POST[txt_contacto]',
-																			identificacion = '$_POST[identificacion]',
-																			facebook = '$_POST[txt_facebook]',
-																			twitter = '$_POST[txt_twitter]',
-																			google = '$_POST[txt_google]',
-																			imagen = '$_POST[id_empresa].png',
-																			fecha_creacion = '$fecha' WHERE id = '$_POST[id_empresa]'");
-		}
+		$resp = $class->consulta("UPDATE clientes SET			        ruc_empresa = '$_POST[ruc_empresa]',
+																		nombre_comercial = '$_POST[nombre_comercial]',
+																		actividad_economica = '$_POST[actividad_economica]',
+																		razon_social = '$_POST[razon_social]',
+																		representante_legal = '$_POST[representante_legal]',
+																		cedula_representante = '$_POST[cedula]',
+																		celular = '$_POST[celular]',
+																		telefono = '$_POST[telefono]',
+																		direccion = '$_POST[direccion]',
+																		correo = '$_POST[correo]',
+																		sitio_web = '$_POST[sitio_web]',
+																		facebook = '$_POST[facebook]',
+																		twitter = '$_POST[twitter]',
+																		google = '$_POST[google]',
+																		observaciones = '$_POST[observaciones]',
+																		fecha_creacion = '$fecha' WHERE id = '$_POST[id_cliente]'");	
 		$data = 2;
 		echo $data;
 	}
 
 	//Comparar ruc repetidos
 	if (isset($_POST['comparar_ruc'])) {
-		$resultado = $class->consulta("SELECT * FROM clientes C WHERE C.ruc = '$_POST[ruc]' AND C.estado = '1'");
+		$resultado = $class->consulta("SELECT * FROM clientes C WHERE C.ruc_empresa = '$_POST[ruc]' AND C.estado = '1'");
 		while ($row=$class->fetch_array($resultado)) {
 			$cont++;
 		}

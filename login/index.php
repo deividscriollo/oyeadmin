@@ -43,8 +43,8 @@
 												<i class="fa fa-users green"></i>
 												Ingrese su Información
 											</h4>
+											
 											<div class="space-6"></div>
-											<!--Formulario Principal-->
 											<form id="form_proceso" name="form_proceso">
 												<fieldset>
 													<label class="form-group block clearfix">
@@ -70,16 +70,15 @@
 													<div class="space-4"></div>
 												</fieldset>
 											</form>
-											<!--Fin del Formulario Principal-->
-										</div><!-- /.widget-main -->
-									</div><!-- /.widget-body -->
-								</div><!-- /.login-box -->
-							</div><!-- /.position-relative -->
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../dist/js/jquery.min.js'>"+"<"+"/script>");

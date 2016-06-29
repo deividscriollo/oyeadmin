@@ -15,7 +15,7 @@
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$resp = img_64("imagenes",$_POST['img'],'png',$_POST['id_usuario']);
 
-		$resp = $class->consulta("UPDATE usuario SET imagen = '$_POST[id_usuario].png' WHERE id = '$_POST[id_usuario]'");	
+		$resp = $class->consulta("UPDATE usuarios SET imagen = '$_POST[id_usuario].png' WHERE id = '$_POST[id_usuario]'");	
 		
 
 		$data = 1;
@@ -25,11 +25,11 @@
 
 	// consultar usuarios
 	if(isset($_POST['cargar_tabla'])){
-		$resultado = $class->consulta("SELECT * FROM usuario U, cargo C WHERE U.id_cargo = C.id ");
+		$resultado = $class->consulta("SELECT * FROM usuarios U, perfiles P WHERE U.id_perfil = P.id");
 		while ($row=$class->fetch_array($resultado)) {
 			$lista[] = array('id' => $row[0],
 						'cedula' => $row['cedula'],
-						'nombres_completos' => $row[2]. ' ' .$row[3],
+						'nombres_completos' => $row['nombres_completos'],
 						'usuario' => $row['usuario'],
 						'nombre_cargo' => $row[15],
 						'estado' => $row[11]
@@ -41,7 +41,7 @@
 
 	//cargar imagen usuario
 	if (isset($_POST['llenar_foto'])) {
-		$resultado = $class->consulta("SELECT * FROM usuario WHERE id = '$_POST[id]'");
+		$resultado = $class->consulta("SELECT * FROM usuarios WHERE id = '$_POST[id]'");
 		while ($row = $class->fetch_array($resultado)) {
 			$data = array('imagen' => $row['imagen']);
 		}

@@ -1,289 +1,123 @@
-angular.module('scotchApp').controller('clientesController', function ($scope, $location) {
+angular.module('scotchApp').controller('clientesController', function ($scope, $location,loaddatosSRI) {
 
 	jQuery(function($) {	
-		$.fn.editable.defaults.mode = 'inline';
-		$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
-	    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
-	                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
-		try {
-			try {
-				document.createElement('IMG').appendChild(document.createElement('B'));
-			} catch(e) {
-				Image.prototype.appendChild = function(el){}
-			}
-	
-			var last_gritter
-			$('#avatar').editable({
-				type: 'image',
-				name: 'avatar',
-				value: null,
-				image: {
-					btn_choose: 'Cambiar Logo',
-					droppable: true,
-					maxSize: 990000,	
-					name: 'avatar',
-					on_error : function(error_type) {
-						if(last_gritter) $.gritter.remove(last_gritter);
-						if(error_type == 1) {
-							last_gritter = $.gritter.add({
-								title: 'El archivo no es una imagen!',
-							text: 'Por favor, elija un jpg | jpeg | imagen png!',
-							class_name: 'gritter-error gritter-center'
-							});
-						} else if(error_type == 2) {
-							last_gritter = $.gritter.add({
-								title: 'Archivo muy grande!',
-							text: 'Tamaño de la imagen no debe superar los 100Kb!',
-							class_name: 'gritter-error gritter-center'
-							});
-						} else {}
-					},
-					on_success : function() {
-						$.gritter.removeAll();
-					}
-				},
-			    url: function(params) {
-					var deferred = new $.Deferred
-	
-					var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
-					if(!value || value.length == 0) {
-						deferred.resolve();
-						return deferred.promise();
-					}
-	
-					setTimeout(function() {
-						if("FileReader" in window) {
-							var thumb = $('#avatar').next().find('img').data('thumb');
-							if(thumb) $('#avatar').get(0).src = thumb;
-						}
-						
-						deferred.resolve({'status':'OK'});
-						if(last_gritter) $.gritter.remove(last_gritter);
-						last_gritter = $.gritter.add({
-							title: 'Imagen Cargada!',
-							// text: 'Uploading to server can be easily implemented. A working example is included with the template.',
-							class_name: 'gritter-info gritter-center'
-						});
-						
-					 } , parseInt(Math.random() * 800 + 800))
-	
-					return deferred.promise();
-				},
-				
-				success: function(response, newValue) {
-				}
-			})
-		}catch(e) {}
+		// mascaras
+		$('#celular').mask('(999) 999-9999');
+		$('#telefono').mask('(999) 999-999');
+		// fin
 
+		// validación ruc
+		$("#ruc_empresa").keyup(function() {
+	        $.ajax({
+	            type: "POST",
+	            url: "data/clientes/app.php",
+	            data: {comparar_ruc:'comparar_ruc',ruc: $("#ruc_empresa").val()},
+	            dataType: 'json',
+	            success: function(data) {
+	                var val = data;
+	                if (val == 1) {
+	                    $("#ruc_empresa").val("");
+	                    $("#ruc_empresa").focus();
+	                    $.gritter.add({
+							title: 'Error... El cliente ya fue registrado',
+							class_name: 'gritter-error gritter-center',
+							time: 1000,
+						});	
+					}
+	            }
+	        });
+    	});
+		// fin
+
+		//validacion formulario usuarios
+		$('#form_clientes').validate({
+			errorElement: 'div',
+			errorClass: 'help-block',
+			focusInvalid: false,
+			ignore: "",
+			rules: {
+				ruc_empresa: {
+					required: true,
+					digits: true,
+					minlength: 13				
+				},
+				nombre_comercial: {
+					required: true				
+				},
+				actividad_economica: {
+					required: true				
+				},
+				razon_social: {
+					required: true,
+					minlength: 10				
+				},
+				representante_legal: {
+					required: true				
+				},
+				cedula: {
+					required: true				
+				},
+				celular: {
+					required: true				
+				},
+				direccion: {
+					required: true				
+				},	
+			},
+			messages: {
+				ruc_empresa: {
+					required: "Por favor, Ingrese Ruc Empresa",
+					digits: "Por favor, Ingrese solo dígitos",
+					minlength: "Por favor, Especifique mínimo 13 digitos"
+				},
+				nombre_comercial: { 	
+					required: "Por favor, Indique Nombre Comercial",			
+				},
+				actividad_economica: { 	
+					required: "Por favor, Indique Actividad Económica",			
+				},
+				razon_social: {
+					required: "Por favor, Indique la Razón Social",
+				},
+				representante_legal: {
+					required: "Por favor, Indique Representante Legal",
+				},
+				cedula: {
+					required: "Por favor, Indique cédula representante",
+				},
+				celular: {
+					required: "Por favor, Indique número celular",
+				},
+				direccion: {
+					required: "Por favor, Ingrese una dirección",
+				},
+
+			},
+			//para prender y apagar los errores
+			highlight: function (e) {
+				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+			},
+			success: function (e) {
+				$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+				$(e).remove();
+			},
+			submitHandler: function (form) {
+				
+			}
+		});
+		// Fin 
+
+		// validacion solo numeros
 		function ValidNum() {
 		    if (event.keyCode < 48 || event.keyCode > 57) {
 		        event.returnValue = false;
 		    }
 		    return true;
 		}
+		// fin
 
-		$("#ruc_empresa").keypress(ValidNum);
-
-		// validación ruc
-		$("#ruc_empresa").keyup(function() {
-        $.ajax({
-            type: "POST",
-            url: "data/clientes/app.php",
-            data: {comparar_ruc:'comparar_ruc',ruc: $("#ruc_empresa").val()},
-            dataType: 'json',
-            success: function(data) {
-                var val = data;
-                if (val == 1) {
-                    $("#ruc_empresa").val("");
-                    $("#ruc_empresa").focus();
-                    $.gritter.add({
-						title: 'Error... El cliente ya fue registrado',
-						class_name: 'gritter-error gritter-center',
-						time: 1000,
-					});	
-                } else {
-                    var numero = $("#ruc_empresa").val();
-                    var suma = 0;      
-                    var residuo = 0;      
-                    var pri = false;      
-                    var pub = false;            
-                    var nat = false;                     
-                    var modulo = 11;
-                    var p1;
-                    var p2;
-                    var p3;
-                    var p4;
-                    var p5;
-                    var p6;
-                    var p7;
-                    var p8;            
-                    var p9; 
-                    var d1  = numero.substr(0,1);         
-                    var d2  = numero.substr(1,1);         
-                    var d3  = numero.substr(2,1);         
-                    var d4  = numero.substr(3,1);         
-                    var d5  = numero.substr(4,1);         
-                    var d6  = numero.substr(5,1);         
-                    var d7  = numero.substr(6,1);         
-                    var d8  = numero.substr(7,1);         
-                    var d9  = numero.substr(8,1);         
-                    var d10 = numero.substr(9,1);  
-
-                    if (d3 < 6) {           
-                        nat = true;            
-                        p1 = d1 * 2;
-                        if (p1 >= 10) p1 -= 9;
-                        p2 = d2 * 1;
-                        if (p2 >= 10) p2 -= 9;
-                        p3 = d3 * 2;
-                        if (p3 >= 10) p3 -= 9;
-                        p4 = d4 * 1;
-                        if (p4 >= 10) p4 -= 9;
-                        p5 = d5 * 2;
-                        if (p5 >= 10) p5 -= 9;
-                        p6 = d6 * 1;
-                        if (p6 >= 10) p6 -= 9; 
-                        p7 = d7 * 2;
-                        if (p7 >= 10) p7 -= 9;
-                        p8 = d8 * 1;
-                        if (p8 >= 10) p8 -= 9;
-                        p9 = d9 * 2;
-                        if (p9 >= 10) p9 -= 9;             
-                        modulo = 10;
-                    } else if(d3 == 6) {           
-                        pub = true;             
-                        p1 = d1 * 3;
-                        p2 = d2 * 2;
-                        p3 = d3 * 7;
-                        p4 = d4 * 6;
-                        p5 = d5 * 5;
-                        p6 = d6 * 4;
-                        p7 = d7 * 3;
-                        p8 = d8 * 2;            
-                        p9 = 0;            
-                    } else if(d3 == 9) {          
-                        pri = true;                                   
-                        p1 = d1 * 4;
-                        p2 = d2 * 3;
-                        p3 = d3 * 2;
-                        p4 = d4 * 7;
-                        p5 = d5 * 6;
-                        p6 = d6 * 5;
-                        p7 = d7 * 4;
-                        p8 = d8 * 3;
-                        p9 = d9 * 2;            
-                    }
-
-                    suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
-                    residuo = suma % modulo;                                         
-
-                    var digitoVerificador = residuo == 0 ? 0: modulo - residuo; 
-                    var ruc = numero.substr(10,13);
-                    var digito3 = numero.substring(2,3);
-
-                    if(ruc == "001" ) {
-                        if(digito3 < 6) {  
-                            if(nat == true) {
-                            	if (digitoVerificador != d10) {                          
-		                            $.gritter.add({
-										title: 'Error... El ruc persona natural es incorrecto.',
-										class_name: 'gritter-error gritter-center',
-										time: 1000,
-									});
-                              		$("#ruc_empresa").val("");
-                                } else {
-                                	$.gritter.add({
-										title: 'El ruc persona natural es correcto.',
-										class_name: 'gritter-success gritter-center',
-										time: 1000,
-									});
-                                } 
-                            }
-                        } else {
-                            if(digito3 == 6) { 
-                                if (pub == true){  
-                                    if (digitoVerificador != d9){                          
-                                        $.gritter.add({
-											title: 'Error... El ruc público es incorrecto.',
-											class_name: 'gritter-error gritter-center',
-											time: 1000,
-										});
-                                        $("#ruc_empresa").val("");
-                                    } else {
-                                    	$.gritter.add({
-											title: 'El ruc público es correcto.',
-											class_name: 'gritter-success gritter-center',
-											time: 1000,
-										});
-                                    } 
-                                }
-                            } else {
-                                if(digito3 == 9) {
-                                    if(pri == true){
-                                        if (digitoVerificador != d10) {  
-                                        	$.gritter.add({
-												title: 'Error... El ruc privado es incorrecto.',
-												class_name: 'gritter-error gritter-center',
-												time: 1000,
-											});                        
-                                            $("#ruc_empresa").val("");
-                                        } else {
-                                        	$.gritter.add({
-												title: 'El ruc privado es correcto.',
-												class_name: 'gritter-success gritter-center',
-												time: 1000,
-											});
-                                        } 
-                                    }
-                                } 
-                            }
-                        }
-                    } else {
-                        if(numero.length == 13) {
-                        	$.gritter.add({
-								title: 'Error... El ruc es incorrecto',
-								class_name: 'gritter-error gritter-center',
-								time: 1000,
-							});
-                            $("#ruc_empresa").val("");
-                        }
-                    }
-                }
-            }
-        });
-    });
-	// fin
-
-	// recargar formulario
-	function redireccionar() {
-		setTimeout(function() {
-		    $('#form_clientes').each(function(){
-			  this.reset();
-			});
-		}, 1000);
-	}
-	// fin
-
-	// procesos cargado inicio
-	$('#btn_3').attr('disabled',true);
-	// fin
-
-	// actualizar formulario
-	$('#btn_1').click(function() {
-		location.reload(true);
-	});
-	// fin
-
-	// guardar formulario
-	$('#btn_0').click(function() {
-		if($('#nombre_empresa').val() == '') {
-			$.gritter.add({
-				title: 'Ingrese nombre Empresa',
-				class_name: 'gritter-error gritter-center',
-				time: 1000,
-			});
-			$('#nombre_empresa').focus();
-		} else {
+		// verificar ruc
+		$scope.cargadatos = function(estado) {
 			if($('#ruc_empresa').val() == '') {
 				$.gritter.add({
 					title: 'Ingrese Ruc Empresa',
@@ -292,147 +126,144 @@ angular.module('scotchApp').controller('clientesController', function ($scope, $
 				});
 				$('#ruc_empresa').focus();
 			} else {
-				if($('#direccion_empresa').val() == '') {
-					$.gritter.add({
-						title: 'Ingrese dirección Empresa',
-						class_name: 'gritter-error gritter-center',
-						time: 1000,
-					});
-					$('#direccion_empresa').focus();
-				} else {
-					if($('#txt_contacto').val() == '') {
-						$.gritter.add({
-							title: 'Ingrese representante de la Empresa',
-							class_name: 'gritter-error gritter-center',
-							time: 1000,
-						});
-						$('#txt_contacto').focus();
-					} else {
-						if($('#identificacion').val() == '') {
-							$.gritter.add({
-								title: 'Ingrese identificación del representante',
+				 if (estado) {
+				 	$.blockUI({ css: { 
+			            border: 'none', 
+			            padding: '15px', 
+			            backgroundColor: '#000', 
+			            '-webkit-border-radius': '10px', 
+			            '-moz-border-radius': '10px', 
+			            opacity: .5, 
+			            color: '#fff' 
+			        	},
+			            message: '<h3>Consultando, Por favor espere un momento    ' + '<i class="fa fa-spinner fa-spin"></i>' + '</h3>'
+			    	}); 
+		            loaddatosSRI.get({
+		                nrodocumento: $("#ruc_empresa").val(),
+		                tipodocumento: "RUC"
+		            }).$promise.then(function(data) {
+		            	$.unblockUI();
+		            	if(data.datosEmpresa.valid == 'false') {
+		            		$.gritter.add({
+								title: 'Error.... Ruc Erroneo',
 								class_name: 'gritter-error gritter-center',
 								time: 1000,
 							});
-							$('#identificacion').focus();
-						} else {
-							var submit = "btn_gardar";
-							var formulario = $("#form_clientes").serialize();
-							
-							$.ajax({
-						        url: "data/clientes/app.php",
-						        data: formulario + "&btn_guardar=" + submit+ "&img="+$("#avatar")[0].src,
-						        type: "POST",
-						        async: true,
-						        success: function (data) {
-						        	var val = data;
-						        	if(data == '1') {
-						        		$.gritter.add({
-											title: 'Mensaje',
-											text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-											time: 1000				
-										});
-										redireccionar();
-							    	}              
-						        },
-						        error: function (xhr, status, errorThrown) {
-							        alert("Hubo un problema!");
-							        console.log("Error: " + errorThrown);
-							        console.log("Status: " + status);
-							        console.dir(xhr);
-						        }
-						    });
-						} 
-					}
-				}
-			} 
-		} 
-	});
-	// fin
+							$('#ruc_empresa').focus();
+							$('#form_clientes').each(function(){
+							  this.reset();
+							});
+		            	} else {
+		            		$('#nombre_comercial').val(data.datosEmpresa.nombre_comercial);
+			            	$('#actividad_economica').val(data.datosEmpresa.actividad_economica);
+			            	$('#razon_social').val(data.datosEmpresa.razon_social);
+			            	$('#representante_legal').val(data.establecimientos.adicional.representante_legal);
+			            	$('#cedula').val(data.establecimientos.adicional.cedula);
+		            	}
+		            }, function(err) {
+		                console.log(err.data.error);
+		            });
+		        }
+	    	} 
+	    }
+	    // fin
 
-	// modificar formulario
-	$('#btn_3').click(function() {
-		if($('#id_empresa').val() == '') {
-			$.gritter.add({
-				title: 'Error... Seleccione un cliente',
-				class_name: 'gritter-error gritter-center',
-				time: 1000,
-			});
-			$('#myModal').modal('show'); 
-		} else {
-			if($('#nombre_empresa').val() == '') {
-				$.gritter.add({
-					title: 'Ingrese nombre Empresa',
-					class_name: 'gritter-error gritter-center',
-					time: 1000,
-				});
-				$('#nombre_empresa').focus();
-			} else {
-				if($('#ruc_empresa').val() == '') {
-					$.gritter.add({
-						title: 'Ingrese Ruc Empresa',
-						class_name: 'gritter-error gritter-center',
-						time: 1000,
-					});
-					$('#ruc_empresa').focus();
-				} else {
-					if($('#direccion_empresa').val() == '') {
-						$.gritter.add({
-							title: 'Ingrese dirección Empresa',
-							class_name: 'gritter-error gritter-center',
-							time: 1000,
-						});
-						$('#direccion_empresa').focus();
-					} else {
-						if($('#txt_contacto').val() == '') {
-							$.gritter.add({
-								title: 'Ingrese representante de la Empresa',
-								class_name: 'gritter-error gritter-center',
-								time: 1000,
+		// recargar formulario
+		function redireccionar() {
+			setTimeout(function() {
+				location.reload(true);
+			 //    $('#form_clientes').each(function(){
+				//   this.reset();
+				// });
+			}, 1000);
+		}
+		// fin
+
+		// procesos cargado inicio
+		$("#ruc_empresa").keypress(ValidNum);
+		$("#cedula").keypress(ValidNum);
+		$('#btn_3').attr('disabled',true);
+		$('#ruc_empresa').focus();
+		$("#ruc_empresa").attr("maxlength", "13");
+		// fin
+
+		// actualizar formulario
+		$('#btn_1').click(function() {
+			location.reload(true);
+		});
+		// fin
+
+		// // guardar formulario
+		$('#btn_0').click(function() {
+			var respuesta = $('#form_clientes').valid();
+
+			if (respuesta == true) {
+				$('#btn_0').attr('disabled', true);
+				var submit = "btn_gardar";
+				var formulario = $("#form_clientes").serialize();
+
+				$.ajax({
+			        url: "data/clientes/app.php",
+			        data: formulario + "&btn_guardar=" + submit,
+			        type: "POST",
+			        async: true,
+			        success: function (data) {
+			        	var val = data;
+			        	if(data == '1') {
+			        		$.gritter.add({
+								title: 'Mensaje',
+								text: 'Cliente Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+								time: 1000				
 							});
-							$('#txt_contacto').focus();
-						} else {
-							if($('#identificacion').val() == '') {
-								$.gritter.add({
-									title: 'Ingrese identificación del representante',
-									class_name: 'gritter-error gritter-center',
-									time: 1000,
-								});
-								$('#identificacion').focus();
-							} else {
-								var submit = "btn_modificar";
-								var formulario = $("#form_clientes").serialize();
-								$.ajax({
-							        url: "data/clientes/app.php",
-							        data: formulario + "&btn_modificar=" + submit+ "&img="+$("#avatar")[0].src,
-							        type: "POST",
-							        async: true,
-							        success: function (data) {
-							        	var val = data;
-							        	if(data == '2') {
-							        		$.gritter.add({
-												title: 'Mensaje',
-												text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-												time: 2000				
-											});
-											redireccionar();
-								    	}              
-							        },
-							        error: function (xhr, status, errorThrown) {
-								        alert("Hubo un problema!");
-								        console.log("Error: " + errorThrown);
-								        console.log("Status: " + status);
-								        console.dir(xhr);
-							        }
-							    });
-							}
-						}
-					}
-				}
-			}		    
-		} 
-	});
-	// fin
+							redireccionar();
+				    	}              
+			        },
+			        error: function (xhr, status, errorThrown) {
+				        alert("Hubo un problema!");
+				        console.log("Error: " + errorThrown);
+				        console.log("Status: " + status);
+				        console.dir(xhr);
+			        }
+			    });
+			}
+		});
+		// // fin
+
+		// modificar formulario
+		$('#btn_3').click(function() {
+			var respuesta = $('#form_clientes').valid();
+
+			if (respuesta == true) {
+				$('#btn_3').attr('disabled', true);
+				var submit = "btn_modificar";
+				var formulario = $("#form_clientes").serialize();
+
+				$.ajax({
+			        url: "data/clientes/app.php",
+			        data: formulario + "&btn_modificar=" + submit,
+			        type: "POST",
+			        async: true,
+			        success: function (data) {
+			        	var val = data;
+			        	if(data == '2') {
+			        		$.gritter.add({
+								title: 'Mensaje',
+								text: 'Cliente Modificado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+								time: 2000				
+							});
+							redireccionar();
+				    	}              
+			        },
+			        error: function (xhr, status, errorThrown) {
+				        alert("Hubo un problema!");
+				        console.log("Error: " + errorThrown);
+				        console.log("Status: " + status);
+				        console.dir(xhr);
+			        }
+			    });
+			}
+		});
+		// // fin
 
 		/*jqgrid*/    
 		jQuery(function($) {
@@ -459,22 +290,24 @@ angular.module('scotchApp').controller('clientesController', function ($scope, $
 		    jQuery(grid_selector).jqGrid({	        
 		        datatype: "xml",
 		        url: 'data/clientes/xml_clientes.php',        
-		        colNames: ['ID','EMPRESA','RUC','DIRECCIÓN','OBSERVACIONES','MAIL','SITIO','TELÉFONO','REPRESENTANTE','C.I.','FACEBOOK','TWITTER','GOOGLE','IMAGEN'],
+		        colNames: ['ID','RUC','NOMBRE COMERCIAL','ACTIVIDAD ECONÓMICA','RAZÓN SOCIAL','REPRESENTANTE','CÉDULA','MÓVIL','TELÉFONO','DIRECCIÓN','CORREO','SITIO WEB','FACEBOOK','TWITTER','GOOGLE','OBSERVACIONES'],
 		        colModel:[      
 		            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
-		            {name:'empresa',index:'empresa',frozen : true,align:'left',search:true,width: '300px'},
-		            {name:'ruc',index:'ruc',frozen : true,align:'left',search:true},
-		            {name:'direccion',index:'direccion',frozen : true,align:'left',search:false,width: '250px'},
-		            {name:'observaciones',index:'observaciones',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'email',index:'email',frozen : true,align:'left',search:false},
-		            {name:'sitio',index:'sitio',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'telefono',index:'telefono',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'contacto',index:'contacto',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'identificacion',index:'identificacion',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'facebook',index:'facebook',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'twitter',index:'twitter',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'google',index:'google',frozen : true,align:'left',search:false,width: '250px', hidden: true},
-		            {name:'imagen',index:'imagen',frozen : true,align:'left',search:false,width: '250px', hidden: true},
+		            {name:'ruc_empresa',index:'ruc_empresa',frozen : true,align:'left',search:true},
+		            {name:'nombre_comercial',index:'nombre_comercial',frozen : true,align:'left',search:true},
+		            {name:'actividad_economica',index:'actividad_economica',frozen : true,align:'left',search:false},
+		            {name:'razon_social',index:'razon_social',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'representante_legal',index:'representante_legal',frozen : true,align:'left',search:false},
+		            {name:'cedula',index:'cedula',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'celular',index:'celular',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'telefono',index:'telefono',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'direccion',index:'direccion',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'correo',index:'correo',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'sitio_web',index:'sitio_web',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'facebook',index:'facebook',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'twitter',index:'twitter',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'google',index:'google',frozen : true,align:'left',search:false, hidden: false},
+		            {name:'observaciones',index:'observaciones',frozen : true,align:'left',search:false, hidden: false},
 		        ],          
 		        rowNum: 10,       
 		        width:600,
@@ -501,22 +334,24 @@ angular.module('scotchApp').controller('clientesController', function ($scope, $
 		            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
 	            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);
 
-	            	$('#id_empresa').val(ret.id);
-	            	$('#nombre_empresa').val(ret.empresa);
-	            	$('#ruc_empresa').val(ret.ruc);
-	            	$('#direccion_empresa').val(ret.direccion);
-	            	$('#observaciones').val(ret.observaciones);
-	            	$('#correo').val(ret.email);
-	            	$('#txt_sitio_web').val(ret.sitio);
-	            	$('#txt_telefono').val(ret.telefono);
-	            	$('#txt_contacto').val(ret.contacto);
-	            	$('#identificacion').val(ret.identificacion);
-	            	$('#txt_facebook').val(ret.facebook);
-	            	$('#txt_twitter').val(ret.twitter);
-	            	$('#txt_google').val(ret.google);
-		            $("#avatar").attr("src","data/clientes/imagenes/"+ret.imagen);	   	            
+	            	$('#id_cliente').val(ret.id);
+	            	$('#ruc_empresa').val(ret.ruc_empresa);
+	            	$('#nombre_comercial').val(ret.nombre_comercial);
+	            	$('#actividad_economica').val(ret.actividad_economica);
+	            	$('#razon_social').val(ret.razon_social);
+	            	$('#representante_legal').val(ret.representante_legal);
+	            	$('#cedula').val(ret.cedula);
+	            	$('#celular').val(ret.celular);
+	            	$('#telefono').val(ret.telefono);
+	            	$('#direccion').val(ret.direccion);
+	            	$('#correo').val(ret.correo);
+	            	$('#sitio_web').val(ret.sitio_web);
+	            	$('#facebook').val(ret.facebook);
+	            	$('#facebook').val(ret.facebook);
+	            	$('#twitter').val(ret.twitter);
+	            	$('#google').val(ret.google);
+	            	$('#observaciones').val(ret.observaciones);   	            
 	
-		            
 		            $('#myModal').modal('hide'); 
 		            $('#btn_3').attr('disabled',false);
 		            $('#btn_0').attr('disabled', true)  	            

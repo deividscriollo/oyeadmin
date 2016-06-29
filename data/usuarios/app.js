@@ -1,13 +1,14 @@
-angular.module('scotchApp').controller('usuariosController', function ($scope, $route) {
+angular.module('scotchApp').controller('usuariosController', function ($scope, $route, $location,loaddatosSRI) {
 	
 	$scope.$route = $route;
 
 	jQuery(function($) {
 		$('[data-toggle="tooltip"]').tooltip(); 
 		// mascaras input
-		$('#telefono1').mask('(999) 999-999');
-		$('#telefono2').mask('(999) 999-9999');
+		$('#telefono').mask('(999) 999-999');
+		$('#celular').mask('(999) 999-9999');
 
+		// stilo select 2
 		$(".select2").css({
 			width: '100%',
 		    allow_single_deselect: true,
@@ -19,6 +20,7 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 		$("#select_cargo").select2({
 		  allowClear: true 
 		}); 
+		// fin
 
 		//validacion formulario usuarios
 		$('#form_usuarios').validate({
@@ -57,8 +59,8 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 					equalTo: "#clave"
 				},
 				select_cargo: {
-				required: true				
-			},
+				required: true
+				},				
 			},
 			messages: {
 				identificacion: {
@@ -108,8 +110,31 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 		});
 		// Fin 
 
+		// validación ruc
+		$("#identificacion").keyup(function() {
+	        $.ajax({
+	            type: "POST",
+	            url: "data/usuarios/app.php",
+	            data: {comparar_cedula:'comparar_cedula',cedula: $("#identificacion").val()},
+	            dataType: 'json',
+	            success: function(data) {
+	                var val = data;
+	                if (val == 1) {
+	                    $("#identificacion").val("");
+	                    $("#identificacion").focus();
+	                    $.gritter.add({
+							title: 'Error... El usuario ya fue registrado',
+							class_name: 'gritter-error gritter-center',
+							time: 1000,
+						});	
+					}
+	            }
+	        });
+    	});
+		// fin
+
 		// validacion punto
-		function ValidPun(e){
+		function ValidPun(e) {
 		    var key;
 		    if (window.event) {
 		        key = e.keyCode;
@@ -137,6 +162,53 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 		    return true;
 		}
 		// fin
+
+		$scope.cargadatos = function(estado) {
+			if($('#identificacion').val() == '') {
+				$.gritter.add({
+					title: 'Ingrese una Cédula',
+					class_name: 'gritter-error gritter-center',
+					time: 1000,
+				});
+				$('#identificacion').focus();
+			} else {
+				 if (estado) {
+		        	$.blockUI({ css: { 
+			            border: 'none', 
+			            padding: '15px', 
+			            backgroundColor: '#000', 
+			            '-webkit-border-radius': '10px', 
+			            '-moz-border-radius': '10px', 
+			            opacity: .5, 
+			            color: '#fff' 
+			        	},
+			            message: '<h3>Consultando, Por favor espere un momento    ' + '<i class="fa fa-spinner fa-spin"></i>' + '</h3>'
+			    	});
+		            loaddatosSRI.get({
+		                nrodocumento: $("#identificacion").val(),
+		                tipodocumento: "CEDULA"
+		            }).$promise.then(function(data) {
+		            	$.unblockUI();
+		            	if(data.valid == 'false') {
+		            		$.gritter.add({
+								title: 'Error.... Cédula erronea',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#identificacion').val('');
+							$('#ciudad').val('');
+			            	$('#identificacion').focus();
+		            	} else {
+		            		$('#nombres_completos').val(data.nombres_apellidos);
+			            	$('#ciudad').val(data.canton);
+		            	}
+		            }, function(err) {
+		                console.log(err.data.error);
+		            });
+		        } 
+			}  
+	    }
+	    // fin
 
 		// recargar formulario
 		function redireccionar() {
@@ -186,7 +258,7 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 								text: 'Registro Agregado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
 								time: 1000				
 							});
-							// redireccionar();
+							redireccionar();
 				    	}              
 			        },
 			        error: function (xhr, status, errorThrown) {
@@ -271,16 +343,16 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 		    jQuery(grid_selector).jqGrid({	        
 		        datatype: "xml",
 		        url: 'data/usuarios/xml_usuarios.php',        
-		        colNames: ['ID','IDENTIFICACIÓN','NOMBRES','APELLIDOS','TELÉFONO','CELULAR','DIRECCIÓN','CORREO','USUARIO','CLAVE','ID_CARGO','CARGO'],
+		        colNames: ['ID','IDENTIFICACIÓN','NOMBRES COMPELTOS','TELÉFONO','CELULAR','CORREO','CIUDAD','DIRECCIÓN','USUARIO','CLAVE','ID_CARGO','CARGO'],
 		        colModel:[      
 		            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
 		            {name:'identificacion',index:'identificacion',frozen : true, hidden: false, align:'left',search:true,width: ''},
-		            {name:'nombres',index:'nombres',frozen : true, hidden: false, align:'left',search:true,width: ''},
-		            {name:'apellidos',index:'apellidos',frozen : true, hidden: false, align:'left',search:true,width: ''},
-		            {name:'telefono1',index:'telefono1',frozen : true, hidden: false, align:'left',search:false,width: ''},
-		            {name:'telefono2',index:'telefono2',frozen : true, hidden: false, align:'left',search:false,width: ''},
-		            {name:'direccion',index:'direccion',frozen : true, hidden: false, align:'left',search:false,width: ''},
+		            {name:'nombres_completos',index:'nombres_completos',frozen : true, hidden: false, align:'left',search:true,width: ''},
+		            {name:'telefono',index:'telefono',frozen : true, hidden: false, align:'left',search:false,width: ''},
+		            {name:'celular',index:'celular',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'correo',index:'correo',frozen : true, hidden: false, align:'left',search:false,width: ''},
+		            {name:'ciudad',index:'ciudad',frozen : true, hidden: false, align:'left',search:true,width: ''},
+		            {name:'direccion',index:'direccion',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'usuario',index:'usuario',frozen : true, hidden: false, align:'left',search:false,width: ''},
 		            {name:'clave',index:'clave',frozen : true, hidden: true, align:'left',search:false,width: ''},
 		            {name:'id_cargo',index:'id_cargo',frozen : true, hidden: true, align:'left',search:false,width: ''},
@@ -313,12 +385,12 @@ angular.module('scotchApp').controller('usuariosController', function ($scope, $
 
 	            	$('#id_usuario').val(ret.id);
 	            	$('#identificacion').val(ret.identificacion);
-	            	$('#nombres').val(ret.nombres);
-	            	$('#apellidos').val(ret.apellidos);
-	            	$('#telefono1').val(ret.telefono1);
-	            	$('#telefono2').val(ret.telefono2);
-	            	$('#direccion').val(ret.direccion);
+	            	$('#nombres_completos').val(ret.nombres_completos);
+	            	$('#telefono').val(ret.telefono);
+	            	$('#celular').val(ret.celular);
 	            	$('#correo').val(ret.correo);
+	            	$('#ciudad').val(ret.ciudad);
+	            	$('#direccion').val(ret.direccion);
 	            	$('#usuario').val(ret.usuario);
 	            	$('#clave').val(ret.clave);
 	            	$('#clave2').val(ret.clave);

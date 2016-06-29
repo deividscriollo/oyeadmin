@@ -1,7 +1,4 @@
-// create the module and name it scotchApp
-var dcapp = angular.module('scotchApp', ['ngRoute']);
-
-
+var dcapp = angular.module('scotchApp', ['ngRoute','ngResource']);
 
 // configure our routes
 dcapp.config(function($routeProvider) {
@@ -67,17 +64,23 @@ dcapp.config(function($routeProvider) {
             controller  : 'empresaController',
             activetab: 'empresa'
         })
+        // route vendedores
+        .when('/vendedores', {
+            templateUrl : 'data/vendedores/app.html',
+            controller  : 'vendedoresController',
+            activetab: 'vendedores'
+        })
         // route clientes
         .when('/clientes', {
             templateUrl : 'data/clientes/app.html',
             controller  : 'clientesController',
             activetab: 'clientes'
         })
-        // route vendedores
-        .when('/vendedores', {
-            templateUrl : 'data/vendedores/app.html',
-            controller  : 'vendedoresController',
-            activetab: 'vendedores'
+        // route fotos_clientes
+        .when('/fotos_clientes', {
+            templateUrl : 'data/fotos_clientes/app.html',
+            controller  : 'fotos_clientesController',
+            activetab: 'fotos_clientes'
         })
         // route vendedores
         .when('/programas', {
@@ -96,6 +99,12 @@ dcapp.config(function($routeProvider) {
             templateUrl : 'data/ficha_ingresos/app.html',
             controller  : 'fichaingresosController',
             activetab: 'ficha_ingresos'
+        })
+        // proceso fotos personal
+        .when('/fotos_personal', {
+            templateUrl : 'data/fotos_personal/app.html',
+            controller  : 'fotos_personalController',
+            activetab: 'fotos_personal'
         })
         // proceso ficha invitados
         .when('/ficha_invitados', {
@@ -126,6 +135,12 @@ dcapp.config(function($routeProvider) {
             templateUrl : 'data/contratos_rotativos/app.html',
             controller  : 'contratos_rotativosController',
             activetab: 'contratos_rotativos'
+        })
+        // proceso cartera
+        .when('/cartera', {
+            templateUrl : 'data/cartera/app.html',
+            controller  : 'carteraController',
+            activetab: 'cartera'
         })
         // proceso facturas
         .when('/facturas', {
@@ -159,76 +174,46 @@ dcapp.config(function($routeProvider) {
         })
 });
 
-dcapp.factory('Auth', function($location){
+dcapp.factory('Auth', function($location) {
     var user;
-    return{
-        setUser : function(aUser){
+    return {
+        setUser : function(aUser) {
             user = aUser;
         },
-        isLoggedIn : function(){
+        isLoggedIn : function() {
             var ruta = $location.path();
             var ruta = ruta.replace("/","");
-            console.log(ruta);
             var accesos = JSON.parse(Lockr.get('users'));
                 accesos.push('inicio');
                 accesos.push('');
 
-            // [ '',
-            //                 '/',
-            //                 '/inicio',
-            //                 '/tipo_paquetes',
-            //                 '/paquetes',
-            //                 '/tipo_programa',
-            //                 '/tipo_vendedor',
-            //                 '/tipo_contrato',
-            //                 '/areas',
-            //                 '/cargos',
-            //                 '/bancos',//
-            //                 '/empresa',
-            //                 '/clientes',
-            //                 '/programas',
-            //                 '/vendedores',
-            //                 '/login',
-            //                 '/reportes',
-            //                 '/ficha_invitados',
-            //                 '/ingresos_princi',
-            //                 '/ficha_programas',
-            //                 '/ficha_ingresos',
-            //                 '/contratos_selectivos',
-            //                 '/contratos_rotativos',
-            //                 '/facturas',
-            //                 '/rol_pagos',
-            //                 '/usuarios',
-            //                 '/fotos_usuario',
-            //                 '/perfiles',
-            //                 '/privilegios'];
-                            console.log(accesos);
             var a = accesos.lastIndexOf(ruta);
-            if (a<0) {
+            if (a < 0) {
                 return false;    
-            }else{
+            } else {
                 return true;
             }
-            
         }
     }
 });
-
 
 dcapp.run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
     $rootScope.$on('$routeChangeStart', function (event) {
         var rutablock = $location.path();
         if (!Auth.isLoggedIn()) {
-            console.log('denegado');
             event.preventDefault();
-            // $location.path('/inicio');
-            alert('Lo Sentimos No ');
-        }
-        else {
-            
-            // console.log('ok');
-            // $location.path('/home');
-
-        }
+            swal({
+                title: "Lo sentimos acceso denegado",
+                type: "warning",
+            });
+        } else { }
     });
 }]);
+
+// consumir servicios sri
+dcapp.factory('loaddatosSRI', function($resource) {
+    return $resource("http://apiservicios.nextbook.ec/public/getDatos/:id", {
+        id: "@id"
+    });
+});
+// fin

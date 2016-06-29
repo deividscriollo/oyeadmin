@@ -4,7 +4,6 @@ setTimeout("location.href='../'", 2000);
 }
 
 $(function() {
-// validacion de formulario
 	$('#form_proceso').validate({
 		errorElement: 'div',
 		errorClass: 'help-block',

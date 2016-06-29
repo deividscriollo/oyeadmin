@@ -1,15 +1,13 @@
 <?php
 
-class EnLetras
-{
+class EnLetras {
   var $Void = "";
   var $SP = " ";
   var $Dot = ".";
   var $Zero = "0";
   var $Neg = "Menos";
   
-function ValorEnLetras($x, $Moneda ) 
-{
+function ValorEnLetras($x, $Moneda ) {
     $s="";
     $Ent="";
     $Frc="";
@@ -20,33 +18,27 @@ function ValorEnLetras($x, $Moneda )
     else
      $Signo = "";
     
-    if(intval(number_format($x,2,'.','') )!=$x) //<- averiguar si tiene decimales
+    if(intval(number_format($x,2,'.','')) != $x) //<- averiguar si tiene decimales
       $s = number_format($x,2,'.','');
     else
       $s = number_format($x,0,'.','');
        
     $Pto = strpos($s, $this->Dot);
         
-    if ($Pto === false)
-    {
+    if ($Pto === false) {
       $Ent = $s;
       $Frc = $this->Void;
-    }
-    else
-    {
+    } else {
       $Ent = substr($s, 0, $Pto );
       $Frc =  substr($s, $Pto+1);
     }
 
     if($Ent == $this->Zero || $Ent == $this->Void)
        $s = "Cero ";
-    elseif( strlen($Ent) > 7)
-    {
-       $s = $this->SubValLetra(intval( substr($Ent, 0,  strlen($Ent) - 6))) . 
-             "Millones " . $this->SubValLetra(intval(substr($Ent,-6, 6)));
-    }
-    else
-    {
+    elseif( strlen($Ent) > 7) {
+      $s = $this->SubValLetra(intval( substr($Ent, 0,  strlen($Ent) - 6))) . 
+            "Millones " . $this->SubValLetra(intval(substr($Ent,-6, 6)));
+    } else {
       $s = $this->SubValLetra(intval($Ent));
     }
 
@@ -55,8 +47,7 @@ function ValorEnLetras($x, $Moneda )
 
     $s = $s . $Moneda;
 
-    if($Frc != $this->Void)
-    {
+    if($Frc != $this->Void) {
        $s = $s . " Con " . $this->SubValLetra(intval($Frc)) . "Centavos";
        //$s = $s . " " . $Frc . "/100";
     }
@@ -64,9 +55,7 @@ function ValorEnLetras($x, $Moneda )
    
 }
 
-
-function SubValLetra($numero) 
-{
+function SubValLetra($numero) {
     $Ptr="";
     $n=0;
     $i=0;
@@ -80,8 +69,7 @@ function SubValLetra($numero)
     $Tem = $this->Void;
     $i = $n;
     
-    while( $i > 0)
-    {
+    while( $i > 0) {
        $Tem = $this->Parte(intval(substr($x, $n - $i, 1). 
                            str_repeat($this->Zero, $i - 1 )));
        If( $Tem != "Cero" )
@@ -92,8 +80,7 @@ function SubValLetra($numero)
     
     //--------------------- GoSub FiltroMil ------------------------------
     $Rtn=str_replace(" Mil Mil", " Un Mil", $Rtn );
-    while(1)
-    {
+    while(1) {
        $Ptr = strpos($Rtn, "Mil ");       
        If(!($Ptr===false))
        {
@@ -107,7 +94,7 @@ function SubValLetra($numero)
 
     //--------------------- GoSub FiltroCiento ------------------------------
     $Ptr = -1;
-    do{
+    do {
        $Ptr = strpos($Rtn, "Cien ", $Ptr+1);
        if(!($Ptr===false))
        {
@@ -117,7 +104,7 @@ function SubValLetra($numero)
           else          
              $this->ReplaceStringFrom($Rtn, "Cien", "Ciento", $Ptr);
        }
-    }while(!($Ptr === false));
+    } while(!($Ptr === false));
 
     //--------------------- FiltroEspeciales ------------------------------
     $Rtn=str_replace("Diez Un", "Once", $Rtn );
@@ -142,24 +129,21 @@ function SubValLetra($numero)
     //--------------------- FiltroUn ------------------------------
     If(substr($Rtn,0,1) == "M") $Rtn = "Un " . $Rtn;
     //--------------------- Adicionar Y ------------------------------
-    for($i=65; $i<=88; $i++)
-    {
+    for($i=65; $i<=88; $i++) {
       If($i != 77)
-         $Rtn=str_replace("a " . Chr($i), "* y " . Chr($i), $Rtn);
+        $Rtn=str_replace("a " . Chr($i), "* y " . Chr($i), $Rtn);
     }
     $Rtn=str_replace("*", "a" , $Rtn);
     return($Rtn);
 }
 
 
-function ReplaceStringFrom(&$x, $OldWrd, $NewWrd, $Ptr)
-{
+function ReplaceStringFrom(&$x, $OldWrd, $NewWrd, $Ptr) {
   $x = substr($x, 0, $Ptr)  . $NewWrd . substr($x, strlen($OldWrd) + $Ptr);
 }
 
 
-function Parte($x)
-{
+function Parte($x) {
     $Rtn='';
     $t='';
     $i='';
@@ -199,8 +183,7 @@ function Parte($x)
          Case 1000000: $t = "Millón";break;
       }
 
-      If($t == $this->Void)
-      {
+      If($t == $this->Void) {
         $i = $i + 1;
         $x = $x / 1000;
         If($x== 0) $i = 0;
@@ -208,7 +191,7 @@ function Parte($x)
       else
          break;
            
-    }while($i != 0);
+    } while($i != 0);
    
     $Rtn = $t;
     Switch($i)
@@ -220,11 +203,5 @@ function Parte($x)
     }
     return($Rtn . $t);
 }
-
-}
-
-//-------------- Programa principal ------------------------
-
- 
-      
+}    
 ?>

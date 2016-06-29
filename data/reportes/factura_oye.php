@@ -118,7 +118,7 @@ function SetDash($black=false, $white=false) {
 function Header() {
     $class = new constante();
     $letras = new EnLetras();
-    $resp = $class->consulta("SELECT C.empresa, C.direccion, C.ruc, C.telefono, F.fecha_actual, F.forma_pago, F.serie, F.subtotal, F.descuento, F.base_imponible, F.iva, F.otros, F.total_pagar, F.estado FROM factura_venta F, clientes C WHERE F.id_clientes = C.id AND  F.id = '".$_GET['id']."'");
+    $resp = $class->consulta("SELECT C.nombre_comercial, C.direccion, C.ruc_empresa, C.telefono, F.fecha_actual, F.forma_pago, F.serie, F.subtotal, F.descuento, F.base_imponible, F.iva, F.otros, F.total_pagar, F.estado FROM factura_venta F, clientes C WHERE F.id_clientes = C.id AND  F.id = '".$_GET['id']."'");
     while ($row = $class->fetch_array($resp)) {
         $cliente = $row[0];
         $direccion = $row[1];

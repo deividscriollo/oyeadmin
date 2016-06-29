@@ -13,8 +13,8 @@
 		$serie = "001-001-".$_POST['serie_factura'];
 
 		$resp = $class->consulta("INSERT INTO factura_venta VALUES  (				'$id_facturas',
-																					'$_POST[select_ruc]',
-																					'$_SESSION[Id]',
+																					'$_POST[id_cliente]',
+																					'".$_SESSION['user']['id']."',
 																					'$_POST[fecha_emision]',
 																					'$_POST[fecha_emision]',
 																					'$_POST[select_forma]',
@@ -35,6 +35,7 @@
 	    $campo3 = $_POST['campo3'];
 	    $campo4 = $_POST['campo4'];
 	    $campo5 = $_POST['campo5'];
+	    $campo6 = $_POST['campo6'];
 	    // Fin
 
 	    // descomponer detalle_factura_compra
@@ -43,6 +44,7 @@
 	    $arreglo3 = explode('|', $campo3);
 	    $arreglo4 = explode('|', $campo4);
 	    $arreglo5 = explode('|', $campo5);
+	    $arreglo6 = explode('|', $campo6);
 	    $nelem = count($arreglo1);
 	    // fin
 
@@ -59,6 +61,8 @@
 																					'1', 
 																					'$fecha')");
 
+			$resp = $class->consulta("UPDATE contratos.detalle_cuentas_cobrar SET estado = '2' where id = '".$arreglo6[$i]."'");
+
 	    }
 
 		$data = $id_facturas;
@@ -68,8 +72,9 @@
 
 	// anular facturas
 	if (isset($_POST['anular_factura'])) {
-
-		$resp = $class->consulta("UPDATE factura_venta SET estado = '2', fecha_anulacion = 'fecha_corta' where id = '".$_POST['id']."'");
+		$fecha_corta = $class->fecha();
+		
+		$resp = $class->consulta("UPDATE factura_venta SET estado = '2', fecha_anulacion = '$fecha_corta' where id = '".$_POST['id']."'");
 
 		$data = 1;
 		echo $data;
@@ -98,20 +103,25 @@
 
 	//llenar cabezera factura venta
 	if (isset($_POST['llenar_cabezera_factura'])) {
-		$resultado = $class->consulta("SELECT * FROM factura_venta WHERE id = '$_POST[id]'");
+		$resultado = $class->consulta("SELECT F.id, C.id, C.ruc_empresa, C.nombre_comercial, C.direccion, C.celular, C.correo, F.fecha_actual, F.forma_pago, F.serie, F.subtotal, F.descuento, F.base_imponible, F.iva, F.otros, F.total_pagar, F.estado FROM factura_venta F, clientes C WHERE F.id_clientes = C.id AND F.id = '$_POST[id]'");
 		while ($row = $class->fetch_array($resultado)) {
 			$data = array(  'id_factura' => $row[0],
 							'id_clientes' => $row[1],
-							'fecha_actual' => $row[3],
-							'pago' => $row[5],
-							'serie' => $row[6],
-							'subtotal' => $row[7],
-							'descuento' => $row[8],
-							'base_imponible' => $row[9],
-							'iva' => $row[10],
-							'otros' => $row[11],
-							'total_pagar' => $row[12],
-							'estado' => $row[14]);
+							'ruc' => $row[2],
+							'cliente' => $row[3],
+							'direccion' => $row[4],
+							'telefono' => $row[5],
+							'correo' => $row[6],
+							'fecha_actual' => $row[7],
+							'pago' => $row[8],
+							'serie' => $row[9],
+							'subtotal' => $row[10],
+							'descuento' => $row[11],
+							'base_imponible' => $row[12],
+							'iva' => $row[13],
+							'otros' => $row[14],
+							'total_pagar' => $row[15],
+							'estado' => $row[16]);
 		}
 		print_r(json_encode($data));
 	}
@@ -132,44 +142,50 @@
 		echo json_encode($arr_data);
 	}
 	//fin
-
-	//LLena combo clientes ruc
-	if (isset($_POST['llenar_clientes_ruc'])) {
-		$id = $class->idz();
-		$resultado = $class->consulta("SELECT  C.id, C.ruc FROM clientes C WHERE estado = '1'");
-		print'<option value="">&nbsp;</option>';
+	// busqueda por ruc cliente
+	if($_GET['tipo_busqueda'] == 'ruc') {
+		$texto = $_GET['term'];
+		
+		$resultado = $class->consulta("SELECT * FROM clientes WHERE ruc_empresa like '%$texto%' AND estado = '1'");
 		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['ruc'].'</option>';
+			$data[] = array(
+		            'id_cliente' => $row[0],
+		            'value' => $row[1],
+		            'cliente' => $row[2],
+		            'direccion' => $row[9],
+		            'telefono' => $row[7],
+		            'correo' => $row[10]
+
+		        );
 		}
+		echo $data = json_encode($data);
 	}
 	// fin
 
-	//LLena combo clientes nombre
-	if (isset($_POST['llenar_clientes_nombre'])) {
-		$id = $class->idz();
-		$resultado = $class->consulta("SELECT  C.id, C.empresa FROM clientes C WHERE estado = '1'");
-		print'<option value="">&nbsp;</option>';
+	// busqueda por ruc cliente
+	if($_GET['tipo_busqueda'] == 'nombre') {
+		$texto = $_GET['term'];
+		
+		$resultado = $class->consulta("SELECT * FROM clientes WHERE nombre_comercial like '%$texto%' AND estado = '1'");
 		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['empresa'].'</option>';
+			$data[] = array(
+		            'id_cliente' => $row[0],
+		            'value' => $row[2],
+		            'ruc' => $row[1],
+		            'direccion' => $row[9],
+		            'telefono' => $row[7],
+		            'correo' => $row[10]
+		        );
 		}
+		echo $data = json_encode($data);
 	}
 	// fin
 
-	//llenar clientes ruc  anidado
-	if (isset($_POST['llenar_informacion_ruc'])) {
-		$resultado = $class->consulta("SELECT C.id, C.direccion, C.telefono FROM clientes C WHERE estado = '1' AND C.id = '$_POST[id]'");
+	//cargar datos mensiones
+	if (isset($_POST['llenar_paquetes'])) {
+		$resultado = $class->consulta("SELECT P.id, P.codigo, P.descripcion, P.descuento FROM contratos.cuentas_cobrar C, contratos.contratos_selectivos S, paquetes P WHERE C.id_contrato = S.id and S.id_paquete = P.id AND C.id = '".$_POST['id']."'");
 		while ($row = $class->fetch_array($resultado)) {
-			$data = array('id' => $row[0], 'direccion'=>$row[1], 'telefono'=>$row[2]);
-		}
-		print_r(json_encode($data));
-	}
-	//fin
-
-	//llenar clientes nombres anidado
-	if (isset($_POST['llenar_informacion_nombres'])) {
-		$resultado = $class->consulta("SELECT C.id, C.direccion, C.telefono FROM clientes C WHERE estado = '1' AND C.id = '$_POST[id]'");
-		while ($row = $class->fetch_array($resultado)) {
-			$data = array('id' => $row[0], 'direccion'=>$row[1], 'telefono'=>$row[2]);
+			$data = array('id' => $row[0],'codigo' => $row[1],'descripcion' => $row[2],'descuento' => $row[3]);
 		}
 		print_r(json_encode($data));
 	}

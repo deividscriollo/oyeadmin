@@ -260,17 +260,6 @@ angular.module('scotchApp').controller('contratos_rotativosController', function
             $("#id_cliente").val(ui.item.id_cliente); 
             $("#ruc").val(ui.item.value); 
             $("#cliente").val(ui.item.cliente);
-            // limpiar texto plano
-            $("#ci b").remove();
-            $("#representante b").remove();
-			$("#empresa b").remove();
-			// fin
-
-			// cargar datos texto plano
-            $("#ci").append($("<b>").text(' ' + ui.item.identificacion));
-            $("#representante").append($("<b>").text(' ' + ui.item.representante + ' '));
-			$("#empresa").append($("<b>").text(' ' + ui.item.cliente));
-			// fin
             return false;
             }
         });
@@ -295,46 +284,6 @@ angular.module('scotchApp').controller('contratos_rotativosController', function
 					}
 				});
 		   });
-		});
-		// fin
-
-		//selectores anidados programas texto plano
-		$("#select_programa").change(function() {
-	        $("#select_programa option:selected").each(function () {
-	        	$("#programa b").remove();
-				var programa = document.getElementById("select_programa");
-  				$("#programa").append($("<b>").text(programa.options[programa.selectedIndex].text));
-		   });
-		});
-		// fin
-
-		//selectores fecha inicio texto plano
-		$("#fecha_inicio").change(function() {
-			$("#fecha_ini b").remove();
-			// descomponer fecha inicio
-			var tem = $('#fecha_inicio').val();
-			var res1 = tem.substr(8, 10); 
-			var res2 = parseInt(tem.substr(6, 7)); 
-			var res3 = tem.substr(0, 4); 
-			var fecha_inicio = res1 + " de " + meses[res2 - 1] + " del " + res3;
-
-			$("#fecha_ini").append($("<b>").text(fecha_inicio));
-			// fin
-		});
-		// fin
-
-		//selectores fecha fin texto plano
-		$("#fecha_fin").change(function() {
-			$("#fecha_final b").remove();
-			// descomponer fecha fin
-			var tem2 = $('#fecha_fin').val();
-			var res4 = tem2.substr(8, 10); 
-			var res5 = parseInt(tem2.substr(6, 7)); 
-			var res6 = tem2.substr(0, 4); 
-			var fecha_fin = res4 + " de " + meses[res5 - 1] + " del " + res6;
-			
-			$("#fecha_final").append($("<b>").text(fecha_fin));
-			// fin
 		});
 		// fin
 
@@ -477,14 +426,17 @@ angular.module('scotchApp').controller('contratos_rotativosController', function
 			var respuesta = $('#form_contratos').valid();
 
 			if (respuesta == true) {
-
+				$("#ci b").remove();
+	            $("#representante b").remove();
+				$("#empresa b").remove();
 				$("#dura b").remove();
-				
-				
-				
+				$("#fecha_ini b").remove();
+				$("#fecha_final b").remove();
 				$("#boni b").remove();
+				$("#programa b").remove();
+				 // limpiar texto plano
+            
 				
-
 				// llenar datos clientes
 					$.ajax({
 						url: 'data/contratos_selectivos/app.php',
@@ -498,6 +450,31 @@ angular.module('scotchApp').controller('contratos_rotativosController', function
 						}
 					});
 				// fin
+
+
+				// descomponer fecha fin
+				var tem2 = $('#fecha_fin').val();
+				var res4 = tem2.substr(8, 10); 
+				var res5 = parseInt(tem2.substr(6, 7)); 
+				var res6 = tem2.substr(0, 4); 
+				var fecha_fin = res4 + " de " + meses[res5 - 1] + " del " + res6;
+				
+				$("#fecha_final").append($("<b>").text(fecha_fin));
+				// fin
+
+
+				// descomponer fecha inicio
+				var tem = $('#fecha_inicio').val();
+				var res1 = tem.substr(8, 10); 
+				var res2 = parseInt(tem.substr(6, 7)); 
+				var res3 = tem.substr(0, 4); 
+				var fecha_inicio = res1 + " de " + meses[res2 - 1] + " del " + res3;
+
+				$("#fecha_ini").append($("<b>").text(fecha_inicio));
+				// fin
+
+				var programa = document.getElementById("select_programa");
+  				$("#programa").append($("<b>").text(programa.options[programa.selectedIndex].text));
 
 				
 

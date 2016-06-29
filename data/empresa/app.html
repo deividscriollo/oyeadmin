@@ -45,33 +45,33 @@
 									&nbsp; &nbsp;
 									<div class="row">
 										<div class="col-sm-12">
-
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">RUC Empresa:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">RUC Empresa:</label>
+													<div class="col-sm-4">
 														<div class="clearfix">
-															<input type="text" name="identificacion" id="identificacion" placeholder="" class="form-control" />
-															<input type="hidden" name="id_empresa" id="id_empresa" placeholder="" class="form-control" />
+															<input type="text" name="identificacion" id="identificacion" placeholder="Consultar..." class="form-control" />
+															<input type="hidden" name="id_empresa" id="id_empresa" class="form-control" />
+														</div>
+													</div>
+													<button class="btn btn-purple btn-sm blue" id="btn_verificar" type="button" onclick="angular.element(this).scope().cargadatos('estado')"><i class="ace-icon fa fa-search"></i></button>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-sm-4 no-padding-right">Nombre Comercial:</label>
+													<div class="col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre Comercial" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombre Comercial:</label>
-													<div class="col-xs-12 col-sm-6">
-														<div class="clearfix">
-															<input type="text" name="nombre_empresa" id="nombre_empresa" placeholder="" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
-														</div>
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Teléfono:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Teléfono:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
 															<span class="block input-icon">
-																<input type="text" name="telefono1" id="telefono1" placeholder="" value="" class="form-control" />
+																<input type="text" name="telefono1" id="telefono1" placeholder="Teléfono" value="" class="form-control" />
 																<i class="ace-icon fa fa-phone"></i>
 												            </span>
 														</div>
@@ -79,20 +79,20 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Ciudad:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Ciudad:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="ciudad" id="ciudad" placeholder="" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+															<input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Correo:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Correo:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
 															<span class="block input-icon">
-																<input type="text" name="correo" id="correo" placeholder="" class="form-control" />
+																<input type="text" name="correo" id="correo" placeholder="Correo" class="form-control" />
 																<i class="ace-icon fa fa-envelope"></i>
 												            </span>
 														</div>
@@ -100,11 +100,11 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Sitio Web:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Sitio Web:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
 															<span class="block input-icon">
-																<input type="text" name="sitio_web" id="sitio_web" placeholder="" class="form-control" />
+																<input type="text" name="sitio_web" id="sitio_web" placeholder="Sitio Web" class="form-control" />
 																<i class="ace-icon fa fa-globe"></i>
 												            </span>
 														</div>
@@ -112,17 +112,17 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Factura Preimpresa:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Factura Preimpresa:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="inicio_fac_preimpresa" id="inicio_fac_preimpresa" placeholder="" class="form-control" />
+															<input type="text" name="inicio_fac_preimpresa" id="inicio_fac_preimpresa" class="form-control" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Observaciones:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Observaciones:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
 															<textarea name="observaciones" id="observaciones" class="form-control"></textarea>
 														</div>
@@ -132,29 +132,29 @@
 
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Razón Social:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Razón Social:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="propietario" id="propietario" placeholder="" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
+															<input type="text" name="propietario" id="propietario" placeholder="Razón Social" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Slogan:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Slogan:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="slogan" id="slogan" placeholder="" class="form-control"  />
+															<input type="text" name="slogan" id="slogan" placeholder="Slogan" class="form-control"  />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Celular:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Celular:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
 															<span class="block input-icon">
-																<input type="text" name="telefono2" id="telefono2" placeholder="" value="" class="form-control" />
+																<input type="text" name="telefono2" id="telefono2" placeholder="Celular" value="" class="form-control" />
 																<i class="ace-icon fa fa-mobile"></i>
 												            </span>
 														</div>
@@ -162,37 +162,37 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Dirección:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Dirección:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="direccion" id="direccion" placeholder="" class="form-control" />
+															<input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fax:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Fax:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="fax" id="fax" placeholder="" class="form-control" />
+															<input type="text" name="fax" id="fax" placeholder="Fax" class="form-control" />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Autorización SRI:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">Autorización SRI:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="autorizacion_sri" id="autorizacion_sri" placeholder="" class="form-control"  />
+															<input type="text" name="autorizacion_sri" id="autorizacion_sri" placeholder="Autorización SRI" class="form-control"  />
 														</div>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-4 no-padding-right">N. Items Factura:</label>
-													<div class="col-xs-12 col-sm-6">
+													<label class="control-label col-sm-4 no-padding-right">N. Items Factura:</label>
+													<div class="col-sm-6">
 														<div class="clearfix">
-															<input type="text" name="item_factura" id="item_factura" placeholder="" class="form-control" />
+															<input type="text" name="item_factura" id="item_factura" class="form-control" />
 														</div>
 													</div>
 												</div>

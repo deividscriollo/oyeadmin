@@ -10280,7 +10280,7 @@ input[type=checkbox].ace.ace-switch:checked+.lbl::after {
 }
 
 input[type=checkbox].ace.ace-switch.ace-switch-2+.lbl::before {
-    content: "YES\a0\a0\a0\a0\a0\a0\a0\a0\a0NO"
+    content: "SI\a0\a0\a0\a0\a0\a0\a0\a0\a0NO"
 }
 
 input[type=checkbox].ace.ace-switch.ace-switch-3+.lbl::after {
@@ -10363,7 +10363,7 @@ input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::after {
 }
 
 input[type=checkbox].ace.ace-switch.ace-switch-5+.lbl::before {
-    content: "YES\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0NO"
+    content: "SI\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0NO"
 }
 
 input[type=checkbox].ace.ace-switch.ace-switch-5:checked+.lbl::before {

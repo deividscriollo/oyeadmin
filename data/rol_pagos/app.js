@@ -40,7 +40,6 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		}).datepicker("setDate","today");
 		// fin
 
-
 		// estilo seelct2 
 		$(".select2").css({
 		    'width': '100%',
@@ -69,7 +68,7 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 			focusInvalid: false,
 			ignore: "",
 			rules: {
-				select_empleado: {
+				id_empleado: {
 					required: true				
 				},
 				txt_mes: {
@@ -125,7 +124,7 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 				},
 			},
 			messages: {
-				select_empleado: {
+				id_empleado: {
 					required: "Por favor, Seleccione un empleado",
 				},
 				txt_mes: {
@@ -373,7 +372,12 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 						var validado = a + "" + res;
 						$("#codigo_general").val(validado);
 					} else {
-						var validado = '0001';
+						var res = parseInt(0);
+						res = res + 1;
+
+						$("#codigo_general").val(res);
+						var a = autocompletar(res);
+						var validado = a + "" + res;
 						$("#codigo_general").val(validado);
 					}
 				}
@@ -464,94 +468,93 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		// fin
 
 		//selectores anidados empleado
-		$("#select_empleado").change(function () {
-	        $("#select_empleado option:selected").each(function () {
-	            id = $(this).val();
+		// $("#select_empleado").change(function () {
+	 //        $("#select_empleado option:selected").each(function () {
+	 //            id = $(this).val();
 
-	            $('#cargo').val('');
-	            $('#sueldo').val('');
-	            $('#codigo').val('');
-	            // cargar sueldo - cargo
-	            $.ajax({
-					url: 'data/rol_pagos/app.php',
-					type: 'post',
-					data: {llenar_cargos:'llenar_cargos',id: id},
-					dataType: 'json',
-					success: function (data) {
-						var cargo = data.cargo;
-						var sueldo = data.sueldo;
-						console.log(data.sueldo);
-						$('#cargo').val(cargo);
-						$('#sueldo').val(sueldo);
-					}
-				});
-	            // fin
+	 //            $('#cargo').val('');
+	 //            $('#sueldo').val('');
+	 //            $('#codigo').val('');
+	 //            // cargar sueldo - cargo
+	 //            $.ajax({
+		// 			url: 'data/rol_pagos/app.php',
+		// 			type: 'post',
+		// 			data: {llenar_cargos:'llenar_cargos',id: id},
+		// 			dataType: 'json',
+		// 			success: function (data) {
+		// 				var cargo = data.cargo;
+		// 				var sueldo = data.sueldo;
+		// 				$('#cargo').val(cargo);
+		// 				$('#sueldo').val(sueldo);
+		// 			}
+		// 		});
+	 //            // fin
 
-	            $.ajax({
-					url: 'data/rol_pagos/app.php',
-					type: 'post',
-					data: {cargar_codigo_secuencia:'cargar_codigo_secuencia',id: id},
-					dataType: 'json',
-					success: function (data) {
-						if(data != null) {
-							var hoy = new Date();
-							var dd = hoy.getDate();
-							var mm = hoy.getMonth() + 1; 
-							var anio = hoy.getFullYear();
+	 //            $.ajax({
+		// 			url: 'data/rol_pagos/app.php',
+		// 			type: 'post',
+		// 			data: {cargar_codigo_secuencia:'cargar_codigo_secuencia',id: id},
+		// 			dataType: 'json',
+		// 			success: function (data) {
+		// 				if(data != null) {
+		// 					var hoy = new Date();
+		// 					var dd = hoy.getDate();
+		// 					var mm = hoy.getMonth() + 1; 
+		// 					var anio = hoy.getFullYear();
 
-							if(dd < 10) {
-							    dd = '0' + dd;
-							} 
+		// 					if(dd < 10) {
+		// 					    dd = '0' + dd;
+		// 					} 
 
-							if(mm < 10) {
-							    mm = '0' + mm;
-							} 
+		// 					if(mm < 10) {
+		// 					    mm = '0' + mm;
+		// 					} 
 
-							var codigo = data.codigo;
-							var codigo_general = $('#codigo_general').val();
-							var cade = codigo.substr(0, 10);
-							var res = parseInt(cade.substr(9, 1));
-							res = res + 1;						
-							var anios = anio.toString().substr(2, 4);
-							var ini = codigo.substr(-7, 2);
-							var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
-							$('#codigo').val(cadena);
-						} else {
-							$.ajax({
-								url: 'data/rol_pagos/app.php',
-								type: 'post',
-								data: {cargar_codigo_rol:'cargar_codigo_rol',id: id},
-								dataType: 'json',
-								success: function (data) {
-									if(data != null) {
-										var hoy = new Date();
-										var dd = hoy.getDate();
-										var mm = hoy.getMonth() + 1; 
-										var anio = hoy.getFullYear();
+		// 					var codigo = data.codigo;
+		// 					var codigo_general = $('#codigo_general').val();
+		// 					var cade = codigo.substr(0, 10);
+		// 					var res = parseInt(cade.substr(9, 1));
+		// 					res = res + 1;						
+		// 					var anios = anio.toString().substr(2, 4);
+		// 					var ini = codigo.substr(-7, 2);
+		// 					var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
+		// 					$('#codigo').val(cadena);
+		// 				} else {
+		// 					$.ajax({
+		// 						url: 'data/rol_pagos/app.php',
+		// 						type: 'post',
+		// 						data: {cargar_codigo_rol:'cargar_codigo_rol',id: id},
+		// 						dataType: 'json',
+		// 						success: function (data) {
+		// 							if(data != null) {
+		// 								var hoy = new Date();
+		// 								var dd = hoy.getDate();
+		// 								var mm = hoy.getMonth() + 1; 
+		// 								var anio = hoy.getFullYear();
 
-										if(dd < 10) {
-										    dd = '0' + dd;
-										} 
+		// 								if(dd < 10) {
+		// 								    dd = '0' + dd;
+		// 								} 
 
-										if(mm < 10) {
-										    mm = '0' + mm;
-										} 
+		// 								if(mm < 10) {
+		// 								    mm = '0' + mm;
+		// 								} 
 
-										var codigo = data.codigo;
-										var codigo_general = $('#codigo_general').val();
-										var res = parseInt(codigo.substr(9, 1));
-										var anios = anio.toString().substr(2, 4);
-										var ini = codigo.substr(-3, 2);
-										var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
-										$('#codigo').val(cadena);	
-									}
-								}
-							});
-						}
-					}
-				});
-		    });
-		});
+		// 								var codigo = data.codigo;
+		// 								var codigo_general = $('#codigo_general').val();
+		// 								var res = parseInt(1);
+		// 								var anios = anio.toString().substr(2, 4);
+		// 								var ini = codigo;
+		// 								var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
+		// 								$('#codigo').val(cadena);	
+		// 							}
+		// 						}
+		// 					});
+		// 				}
+		// 			}
+		// 		});
+		//     });
+		// });
 		// fin
 
 		// validacion punto
@@ -611,7 +614,10 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		$("#monto_anticipo").keypress(Valida_punto);
 		// fin
 
-		// Inicio llamado funciones procesos de inicio 
+		// Inicio llamado funciones procesos de inicio
+		document.getElementById("codigo").readOnly = true; 
+		document.getElementById("identificacion").readOnly = true; 
+		document.getElementById("nombres_completos").readOnly = true; 
 		llenar_select_empleado();
 		llenar_select_empleado1();
 		llenar_select_empleado2();
@@ -962,6 +968,21 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		});
 		// fin
 
+		$('#btn_calcular_anticipos').click(function() {
+			var s;
+			var suma = 0;
+			s = jQuery("#table3").jqGrid('getGridParam','selarrrow');
+			
+			for(var i= 0; i<s.length; i++) {
+				var ids = s[i];
+				var com = jQuery("#table3").jqGrid('getRowData',ids).monto_anticipo;
+				suma = (parseFloat(suma) + parseFloat(com)).toFixed(3);
+			}
+			$('#pres_anticipos').val(suma);
+			$("#table3").jqGrid('resetSelection');
+			$('#myModal2').modal('hide');
+		});
+
 		// filtrar roles
 		$('#btn_filtrar').click(function() {
 			gridReload();
@@ -976,11 +997,189 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 	} 
 	// fin
 
+	// abrir en una nueva ventana reporte roles de pago
+	$scope.methodanticipos = function(id) { 
+		var id_adelantos = id;
+
+		$.ajax({
+			url: 'data/rol_pagos/app.php',
+			type: 'post',
+			data: {llenar_informacion_anticipos:'llenar_informacion_anticipos',id: id_adelantos},
+			dataType: 'json',
+			success: function (data) {
+				$("#serie span").remove();
+				$("#fecha span").remove();
+				$("#nombres b").remove();
+				$("#cedula b").remove();
+				$("#cargo_anticipo b").remove();
+				$("#total_monto span").remove();
+				$("#monto b").remove();
+				$("#mes_anticipo b").remove();
+				$("#elaborado_por b").remove();
+				$("#ci_elaborado p").remove();
+				$("#solicitado_por b").remove();
+				$("#ci_solicitado p").remove();
+				$("#cheque_anticipo b").remove();
+				$("#banco_anticipo b").remove();
+				$("#cuenta_anticipo b").remove();
+
+				$('#serie').append($('<span>').text('N° ' + data.serie_anticipo));
+				$('#fecha').append($('<span>').text(data.fecha_anticipo));
+				$('#nombres').append($('<b>').text(data.nombres_completos));
+				$('#cedula').append($('<b>').text(data.cedula_identificacion));
+				$('#cargo_anticipo').append($('<b>').text(data.nombre));
+				$('#total_monto').append($('<span>').text(data.monto_anticipo));
+				$('#monto').append($('<b>').text('$'+data.monto_anticipo));
+				$('#mes_anticipo').append($('<b>').text(data.meses_anticipo));
+
+				if(data.forma_pago == 'EFECTIVO') {
+					document.getElementById("check_efectivo").checked = true;
+				} else {
+					document.getElementById("check_efectivo").checked = false;
+				}
+
+				if(data.forma_pago == 'CHEQUE') {
+					document.getElementById("check_cheque").checked = true;
+				} else {
+					document.getElementById("check_cheque").checked = false;
+				}
+
+				if(data.forma_pago == 'TARJETA') {
+					document.getElementById("check_tarjeta").checked = true;
+				} else {
+					document.getElementById("check_tarjeta").checked = false;
+				}
+
+				if(data.forma_pago == 'DEPÓSITO') {
+					document.getElementById("check_deposito").checked = true;
+				} else {
+					document.getElementById("check_deposito").checked = false;
+				}
+
+				if(data.forma_pago == 'TRANSFERENCIA') {
+					document.getElementById("check_tranferencia").checked = true;
+				} else {
+					document.getElementById("check_tranferencia").checked = false;
+				}
+
+				$('#cheque_anticipo').append($('<b>').text(data.cheque_numero));
+				$('#cuenta_anticipo').append($('<b>').text(data.cuenta_anticipo));
+
+				$('#elaborado_por').append($('<b>').text(data.nombres_usuario));
+				$('#ci_elaborado').append($('<p>').text('C.I.'+data.cedula));
+
+				$('#solicitado_por').append($('<b>').text(data.nombres_completos));
+				$('#ci_solicitado').append($('<p>').text('C.I.'+data.cedula_identificacion));
+
+				if(data.id_bancos != 'null') {
+					var id_bancos = data.id_bancos;
+
+					$.ajax({
+						url: 'data/rol_pagos/app.php',
+						type: 'post',
+						data: {llenar_informacion_bancos:'llenar_informacion_bancos',id: id_bancos},
+						dataType: 'json',
+						success: function (data) {
+							$('#banco_anticipo').append($('<b>').text(data.banco));
+						}
+					});		
+				}
+			}
+		});
+
+		$('#modal-anticipos').modal('show');
+	} 
+	// fin
+
+	$scope.methodpermisos = function(id) {
+		var id_permisos = id;
+
+		$.ajax({
+			url: 'data/rol_pagos/app.php',
+			type: 'post',
+			data: {llenar_informacion_permisos:'llenar_informacion_permisos',id: id_permisos},
+			dataType: 'json',
+			success: function (data) {
+				$("#p_serie_permiso span").remove();
+				$("#p_permiso span").remove();
+				$("#p_dirigido b").remove();
+				$("#p_yo b").remove();
+				$("#p_horas b").remove();
+				$("#p_dias b").remove();
+				$("#b_hora_salida b").remove();
+				$("#p_retorno b").remove();
+				$("#p_tiempo_salida b").remove();
+				$("#p_asunto b").remove();
+				$("#p_lugar b").remove();
+				$("#p_solicitante b").remove();
+				$("#p_cedula b").remove();
+				$("#p_talento b").remove();
+				$("#p_cedula_talento b").remove();
+
+				$('#p_serie_permiso').append($('<span>').text('N° ' + data.serie_permiso));
+				$('#p_permiso').append($('<span>').text(data.fecha_permiso));
+				$('#p_dirigido').append($('<b>').text(data.nombres_usuario));
+				$('#p_yo').append($('<b>').text(data.nombre_solicitante));
+				$('#p_horas').append($('<b>').text(data.horas));
+				$('#p_dias').append($('<b>').text(data.dias));
+				$('#b_hora_salida').append($('<b>').text(data.hora_salida));
+				$('#p_retorno').append($('<b>').text(data.hora_retorno));
+
+				if(data.regreso == 'SI') {
+					document.getElementById("p_regreso").checked = true;
+				} else {
+					document.getElementById("p_regreso").checked = false;
+				}
+
+				$('#p_tiempo_salida').append($('<b>').text(data.tiempo_salida));
+				$('#p_asunto').append($('<b>').text(data.asunto));
+				$('#p_lugar').append($('<b>').text(data.lugar));
+
+				if(data.parte_de == 'COMISIÓN OFICIAL') {
+					document.getElementById("check_comision_oficial").checked = true;
+				} else {
+					document.getElementById("check_comision_oficial").checked = false;
+				}
+
+				if(data.parte_de == 'ASUNTO PARTICULAR') {
+					document.getElementById("check_asunto_particular").checked = true;
+				} else {
+					document.getElementById("check_asunto_particular").checked = false;
+				}
+
+				if(data.cargos_a == 'DESCUENTOS') {
+					document.getElementById("check_descuentos").checked = true;
+				} else {
+					document.getElementById("check_descuentos").checked = false;
+				}
+
+				if(data.cargos_a == 'VACACIONES') {
+					document.getElementById("check_vacaciones").checked = true;
+				} else {
+					document.getElementById("check_vacaciones").checked = false;
+				}
+
+				if(data.cargos_a == 'NINGUNO') {
+					document.getElementById("check_ninguno").checked = true;
+				} else {
+					document.getElementById("check_ninguno").checked = false;
+				}
+
+				$('#p_solicitante').append($('<b>').text(data.nombre_solicitante));
+				$('#p_cedula').append($('<b>').text('C.I.' + data.cedula_solicitante));
+				$('#p_talento').append($('<b>').text(data.nombres_usuario));
+				$('#p_cedula_talento').append($('<b>').text('C.I.'+data.cedula));
+			}
+		});
+
+		$('#modal-permisos').modal('show');
+	} 
+
 	// abrir en una nueva ventana reporte guardar roles
 	$scope.methodspdfguardar = function(id) { 
 	// var win;
 	var win = window.open('data/reportes/rol_pagos.php?hoja=A5&id='+id,'popup','width=900,height=650');
-	win.document.execCommand("SaveAs");
+	// win.document.execCommand("SaveAs");
 	// win.close();
 		// var myWindow = window.location.assign('data/reportes/rol_pagos.php?hoja=A5&id='+id,'popup','width=900,height=650','PDF');
 		// myWindow.focus();
@@ -997,236 +1196,1043 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 	}
 	
 	/*jqgrid*/    
-		jQuery(function($) {
-		    var grid_selector = "#table";
-		    var pager_selector = "#pager";
-		    
-		    //cambiar el tamaño para ajustarse al tamaño de la página
-		    $(window).on('resize.jqGrid', function () {	        
-		        $(grid_selector).jqGrid( 'setGridWidth', $("#container").width()-30);
-		    });
-		    //cambiar el tamaño de la barra lateral collapse/expand
-		    var parent_column = $(grid_selector).closest('[class*="col-"]');
-		    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-		        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-		            //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
-		            setTimeout(function() {
-		                $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-		            }, 0);
-		        }
-		    });
+	jQuery(function($) {
+	    var grid_selector = "#table";
+	    var pager_selector = "#pager";
+	    
+	    //cambiar el tamaño para ajustarse al tamaño de la página
+	    $(window).on('resize.jqGrid', function () {	        
+	        $(grid_selector).jqGrid( 'setGridWidth', $("#container").width()-30);
+	    });
+	    //cambiar el tamaño de la barra lateral collapse/expand
+	    var parent_column = $(grid_selector).closest('[class*="col-"]');
+	    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+	        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+	            //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
+	            setTimeout(function() {
+	                $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+	            }, 0);
+	        }
+	    });
 
-		    // buscador clientes
-		    jQuery(grid_selector).jqGrid({	        
-		        datatype: "xml",
-		        url: 'data/rol_pagos/xml_roles.php',
-		        colNames: ['ID','CÓDIGO ROL','IDENTIDICACIÓN','NOMBRES','APELLIDOS','DIRECCIÓN','FECHA EMISIÓN','NETO PAGAR','REPORTE'],
-		        colModel:[      
-		            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
-		            {name:'codigo',index:'codigo',frozen : true,align:'left',search:true,width: '150px'},
-		            {name:'cedula_identificacion',index:'cedula_identificacion',frozen : true,align:'left',search:true,width: '150px'},
-		            {name:'nombres',index:'nombres',frozen : true,align:'left',search:true,width: '250px'},
-		            {name:'apellidos',index:'apellidos',frozen : true,align:'left',search:false,width: '250px'},
-		            {name:'direccion',index:'direccion',frozen : true,align:'left',search:false,width: '250px', hidden: false},
-		            {name:'fecha_emision',index:'fecha_emision',frozen : true,align:'left',search:false,width: '250px'},
-		            {name:'neto_pagar',index:'neto_pagar',frozen : true,align:'left',search:false},
-		            {name:'accion',index:'accion',frozen : true,align:'center',search:false,width: '100px'},
-		        ],          
-		        rowNum: 10,       
-		        width:600,
-		        shrinkToFit: false,
-		        height:330,
-		        rowList: [10,20,30],
-		        pager: pager_selector,        
-		        sortname: 'id',
-		        sortorder: 'desc',
-		        altRows: true,
-		        multiselect: false,
-		        viewrecords : true,
-		        loadComplete : function() {
-		            var table = this;
-		            setTimeout(function(){
-		                styleCheckbox(table);
-		                updateActionIcons(table);
-		                updatePagerIcons(table);
-		                enableTooltips(table);
-		            }, 0);
-		        },
-		        gridComplete: function() {
-					var ids = jQuery(grid_selector).jqGrid('getDataIDs');
-					for(var i=0;i < ids.length;i++){
-						var id_rol = ids[i];
-						pdf_abrir = "<a onclick=\"angular.element(this).scope().methodspdf('"+id_rol+"')\" title='Abrir PDF'><i class='fa fa-file-pdf-o green' style='cursor:pointer; cursor: hand'></i></a>"; 
-						pdf_guardar = "<a onclick=\"angular.element(this).scope().methodspdfguardar('"+id_rol+"')\" title='Guardar PDF'><i class='fa fa-save green' style='cursor:pointer; cursor: hand'></i></a>"; 
-						jQuery(grid_selector).jqGrid('setRowData',ids[i],{accion:pdf_abrir +'    '+ pdf_guardar});
-					}	
-				},
-		        ondblClickRow: function(rowid) {     	            	            
-		            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
-	            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);	            
-		        },
-		        caption: "LISTA ROLES DE PAGO"
-		    });
-	
-		    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
+	    // buscador clientes
+	    jQuery(grid_selector).jqGrid({	        
+	        datatype: "xml",
+	        url: 'data/rol_pagos/xml_roles.php',
+	        colNames: ['ID','CÓDIGO ROL','IDENTIDICACIÓN','NOMBRES COMPLETOS','DIRECCIÓN','FECHA EMISIÓN','NETO PAGAR','REPORTE'],
+	        colModel:[      
+	            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
+	            {name:'codigo',index:'codigo',frozen : true,align:'left',search:true,width: ''},
+	            {name:'cedula_identificacion',index:'cedula_identificacion',frozen : true,align:'left',search:true,width: ''},
+	            {name:'nombres',index:'nombres',frozen : true,align:'left',search:true,width: '400px'},
+	            {name:'direccion',index:'direccion',frozen : true,align:'left',search:false,width: '300px', hidden: false},
+	            {name:'fecha_emision',index:'fecha_emision',frozen : true,align:'left',search:false,width: ''},
+	            {name:'neto_pagar',index:'neto_pagar',frozen : true,align:'left',search:false},
+	            {name:'accion',index:'accion',frozen : true,align:'center',search:false,width: '100px'},
+	        ],          
+	        rowNum: 10,       
+	        width:null,
+	        shrinkToFit: false,
+	        height:330,
+	        rowList: [10,20,30],
+	        pager: pager_selector,        
+	        sortname: 'id',
+	        sortorder: 'desc',
+	        altRows: true,
+	        multiselect: false,
+	        viewrecords : true,
+	        loadComplete : function() {
+	            var table = this;
+	            setTimeout(function(){
+	                styleCheckbox(table);
+	                updateActionIcons(table);
+	                updatePagerIcons(table);
+	                enableTooltips(table);
+	            }, 0);
+	        },
+	        gridComplete: function() {
+				var ids = jQuery(grid_selector).jqGrid('getDataIDs');
+				for(var i=0;i < ids.length;i++){
+					var id_rol = ids[i];
+					pdf_abrir = "<a onclick=\"angular.element(this).scope().methodspdf('"+id_rol+"')\" title='Abrir PDF'><i class='fa fa-file-pdf-o green' style='cursor:pointer; cursor: hand'></i></a>"; 
+					pdf_guardar = "<a onclick=\"angular.element(this).scope().methodspdfguardar('"+id_rol+"')\" title='Guardar PDF'><i class='fa fa-save green' style='cursor:pointer; cursor: hand'></i></a>"; 
+					jQuery(grid_selector).jqGrid('setRowData',ids[i],{accion:pdf_abrir +'    '+ pdf_guardar});
+				}	
+			},
+	        ondblClickRow: function(rowid) {     	            	            
+	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
+            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);	            
+	        },
+	        caption: "LISTA ROLES DE PAGO"
+	    });
 
-		    function aceSwitch( cellvalue, options, cell ) {
-		        setTimeout(function(){
-		            $(cell) .find('input[type=checkbox]')
-		            .addClass('ace ace-switch ace-switch-5')
-		            .after('<span class="lbl"></span>');
-		        }, 0);
-		    }	    	   
+	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
-		    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
-		    {   //navbar options
-		        edit: false,
-		        editicon : 'ace-icon fa fa-pencil blue',
-		        add: false,
-		        addicon : 'ace-icon fa fa-plus-circle purple',
-		        del: false,
-		        delicon : 'ace-icon fa fa-trash-o red',
-		        search: false,
-		        searchicon : 'ace-icon fa fa-search orange',
-		        refresh: true,
-		        refreshicon : 'ace-icon fa fa-refresh green',
-		        view: true,
-		        viewicon : 'ace-icon fa fa-search-plus grey'
-		    },
-		    {	        
-		        recreateForm: true,
-		        beforeShowForm : function(e) {
-		            var form = $(e[0]);
-		            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-		            style_edit_form(form);
-		        }
-		    },
-		    {
-		        closeAfterAdd: true,
-		        recreateForm: true,
-		        viewPagerButtons: false,
-		        beforeShowForm : function(e) {
-		            var form = $(e[0]);
-		            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
-		            .wrapInner('<div class="widget-header" />')
-		            style_edit_form(form);
-		        }
-		    },
-		    {
-		        recreateForm: true,
-		        beforeShowForm : function(e) {
-		            var form = $(e[0]);
-		            if(form.data('styled')) return false;      
-		            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-		            style_delete_form(form); 
-		            form.data('styled', true);
-		        },
-		        onClick : function(e) {}
-		    },
-		    {
-		        recreateForm: true,
-		        afterShowSearch: function(e){
-		            var form = $(e[0]);
-		            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-		            style_search_form(form);
-		        },
-		        afterRedraw: function(){
-		            style_search_filters($(this));
-		        },
+	    function aceSwitch( cellvalue, options, cell ) {
+	        setTimeout(function(){
+	            $(cell) .find('input[type=checkbox]')
+	            .addClass('ace ace-switch ace-switch-5')
+	            .after('<span class="lbl"></span>');
+	        }, 0);
+	    }	    	   
 
-		        //multipleSearch: true
-		        overlay: false,
-		        sopt: ['eq', 'cn'],
-	            defaultSearch: 'eq',            	       
-		      },
-		    {
-		        //view record form
-		        recreateForm: true,
-		        beforeShowForm: function(e){
-		            var form = $(e[0]);
-		            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-		        }
-		    })	    
-		    function style_edit_form(form) {
-		        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-		        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+	    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+	    {   //navbar options
+	        edit: false,
+	        editicon : 'ace-icon fa fa-pencil blue',
+	        add: false,
+	        addicon : 'ace-icon fa fa-plus-circle purple',
+	        del: false,
+	        delicon : 'ace-icon fa fa-trash-o red',
+	        search: false,
+	        searchicon : 'ace-icon fa fa-search orange',
+	        refresh: true,
+	        refreshicon : 'ace-icon fa fa-refresh green',
+	        view: true,
+	        viewicon : 'ace-icon fa fa-search-plus grey'
+	    },
+	    {	        
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        closeAfterAdd: true,
+	        recreateForm: true,
+	        viewPagerButtons: false,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+	            .wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            if(form.data('styled')) return false;      
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_delete_form(form); 
+	            form.data('styled', true);
+	        },
+	        onClick : function(e) {}
+	    },
+	    {
+	        recreateForm: true,
+	        afterShowSearch: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	            style_search_form(form);
+	        },
+	        afterRedraw: function(){
+	            style_search_filters($(this));
+	        },
 
-		        //update buttons classes
-		        var buttons = form.next().find('.EditButton .fm-button');
-		        buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
-		        buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
-		        buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
-		        
-		        buttons = form.next().find('.navButton a');
-		        buttons.find('.ui-icon').hide();
-		        buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
-		        buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
-		    }
+	        //multipleSearch: true
+	        overlay: false,
+	        sopt: ['eq', 'cn'],
+            defaultSearch: 'eq',            	       
+	      },
+	    {
+	        //view record form
+	        recreateForm: true,
+	        beforeShowForm: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	        }
+	    })	    
+	    function style_edit_form(form) {
+	        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+	        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
 
-		    function style_delete_form(form) {
-		        var buttons = form.next().find('.EditButton .fm-button');
-		        buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
-		        buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
-		        buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
-		    }
-		    
-		    function style_search_filters(form) {
-		        form.find('.delete-rule').val('X');
-		        form.find('.add-rule').addClass('btn btn-xs btn-primary');
-		        form.find('.add-group').addClass('btn btn-xs btn-success');
-		        form.find('.delete-group').addClass('btn btn-xs btn-danger');
-		    }
-		    function style_search_form(form) {
-		        var dialog = form.closest('.ui-jqdialog');
-		        var buttons = dialog.find('.EditTable')
-		        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
-		        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
-		        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
-		    }
-		    
-		    function beforeDeleteCallback(e) {
-		        var form = $(e[0]);
-		        if(form.data('styled')) return false; 
-		        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-		        style_delete_form(form);
-		        form.data('styled', true);
-		    }
-		    
-		    function beforeEditCallback(e) {
-		        var form = $(e[0]);
-		        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-		        style_edit_form(form);
-		    }
+	        //update buttons classes
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+	        buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+	        
+	        buttons = form.next().find('.navButton a');
+	        buttons.find('.ui-icon').hide();
+	        buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+	        buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
+	    }
 
-		    function styleCheckbox(table) {}
-		    
+	    function style_delete_form(form) {
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+	        buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+	    }
+	    
+	    function style_search_filters(form) {
+	        form.find('.delete-rule').val('X');
+	        form.find('.add-rule').addClass('btn btn-xs btn-primary');
+	        form.find('.add-group').addClass('btn btn-xs btn-success');
+	        form.find('.delete-group').addClass('btn btn-xs btn-danger');
+	    }
+	    function style_search_form(form) {
+	        var dialog = form.closest('.ui-jqdialog');
+	        var buttons = dialog.find('.EditTable')
+	        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+	        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+	        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+	    }
+	    
+	    function beforeDeleteCallback(e) {
+	        var form = $(e[0]);
+	        if(form.data('styled')) return false; 
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_delete_form(form);
+	        form.data('styled', true);
+	    }
+	    
+	    function beforeEditCallback(e) {
+	        var form = $(e[0]);
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_edit_form(form);
+	    }
 
-		    function updateActionIcons(table) {}
-		    
-		    function updatePagerIcons(table) {
-		        var replacement = 
-		            {
-		            'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
-		            'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
-		            'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
-		            'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
-		        };
-		        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-		            var icon = $(this);
-		            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-		            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-		        })
-		    }
+	    function styleCheckbox(table) {}
+	    
 
-		    function enableTooltips(table) {
-		        $('.navtable .ui-pg-button').tooltip({container:'body'});
-		        $(table).find('.ui-pg-div').tooltip({container:'body'});
-		    }
+	    function updateActionIcons(table) {}
+	    
+	    function updatePagerIcons(table) {
+	        var replacement = 
+	            {
+	            'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+	            'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+	            'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+	            'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+	        };
+	        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+	            var icon = $(this);
+	            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+	            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+	        })
+	    }
 
-		    $(document).one('ajaxloadstart.page', function(e) {
-		        $(grid_selector).jqGrid('GridUnload');
-		        $('.ui-jqdialog').remove();
-		    });
-		});
-		// fin
+	    function enableTooltips(table) {
+	        $('.navtable .ui-pg-button').tooltip({container:'body'});
+	        $(table).find('.ui-pg-div').tooltip({container:'body'});
+	    }
+
+	    $(document).one('ajaxloadstart.page', function(e) {
+	        $(grid_selector).jqGrid('GridUnload');
+	        $('.ui-jqdialog').remove();
+	    });
+	});
+	// fin
+
+	/*jqgrid 2*/    
+	jQuery(function($) {
+	    var grid_selector2 = "#table2";
+	    var pager_selector2 = "#pager2";
+	    
+	    //cambiar el tamaño para ajustarse al tamaño de la página
+	    $(window).on('resize.jqGrid', function () {        
+	        $(grid_selector2).jqGrid( 'setGridWidth', $("#myModal .modal-dialog").width()-30);
+	    });
+	    //cambiar el tamaño de la barra lateral collapse/expand
+	    var parent_column = $(grid_selector2).closest('[class*="col-"]');
+	    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+	        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+	            //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
+	            setTimeout(function() {
+	                $(grid_selector2).jqGrid( 'setGridWidth', parent_column.width() );
+	            }, 0);
+	        }
+	    });
+
+	    // buscador empresa
+	    jQuery(grid_selector2).jqGrid({	        
+	        datatype: "xml",
+	        url: 'data/rol_pagos/xml_personal.php',        
+	        colNames: ['ID','IDENTIFICACIÓN','NOMBRES COMOPLETOS','CÓDIGO FICHA','TEL. FIJO','TEL. CEULAR','DIRECCIÓN','SUELDO','HORAS. LABORAR','IMAGEN'],
+	        colModel:[      
+	            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
+	            {name:'cedula_identificacion',index:'cedula_identificacion',frozen : true, hidden: false, align:'left',search:true,width: ''},
+	            {name:'nombres_completos',index:'nombres_completos',frozen : true, hidden: false, align:'left',search:true,width: '300px'},
+	            {name:'codigo_ficha',index:'codigo_ficha',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'telf_fijo',index:'telf_fijo',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'telf_celular',index:'telf_celular',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'direccion',index:'direccion',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'sueldo',index:'sueldo',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'horas_laborar',index:'horas_laborar',frozen : true, hidden: true, align:'left',search:false,width: ''},
+	            {name:'imagen',index:'imagen',frozen : true, hidden: true, align:'left',search:false,width: ''},
+	        ], 
+	        rownumbers: true,         
+	        rowNum: 10,       
+	        width:600,
+	        shrinkToFit: false,
+	        height:250,
+	        rowList: [10,20,30],
+	        pager: pager_selector2,        
+	        sortname: 'id',
+	        sortorder: 'asc',
+	        altRows: true,
+	        multiselect: false,
+	        multiboxonly: true,
+	        viewrecords : true,
+	        loadComplete : function() {
+	            var table = this;
+	            setTimeout(function(){
+	                styleCheckbox(table);
+	                updateActionIcons(table);
+	                updatePagerIcons(table);
+	                enableTooltips(table);
+	            }, 0);
+	        },
+	        ondblClickRow: function(rowid) {     	            	            
+	            var gsr = jQuery(grid_selector2).jqGrid('getGridParam','selrow');                                              
+            	var ret = jQuery(grid_selector2).jqGrid('getRowData',gsr);
+            	var id = ret.id;
+
+            	$('#id_empleado').val(id);
+            	$('#identificacion').val(ret.cedula_identificacion);
+            	$('#nombres_completos').val(ret.nombres_completos);
+            	$('#sueldo').val(ret.sueldo);
+            	$('#tiempo_horas').val(ret.horas_laborar);
+            	$("#avatar").attr("src","data/fotos_personal/imagenes/"+ret.imagen);
+
+            	$.ajax({
+					url: 'data/rol_pagos/app.php',
+					type: 'post',
+					data: {llenar_cargos:'llenar_cargos',id: id},
+					dataType: 'json',
+					success: function (data) {
+						var cargo = data.cargo;
+						$('#cargo').val(cargo);
+					}
+				});
+
+				$.ajax({
+					url: 'data/rol_pagos/app.php',
+					type: 'post',
+					data: {cargar_codigo_secuencia:'cargar_codigo_secuencia',id: id},
+					dataType: 'json',
+					success: function (data) {
+						if(data != null) {
+							var hoy = new Date();
+							var dd = hoy.getDate();
+							var mm = hoy.getMonth() + 1; 
+							var anio = hoy.getFullYear();
+
+							if(dd < 10) {
+							    dd = '0' + dd;
+							} 
+
+							if(mm < 10) {
+							    mm = '0' + mm;
+							} 
+
+							var codigo = data.codigo;
+							var codigo_general = $('#codigo_general').val();
+							var cade = codigo.substr(0, 10);
+							var res = parseInt(cade.substr(9, 1));
+							res = res + 1;						
+							var anios = anio.toString().substr(2, 4);
+							var ini = codigo.substr(-7, 2);
+							var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
+							$('#codigo').val(cadena);
+						} else {
+							$.ajax({
+								url: 'data/rol_pagos/app.php',
+								type: 'post',
+								data: {cargar_codigo_rol:'cargar_codigo_rol',id: id},
+								dataType: 'json',
+								success: function (data) {
+									if(data != null) {
+										var hoy = new Date();
+										var dd = hoy.getDate();
+										var mm = hoy.getMonth() + 1; 
+										var anio = hoy.getFullYear();
+
+										if(dd < 10) {
+										    dd = '0' + dd;
+										} 
+
+										if(mm < 10) {
+										    mm = '0' + mm;
+										} 
+
+										var codigo = data.codigo;
+										var codigo_general = $('#codigo_general').val();
+										var res = parseInt(1);
+										var anios = anio.toString().substr(2, 4);
+										var ini = codigo;
+										var cadena = 'RDP' + mm + anios + ini + res + codigo_general;
+										$('#codigo').val(cadena);	
+									}
+								}
+							});
+						}
+					}
+				});
+
+	            $('#myModal').modal('hide'); 
+	            $('#no_laborado').val('0');
+	            $('#sueldo_basico').val('0.000');
+	            $('#extras').val('0');
+	            $('#horas_extras').val('0.000');
+	            $('#comisiones').val('0.000');
+	            $('#decimo_tercero').val('0.000');
+	            $('#decimo_cuarto').val('0.000');
+	            $('#total_ingresos').val('0.000');
+	            $('#aporte_iess').val('0.000');
+	            $('#pres_quirografarios').val('0.000');
+	            $('#pres_anticipos').val('0.000');
+	            $('#atrasos').val('0.000');
+	            $('#permisos').val('0.000');
+	            $('#faltas').val('0.000');
+	            $('#total_descuentos').val('0.000');
+	            $('#neto_pagar').val('0.000');	            
+	        },
+	        
+	        caption: "LISTA PERSONAL"
+	    });
+
+	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
+
+	    function aceSwitch( cellvalue, options, cell ) {
+	        setTimeout(function(){
+	            $(cell) .find('input[type=checkbox]')
+	            .addClass('ace ace-switch ace-switch-5')
+	            .after('<span class="lbl"></span>');
+	        }, 0);
+	    }	    	   
+
+	    jQuery(grid_selector2).jqGrid('navGrid',pager_selector2,
+	    {   
+	        edit: false,
+	        editicon : 'ace-icon fa fa-pencil blue',
+	        add: false,
+	        addicon : 'ace-icon fa fa-plus-circle purple',
+	        del: false,
+	        delicon : 'ace-icon fa fa-trash-o red',
+	        search: true,
+	        searchicon : 'ace-icon fa fa-search orange',
+	        refresh: true,
+	        refreshicon : 'ace-icon fa fa-refresh green',
+	        view: true,
+	        viewicon : 'ace-icon fa fa-search-plus grey'
+	    },
+	    {	        
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        closeAfterAdd: true,
+	        recreateForm: true,
+	        viewPagerButtons: false,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+	            .wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            if(form.data('styled')) return false;      
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_delete_form(form); 
+	            form.data('styled', true);
+	        },
+	        onClick : function(e) {}
+	    },
+	    {
+	        recreateForm: true,
+	        afterShowSearch: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	            style_search_form(form);
+	        },
+	        afterRedraw: function(){
+	            style_search_filters($(this));
+	        },
+
+	        //multipleSearch: true
+	        overlay: false,
+	        sopt: ['eq', 'cn'],
+            defaultSearch: 'eq',            	       
+	      },
+	    {
+	        //view record form
+	        recreateForm: true,
+	        beforeShowForm: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	        }
+	    })	    
+	    function style_edit_form(form) {
+	        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+	        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+
+	        //update buttons classes
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+	        buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+	        
+	        buttons = form.next().find('.navButton a');
+	        buttons.find('.ui-icon').hide();
+	        buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+	        buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
+	    }
+
+	    function style_delete_form(form) {
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+	        buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+	    }
+	    
+	    function style_search_filters(form) {
+	        form.find('.delete-rule').val('X');
+	        form.find('.add-rule').addClass('btn btn-xs btn-primary');
+	        form.find('.add-group').addClass('btn btn-xs btn-success');
+	        form.find('.delete-group').addClass('btn btn-xs btn-danger');
+	    }
+	    function style_search_form(form) {
+	        var dialog = form.closest('.ui-jqdialog');
+	        var buttons = dialog.find('.EditTable')
+	        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+	        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+	        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+	    }
+	    
+	    function beforeDeleteCallback(e) {
+	        var form = $(e[0]);
+	        if(form.data('styled')) return false; 
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_delete_form(form);
+	        form.data('styled', true);
+	    }
+	    
+	    function beforeEditCallback(e) {
+	        var form = $(e[0]);
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_edit_form(form);
+	    }
+
+	    function styleCheckbox(table) {}
+	    
+	    function updateActionIcons(table) {}
+	    
+	    function updatePagerIcons(table) {
+	        var replacement = 
+	            {
+	            'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+	            'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+	            'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+	            'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+	        };
+	        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+	            var icon = $(this);
+	            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+	            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+	        })
+	    }
+
+	    function enableTooltips(table) {
+	        $('.navtable .ui-pg-button').tooltip({container:'body'});
+	        $(table).find('.ui-pg-div').tooltip({container:'body'});
+	    }
+
+	    $(document).one('ajaxloadstart.page', function(e) {
+	        $(grid_selector2).jqGrid('GridUnload');
+	        $('.ui-jqdialog').remove();
+	    });
+	});
+	// fin
+
+	/*jqgrid 3*/    
+	jQuery(function($) {
+	    var grid_selector3 = "#table3";
+	    var pager_selector3 = "#pager3";
+	    
+	    //cambiar el tamaño para ajustarse al tamaño de la página
+	    $(window).on('resize.jqGrid', function () {        
+	        $(grid_selector3).jqGrid( 'setGridWidth', $("#myModal2 .modal-dialog").width()-30);
+	    });
+	    //cambiar el tamaño de la barra lateral collapse/expand
+	    var parent_column = $(grid_selector3).closest('[class*="col-"]');
+	    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+	        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+	            //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
+	            setTimeout(function() {
+	                $(grid_selector3).jqGrid( 'setGridWidth', parent_column.width() );
+	            }, 0);
+	        }
+	    });
+
+	    // buscador empresa
+	    jQuery(grid_selector3).jqGrid({	        
+	        datatype: "xml",
+	        url: 'data/rol_pagos/xml_anticipos.php',        
+	        colNames: ['ID','SERIE ANTICIPOS','MONTO ANTICIPO','FECHA ANTICIPO','MESES','FORMA PAGO','VISUALIZAR'],
+	        colModel:[      
+	            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
+	            {name:'serie_anticipo',index:'serie_anticipo',frozen : true, hidden: false, align:'left',search:true,width: ''},
+	            {name:'monto_anticipo',index:'monto_anticipo',frozen : true, hidden: false, align:'left',search:true,width: ''},
+	            {name:'fecha_anticipo',index:'fecha_anticipo',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'meses_anticipo',index:'meses_anticipo',frozen : true, hidden: false, align:'left',search:false,width: '80px'},
+	            {name:'forma_pago',index:'forma_pago',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'visualizar',index:'visualizar',frozen : true, hidden: false, align:'center',search:false,width: '120px'},
+	        ],
+	        rownumbers: true,        
+	        rowNum: 10,       
+	        width:600,
+	        shrinkToFit: false,
+	        height:250,
+	        rowList: [10,20,30],
+	        pager: pager_selector3,        
+	        sortname: 'id',
+	        sortorder: 'asc',
+	        altRows: true,
+	        multiselect: true,
+	        multiboxonly: true,
+	        viewrecords : true,
+	        loadComplete : function() {
+	            var table = this;
+	            setTimeout(function(){
+	                styleCheckbox(table);
+	                updateActionIcons(table);
+	                updatePagerIcons(table);
+	                enableTooltips(table);
+	            }, 0);
+	        },
+	        gridComplete: function() {
+				var ids = jQuery(grid_selector3).jqGrid('getDataIDs');
+				for(var i=0;i < ids.length;i++){
+					var id_anticipos = ids[i];
+					visualizar = "<a onclick=\"angular.element(this).scope().methodanticipos('"+id_anticipos+"')\" title='Abrir PDF'><i class='fa fa-eye green' style='cursor:pointer; cursor: hand'></i></a>"; 
+					jQuery(grid_selector3).jqGrid('setRowData',ids[i],{visualizar:visualizar});
+				}	
+			},
+	        ondblClickRow: function(rowid) {     	            	            
+	            var gsr = jQuery(grid_selector3).jqGrid('getGridParam','selrow');                                              
+            	var ret = jQuery(grid_selector3).jqGrid('getRowData',gsr);
+            	var id = ret.id;
+
+	            // $('#myModal2').modal('hide');            
+	        },
+	        
+	        caption: "LISTA ANTICIPOS"
+	    });
+
+	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
+
+	    function aceSwitch( cellvalue, options, cell ) {
+	        setTimeout(function(){
+	            $(cell) .find('input[type=checkbox]')
+	            .addClass('ace ace-switch ace-switch-5')
+	            .after('<span class="lbl"></span>');
+	        }, 0);
+	    }	    	   
+
+	    jQuery(grid_selector3).jqGrid('navGrid',pager_selector3,
+	    {   
+	        edit: false,
+	        editicon : 'ace-icon fa fa-pencil blue',
+	        add: false,
+	        addicon : 'ace-icon fa fa-plus-circle purple',
+	        del: false,
+	        delicon : 'ace-icon fa fa-trash-o red',
+	        search: true,
+	        searchicon : 'ace-icon fa fa-search orange',
+	        refresh: true,
+	        refreshicon : 'ace-icon fa fa-refresh green',
+	        view: true,
+	        viewicon : 'ace-icon fa fa-search-plus grey'
+	    },
+	    {	        
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        closeAfterAdd: true,
+	        recreateForm: true,
+	        viewPagerButtons: false,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+	            .wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            if(form.data('styled')) return false;      
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_delete_form(form); 
+	            form.data('styled', true);
+	        },
+	        onClick : function(e) {}
+	    },
+	    {
+	        recreateForm: true,
+	        afterShowSearch: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	            style_search_form(form);
+	        },
+	        afterRedraw: function(){
+	            style_search_filters($(this));
+	        },
+
+	        //multipleSearch: true
+	        overlay: false,
+	        sopt: ['eq', 'cn'],
+            defaultSearch: 'eq',            	       
+	      },
+	    {
+	        //view record form
+	        recreateForm: true,
+	        beforeShowForm: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	        }
+	    })	    
+	    function style_edit_form(form) {
+	        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+	        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+
+	        //update buttons classes
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+	        buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+	        
+	        buttons = form.next().find('.navButton a');
+	        buttons.find('.ui-icon').hide();
+	        buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+	        buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
+	    }
+
+	    function style_delete_form(form) {
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+	        buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+	    }
+	    
+	    function style_search_filters(form) {
+	        form.find('.delete-rule').val('X');
+	        form.find('.add-rule').addClass('btn btn-xs btn-primary');
+	        form.find('.add-group').addClass('btn btn-xs btn-success');
+	        form.find('.delete-group').addClass('btn btn-xs btn-danger');
+	    }
+	    function style_search_form(form) {
+	        var dialog = form.closest('.ui-jqdialog');
+	        var buttons = dialog.find('.EditTable')
+	        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+	        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+	        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+	    }
+	    
+	    function beforeDeleteCallback(e) {
+	        var form = $(e[0]);
+	        if(form.data('styled')) return false; 
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_delete_form(form);
+	        form.data('styled', true);
+	    }
+	    
+	    function beforeEditCallback(e) {
+	        var form = $(e[0]);
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_edit_form(form);
+	    }
+
+	    function styleCheckbox(table) {}
+	    
+	    function updateActionIcons(table) {}
+	    
+	    function updatePagerIcons(table) {
+	        var replacement = 
+	            {
+	            'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+	            'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+	            'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+	            'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+	        };
+	        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+	            var icon = $(this);
+	            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+	            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+	        })
+	    }
+
+	    function enableTooltips(table) {
+	        $('.navtable .ui-pg-button').tooltip({container:'body'});
+	        $(table).find('.ui-pg-div').tooltip({container:'body'});
+	    }
+
+	    $(document).one('ajaxloadstart.page', function(e) {
+	        $(grid_selector3).jqGrid('GridUnload');
+	        $('.ui-jqdialog').remove();
+	    });
+	});
+	// fin
+
+	/*jqgrid 4*/    
+	jQuery(function($) {
+	    var grid_selector4 = "#table4";
+	    var pager_selector4 = "#pager4";
+	    
+	    //cambiar el tamaño para ajustarse al tamaño de la página
+	    $(window).on('resize.jqGrid', function () {        
+	        $(grid_selector4).jqGrid( 'setGridWidth', $("#myModal3 .modal-dialog").width()-30);
+	    });
+	    //cambiar el tamaño de la barra lateral collapse/expand
+	    var parent_column = $(grid_selector4).closest('[class*="col-"]');
+	    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+	        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+	            //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
+	            setTimeout(function() {
+	                $(grid_selector4).jqGrid( 'setGridWidth', parent_column.width() );
+	            }, 0);
+	        }
+	    });
+
+	    // buscador empresa
+	    jQuery(grid_selector4).jqGrid({	        
+	        datatype: "xml",
+	        url: 'data/rol_pagos/xml_permisos.php',        
+	        colNames: ['ID','SERIE PERMISOS','FECHA PERMISO','HORAS','DÍAS','HORA SALIDA','REGRESO','HORA RETORNO','TIEMPO SALIDA','ASUNTO','PARTE DE','CARGOS A','VISUALIZAR'],
+	        colModel:[      
+	            {name:'id',index:'id', frozen:true, align:'left', search:false, hidden: true},
+	            {name:'serie_permiso',index:'serie_permiso',frozen : true, hidden: false, align:'left',search:true,width: ''},
+	            {name:'fecha_permiso',index:'fecha_permiso',frozen : true, hidden: false, align:'left',search:true,width: ''},
+	            {name:'horas',index:'horas',frozen : true, hidden: false, align:'left',search:false,width: ''},
+	            {name:'dias',index:'dias',frozen : true, hidden: false, align:'left',search:false,width: '80px'},
+	            {name:'hora_salida',index:'hora_salida',frozen : true, hidden: true, align:'left',search:false,width: ''},
+	            {name:'regreso',index:'regreso',frozen : true, hidden: true, align:'center',search:false,width: ''},
+	            {name:'hora_retorno',index:'hora_retorno',frozen : true, hidden: false, align:'center',search:false,width: ''},
+	            {name:'tiempo_salida',index:'tiempo_salida',frozen : true, hidden: true, align:'center',search:false,width: ''},
+	            {name:'asunto',index:'asunto',frozen : true, hidden: true, align:'center',search:false,width: ''},
+	            {name:'parte_de',index:'parte_de',frozen : true, hidden: true, align:'center',search:false,width: ''},
+	            {name:'cargos_a',index:'cargos_a',frozen : true, hidden: true, align:'center',search:false,width: ''},
+	            {name:'visualizar',index:'visualizar',frozen : true, hidden: false, align:'center',search:false,width: '120px'},
+	        ],
+	        rownumbers: true,        
+	        rowNum: 10,       
+	        width:600,
+	        shrinkToFit: false,
+	        height:250,
+	        rowList: [10,20,30],
+	        pager: pager_selector4,        
+	        sortname: 'id',
+	        sortorder: 'asc',
+	        altRows: true,
+	        multiselect: true,
+	        multiboxonly: true,
+	        viewrecords : true,
+	        loadComplete : function() {
+	            var table = this;
+	            setTimeout(function(){
+	                styleCheckbox(table);
+	                updateActionIcons(table);
+	                updatePagerIcons(table);
+	                enableTooltips(table);
+	            }, 0);
+	        },
+	        gridComplete: function() {
+				var ids = jQuery(grid_selector4).jqGrid('getDataIDs');
+				for(var i=0;i < ids.length;i++){
+					var id_permisos = ids[i];
+					visualizar = "<a onclick=\"angular.element(this).scope().methodpermisos('"+id_permisos+"')\" title='Abrir PDF'><i class='fa fa-eye green' style='cursor:pointer; cursor: hand'></i></a>"; 
+					jQuery(grid_selector4).jqGrid('setRowData',ids[i],{visualizar:visualizar});
+				}	
+			},
+	        ondblClickRow: function(rowid) {     	            	            
+	            var gsr = jQuery(grid_selector4).jqGrid('getGridParam','selrow');                                              
+            	var ret = jQuery(grid_selector4).jqGrid('getRowData',gsr);
+            	var id = ret.id;
+
+	            // $('#myModal2').modal('hide');            
+	        },
+	        
+	        caption: "LISTA PERMISOS"
+	    });
+
+	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
+
+	    function aceSwitch( cellvalue, options, cell ) {
+	        setTimeout(function(){
+	            $(cell) .find('input[type=checkbox]')
+	            .addClass('ace ace-switch ace-switch-5')
+	            .after('<span class="lbl"></span>');
+	        }, 0);
+	    }	    	   
+
+	    jQuery(grid_selector4).jqGrid('navGrid',pager_selector4,
+	    {   
+	        edit: false,
+	        editicon : 'ace-icon fa fa-pencil blue',
+	        add: false,
+	        addicon : 'ace-icon fa fa-plus-circle purple',
+	        del: false,
+	        delicon : 'ace-icon fa fa-trash-o red',
+	        search: true,
+	        searchicon : 'ace-icon fa fa-search orange',
+	        refresh: true,
+	        refreshicon : 'ace-icon fa fa-refresh green',
+	        view: true,
+	        viewicon : 'ace-icon fa fa-search-plus grey'
+	    },
+	    {	        
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        closeAfterAdd: true,
+	        recreateForm: true,
+	        viewPagerButtons: false,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+	            .wrapInner('<div class="widget-header" />')
+	            style_edit_form(form);
+	        }
+	    },
+	    {
+	        recreateForm: true,
+	        beforeShowForm : function(e) {
+	            var form = $(e[0]);
+	            if(form.data('styled')) return false;      
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	            style_delete_form(form); 
+	            form.data('styled', true);
+	        },
+	        onClick : function(e) {}
+	    },
+	    {
+	        recreateForm: true,
+	        afterShowSearch: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	            style_search_form(form);
+	        },
+	        afterRedraw: function(){
+	            style_search_filters($(this));
+	        },
+
+	        //multipleSearch: true
+	        overlay: false,
+	        sopt: ['eq', 'cn'],
+            defaultSearch: 'eq',            	       
+	      },
+	    {
+	        //view record form
+	        recreateForm: true,
+	        beforeShowForm: function(e){
+	            var form = $(e[0]);
+	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+	        }
+	    })	    
+	    function style_edit_form(form) {
+	        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+	        form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+
+	        //update buttons classes
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+	        buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+	        
+	        buttons = form.next().find('.navButton a');
+	        buttons.find('.ui-icon').hide();
+	        buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+	        buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
+	    }
+
+	    function style_delete_form(form) {
+	        var buttons = form.next().find('.EditButton .fm-button');
+	        buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+	        buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+	        buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+	    }
+	    
+	    function style_search_filters(form) {
+	        form.find('.delete-rule').val('X');
+	        form.find('.add-rule').addClass('btn btn-xs btn-primary');
+	        form.find('.add-group').addClass('btn btn-xs btn-success');
+	        form.find('.delete-group').addClass('btn btn-xs btn-danger');
+	    }
+	    function style_search_form(form) {
+	        var dialog = form.closest('.ui-jqdialog');
+	        var buttons = dialog.find('.EditTable')
+	        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+	        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+	        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+	    }
+	    
+	    function beforeDeleteCallback(e) {
+	        var form = $(e[0]);
+	        if(form.data('styled')) return false; 
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_delete_form(form);
+	        form.data('styled', true);
+	    }
+	    
+	    function beforeEditCallback(e) {
+	        var form = $(e[0]);
+	        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+	        style_edit_form(form);
+	    }
+
+	    function styleCheckbox(table) {}
+	    
+	    function updateActionIcons(table) {}
+	    
+	    function updatePagerIcons(table) {
+	        var replacement = 
+	            {
+	            'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+	            'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+	            'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+	            'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+	        };
+	        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+	            var icon = $(this);
+	            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+	            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+	        })
+	    }
+
+	    function enableTooltips(table) {
+	        $('.navtable .ui-pg-button').tooltip({container:'body'});
+	        $(table).find('.ui-pg-div').tooltip({container:'body'});
+	    }
+
+	    $(document).one('ajaxloadstart.page', function(e) {
+	        $(grid_selector4).jqGrid('GridUnload');
+	        $('.ui-jqdialog').remove();
+	    });
+	});
+	// fin
 });
+

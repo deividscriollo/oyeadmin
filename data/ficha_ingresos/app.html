@@ -13,7 +13,7 @@
 
 				<li class="active">Corporativo</li>
 				<li class="active">Ingresar Fichas</li>
-			</ul><!-- /.breadcrumb -->
+			</ul>
 
 			<div class="nav-search" id="nav-search">
 				<form class="form-search">
@@ -22,13 +22,12 @@
 						<i class="ace-icon fa fa-search nav-search-icon"></i>
 					</span>
 				</form>
-			</div><!-- /.nav-search -->
+			</div>
 		</div>
 
 		<div class="page-content">
 			<div class="row">
-				<div class="col-xs-12">
-					<!-- PAGE CONTENT BEGINS -->
+				<div class="col-sm-12">
 					<div class="widget-box">
 						<div class="widget-header widget-header-blue widget-header-flat">
 							<h4 class="widget-title lighter">Ficha Ingreso Personal</h4>
@@ -61,7 +60,6 @@
 									</div>
 									<hr/>
 									<div class="step-content pos-rel">
-										<!-- INICIO DEL PRIMER FORMULARIO DATOS PERSONALES -->
 										<div class="step-pane active" data-step="1">
 											<form class="form-horizontal" id="form_personal">
 												<div class="row">
@@ -71,7 +69,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha de Aplicación:</label>
 																<div class="col-xs-12 col-sm-6">
 																	<div class="input-group">
-																		<input type="text" id="txt_fecha_aplicacion" name="txt_fecha_aplicacion" class="form-control datepicker" />
+																		<input type="text" id="fecha_aplicacion" name="fecha_aplicacion" class="form-control datepicker" />
 																		<span class="input-group-addon">
 																			<i class="ace-icon fa fa-calendar"></i>
 																		</span>
@@ -81,12 +79,23 @@
 															</div>
 														</div>
 
-														<div class="col-sm-6">
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Código Ficha:</label>
+																<div class="col-xs-12 col-sm-6">
+																	<div class="clearfix">
+																		<input type="text" name="codigo_ficha" id="codigo_ficha" class="form-control" readonly />
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-4">
 															<div class="form-group">
 																<div class="col-xs-12 col-sm-4 col-sm-offset-4">
 																	<label>
 																		<input name="inp_relacion" id="inp_relacion" type="checkbox" value="relacion" class="ace" />
-																		<span class="lbl"> Relación de Dependencia</span>
+																		<span class="lbl"> Relación Dependencia</span>
 																	</label>
 																</div>
 															</div>
@@ -94,7 +103,6 @@
 													</div>
 												</div>
 
-												<!-- INICIO PRIMER ROW-->
 												<div class="row">
 													<div class="col-sm-12">
 														<h3 class="header smaller blue">&nbsp; Datos Personales:</h3>
@@ -103,40 +111,40 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cédula de Identidad:</label>
 																<div class="col-xs-12 col-sm-6">
 																	<div class="clearfix">
-																		<input type="text" name="txt_cedula" id="txt_cedula" class="form-control numeros"  maxlength="10" />
+																		<input type="text" name="cedula" id="cedula" class="form-control" placeholder="Consultar..." />
 																	</div>
 																</div>
-																<button class="btn btn-purple btn-sm blue" id="btn_verificar" type="button"><i class="ace-icon fa fa-check"></i></button>
-															</div>
-
-															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha de Nacimiento:</label>
-																<div class="col-xs-12 col-sm-5">
-																	<div class="input-group">
-																		<input type="text" id="txt_fecha_nacimiento" name="txt_fecha_nacimiento" class="form-control datepicker" />
-																		<span class="input-group-addon">
-																			<i class="ace-icon fa fa-calendar"></i>
-																		</span>
-																	</div>
-																</div>
+																<button class="btn btn-purple btn-sm blue" id="btn_verificar" type="button" onclick="angular.element(this).scope().cargadatos('estado')"><i class="ace-icon fa fa-search"></i></button>
 															</div>
 
 															<div class="form-group">
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Edad:</label>
 																<div class="col-xs-12 col-sm-3">
 																	<div class="clearfix">
-																		<input type="text" name="txt_edad" id="txt_edad" readonly class="form-control"/>
+																		<input type="text" name="edad" id="edad" class="form-control" />
 																	</div>
 																</div>	
+															</div>
+
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Antecedentes:</label>
+																<div class="col-xs-12 col-sm-7">
+																	<div class="clearfix">
+																		<label>
+																			<input name="antecedentes" id="antecedentes" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+																			<span class="lbl"></span>
+																		</label>
+																	</div>
+																</div>
 															</div>
 														</div>
 
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombres:</label>
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombres Completos:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_nombres" id="txt_nombres" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombres completos" />
+																		<input type="text" name="nombres_completos" id="nombres_completos" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombres completos" />
 																	</div>
 																</div>
 															</div>
@@ -148,7 +156,7 @@
 																		<span class="input-group-addon">
 																			<i class="ace-icon fa fa-phone"></i>
 																		</span>
-																		<input type="tel" id="txt_telf_fijo" name="txt_telf_fijo" class="form-control fijo" />
+																		<input type="tel" id="telf_fijo" name="telf_fijo" class="form-control fijo" />
 																	</div>
 																</div>	
 															</div>
@@ -156,10 +164,13 @@
 
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Apellidos:</label>
-																<div class="col-xs-12 col-sm-8">
-																	<div class="clearfix">
-																		<input type="text" name="txt_apellidos" id="txt_apellidos" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Apellidos completos" />
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha de Nacimiento:</label>
+																<div class="col-xs-12 col-sm-5">
+																	<div class="input-group">
+																		<input type="text" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control datepicker" />
+																		<span class="input-group-addon">
+																			<i class="ace-icon fa fa-calendar"></i>
+																		</span>
 																	</div>
 																</div>
 															</div>	
@@ -171,16 +182,14 @@
 																		<span class="input-group-addon">
 																			<i class="ace-icon fa fa-phone"></i>
 																		</span>
-																		<input type="tel" id="txt_telf_celular" name="txt_telf_celular" class="form-control telefonos"/>
+																		<input type="tel" id="telf_celular" name="telf_celular" class="form-control telefonos"/>
 																	</div>
 																</div>	
 															</div>
 														</div>
 													</div>
 												</div>
-												<!-- FIN PRIMER ROW-->
 
-												<!-- INICIO SEGUNDO ROW -->
 												<div class="row">
 													<div class="col-sm-12">
 														<h3 class="header smaller blue">&nbsp; Datos Referenciales:</h3>
@@ -207,7 +216,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cargas Familiares:</label>
 																<div class="col-xs-12 col-sm-6">
 																	<div class="clearfix">
-																		<input type="text" id="txt_cargas" name="txt_cargas" />
+																		<input type="text" id="cargas" name="cargas" readonly class="form-control" />
 																		<div class="space-6"></div>
 																	</div>
 																</div>
@@ -219,7 +228,7 @@
 																<label class="control-label col-xs-12 col-sm-2 no-padding-right">E-mail:</label>
 																<div class="col-xs-12 col-sm-10">
 																	<div class="clearfix">
-																		<input type="email" name="txt_email" id="txt_email" class="form-control" placeholder="Ingrese un correo electrónico"/>
+																		<input type="email" name="email" id="email" class="form-control" placeholder="Ingrese un correo electrónico"/>
 																	</div>
 																</div>
 															</div>
@@ -269,16 +278,14 @@
 																<label class="control-label col-xs-12 col-sm-3 no-padding-right">Especialidad:</label>
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="txt_especialidad" id="txt_especialidad" placeholder="Ingrese una Especialidad" class="form-control" />
+																		<input type="text" name="especialidad" id="especialidad" placeholder="Ingrese una Especialidad" class="form-control" />
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												<!-- FIN SEGUNDO ROW -->
 
-												<!-- INICIO TERCER ROW -->
 												<div class="row" style="height: 300px">
 												<h3 class="header smaller blue">&nbsp; Cursos Realizados:</h3>
 													<div class="col-sm-12">
@@ -301,9 +308,7 @@
 														</div>
 													</div>
 												</div>
-												<!-- INICIO CUARTO ROW -->
 
-												<!-- inicio de viviendas -->
 												<div class="row">
 													<div class="col-sm-12">
 														<h3 class="header smaller blue"></h3>
@@ -346,48 +351,25 @@
 														</div>
 													</div>
 												</div>
-												<!-- FIN DEL CUARTO ROW -->
 
-												<!-- INICIO QUINTO ROW -->
 												<h3 class="header smaller blue">Localidad</h3>
 												<div class="row">
 													<div class="col-sm-12">
-														<div class="col-sm-5">
-															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">País:</label>
-																<div class="col-xs-12 col-sm-8">
-																	<div class="clearfix">
-																		<select id="select_pais" name="select_pais" class="select2" data-placeholder="País...">
-																			<option value="">&nbsp;</option>
-																		</select>
-																	</div>
-																</div>
-															</div>
-														</div>
-
 														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Barrio:</label>
-																<div class="col-xs-12 col-sm-8">
-																	<div class="clearfix">
-																		<input type="text" name="txt_barrio" id="txt_barrio" class="form-control"  placeholder= "Ingrese un Barrio"/>
-																	</div>
-																</div>
-															</div>
-														</div>	
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="col-sm-12">
-														<div class="col-sm-5">
 															<div class="form-group">
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Provincia:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<select id="select_provincia" name="select_provincia" class="select2" data-placeholder="Provincia...">
-																			<option value="">&nbsp;</option>
-																		</select>
+																		<input type="text" name="provincia" id="provincia" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder= "Ingrese una Provincia" />
+																	</div>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Sector:</label>
+																<div class="col-xs-12 col-sm-8">
+																	<div class="clearfix">
+																		<input type="text" name="sector" id="sector" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder = "Ingrese un Sector"/>
 																	</div>
 																</div>
 															</div>
@@ -395,38 +377,30 @@
 
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Sector:</label>
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cantón:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_sector" id="txt_sector" class="form-control" placeholder = "Ingrese un Sector"/>
+																		<input type="text" name="canton" id="canton" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder= "Ingrese un Cantón" />
 																	</div>
 																</div>
 															</div>
-														</div>
-													</div>
-												</div>
 
-												<div class="row">
-													<div class="col-sm-12">
-														<div class="col-sm-5">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Ciudad:</label>
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Dirección:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<select id="select_ciudad" name="select_ciudad" class="select2" data-placeholder="Ciudad...">
-																			<option value="">&nbsp;</option>
-																		</select>
+																		<input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ingrese una dirección" />
 																	</div>
 																</div>
 															</div>
 														</div>
 
-														<div class="col-sm-6">
+														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Dirección Domiciliaria:</label>
+																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Parroquia:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_direccion" id="txt_direccion" class="form-control" placeholder="Ingrese una dirección" />
+																		<input type="text" name="parroquia" id="parroquia" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder= "Ingrese un Barrio" />
 																	</div>
 																</div>
 															</div>
@@ -434,7 +408,7 @@
 													</div>
 												</div>
 
-												<h3 class="header smaller blue"></h3>
+												<h3 class="header smaller blue">Adicionales</h3>
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="col-sm-4">
@@ -463,7 +437,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Alérgico Antibióticos:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_alergia" id="txt_alergia" class="form-control letras"  placeholder="Alergia en específica"/>
+																		<input type="text" name="alergia" id="alergia" class="form-control"  placeholder="Alergia en específica"/>
 																	</div>
 																</div>
 															</div>
@@ -474,7 +448,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Enfermedad Específica:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_enfermedad" id="txt_enfermedad" class="form-control letras" placeholder="Ingrese enfermedad específica" />
+																		<input type="text" name="enfermedad" id="enfermedad" class="form-control" placeholder="Ingrese enfermedad específica" />
 																	</div>
 																</div>
 															</div>
@@ -521,7 +495,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombre de la Empresa:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_empresa" id="txt_empresa" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombre de la Empresa" />
+																	<input type="text" name="empresa" id="empresa" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombre de la Empresa" />
 																</div>
 															</div>
 														</div>
@@ -530,7 +504,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cargo:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_cargo" id="txt_cargo" class="form-control letras" placeholder="Cargo Anterior" />
+																	<input type="text" name="cargo" id="cargo" class="form-control" placeholder="Cargo Anterior" />
 																</div>
 															</div>
 														</div>
@@ -544,7 +518,7 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_fijo_trab" name="txt_telf_fijo_trab" class="form-control fijo"/>
+																	<input type="tel" id="telf_fijo_trab" name="telf_fijo_trab" class="form-control fijo" />
 																</div>
 															</div>
 														</div>
@@ -553,7 +527,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombre del Jefe:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_jefe" id="txt_jefe"  class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombre Jefe Anterior"/>
+																	<input type="text" name="jefe" id="jefe"  class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Nombre Jefe Anterior" />
 																</div>
 															</div>
 														</div>
@@ -567,19 +541,16 @@
 																	<span class="input-group-addon">
 																		<i class="ace-icon fa fa-phone"></i>
 																	</span>
-																	<input type="tel" id="txt_telf_celular_trab" name="txt_telf_celular_trab" class="form-control telefonos"/>
+																	<input type="tel" id="telf_celular_trab" name="telf_celular_trab" class="form-control telefonos" />
 																</div>
 															</div>
 														</div>
 
 														<div class="form-group">
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Tiempo:</label>
-															<div class="col-xs-8 col-sm-8">
-																<div class="input-group">
-																	<span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-																	</span>
-																	<input class="form-control" type="text" name="tiempo3" id="id-date-range-picker-1" />
+															<div class="col-xs-12 col-sm-8">
+																<div class="clearfix">
+																	<input class="form-control" type="text" name="tiempo_trabajo" id="tiempo_trabajo" placeholder="Tiempo laborado" />
 																</div>
 															</div>
 														</div>
@@ -590,7 +561,7 @@
 															<label class="control-label col-xs-12 col-sm-2 no-padding-right">Dirección:</label>
 															<div class="col-xs-12 col-sm-10">
 																<div class="clearfix">
-																	<input type="text" name="txt_direccion_trab" id="txt_direccion_trab" class="form-control" placeholder="Ingrese dirección trabajo anterior"/>
+																	<input type="text" name="direccion_trab" id="direccion_trab" class="form-control" placeholder="Ingrese dirección trabajo anterior" />
 																</div>
 															</div>
 														</div>
@@ -601,7 +572,7 @@
 															<label class="control-label col-xs-12 col-sm-4 no-padding-right">Ciudad:</label>
 															<div class="col-xs-12 col-sm-8">
 																<div class="clearfix">
-																	<input type="text" name="txt_ciudad_trab" id="txt_ciudad_trab" class="form-control letras" placeholder="Ingrese nombre ciudad"/>
+																	<input type="text" name="ciudad_trab" id="ciudad_trab" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Ingrese nombre ciudad" />
 																</div>
 															</div>
 														</div>
@@ -622,7 +593,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Nombres:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_nombres_familia" id="txt_nombres_familia" class="form-control letras" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Ingrese nombre familiar" />
+																		<input type="text" name="nombres_familia" id="nombres_familia" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Ingrese nombre familiar" />
 																	</div>
 																</div>
 															</div>
@@ -633,7 +604,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Parentesco:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_parentesco" id="txt_parentesco" class="form-control letras" placeholder="Ingrese parentesco" />
+																		<input type="text" name="parentesco" id="parentesco" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Ingrese parentesco" />
 																	</div>
 																</div>
 															</div>
@@ -647,7 +618,7 @@
 																		<span class="input-group-addon">
 																			<i class="ace-icon fa fa-phone"></i>
 																		</span>
-																		<input type="tel" id="txt_telf_familia" name="txt_telf_familia" class="form-control " />
+																		<input type="tel" id="telf_familia" name="telf_familia" class="form-control " />
 																	</div>
 																</div>
 															</div>
@@ -658,7 +629,7 @@
 																<label class="control-label col-xs-12 col-sm-2 no-padding-right">Dirección:</label>
 																<div class="col-xs-12 col-sm-10">
 																	<div class="clearfix">
-																		<input type="text" name="txt_dir_fami" id="txt_dir_fami" class="form-control"  placeholder="Ingrese una dirección"/>
+																		<input type="text" name="dir_fami" id="dir_fami" class="form-control"  placeholder="Ingrese una dirección"/>
 																	</div>
 																</div>
 															</div>
@@ -669,7 +640,7 @@
 																<label class="control-label col-xs-12 col-sm-4 no-padding-right">Ciudad:</label>
 																<div class="col-xs-12 col-sm-8">
 																	<div class="clearfix">
-																		<input type="text" name="txt_ciudad_fami" id="txt_ciudad_fami" class="form-control letras" placeholder="Ingrese una ciudad" />
+																		<input type="text" name="ciudad_fami" id="ciudad_fami" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" placeholder="Ingrese una ciudad" />
 																	</div>
 																</div>
 															</div>
@@ -683,25 +654,30 @@
 														</div>
 
 														<div class="col-sm-12">
-															
-														</div>
-
-														<div class="col-sm-12">
-															<div class="col-sm-3">
+															<div class="col-sm-4">
 																<div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Fecha de Inicio de Trabajo:</label>
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Inicio de Trabajo:</label>
 																	<div class="col-xs-12 col-sm-6">
 																		<div class="input-group">
-																			<input type="text" id="txt_ini_trab" name="txt_ini_trab" class="form-control datepicker" />
+																			<input type="text" id="ini_trab" name="ini_trab" class="form-control datepicker" />
 																			<span class="input-group-addon">
 																				<i class="ace-icon fa fa-calendar"></i>
 																			</span>
 																		</div>
 																	</div>
-																</div>	
+																</div>
+
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Horas Laborar:</label>
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="input-group">
+																			<input type="text" id="horas_laborar" name="horas_laborar" class="form-control" readonly />
+																		</div>
+																	</div>
+																</div>		
 															</div>
 
-															<div class="col-sm-3">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Area:</label>
 																	<div class="col-xs-12 col-sm-6">
@@ -711,26 +687,33 @@
 																		</div>
 																	</div>
 																</div>
+
+																<div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Sueldo:</label>
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="input-group">
+																			<input type="text" id="sueldo" name="sueldo" class="form-control" value="0.000" />
+																		</div>
+																	</div>
+																</div>	
 															</div>
 
-															<div class="col-sm-3">
+															<div class="col-sm-4">
 																<div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Función o Cargo a Ocupar:</label>
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Función o Cargo:</label>
 																	<div class="col-xs-12 col-sm-8">
 																		<div class="clearfix">
 																			<select id="select_cargo" name="select_cargo" class="select2" data-placeholder="Area...">
 																			</select>
 																		</div>
 																	</div>
-																</div>	
-															</div>
+																</div>
 
-															<div class="col-sm-3">
 																<div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Sueldo:</label>
+																	<label class="control-label col-xs-12 col-sm-4 no-padding-right">Abreviatura Rol:</label>
 																	<div class="col-xs-12 col-sm-6">
 																		<div class="input-group">
-																			<input type="text" id="sueldo" name="sueldo" class="form-control" value="0.000" />
+																			<input type="text" id="abreviatura" name="abreviatura" class="form-control" onKeyUp="this.value = this.value.toUpperCase();" />
 																		</div>
 																	</div>
 																</div>	
@@ -748,10 +731,6 @@
 										</div>
 										<!-- FIN DEL TERCER FORMULARIO DATOS FAMILIA -->
 										<div class="step-pane active" data-step="4">
-											<!-- <div class="col-sm-1">
-												<button class="btn btn-purple btn-sm blue " id="btn_modificar"><i class="ace-icon fa fa-arrow-circle-o-down"></i>Modificar</button>
-											</div> -->
-
 											<div class="center">
 												<h3 class="green">Felicidades!</h3>
 												Presione Finalizar para poder Guardar!
@@ -772,14 +751,14 @@
 										<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
 									</button>
 								</div>
-							</div><!-- /.widget-main -->
-						</div><!-- /.widget-body -->
+							</div>
+						</div>
 					</div>
-				</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.page-content -->
+				</div>
+			</div>
+		</div>
 	</div>
-</div><!-- /.main-content -->
+</div>
 
 <div id="modal-cursos-realizados" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -801,7 +780,7 @@
 									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Curso realizado:</label>
 									<div class="col-xs-12 col-sm-8">
 										<div class="clearfix">
-											<input type="text" name="txt_nombre_curso" id="txt_nombre_curso" class="form-control letras" placeholder="Ingrese curso realizado"/>
+											<input type="text" name="nombre_curso" id="nombre_curso" class="form-control" placeholder="Ingrese curso realizado"/>
 										</div>
 									</div>
 								</div>
@@ -809,7 +788,7 @@
 									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Establecimiento:</label>
 									<div class="col-xs-12 col-sm-8">
 										<div class="clearfix">										
-											<input type="tel" id="txt_establecimiento_curso" name="txt_establecimiento_curso" class="form-control" placeholder="Ingrese establecimiento"/>
+											<input type="tel" id="establecimiento_curso" name="establecimiento_curso" class="form-control" placeholder="Ingrese establecimiento"/>
 										</div>
 									</div>	
 								</div>
@@ -817,7 +796,7 @@
 									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Tiempo</label>
 									<div class="col-xs-12 col-sm-8">
 										<div class="clearfix">
-											<input class="form-control" type="text" name="tiempo1" id="id-date-range-picker" />
+											<input class="form-control" type="text" name="tiempo_curso" id="tiempo_curso" placeholder="Ingrese tiempo curso"/>
 										</div>
 									</div>
 								</div>
@@ -884,7 +863,7 @@
 									<label class="control-label col-xs-12 col-sm-4 no-padding-right">Número</label>
 									<div class="col-xs-12 col-sm-8">
 										<div class="clearfix">
-											<input type="text" name="txt_numero_banco" id="txt_numero_banco" class="form-control numero" placeholder="Ingrese un número de cuenta" />
+											<input type="text" name="numero_cuenta" id="numero_cuenta" class="form-control numero" placeholder="Ingrese un número de cuenta" />
 										</div>
 									</div>
 								</div>
@@ -904,8 +883,8 @@
 					Cargar
 				</button>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+		</div>
+	</div>
 </div>
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
@@ -928,11 +907,10 @@
 				<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>Cédula</th>
-							<th>Nombres</th>
-							<th>Apellidos</th>
-							<th>Fecha Aplicación</th>
-							<th>Acción</th>
+							<th>IDENTIFICACIÓN</th>
+							<th>NOMBRES COMPLETOS</th>
+							<th>FECHA APLICACIÓN</th>
+							<th>ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -941,7 +919,7 @@
 				</table>
 	        </div>
 	        <div class="modal-footer no-margin-top">
-				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+				<button class="btn btn-sm btn-danger pull-rigth" data-dismiss="modal">
 					<i class="ace-icon fa fa-times"></i>
 					Cerrar
 				</button>

@@ -6,6 +6,7 @@
 	include_once('../../admin/class.php');
 	$class = new constante();
 	$fecha = $class->fecha_hora();
+	$cont = 0; 
 
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
 		$id_empresa = $class->idz();

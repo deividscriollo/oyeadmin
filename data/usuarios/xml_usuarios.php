@@ -13,7 +13,7 @@
         $sidx = 1;
     
     $count = 0;
-    $resultado = $class->consulta("SELECT  COUNT(*) AS count from usuario");         
+    $resultado = $class->consulta("SELECT  COUNT(*) AS count from usuarios");         
     while ($row = $class->fetch_array($resultado)) {
         $count = $count + $row[0];    
     }    
@@ -29,21 +29,19 @@
         $start = 0;
     
     if ($search == 'false') {
-        $SQL = "SELECT U.id, U.cedula, U.nombre, U.apellido, U.telefono, U.celular, U.direccion, U.email, U.usuario, U.clave, U.id_cargo, C.nombre FROM usuario U, cargo C WHERE U.estado = '1' and U.id_cargo = C.id ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT U.id, U.cedula, U.nombres_completos, U.telefono, U.celular, U.email, U.ciudad, U.direccion, U.usuario, U.clave, U.id_perfil, C.nombre FROM usuarios U, perfiles C WHERE U.estado = '1' AND U.id_perfil = C.id ORDER BY $sidx $sord offset $start limit $limit";
     } else {
         $campo = $_GET['searchField'];
       
         if ($_GET['searchOper'] == 'eq') {
-            $SQL = "SELECT * FROM usuario WHERE estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT U.id, U.cedula, U.nombres_completos, U.telefono, U.celular, U.email, U.ciudad, U.direccion, U.usuario, U.clave, U.id_perfil, C.nombre FROM usuarios U, perfiles C WHERE U.estado = '1' AND U.id_perfil = C.id AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
         }         
         if ($_GET['searchOper'] == 'cn') {
-            $SQL = "SELECT * FROM usuario WHERE estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT U.id, U.cedula, U.nombres_completos, U.telefono, U.celular, U.email, U.ciudad, U.direccion, U.usuario, U.clave, U.id_perfil, C.nombre FROM usuarios U, perfiles C WHERE U.estado = '1' AND U.id_perfil = C.id AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
         }
     }  
 
-    $resultado = $class->consulta($SQL);  
-    $ss ='';
-    
+    $resultado = $class->consulta($SQL);     
     header("Content-Type: text/html;charset=utf-8");   
     $s = "<?xml version='1.0' encoding='utf-8'?>";
     $s .= "<rows>";

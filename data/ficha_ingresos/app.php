@@ -4,6 +4,8 @@
     }
 	include_once('../../admin/class.php');
 	$class = new constante();
+	error_reporting(0);
+	$cont = 0;
 
 	// LLenar el formulario del proceso 1 
 	if (isset($_POST['btn_guardar']) == "btn_guardar") {
@@ -13,12 +15,15 @@
 		$id_familia = $class->idz();
 		$id_cargos = $class->idz();
 		
-		$id_nacionalidad = $class->idz();
+		$id_codigo_rol = $class->idz();
 		$fecha = $class->fecha_hora();
 
 		$elemento_relacion='false';
+		$antecedentes = "NO";
 		if(isset($_POST['inp_relacion']))
 			$elemento_relacion='true';
+		if(isset($_POST["antecedentes"]))
+			$antecedentes = "SI";
 
 		// descomponer cursos
 		$campos1 = json_decode($_POST['campos1']);
@@ -26,29 +31,35 @@
 		$data = "";
 
 		$resp = $class->consulta("INSERT INTO corporativo.personal VALUES  (	'$id_personal',
+																				'',
+																				'$_POST[codigo_ficha]',
 																				'$elemento_relacion',
-																				'$_POST[txt_nombres]',
-																				'$_POST[txt_apellidos]',
-																				'$_POST[txt_cedula]',
-																				'$_POST[txt_fecha_nacimiento]',
-																				'$_POST[txt_edad]',
-																				'$_POST[txt_telf_fijo]',
-																				'$_POST[txt_telf_celular]',
+																				'$_POST[nombres_completos]',
+																				'$_POST[cedula]',
+																				'$_POST[fecha_nacimiento]',
+																				'$_POST[edad]',
+																				'$_POST[telf_fijo]',
+																				'$_POST[telf_celular]',
 																				'$_POST[select_civil]',
-																				'$_POST[txt_cargas]',
-																				'$_POST[txt_email]',
+																				'$_POST[cargas]',
+																				'$_POST[email]',
 																				'$_POST[rb_instruccion]',
-																				'$_POST[txt_especialidad]',
+																				'$_POST[especialidad]',
 																				'$_POST[rb_vivienda]',
-																				'$_POST[txt_barrio]',
-																				'$_POST[txt_sector]',
-																				'$_POST[txt_direccion]',
+																				'$_POST[provincia]',
+																				'$_POST[canton]',
+																				'$_POST[parroquia]',
+																				'$_POST[sector]',
+																				'$_POST[direccion]',
 																				'$_POST[select_sangre]',
-																				'$_POST[txt_alergia]',
-																				'$_POST[txt_enfermedad]',
-																				'$_POST[txt_ini_trab]',
-																				'$_POST[txt_fecha_aplicacion]',
-																				'$_POST[sueldo]',
+																				'$_POST[alergia]',
+																				'$_POST[enfermedad]',
+																				'$_POST[ini_trab]',
+																				'$_POST[fecha_aplicacion]',
+																				'".number_format($_POST['sueldo'], 3, '.', '')."',
+																				'$_POST[horas_laborar]',
+																				'$antecedentes',
+																				'defaul.jpg',
 																				'1', 
 																				'$fecha')");
 
@@ -75,32 +86,32 @@
 																					'$fecha');");
 		}
 
-		$resp = $class->consulta("INSERT INTO corporativo.anterior_trab VALUES (	'$id_ant_trab',
+		$resp = $class->consulta("INSERT INTO corporativo.trabajo_anterior VALUES (	'$id_ant_trab',
 																					'$id_personal',
-																					'$_POST[txt_empresa]',
-																					'$_POST[txt_cargo]',
-																					'$_POST[txt_direccion_trab]',
-																					'$_POST[txt_telf_fijo_trab]',
-																					'$_POST[txt_telf_celular_trab]',
-																					'$_POST[txt_jefe]',
-																					'$_POST[tiempo3]',
-																					'$_POST[txt_ciudad_trab]',
+																					'$_POST[empresa]',
+																					'$_POST[cargo]',
+																					'$_POST[direccion_trab]',
+																					'$_POST[telf_fijo_trab]',
+																					'$_POST[telf_celular_trab]',
+																					'$_POST[jefe]',
+																					'$_POST[tiempo_trabajo]',
+																					'$_POST[ciudad_trab]',
 		 																			'1', 
 																					'$fecha');");
 
 
 		$resp = $class->consulta("INSERT INTO corporativo.datos_familiar VALUES (	'$id_familia',
 																					'$id_personal',
-																					'$_POST[txt_nombres_familia]',
-																					'$_POST[txt_parentesco]',
-																					'$_POST[txt_telf_familia]',
-																					'$_POST[txt_dir_fami]',
-																					'$_POST[txt_ciudad_fami]',
+																					'$_POST[nombres_familia]',
+																					'$_POST[parentesco]',
+																					'$_POST[telf_familia]',
+																					'$_POST[dir_fami]',
+																					'$_POST[ciudad_fami]',
 																					'1',
 																					'$fecha');");
 
 
-		$resp = $class->consulta("INSERT INTO corporativo.cargos_personal VALUES (	'$id_cargos',
+		$resp = $class->consulta("INSERT INTO corporativo.cargos_asignacion VALUES ('$id_cargos',
 																					'$_POST[select_areas]',
 																					'$id_personal',
 																					'$_POST[select_cargo]',
@@ -108,9 +119,9 @@
 																					'$fecha');");
 
 	
-		$resp = $class->consulta("INSERT INTO corporativo.nacionalidad VALUES  (	'$id_nacionalidad',
+		$resp = $class->consulta("INSERT INTO rol_pagos.codigo_rol VALUES  (		'$id_codigo_rol',
 																					'$id_personal',
-																					'$_POST[select_ciudad]',
+																					'$_POST[abreviatura]',
 																					'1', 
 																					'$fecha');");
 		$data = $id_personal;
@@ -119,62 +130,66 @@
 
 	if (isset($_POST['btn_modificar']) == "btn_modificar") {
 		$elemento_relacion ='false';
+		$antecedentes = "NO";
 		if(isset($_POST['inp_relacion']))
 			$elemento_relacion ='true';
-
+		if(isset($_POST["antecedentes"]))
+			$antecedentes = "SI";
 		$fecha = $class->fecha_hora();
 
 		$resp = $class->consulta("UPDATE corporativo.personal set   		relacion_dependencia = '$elemento_relacion',
-																			nombres = '$_POST[txt_nombres]',
-																			apellidos ='$_POST[txt_apellidos]',
-																			cedula_identificacion = '$_POST[txt_cedula]',
-																			fecha_nacimiento = '$_POST[txt_fecha_nacimiento]',
-																			edad = '$_POST[txt_edad]',
-																			telf_fijo = '$_POST[txt_telf_fijo]',
-																			telf_celular = '$_POST[txt_telf_celular]',
+																			nombres_completos = '$_POST[nombres_completos]',
+																			cedula_identificacion = '$_POST[cedula]',
+																			fecha_nacimiento = '$_POST[fecha_nacimiento]',
+																			edad = '$_POST[edad]',
+																			telf_fijo = '$_POST[telf_fijo]',
+																			telf_celular = '$_POST[telf_celular]',
 																			estado_civil = '$_POST[select_civil]',
-																			cargas_familiares = '$_POST[txt_cargas]',
-																			email = '$_POST[txt_email]',
+																			cargas_familiares = '$_POST[cargas]',
+																			email = '$_POST[email]',
 																			instruccion = '$_POST[rb_instruccion]',
-																			especialidad = '$_POST[txt_especialidad]',
+																			especialidad = '$_POST[especialidad]',
 																			tipo_vivienda = '$_POST[rb_vivienda]',
-																			barrio = '$_POST[txt_barrio]',
-																			sector = '$_POST[txt_sector]',
-																			direccion = '$_POST[txt_direccion]',
+																			provincia = '$_POST[provincia]',
+																			canton = '$_POST[canton]',
+																			parroquia = '$_POST[parroquia]',
+																			sector = '$_POST[sector]',
+																			direccion = '$_POST[direccion]',
 																			tipo_sangre = '$_POST[select_sangre]',
-																			alergia_antibio = '$_POST[txt_alergia]',
-																			enfermedad = '$_POST[txt_enfermedad]',
-																			fecha_ing_trab = '$_POST[txt_ini_trab]',
-																			fecha_aplicacion = '$_POST[txt_fecha_aplicacion]', 
+																			alergia_antibio = '$_POST[alergia]',
+																			enfermedad = '$_POST[enfermedad]',
+																			fecha_ing_trab = '$_POST[ini_trab]',
+																			fecha_aplicacion = '$_POST[fecha_aplicacion]', 
 																			sueldo = '$_POST[sueldo]',
-																			fecha_creacion = '$fecha'
+																			horas_laborar = '$_POST[horas_laborar]',
+																			antecedentes = '$antecedentes'
 																			where id = '$_POST[id_personal]'");
 
-		$resp = $class->consulta("UPDATE corporativo.nacionalidad set 		id_ciudad_pais = '$_POST[select_ciudad]',
+		$resp = $class->consulta("UPDATE corporativo.trabajo_anterior set  	nomre_empresa = '$_POST[empresa]',
+																			cargo = '$_POST[cargo]',
+																			direccion = '$_POST[direccion_trab]',
+																			telf_fijo = '$_POST[telf_fijo_trab]',
+																			telf_celular = '$_POST[telf_celular_trab]',
+																			nombre_jefe = '$_POST[jefe]',
+																			tiempo_trab = '$_POST[tiempo_trabajo]',
+																			ciudad = '$_POST[ciudad_trab]',
 																			fecha_creacion = '$fecha'
 																			where id_personal = '$_POST[id_personal]'");
 
-		$resp = $class->consulta("UPDATE corporativo.anterior_trab set  	nomre_empresa = '$_POST[txt_empresa]',
-																			cargo = '$_POST[txt_cargo]',
-																			direccion = '$_POST[txt_direccion_trab]',
-																			telf_fijo = '$_POST[txt_telf_fijo_trab]',
-																			telf_celular = '$_POST[txt_telf_celular_trab]',
-																			nombre_jefe = '$_POST[txt_jefe]',
-																			tiempo_trab = '$_POST[tiempo3]',
-																			ciudad = '$_POST[txt_ciudad_trab]',
+		$resp = $class->consulta("UPDATE corporativo.datos_familiar set     nombres = '$_POST[nombres_familia]',
+																			parentesco = '$_POST[parentesco]',
+																			telefono = '$_POST[telf_familia]',
+																			direccion = '$_POST[dir_fami]',
+																			ciudad_fami = '$_POST[ciudad_fami]',
 																			fecha_creacion = '$fecha'
 																			where id_personal = '$_POST[id_personal]'");
 
-		$resp = $class->consulta("UPDATE corporativo.datos_familiar set     nombres = '$_POST[txt_nombres_familia]',
-																			parentesco = '$_POST[txt_parentesco]',
-																			telefono = '$_POST[txt_telf_familia]',
-																			direccion = '$_POST[txt_dir_fami]',
-																			ciudad_fami = '$_POST[txt_ciudad_fami]',
-																			fecha_creacion = '$fecha'
-																			where id_personal = '$_POST[id_personal]'");
-
-		$resp = $class->consulta("UPDATE corporativo.cargos_personal set 	id_areas = '$_POST[select_areas]',
+		$resp = $class->consulta("UPDATE corporativo.cargos_asignacion set 	id_areas = '$_POST[select_areas]',
 																			id_cargo = '$_POST[select_cargo]',
+																			fecha_creacion = '$fecha'
+																			where id_personal = '$_POST[id_personal]'");
+
+		$resp = $class->consulta("UPDATE rol_pagos.codigo_rol set 		codigo = '$_POST[abreviatura]',
 																			fecha_creacion = '$fecha'
 																			where id_personal = '$_POST[id_personal]'");
 
@@ -182,97 +197,64 @@
 	echo $data;
 	}
 
+	//comparar identificacion personal
+	if (isset($_POST['comparar_cedula'])) {
+		$resultado = $class->consulta("SELECT * FROM corporativo.personal WHERE cedula_identificacion = '$_POST[cedula]' AND estado = '1'");
+		while ($row=$class->fetch_array($resultado)) {
+			$cont++;
+		}
+
+		if ($cont == 0) {
+		    $data = 0;
+		} else {
+		    $data = 1;
+		}
+		echo $data;
+	}
+	// fin
+
+	// cargar ultima codigo 
+	if (isset($_POST['cargar_codigo'])) {
+		$resultado = $class->consulta("SELECT max(codigo_ficha) FROM corporativo.personal GROUP BY id ORDER BY id asc");
+		while ($row = $class->fetch_array($resultado)) {
+			$data = array('codigo_ficha' => $row[0]);
+		}
+		print_r(json_encode($data));
+	}
+	// fin
+
 	//LLena los bancos en el Combo
 	if (isset($_POST['llenar_bancos'])) {
 		$id = $class->idz();
 		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.bancos WHERE estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
-			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
+	// fin
+
 	//LLena las areas en el Combo
 	if (isset($_POST['llenar_areas'])) {
 		$id = $class->idz();
 		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.areas WHERE estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
-			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
+	// fin
 	//LLena las areas en el Combo
 	if (isset($_POST['llenar_cargo'])) {
 		$id = $class->idz();
-		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.cargo WHERE estado='1';");
+		$resultado = $class->consulta("SELECT id, nombre FROM corporativo.cargos WHERE estado='1';");
 		print'<option value="">&nbsp;</option>';
 		while ($row=$class->fetch_array($resultado)) {
-			 print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
+			print '<option value="'.$row['id'].'">'.$row['nombre'].'</option>';
 		}
 	}
-	//LLena los paises del Combo
-	if (isset($_POST['llenar_pais'])) {
-		$id = $class->idz();
-		$resultado = $class->consulta("SELECT id, nom_pais FROM localizacion.pais WHERE stado='1';");
-		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['nom_pais'].'</option>';
-		}
-	}
-	//LLena las provincia del Combo
-	if (isset($_POST['llenar_provincia'])) {
-		$id = $class->idz();
-		$id_provincia = $_POST['id_provincia'];
-		$resultado = $class->consulta("SELECT provincia.id, provincia.nom_provincia FROM localizacion.pais ,localizacion.provincia WHERE provincia.id_pais='$id_provincia' AND pais.id='$id_provincia' AND provincia.stado = '1';");
-		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['nom_provincia'].'</option>';
-		}
-	}
-	//LLena las  ciudades del Combo
-	if (isset($_POST['llenar_ciudad'])) {
-		$id = $class->idz();
-		$id_ciudad = $_POST['id_ciudad'];
-		$resultado = $class->consulta("SELECT ciudad.id, ciudad.nom_ciudad FROM localizacion.ciudad ,localizacion.provincia WHERE ciudad.id_provincia='$id_ciudad' AND provincia.id='$id_ciudad' AND ciudad.stado = '1';");
-		print'<option value="">&nbsp;</option>';
-		while ($row=$class->fetch_array($resultado)) {
-			print '<option value="'.$row['id'].'">'.$row['nom_ciudad'].'</option>';
-		}
-	}
-	//para la consulta de los datos de la ciudad
-	if(isset($_POST['consultar_datos_ciudad'])){
-		$resultado = $class->consulta("SELECT id, nom_ciudad, stado, fecha FROM localizacion.ciudad WHERE id = '$_POST[id]';");
-		while ($row=$class->fetch_array($resultado)) {
-			$data= array('id' => $row['id'], 'nom_ciudad'=>$row['nom_ciudad']);
-		}
-		print_r(json_encode($data));
-	}
-	//llenar id_ciudad
-	if (isset($_POST['cargar_id_ciudad'])) {
-		$resultado = $class->consulta("SELECT N.id_ciudad_pais FROM corporativo.nacionalidad N WHERE estado = '1' AND id_personal = '$_POST[id]'");
-		while ($row = $class->fetch_array($resultado)) {
-			$data = array('id_ciudad' => $row[0]);
-		}
-		print_r(json_encode($data));
-	}
-	//fin
-	//llenar id provincia
-	if (isset($_POST['cargar_id_provincia'])) {
-		$resultado = $class->consulta("SELECT C.id_provincia FROM localizacion.ciudad C where id = '$_POST[id]'");
-		while ($row = $class->fetch_array($resultado)) {
-			$data = array('id_provincia' => $row[0]);
-		}
-		print_r(json_encode($data));
-	}
-	//fin
-	//llenar id pais
-	if (isset($_POST['cargar_id_pais'])) {
-		$resultado = $class->consulta("SELECT P.id_pais FROM localizacion.provincia P WHERE id = '$_POST[id]'");
-		while ($row = $class->fetch_array($resultado)) {
-			$data = array('id_pais' => $row[0]);
-		}
-		print_r(json_encode($data));
-	}
-	//fin
+	// fin
+
 	// consulta la edad del personal con la fecha de nacimiento y fecha actual
 	if (isset($_POST['consulta_edad'])) {
 		$datetime1 = date_create($_POST['fecha']);
@@ -280,14 +262,15 @@
 		$interval = date_diff($datetime1, $datetime2);
 		print($interval->y) ;
 	}
+	// fin
+
 	// consultar ficha de ingreso general
 	if(isset($_POST['cargar_tabla_fichas'])){
-		$resultado = $class->consulta("SELECT  P.id, P.cedula_identificacion, P.nombres, P.apellidos, P.fecha_aplicacion FROM corporativo.personal P WHERE P.estado = '1';");
+		$resultado = $class->consulta("SELECT  P.id, P.cedula_identificacion, P.nombres_completos, P.fecha_aplicacion FROM corporativo.personal P WHERE P.estado = '1';");
 		while ($row=$class->fetch_array($resultado)) {
 			$lista[] = array('id' => $row['id'],
 						'cedula_identificacion' => $row['cedula_identificacion'],
-						'nombres' => $row['nombres'],
-						'apellidos' => $row['apellidos'],
+						'nombres_completos' => $row['nombres_completos'],
 						'fecha_aplicacion' => $row['fecha_aplicacion']
 						);
 		}
@@ -321,6 +304,12 @@
 		    $arr_data[] = $row['20'];
 		    $arr_data[] = $row['21'];
 		    $arr_data[] = $row['22'];
+		    $arr_data[] = $row['23'];
+		    $arr_data[] = $row['24'];
+		    $arr_data[] = $row['25'];
+		    $arr_data[] = $row['26'];
+		    $arr_data[] = $row['27'];
+		    $arr_data[] = $row['28'];
 		}
 		echo json_encode($arr_data);
 	}
@@ -362,7 +351,7 @@
 	// consultar ficha de trabajos anteriores
 	if(isset($_POST['llenar_trabajos_anteriores'])) {
 		$arr_data = array();
-		$resultado = $class->consulta("SELECT * FROM corporativo.anterior_trab  WHERE estado = '1' AND id_personal = '$_POST[id]'");
+		$resultado = $class->consulta("SELECT * FROM corporativo.trabajo_anterior  WHERE estado = '1' AND id_personal = '$_POST[id]'");
 		while ($row=$class->fetch_array($resultado)) {
 			$arr_data[] = $row['2'];
 		    $arr_data[] = $row['3'];
@@ -392,10 +381,20 @@
 	// consultar ficha de trabajos anteriores
 	if(isset($_POST['llenar_cargos_personales'])) {
 		$arr_data = array();
-		$resultado = $class->consulta("SELECT C.id_areas, C.id_cargo FROM corporativo.cargos_personal C  WHERE  estado = '1' AND id_personal = '$_POST[id]'");
+		$resultado = $class->consulta("SELECT C.id_areas, C.id_cargos FROM corporativo.cargos_asignacion C  WHERE  estado = '1' AND id_personal = '$_POST[id]'");
 		while ($row=$class->fetch_array($resultado)) {
 			$arr_data[] = $row['0'];
 		    $arr_data[] = $row['1'];
+		}
+		echo json_encode($arr_data);
+	}
+
+	// consultar abreviatura rol
+	if(isset($_POST['llenar_abreviatura'])) {
+		$arr_data = array();
+		$resultado = $class->consulta("SELECT * FROM rol_pagos.codigo_rol C  WHERE  estado = '1' AND id_personal = '$_POST[id]'");
+		while ($row=$class->fetch_array($resultado)) {
+		    $arr_data[] = $row['2'];
 		}
 		echo json_encode($arr_data);
 	}

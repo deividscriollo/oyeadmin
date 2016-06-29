@@ -66,28 +66,13 @@
 									<div class="row">
 										&nbsp; &nbsp;
 										<div class="col-sm-12">
-											<div class="col-sm-5">
+											<div class="col-sm-4">
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="codigo">Código Rol:</label>
 													<div class="col-sm-6">
-														<input type="text" name="codigo" id="codigo" readonly class="form-control" />
+														<input type="text" name="codigo" id="codigo" class="form-control" placeholder="Código Rol" />
 														<input type="hidden" name="codigo_general" id="codigo_general" readonly class="col-xs-12 col-sm-10" />
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_empleado">Empleado:</label>
-													<div class="col-sm-8">
-														<select id="select_empleado" name="select_empleado" class="select2" data-placeholder="Empleado rol pagos...">
-															<option value="">&nbsp;</option>
-														</select>
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="select_cargo">Cargo:</label>
-													<div class="col-sm-6">
-														<input type="text" name="cargo" id="cargo" readonly value="" class="form-control" />
+														<input type="hidden" name="id_empleado" id="id_empleado" class="form-control" />
 													</div>
 												</div>
 
@@ -95,6 +80,31 @@
 													<label class="col-sm-4 control-label no-padding-right" for="sueldo">Sueldo:</label>
 													<div class="col-sm-6">
 														<input type="text" name="sueldo" id="sueldo" placeholder="" value="0.000" class="form-control" readonly />
+													</div>
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="identificacion">Identificación:</label>
+													<div class="col-sm-6">
+														<input type="text" name="identificacion" id="identificacion" class="form-control" placeholder="Identificación" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="select_cargo">Cargo:</label>
+													<div class="col-sm-6">
+														<input type="text" name="cargo" id="cargo" readonly placeholder="Cargo" class="form-control" />
+													</div>
+												</div>												
+											</div>
+
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="nombres_completos">Nombres Completos:</label>
+													<div class="col-sm-8">
+														<input type="text" name="nombres_completos" id="nombres_completos" class="form-control" placeholder="Nombres Completos" />
 													</div>
 												</div>
 
@@ -110,58 +120,52 @@
 													</div>
 												</div>
 											</div>
+										</div>
+									</div>
 
-											<div class="col-sm-4">
+									<h4 class="header blue bolder smaller center"></h4>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="col-sm-3">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="tiempo_horas">Horas Diarias:</label>
-													<div class="col-sm-8">
-														<input type="text" name="tiempo_horas" id="tiempo_horas" value="8" class="form-control" readonly />
+													<label class="col-sm-6 control-label no-padding-right" for="tiempo_horas">Horas Diarias:</label>
+													<div class="col-sm-6">
+														<input type="text" name="tiempo_horas" id="tiempo_horas" class="form-control" readonly />
 													</div>
 												</div>
+											</div>
 
+											<div class="col-sm-3">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="dias_laborados">Días Laborados:</label>
-													<div class="col-sm-8">
+													<label class="col-sm-6 control-label no-padding-right" for="dias_laborados">Días Laborados:</label>
+													<div class="col-sm-6">
 														<input type="text" name="dias_laborados" id="dias_laborados" readonly class="form-control"/>
 													</div>
 												</div>
+											</div>
 
+											<div class="col-sm-3">
 												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="extras">Horas Extras:</label>
-													<div class="col-sm-8">
-														<input type="text" name="extras" id="extras" class="form-control"/>
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="no_laborado">Días no Laborados:</label>
-													<div class="col-sm-8">
+													<label class="col-sm-6 control-label no-padding-right" for="no_laborado">Días no Laborados:</label>
+													<div class="col-sm-6">
 														<input type="text" name="no_laborado" id="no_laborado" class="form-control"/>
 													</div>
 												</div>
 											</div>
 
-											<div class="col-sm-2">
+											<div class="col-sm-3">
 												<div class="form-group">
-													<button class="btn btn-purple btn-sm blue" id="btn_importar" name="btn_importar" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>IMPORTAL EXCEL</button>
-												</div>
-
-												<div class="form-group">
-													<button class="btn btn-purple btn-sm blue" id="btn_adelantos" name="btn_adelantos" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>ADELANTOS</button>
-												</div>
-
-												<div class="form-group">
-													<button class="btn btn-purple btn-sm blue" id="btn_permisos" name="btn_permisos" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>PERMISOS</button>
-												</div>
-
-												<div class="form-group">
-													<button class="btn btn-purple btn-sm blue" id="btn_calcular" name="btn_calcular" type="button"><i class="ace-icon fa fa-arrow-circle-o-down"></i>CALCULAR ROL</button>
+													<label class="col-sm-6 control-label no-padding-right" for="extras">Horas Extras:</label>
+													<div class="col-sm-6">
+														<input type="text" name="extras" id="extras" class="form-control"/>
+													</div>
 												</div>
 											</div>
 										</div>
 
 										<div class="col-sm-12">
-											<div class="col-sm-5">
+											<div class="col-sm-4">
 												<h4 class="header blue bolder smaller center">INGRESOS</h4>
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="sueldo_basico">Sueldo Mes:</label>
@@ -224,7 +228,14 @@
 												</div>
 											</div>
 
-											<div class="col-sm-2"></div>
+											<div class="col-xs-12 col-sm-3 center">
+											<h4 class="header blue bolder smaller center"></h4>
+												<div>
+													<span class="profile-picture">
+														<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="dist/avatars/profile-pic.jpg" />
+													</span>
+												</div>
+											</div>
 
 											<div class="col-sm-5">
 												<h4 class="header blue bolder smaller center">DESCUENTOS</h4>
@@ -317,10 +328,34 @@
 
 											<div class="col-sm-12">
 												<div class="clearfix form-actions center">
-													<div class="col-md-offset-3 col-md-6">
+													<div class="col-md-12">
 														<button class="btn btn-success" type="button" name="btn_guardar_rol" id="btn_guardar_rol">
 															<i class="ace-icon fa fa-save bigger-110"></i>
 															Guardar Roles
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn btn-success" type="button" name="btn_buscar" id="btn_buscar" data-toggle="modal" href="#myModal">
+															<i class="ace-icon fa fa-search bigger-110"></i>
+															Buscar
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn btn-success" type="button" name="btn_calcular" id="btn_calcular">
+															<i class="ace-icon fa fa-calculator bigger-110"></i>
+															Calcular
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn btn-success" type="button" name="btn_anticipos" id="btn_anticipos" data-toggle="modal" href="#myModal2">
+															<i class="ace-icon fa fa-money bigger-110"></i>
+															Anticipos
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn btn-success" type="button" name="btn_permisos" id="btn_permisos" data-toggle="modal" href="#myModal3">
+															<i class="ace-icon fa fa-calendar bigger-110"></i>
+															Permisos
 														</button>
 
 														&nbsp; &nbsp;
@@ -491,6 +526,15 @@
 														</select>
 													</div>
 												</div>
+
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-4 no-padding-right">Cuenta:</label>
+													<div class="col-xs-12 col-sm-6">
+														<div class="clearfix">
+															<input type="text" name="cuenta" id="cuenta" class="form-control" />
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 
@@ -500,24 +544,6 @@
 													<button class="btn btn-success" type="button" name="btn_2" id="btn_guardar_anticipo">
 														<i class="ace-icon fa fa-save bigger-110"></i>
 														Guardar Anticipos
-													</button>
-
-													&nbsp; &nbsp;
-													<button class="btn btn-success" type="button" name="btn_3" id="btn_buscar_anticipo">
-														<i class="ace-icon fa fa-search bigger-110"></i>
-														Buscar
-													</button>
-
-													&nbsp; &nbsp;
-													<button class="btn btn-success" type="button" name="btn_3" id="btn_anular_anticipo">
-														<i class="ace-icon fa fa-refresh bigger-110"></i>
-														Anular
-													</button>
-
-													&nbsp; &nbsp;
-													<button class="btn btn-success" type="button" name="btn_3" id="btn_vizualizar_anticipo">
-														<i class="ace-icon fa fa-refresh bigger-110"></i>
-														Visualizar
 													</button>
 
 													&nbsp; &nbsp;
@@ -752,6 +778,350 @@
 					</button>
 				</div>
 			</form>	
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+		</div>
+	</div>
 </div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">BUSCAR PERSONAL</h4>
+        </div>
+        <div class="modal-body">
+            <table id="table2"></table>
+			<div id="pager2"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal2">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">BUSCAR ANTICIPOS</h4>
+        </div>
+        <div class="modal-body">
+            <table id="table3"></table>
+			<div id="pager3"></div>
+        </div>
+        <div class="modal-footer no-margin-top">
+			<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+				<i class="ace-icon fa fa-times"></i>
+				Cerrar
+			</button>
+			<button name="btn_calcular_anticipos" id="btn_calcular_anticipos" class="btn btn-sm btn-success pull-right">
+				<i class="ace-icon fa fa-check"></i>
+				Cargar
+			</button>
+		</div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal3">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">BUSCAR PERMISOS</h4>
+        </div>
+        <div class="modal-body">
+            <table id="table4"></table>
+			<div id="pager4"></div>
+        </div>
+        <div class="modal-footer no-margin-top">
+			<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+				<i class="ace-icon fa fa-times"></i>
+				Cerrar
+			</button>
+			<button name="btn_calcular_permisos" id="btn_calcular_permisos" class="btn btn-sm btn-success pull-right">
+				<i class="ace-icon fa fa-check"></i>
+				Cargar
+			</button>
+		</div>
+      </div>
+    </div>
+</div>
+
+<div id="modal-anticipos" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					ANTICIPO AL PAGO
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box transparent">
+							<div class="widget-header widget-header-large">
+								<h3 class="widget-title green lighter">
+									<i class="ace-icon fa fa-music green"></i>
+									OYEFM
+								</h3>
+
+								<div class="widget-toolbar no-border invoice-info">
+									<h4><span class="red" id='serie'></span></h4>
+
+									<span class="invoice-info-label">Fecha:</span>
+									<span class="blue" id='fecha'></span>
+								</div>
+
+								<div class="widget-toolbar hidden-480">
+									<a href="">
+									</a>
+								</div>
+							</div>
+							&nbsp;
+
+							<div class="col-xs-12">
+								<div class="col-xs-8">
+									<p align="justify">Yo <b id='nombres'></b> con C.C. N° <b id='cedula'></b>, que me desempeño como <b id='cargo_anticipo'></b>, solicito, se me conceda un anticipo a mi remuneración por el monto de <b id='monto'></b>, para un periodo de <b id='mes_anticipo'></b> mes(es); y autorizo para que en la liquidación de mis haberes en caso de separación definitiva, se incluyan en los saldos pendientes de pago originados como anticipos recibidos.</p>
+								</div>
+
+								<div class="col-xs-4">
+									<h5>Recibir: <span class="red" id="total_monto"><i class="ace-icon fa fa-usd icon-animated-hand-pointer"></i></span></h5>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_efectivo" id="check_efectivo" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> EFECTIVO</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_cheque" id="check_cheque" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> CHEQUE</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_tarjeta" id="check_tarjeta" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> TARJETA</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_deposito" id="check_deposito" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> DEPÓSITO</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_tranferencia" id="check_tranferencia" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> TRANSFERENCIA</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="col-xs-4">
+									<p>CHEQUE N°:</p>
+									<p id="cheque_anticipo"></p>
+								</div>
+
+								<div class="col-xs-4">
+									<p>BANCO:</p>
+									<p id="banco_anticipo"></p>
+								</div>
+
+								<div class="col-xs-4">
+									<p>CUENTA:</p>
+									<p id="cuenta_anticipo"></p>
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="hr hr8 hr-double hr-dotted"></div>
+								<div class="col-xs-4">
+									<p>ELABORADO</p>
+									<p id="elaborado_por"></p>
+									<p id="ci_elaborado"></p>
+								</div>
+
+								<div class="col-xs-4">
+									<p>APROBADO</p>
+									<p></p>
+									<p>C.I.</p>
+								</div>
+
+								<div class="col-xs-4">
+									<p>SOLICITANTE</p>
+									<p id="solicitado_por"></p>
+									<p id="ci_solicitado"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modal-permisos" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="white">&times;</span>
+					</button>
+					PERMISO DE SALIDA TEMPORAL
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box transparent">
+							<div class="widget-header widget-header-large">
+								<h3 class="widget-title green lighter">
+									<i class="ace-icon fa fa-music green"></i>
+									OYEFM
+								</h3>
+
+								<div class="widget-toolbar no-border invoice-info">
+									<h4><span class="red" id='p_serie_permiso'></span></h4>
+
+									<span class="invoice-info-label">Fecha:</span>
+									<span class="blue" id='p_permiso'></span>
+								</div>
+
+								<div class="widget-toolbar hidden-480">
+									<a href="">
+									</a>
+								</div>
+							</div>
+							&nbsp;
+
+							<div class="col-xs-12">
+								<p>Me dirijo a Usted: <b id="p_dirigido"></b>	</p>
+								<p>Yo, <b id="p_yo"></b> ,solicito de usted, para ausentarme de mis labores cotidianas, durante: <b id="p_horas"></b> Horas <b id="p_dias"></b> Día(s).</p>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="hr hr8 hr-dotted"></div>
+								<div class="col-xs-3">
+									<p>HORA SALIDA</p>
+									<b id="b_hora_salida"></b>
+								</div>
+
+								<div class="col-xs-2">
+									<p>¿REGRESÓ?</p>
+									<b id="b_regreso"></b>
+									<div class="clearfix">
+										<label>
+											<input name="p_regreso" id="p_regreso" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+											<span class="lbl"></span>
+										</label>
+									</div>
+								</div>
+
+								<div class="col-xs-3">
+									<p>HORA RETORNO</p>
+									<b id="p_retorno"></b>
+								</div>
+
+								<div class="col-xs-4">
+									<p>TIEMPO SALIDA</p>
+									<b id="p_tiempo_salida"></b>
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="col-xs-6">
+									<p>Asunto: <b id="p_asunto"></b></p>	
+								</div>
+
+								<div class="col-xs-6">
+									<p>Lugar: <b id="p_lugar"></b></p>		
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="hr hr8 hr-dotted"></div>
+								<div class="col-xs-6">
+									<p align="center">POR PARTE DE:</p>
+									<div class="checkbox">
+										<label>
+											<input name="check_comision_oficial" id="check_comision_oficial" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> COMISIÓN OFICIAL</span>
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input name="check_asunto_particular" id="check_asunto_particular" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> ASUNTO PARTICULAR</span>
+										</label>
+									</div>
+								</div>
+
+								<div class="col-xs-6">
+									<p align="center">CON CARGOS A:</p>
+									<div class="checkbox">
+										<label>
+											<input name="check_descuentos" id="check_descuentos" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> DESCUENTOS</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_vacaciones" id="check_vacaciones" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> VACACIONES</span>
+										</label>
+									</div>
+
+									<div class="checkbox">
+										<label>
+											<input name="check_ninguno" id="check_ninguno" type="checkbox" class="ace ace-checkbox-2" />
+											<span class="lbl"> NINGUNO</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="hr hr8 hr-double hr-dotted"></div>
+								<div class="col-xs-4">
+									<p>SOLICITANTE</p>
+									<p id="p_solicitante"></p>
+									<p id="p_cedula"></p>
+								</div>
+
+								<div class="col-xs-4">
+									<p>JEFE PERSONAL</p>
+									<!-- <p></p>
+									<p>C.I.</p> -->
+								</div>
+
+								<div class="col-xs-4">
+									<p>TALENTO HUMANO</p>
+									<p id="p_talento"></p>
+									<p id="p_cedula_talento"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

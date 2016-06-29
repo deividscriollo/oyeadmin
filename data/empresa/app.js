@@ -1,4 +1,4 @@
-angular.module('scotchApp').controller('empresaController', function ($scope) {
+angular.module('scotchApp').controller('empresaController', function ($scope, $location,loaddatosSRI) {
 
 	jQuery(function($) {
 		$('#inicio_fac_preimpresa').ace_spinner({value:0,min:0,step:1, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
@@ -24,154 +24,7 @@ angular.module('scotchApp').controller('empresaController', function ($scope) {
 							class_name: 'gritter-error gritter-center',
 							time: 1000,
 						});	
-	                } else {
-	                    var numero = $("#identificacion").val();
-	                    var suma = 0;      
-	                    var residuo = 0;      
-	                    var pri = false;      
-	                    var pub = false;            
-	                    var nat = false;                     
-	                    var modulo = 11;
-	                    var p1;
-	                    var p2;
-	                    var p3;
-	                    var p4;
-	                    var p5;
-	                    var p6;
-	                    var p7;
-	                    var p8;            
-	                    var p9; 
-	                    var d1  = numero.substr(0,1);         
-	                    var d2  = numero.substr(1,1);         
-	                    var d3  = numero.substr(2,1);         
-	                    var d4  = numero.substr(3,1);         
-	                    var d5  = numero.substr(4,1);         
-	                    var d6  = numero.substr(5,1);         
-	                    var d7  = numero.substr(6,1);         
-	                    var d8  = numero.substr(7,1);         
-	                    var d9  = numero.substr(8,1);         
-	                    var d10 = numero.substr(9,1);  
-
-	                    if (d3 < 6) {           
-	                        nat = true;            
-	                        p1 = d1 * 2;
-	                        if (p1 >= 10) p1 -= 9;
-	                        p2 = d2 * 1;
-	                        if (p2 >= 10) p2 -= 9;
-	                        p3 = d3 * 2;
-	                        if (p3 >= 10) p3 -= 9;
-	                        p4 = d4 * 1;
-	                        if (p4 >= 10) p4 -= 9;
-	                        p5 = d5 * 2;
-	                        if (p5 >= 10) p5 -= 9;
-	                        p6 = d6 * 1;
-	                        if (p6 >= 10) p6 -= 9; 
-	                        p7 = d7 * 2;
-	                        if (p7 >= 10) p7 -= 9;
-	                        p8 = d8 * 1;
-	                        if (p8 >= 10) p8 -= 9;
-	                        p9 = d9 * 2;
-	                        if (p9 >= 10) p9 -= 9;             
-	                        modulo = 10;
-	                    } else if(d3 == 6) {           
-	                        pub = true;             
-	                        p1 = d1 * 3;
-	                        p2 = d2 * 2;
-	                        p3 = d3 * 7;
-	                        p4 = d4 * 6;
-	                        p5 = d5 * 5;
-	                        p6 = d6 * 4;
-	                        p7 = d7 * 3;
-	                        p8 = d8 * 2;            
-	                        p9 = 0;            
-	                    } else if(d3 == 9) {          
-	                        pri = true;                                   
-	                        p1 = d1 * 4;
-	                        p2 = d2 * 3;
-	                        p3 = d3 * 2;
-	                        p4 = d4 * 7;
-	                        p5 = d5 * 6;
-	                        p6 = d6 * 5;
-	                        p7 = d7 * 4;
-	                        p8 = d8 * 3;
-	                        p9 = d9 * 2;            
-	                    }
-
-	                    suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
-	                    residuo = suma % modulo;                                         
-
-	                    var digitoVerificador = residuo==0 ? 0: modulo - residuo; 
-                        var ruc = numero.substr(10,13);
-                        var digito3 = numero.substring(2,3);
-
-                        if(ruc == "001" ) {
-                            if(digito3 < 6) { 
-                                if(nat == true) {
-                                	if (digitoVerificador != d10) {
-                                  		$.gritter.add({
-											title: 'El ruc persona natural es incorrecto.',
-											class_name: 'gritter-error gritter-center',
-											time: 1000,
-										});
-                                  		$("#identificacion").val('');
-                                    } else {
-                                    	$.gritter.add({
-											title: 'El ruc persona natural es correcto.',
-											class_name: 'gritter-success gritter-center',
-											time: 1000,
-										});  
-                                    } 
-                                }
-                            } else {
-                                if(digito3 == 6) { 
-                                    if (pub == true) {  
-                                        if (digitoVerificador != d9) {
-                                            $.gritter.add({
-												title: 'El ruc público es incorrecto.',
-												class_name: 'gritter-error gritter-center',
-												time: 1000,
-											});
-                                            $("#identificacion").val('');
-                                        } else {
-                                        	$.gritter.add({
-												title: 'El ruc público es correcto.',
-												class_name: 'gritter-success gritter-center',
-												time: 1000,
-											});
-                                        } 
-                                    }
-                                } else {
-                                    if(digito3 == 9) {
-                                        if(pri == true) {
-                                            if (digitoVerificador != d10) { 
-                                            	$.gritter.add({
-													title: 'El ruc privado es incorrecto.',
-													class_name: 'gritter-error gritter-center',
-													time: 1000,
-												});
-                                                $("#identificacion").val('');
-                                            } else {
-                                                $.gritter.add({
-													title: 'El ruc privado es correcto.',
-													class_name: 'gritter-success gritter-center',
-													time: 1000,
-												});      
-                                            } 
-                                        }
-                                    } 
-                                }
-                            }
-                        } else {
-                            if(numero.length == 13) {
-                                $.gritter.add({
-									title: 'El ruc es incorrecto.',
-									class_name: 'gritter-error gritter-center',
-									time: 1000,
-								});
-                                $("#identificacion").val('');
-                            }
-                        }
-	                }
+					}
 	            }
 	        });
 	    });
@@ -217,8 +70,8 @@ angular.module('scotchApp').controller('empresaController', function ($scope) {
 			},
 			messages: {
 				identificacion: {
-					required: "Por favor, Indique una identificación",
-					digits: "Por favor, ingrese solo dígitos",
+					required: "Por favor, Ingrese Ruc Empresa",
+					digits: "Por favor, Ingrese solo dígitos",
 					minlength: "Por favor, Especifique mínimo 13 digitos"
 				},
 				propietario: { 	
@@ -290,6 +143,55 @@ angular.module('scotchApp').controller('empresaController', function ($scope) {
 		    return true;
 		}
 		// fin
+
+		// verificar ruc
+		$scope.cargadatos = function(estado) {
+			if($('#identificacion').val() == '') {
+				$.gritter.add({
+					title: 'Ingrese Ruc Empresa',
+					class_name: 'gritter-error gritter-center',
+					time: 1000,
+				});
+				$('#identificacion').focus()
+			} else {
+				 if (estado) {
+				 	$.blockUI({ css: { 
+			            border: 'none', 
+			            padding: '15px', 
+			            backgroundColor: '#000', 
+			            '-webkit-border-radius': '10px', 
+			            '-moz-border-radius': '10px', 
+			            opacity: .5, 
+			            color: '#fff' 
+			        	},
+			            message: '<h3>Consultando, Por favor espere un momento    ' + '<i class="fa fa-spinner fa-spin"></i>' + '</h3>'
+			    	}); 
+		            loaddatosSRI.get({
+		                nrodocumento: $("#identificacion").val(),
+		                tipodocumento: "RUC"
+		            }).$promise.then(function(data) {
+		            	$.unblockUI();
+		            	if(data.datosEmpresa.valid == 'false') {
+		            		$.gritter.add({
+								title: 'Error.... Ruc Erroneo',
+								class_name: 'gritter-error gritter-center',
+								time: 1000,
+							});
+							$('#identificacion').val('');
+							$('#nombre_empresa').val('');
+			            	$('#propietario').val('');
+			            	$('#identificacion').focus();
+		            	} else {
+		            		$('#nombre_empresa').val(data.datosEmpresa.nombre_comercial);
+			            	$('#propietario').val(data.datosEmpresa.razon_social);
+		            	}
+		            }, function(err) {
+		                console.log(err.data.error);
+		            });
+		        }
+	    	} 
+	    }
+	    // fin
 
 		// recargar formulario
 		function redireccionar() {
