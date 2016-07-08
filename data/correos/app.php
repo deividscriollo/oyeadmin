@@ -24,7 +24,7 @@
 	// fin
 
 	// consultar usuarios
-	if(isset($_POST['cargar_tabla'])) {
+	if(isset($_POST['cargar_tabla'])){
 		$resultado = $class->consulta("SELECT P.id, P.cedula_identificacion, P.nombres_completos, C.nombre, P.telf_celular,P.direccion,P.estado FROM corporativo.personal P, corporativo.cargos_asignacion A, corporativo.cargos C WHERE A.id_personal = P.id and A.id_cargos = C.id and P.estado = '1'");
 		while ($row=$class->fetch_array($resultado)) {
 			$lista[] = array('id' => $row[0],

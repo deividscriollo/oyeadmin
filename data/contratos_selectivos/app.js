@@ -17,7 +17,7 @@ angular.module('scotchApp').controller('contratos_selectivosController', functio
 		.dataTable({					
 			bAutoWidth: false,
 			"aoColumns": [
-			  { "bSortable": false },null, null,null, null, null, null, null
+			  { "bSortable": false },null, null,null, null, null, null
 			],
 			"aaSorting": [],			
 			language: {
@@ -240,7 +240,7 @@ angular.module('scotchApp').controller('contratos_selectivosController', functio
 			return 'left';
 		}
 		// Fin tablas
-		
+
 		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); 
 		var f = new Date(); 
 		var fecha_actual = f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear()
@@ -507,6 +507,7 @@ angular.module('scotchApp').controller('contratos_selectivosController', functio
 		select_tipo_contrato();
 		select_tipo_paquete();
 		select_programa();
+		llenar_tabla();
 		// fin
 
 		// inicio lineas llenar
@@ -523,6 +524,39 @@ angular.module('scotchApp').controller('contratos_selectivosController', functio
 		$("#boni").append($("<b>").text('0'));
 		$("#precio").append($("<b>").text('$ _________'));
 		$("#fecha_actual").append($("<b>").text(fecha_actual));
+		// fin
+
+		// llenar tablas de fichas
+		function llenar_tabla() {
+			$('#dynamic-table').dataTable().fnClearTable();
+
+			$.ajax({
+				url: 'data/contratos_selectivos/app.php',
+				type: 'post',
+				data: {cargar_tabla:'cargar_tabla'},
+				dataType: 'json',
+				success: function(response) { 
+					var tabla = $('#dynamic-table').DataTable();
+					for (var i = 0; i < response.length; i++) {
+						var vizualizar = "<button type='button' class='btn btn-white btn-primary btn-bold btn-sm' onclick=\"angular.element(this).scope().methodword('"+response[i].id+"')\" data-toggle='tooltip' title = 'Descargar Contrato'><span class='fa fa-file-word-o blue'> WORD</button>";
+						var estado = "<span class='label label-success arrowed-in arrowed-in-right'>Activo</span>";
+						var acciones =  vizualizar;
+
+						console.log(response[i].id);
+
+						tabla.row.add([
+				            response[i]['nombre_tipo'],
+				            response[i]['codigo_contrato'],
+				            response[i]['ruc_empresa'],
+				            response[i]['nombre_comercial'],
+				            response[i]['fecha_final'],
+				            estado,
+				            acciones
+		                ]).draw(false);                            
+			        }
+				}
+			});
+		}
 		// fin
 
 		// llenar combo tipo contrato

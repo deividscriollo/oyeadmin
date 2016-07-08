@@ -721,6 +721,12 @@ angular.module('scotchApp').controller('rolpagosController', function ($scope) {
 		});
 		// fin
 
+		// imprimir 
+		$('#btn_excel').click(function (){
+			var myWindow = window.open('data/rol_pagos/phpexcel/rol_pagos_general.php');
+		})
+		// fin
+
 		// limpiar tabla
 		$('#btn_limpiar').click(function() {
 			jQuery("#table").jqGrid('setGridParam',{url:"data/rol_pagos/xml_roles.php",page:1}).trigger("reloadGrid");

@@ -101,7 +101,7 @@ function SetDash($black=false, $white=false) {
 function Header() {
     $class = new constante();
 
-    $resp = $class->consulta("SELECT P.id, P.nombres_completos, P.cedula_identificacion, R.fecha_rol, P.sueldo, R.neto_pagar, R.codigo_rol, D.horas, D.dias_laborados, D.dias_laborados, D.sueldo_mes, D.horas_extras, D.comisiones, D.decimo_tercero, D.decimo_cuarto, D.total_ingresos, D.aporte_iess, D.quirografarios, D.anticipos, D.atrasos, D.permisos, D.total_descuentos, D.faltas, R.fecha_creacion, D.dias_no_laborados FROM corporativo.personal P, rol_pagos.rol_pagos  R, rol_pagos.detalle_rol_pagos D where R.id = D.id_rol_pagos and P.id = R.id_personal and R.id = '".$_GET['id']."'");
+    $resp = $class->consulta("SELECT P.id, P.nombres_completos, P.cedula_identificacion, R.fecha_rol, P.sueldo, R.neto_pagar, R.codigo_rol, D.horas, D.dias_laborados, D.extras, D.sueldo_mes, D.horas_extras, D.comisiones, D.decimo_tercero, D.decimo_cuarto, D.total_ingresos, D.aporte_iess, D.quirografarios, D.anticipos, D.atrasos, D.permisos, D.total_descuentos, D.faltas, R.fecha_creacion, D.dias_no_laborados FROM corporativo.personal P, rol_pagos.rol_pagos  R, rol_pagos.detalle_rol_pagos D where R.id = D.id_rol_pagos and P.id = R.id_personal and R.id = '".$_GET['id']."'");
     while ($row = $class->fetch_array($resp)) {
         $id_personal= $row[0];
         $nombres= $row[1];

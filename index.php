@@ -362,18 +362,18 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li ng-class="{active: $route.current.activetab == 'fotos_personal'}">
-								<a href="#/fotos_personal">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Fotos Personal
-								</a>
-								<b class="arrow"></b>
-							</li>
-
 							<li class="">
 								<a id="abrir_buscador" style="cursor:pointer; cursor: hand">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Buscar Ficha
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'fotos_personal'}">
+								<a href="#/fotos_personal">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Fotos Personal
 								</a>
 								<b class="arrow"></b>
 							</li>

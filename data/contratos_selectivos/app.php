@@ -24,6 +24,7 @@
 																							'$_POST[fecha_fin]',
 																							'$_POST[select_programa]',
 																							'$_POST[bonificacion]',
+																							'$fecha_corta',
 																							'1', 
 																							'$fecha')");
 
@@ -85,6 +86,24 @@
 		echo $data;
 	}
 	// fin
+
+	// consultar usuarios
+	if(isset($_POST['cargar_tabla'])){
+		$resultado = $class->consulta("SELECT S.id, T.nombre_tipo, S.codigo_contrato, C.ruc_empresa, C.nombre_comercial, S.fecha_final, S.estado FROM contratos.contratos_selectivos S,tipo_contrato T, clientes C, paquetes P WHERE S.id_cliente = C.id AND S.id_paquete = P.id AND S.id_tipo_contrato = T.id");
+		while ($row=$class->fetch_array($resultado)) {
+			$lista[] = array('id' => $row[0],
+						'nombre_tipo' => $row['nombre_tipo'],
+						'codigo_contrato' => $row['codigo_contrato'],
+						'ruc_empresa' => $row['ruc_empresa'],
+						'nombre_comercial' => $row['nombre_comercial'],
+						'fecha_final' => $row['fecha_final'],
+						'estado' => $row['estado']
+						);
+		}
+		echo $lista = json_encode($lista);
+	}
+	// fin
+
 	//LLenar combo tipo contrato
 	if (isset($_POST['llenar_tipo_contrato'])) {
 		$resultado = $class->consulta("SELECT  * FROM tipo_contrato WHERE estado = '1' ORDER BY id asc");

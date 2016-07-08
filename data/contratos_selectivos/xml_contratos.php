@@ -29,7 +29,7 @@
         $start = 0;
     
     if ($search == 'false') {
-        $SQL = "SELECT S.id, T.nombre_tipo, S.codigo_contrato, C.ruc_empresa, C.razon_social, P.descripcion FROM contratos.contratos_selectivos S,tipo_contrato T, clientes C, paquetes P WHERE S.id_cliente = C.id AND S.id_paquete = P.id AND id_tipo_contrato = T.id AND S.estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT S.id, T.nombre_tipo, S.codigo_contrato, C.ruc_empresa, C.razon_social, P.descripcion FROM contratos.contratos_selectivos S,tipo_contrato T, clientes C, paquetes P WHERE S.id_cliente = C.id AND S.id_paquete = P.id AND S.id_tipo_contrato = T.id AND S.estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
     } else {
         $campo = $_GET['searchField'];
       
