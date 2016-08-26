@@ -100,13 +100,43 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="fa fa-music"></i>
-							OyeFm 93.1
+							OYEFM 93.1
 						</small>
 					</a>
 				</div>
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
+						<li class="green">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="">
+								<i class="ace-icon fa fa-comments icon-animated-vertical"></i>
+								<span class="badge badge-success">{{count}}</span>
+							</a>
+
+							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+								<li class="dropdown-header center">
+									<span class="label label-success arrowed-in arrowed-in-right">Conectados</span>
+								</li>
+
+								<li class="dropdown-content">
+									<ul class="dropdown-menu dropdown-navbar">
+									</ul>
+								</li>
+
+				                <li ng-repeat="data in datos">
+				                    <a href="" class="clearfix">
+				                    	<img ng-src="data/fotos_usuario/imagenes/{{data.imagen}}" class="msg-photo" />
+				                    	<span class="msg-body" >
+											<span class="msg-title" >
+												<span class="blue">{{data.usuario}}</span>
+											</span>
+										</span>
+											
+				                    </a>
+				                </li>
+				            </ul>
+						</li>
+
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="" class="dropdown-toggle">
 								<img class="nav-user-photo" src=<?php  print_r('data/fotos_usuario/imagenes/'. $_SESSION['user']['imagen']); ?> alt="" />
@@ -127,7 +157,7 @@
 								</li>
 
 								<li>
-									<a href="profile.html">
+									<a href="">
 										<i class="ace-icon fa fa-user"></i>
 										Cuenta
 									</a>
