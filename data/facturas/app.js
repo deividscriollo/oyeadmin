@@ -219,14 +219,14 @@ angular.module('scotchApp').controller('facturasController', function ($scope) {
 			    var total_total = 0;
 			    var descu_total = 0; 
 
-	      		if($('#id_paquetes').val() == '') {
-	      			$.gritter.add({
-						title: 'Seleccione una mención',
-						class_name: 'gritter-error gritter-center',
-						time: 1000,
-					});
-					$('#codigo').focus();
-	      		} else {
+	    //   		if($('#id_paquetes').val() == '') {
+	    //   			$.gritter.add({
+					// 	title: 'Seleccione una mención',
+					// 	class_name: 'gritter-error gritter-center',
+					// 	time: 1000,
+					// });
+					// $('#codigo').focus();
+	    //   		} else {
 	      			if($('#codigo').val() == '') {
 		      			$.gritter.add({
 							title: 'Seleccione una código',
@@ -410,7 +410,7 @@ angular.module('scotchApp').controller('facturasController', function ($scope) {
                    				$("#iva").val(iva12);
                    				$("#total_pagar").val(total_total);  
 				      		}
-			      		}
+			      		// }
 		      		}
 	      		}
 	    	}
